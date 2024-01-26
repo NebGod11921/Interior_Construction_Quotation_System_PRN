@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tGpeZ/3laynfIwE4BIkr2WA/YUg8yxi5/QXRau6R2nYpvYoy8/cmNJ1oJZv21935TIhhr1H1q0hlk1QEnxMcPQ==",
+  "dgSpecHash": "TagBjjq0rrHozFOEHk2YQaBGTaUBIVRZExbsYncEJWBN7Y0t4kWPa5SQyzhWkFdhZYBSKRzKSAKlBI+otwtqNQ==",
   "success": true,
-  "projectFilePath": "D:\\WPF\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\MyRazorPage.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\MyRazorPage.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

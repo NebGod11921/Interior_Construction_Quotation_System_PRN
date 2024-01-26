@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oN6R4uGeP9BL3O3333WZX0mYw6yL1n1f/w9qYgQyFtDeNcQm2VBs+K944jp2mFyxb88m5tSlZDspxbhD4ntvHQ==",
+  "dgSpecHash": "ehNLNkVnAEMm/oh6P4T1YFuDRtKAGVULF0yZqQZxAZ2NFKjNSUX0G33oelxR7GLsttdKNO2usxk17m3dPP0+rw==",
   "success": true,
-  "projectFilePath": "D:\\WPF\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
