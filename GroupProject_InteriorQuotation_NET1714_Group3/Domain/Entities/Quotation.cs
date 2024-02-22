@@ -8,16 +8,17 @@ namespace Domain.Entities
 {
     public class Quotation : BaseEntity
     {
-        public int Quantity {  get; set; }
+        public int Quantity { get; set; }
         public string QuotationName { get; set; }
         public float UnitPrice { get; set; }
         public float TotalPrice { get; set; }
         public byte Status { get; set; }
-        public DateTime CreateDate {  get; set; }
+        public DateTime CreateDate { get; set; }
         public DateTime EndDate { get; set; }
-        public virtual IEnumerable<Room> Rooms { get; set; }
+        public virtual Guid RoomId { get; set;}
+        public virtual Room Room { get; set; }
         public virtual IEnumerable<Payment> Payments { get; set; }
-        public virtual IEnumerable<Product> Products { get; set; }
+        public virtual IEnumerable<ProductQuotation> ProductQuotations { get; set; }
         
         public virtual User User { get; set; }
 

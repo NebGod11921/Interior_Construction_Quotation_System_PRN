@@ -16,7 +16,11 @@ namespace Infrastructure.FluentApis
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
+
+            //fixing room relationship 1 - 1
+            
+
         }
-    
+
     }
 }

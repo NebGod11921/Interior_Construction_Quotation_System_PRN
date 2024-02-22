@@ -22,7 +22,8 @@ namespace Domain.Entities
         public virtual Category Category { get; set; }
         public virtual IEnumerable<ProductImage> ProductImages { get; set; }
         public virtual IEnumerable<RoomProduct> RoomProducts { get; set; }
-        
+        public virtual IEnumerable<ProductQuotation> ProductQuotations { get; set; }
+
         public virtual Quotation Quotation { get; set; }
         
 

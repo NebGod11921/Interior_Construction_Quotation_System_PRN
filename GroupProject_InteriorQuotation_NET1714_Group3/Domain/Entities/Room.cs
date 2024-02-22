@@ -13,7 +13,6 @@ namespace Domain.Entities
         public virtual IEnumerable<RoomProduct> RoomProducts { get; set; }
         
         public virtual RoomType RoomType { get; set; }
-        
         public virtual Quotation Quotation { get; set; }
     }
 }
