@@ -297,6 +297,21 @@ namespace Infrastructure.Migrations
                     b.ToTable("ProductImage");
                 });
 
+            modelBuilder.Entity("Domain.Entities.ProductQuotation", b =>
+                {
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("QuotationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ProductId", "QuotationId");
+
+                    b.HasIndex("QuotationId");
+
+                    b.ToTable("ProductQuotation");
+                });
+
             modelBuilder.Entity("Domain.Entities.Quotation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -337,6 +352,9 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("RoomId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
@@ -350,6 +368,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoomId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -386,9 +407,6 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("QuotationId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("RoomDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -397,8 +415,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("QuotationId");
 
                     b.HasIndex("RoomTypeId");
 
@@ -555,7 +571,7 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Quotation", "Quotation")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("QuotationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -588,32 +604,51 @@ namespace Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Domain.Entities.ProductQuotation", b =>
+                {
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithMany("ProductQuotations")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Quotation", "Quotation")
+                        .WithMany("ProductQuotations")
+                        .HasForeignKey("QuotationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Quotation");
+                });
+
             modelBuilder.Entity("Domain.Entities.Quotation", b =>
                 {
+                    b.HasOne("Domain.Entities.Room", "Room")
+                        .WithOne("Quotation")
+                        .HasForeignKey("Domain.Entities.Quotation", "RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.User", "User")
                         .WithMany("Quotations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Room");
+
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.Room", b =>
                 {
-                    b.HasOne("Domain.Entities.Quotation", "Quotation")
-                        .WithMany("Rooms")
-                        .HasForeignKey("QuotationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.RoomType", "RoomType")
                         .WithMany("Rooms")
                         .HasForeignKey("RoomTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Quotation");
 
                     b.Navigation("RoomType");
                 });
@@ -661,6 +696,8 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("ProductImages");
 
+                    b.Navigation("ProductQuotations");
+
                     b.Navigation("RoomProducts");
                 });
 
@@ -668,13 +705,14 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("Payments");
 
-                    b.Navigation("Products");
-
-                    b.Navigation("Rooms");
+                    b.Navigation("ProductQuotations");
                 });
 
             modelBuilder.Entity("Domain.Entities.Room", b =>
                 {
+                    b.Navigation("Quotation")
+                        .IsRequired();
+
                     b.Navigation("RoomProducts");
                 });
 

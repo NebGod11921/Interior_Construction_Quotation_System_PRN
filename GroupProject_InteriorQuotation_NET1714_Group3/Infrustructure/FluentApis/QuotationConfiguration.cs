@@ -16,9 +16,11 @@ namespace Infrastructure.FluentApis
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasMany<Payment>(x => x.Payments).WithOne(x => x.Quotation);
-            builder.HasMany<Room>(x => x.Rooms).WithOne(x => x.Quotation);
-            builder.HasMany<Product>(x => x.Products).WithOne(x => x.Quotation);
+
+            //fixing room relationship 1 - 1
+            builder.HasOne<Room>(x => x.Room).WithOne(x => x.Quotation);
+
         }
-    
+
     }
 }
