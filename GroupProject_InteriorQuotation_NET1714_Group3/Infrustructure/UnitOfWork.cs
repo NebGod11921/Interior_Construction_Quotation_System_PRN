@@ -13,14 +13,18 @@ namespace Infrastructure
     {
         private readonly AppDbContext _dbContext;
         private readonly IUserRepository _userRepository;
+        private readonly IProductRepository _productRepo;
 
-        public UnitOfWork(AppDbContext dbContext, IUserRepository userRepository)
+        public UnitOfWork(AppDbContext dbContext, IUserRepository userRepository, IProductRepository productRepo)
         {
             _dbContext = dbContext;
             _userRepository = userRepository;
+            _productRepo = productRepo;
         }
 
         public IUserRepository UserRepository => _userRepository;
+
+        public IProductRepository ProductRepository => _productRepo;
 
         public async Task<int> SaveChangeAsync()
         {

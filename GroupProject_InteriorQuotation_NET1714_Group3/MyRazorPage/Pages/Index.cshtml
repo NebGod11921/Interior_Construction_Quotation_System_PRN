@@ -4,7 +4,40 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="widget">
+                <h2 class="widget-title">Phòng Khách</h2>
+                <ul class="list-unstyled">
+                    @foreach (var livingRoomItem in Model.LivingRoomItems)
+                    {
+                        <li><a href="/LivingRoomDetail?id=@livingRoomItem.Id">@livingRoomItem.Name</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="widget">
+                <h2 class="widget-title">Phòng Bếp</h2>
+                <ul class="list-unstyled">
+                    @foreach (var kitchenItem in Model.KitchenItems)
+                    {
+                        <li><a href="/KitchenDetail?id=@kitchenItem.Id">@kitchenItem.Name</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="widget">
+                <h2 class="widget-title">Phòng Ngủ</h2>
+                <ul class="list-unstyled">
+                    @foreach (var bedroomItem in Model.BedroomItems)
+                    {
+                        <li><a href="/BedroomDetail?id=@bedroomItem.Id">@bedroomItem.Name</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>*@
