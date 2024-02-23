@@ -1,24 +1,34 @@
 using Application.Commons;
 using Infrustructure;
 using Microsoft.Extensions.Configuration;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var configuration = builder.Configuration.Get<AppConfiguration>() ?? new AppConfiguration();
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorPagesOptions(op =>
+{
+    op.RootDirectory = "/Pages";
+    op.Conventions.AddPageRoute("/Login", "");
+});
 builder.Services.AddInfrastructuresService(configuration.DatabaseConnection);
-
+builder.Services.AddSession();
+builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -26,7 +36,12 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapRazorPages();
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapFallbackToPage("/Login");
+});
 app.Run();
