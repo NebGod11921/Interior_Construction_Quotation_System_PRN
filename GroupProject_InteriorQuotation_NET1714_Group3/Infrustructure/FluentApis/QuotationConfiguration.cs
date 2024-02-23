@@ -14,7 +14,7 @@ namespace Infrastructure.FluentApis
         public void Configure(EntityTypeBuilder<Quotation> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedOnAddOrUpdate();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasMany<Payment>(x => x.Payments).WithOne(x => x.Quotation);
 
             //fixing room relationship 1 - 1

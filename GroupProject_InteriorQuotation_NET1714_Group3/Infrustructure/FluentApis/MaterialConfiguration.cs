@@ -14,7 +14,7 @@ namespace Infrastructure.FluentApis
         public void Configure(EntityTypeBuilder<Material> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedOnAddOrUpdate();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasMany<Product>(x => x.Products).WithOne(x => x.Material);
 
         }

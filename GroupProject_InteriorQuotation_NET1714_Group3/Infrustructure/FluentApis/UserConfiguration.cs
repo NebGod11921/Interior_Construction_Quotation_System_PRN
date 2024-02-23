@@ -14,7 +14,7 @@ namespace Infrastructure.FluentApis
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedOnAddOrUpdate();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasMany<Quotation>(x => x.Quotations).WithOne(x => x.User);
         }
     }

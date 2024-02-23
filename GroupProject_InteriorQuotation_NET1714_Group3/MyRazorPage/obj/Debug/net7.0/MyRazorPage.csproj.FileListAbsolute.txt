@@ -244,3 +244,5 @@ D:\PRN221\GitHubMain\Interior_Construction_Quotation_System_PRN\GroupProject_Int
 D:\PRN221\GitHubMain\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\MyRazorPage.pdb
 D:\PRN221\GitHubMain\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\MyRazorPage.genruntimeconfig.cache
 D:\PRN221\GitHubMain\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\ref\MyRazorPage.dll
+C:\Users\Admin\Documents\GitHub\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Admin\Documents\GitHub\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
