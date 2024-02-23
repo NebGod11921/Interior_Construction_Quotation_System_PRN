@@ -14,7 +14,7 @@ namespace Infrastructure.FluentApis
         public void Configure(EntityTypeBuilder<Payment> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Property(x => x.Id).ValueGeneratedOnAddOrUpdate();
 
         }
     
