@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MyRazorPage.Pages
 {
-    public class IndexModel : PageModel
+    public class TestModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<TestModel> _logger;
         private readonly IRoomTypeService _roomTypeService;
         public List<RoomHomePageProduct> ProductsHomePage { get; set; }
-        public IndexModel(ILogger<IndexModel> logger, IRoomTypeService roomService)
+        public TestModel(ILogger<TestModel> logger, IRoomTypeService roomService)
         {
             _logger = logger;
             _roomTypeService = roomService;
@@ -18,7 +18,15 @@ namespace MyRazorPage.Pages
 
         public void OnGet()
         {
-            ProductsHomePage = _roomTypeService.GetAllRoomTypesWithProducts();
+            var check= _roomTypeService.GetAllRoomTypesWithProducts();
+            if (check == null)
+            {
+                Console.WriteLine("hehe");
+            }
+            else
+            {
+                ProductsHomePage = _roomTypeService.GetAllRoomTypesWithProducts();
+            }
         }
         public string GetRoomTypeImageUrl(string roomType, string imageName)
         {
