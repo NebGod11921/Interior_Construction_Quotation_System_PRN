@@ -17,35 +17,42 @@ namespace MyRazorPage.Pages
         {
         }
 
-        public IActionResult OnPostLogin(string email, string password)
+        public async Task<IActionResult> OnPost(string email, string password)
         {
-            validatetion(email, password);
-            AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
-            accountLoginDTO.EmailAddress = email;
-            accountLoginDTO.Password = password;
-            var login =  _account.Login(accountLoginDTO);
-            if(login != null)
+            if(validatetion(email, password) == true)
             {
-                ViewData["msgLogin"] = "Cant found account in system.Please checked again";
-            }
-            else
-            {
-                RedirectToPage("/Home");
+                AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
+                accountLoginDTO.EmailAddress = email;
+                accountLoginDTO.Password = password;
+                bool c = await _account.CheckEmailAddressExisted(email);
+                AccountDTO login = await _account.Login(accountLoginDTO);
+                if (login == null)
+                {
+                    ViewData["msgLogin"] = "Cant found account in system.Please checked again";
+                }
+                else
+                {
+                    return RedirectToPage("/Home");
+                }
             }
             OnGet();
             return Page();
         }
 
-        public void validatetion(string email, string password)
+        public bool validatetion(string email, string password)
         {
-            if(email.Length == 0)
+            bool flag = true;
+            if(string.IsNullOrEmpty(email))
             {
                 ViewData["email"] = "Please fill email, this cant null";
-            }else if( password.Length == 0)
+                 flag = false;
+            }
+            if(string.IsNullOrEmpty(password))
             {
                 ViewData["password"] = "Please fill password, this cant null";
+                flag = false;
             }
-            OnGet();
+            return flag;
         }
     }
 }
