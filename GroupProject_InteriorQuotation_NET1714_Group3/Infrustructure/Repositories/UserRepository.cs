@@ -19,45 +19,13 @@ namespace Infrastructure.Repositories
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly AppDbContext _db;
         public UserRepository(AppDbContext appDbContext) : base(appDbContext)
         {
-            _appDbContext = appDbContext;
+            _db = appDbContext;
         }
             
-        public Task<bool> CheckEmailAddressExisted(string emailaddress)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> CheckPhoneNumberExited(string phonenumber)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<User>> GetSortedAccountAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<User> GetUserByEmailAddressAndPasswordHash(string username, string passwordHash)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<User>> SearchAccountByNameAsync(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<User>> SearchAccountByRoleNameAsync(string roleName)
-        {
-            throw new NotImplementedException();
-        private readonly AppDbContext _db;
-        public UserRepository(AppDbContext db) : base(db)
-        {
-            _db = db;
-        }
+        
 
         public async Task<bool> CheckEmailAddressExisted(string emailaddress)
         {
