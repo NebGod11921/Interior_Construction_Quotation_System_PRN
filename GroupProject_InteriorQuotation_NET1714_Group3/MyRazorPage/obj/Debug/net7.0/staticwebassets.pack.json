@@ -5,6 +5,30 @@
       "PackagePath": "staticwebassets\\MyRazorPage.bundle.scp.css"
     },
     {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\BookSeft.jpg",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\BookSeft.jpg"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\CoffeTable.jpg",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\CoffeTable.jpg"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\SiteTable.jpg",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\SiteTable.jpg"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\Sofa.jpg",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\Sofa.jpg"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\lamp.jpg",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\lamp.jpg"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\rug.png",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\rug.png"
+    },
+    {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

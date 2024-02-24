@@ -20,3 +20,44 @@ html {
 body {
   margin-bottom: 60px;
 }
+.product-item {
+    flex: 1 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: border-box;
+
+}
+
+.product-wrapper {
+    border: 3px solid #ccc;
+}
+
+    .product-wrapper img {
+        width: 100%;
+        height: auto;
+    }
+
+.product-content {
+    padding: 10px;
+    text-align: center;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-item img {
+     width: 200px;
+    height: auto;
+
+    
+}
+
+.product-name {
+    margin-top: 5px;
+    font-weight: bold;
+}

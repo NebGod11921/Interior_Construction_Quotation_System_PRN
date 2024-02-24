@@ -8,10 +8,9 @@ namespace Application.ViewModels
 {
     public  class ProductDTO
     {
+        public string ProductId { get; set; }
         public string ProductName { get; set; }
-        public string Description { get; set; }
-        public int Quantity { get; set; }
-        public float Size { get; set; }
-        public float Price { get; set; }
+        public string ImageUrl { get; set; }
+
     }
 }

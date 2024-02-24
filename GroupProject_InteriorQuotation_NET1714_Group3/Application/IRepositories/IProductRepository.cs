@@ -10,7 +10,7 @@ namespace Application.IRepositories
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
-        public List<Product> GetProductsInRoom(Guid roomId);
+        //public List<Product> GetProductsInRoom(Guid roomId);
         
 
     }
