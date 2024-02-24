@@ -23,6 +23,8 @@ namespace Infrastructure.Mappers
                 ImageUrl = rp.Product.ProductImages.FirstOrDefault().Image.ImageName
 
             }).ToList())));
+            CreateMap<User,AccountDTO>().ReverseMap();
+            CreateMap<User, AccountLoginDTO>().ReverseMap();
         }
     }
 }

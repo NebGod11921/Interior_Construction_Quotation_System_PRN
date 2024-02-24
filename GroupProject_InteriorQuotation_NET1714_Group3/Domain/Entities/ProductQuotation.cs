@@ -8,8 +8,8 @@ namespace Domain.Entities
 {
     public class ProductQuotation
     {
-        public Guid ProductId { get; set; }
-        public Guid QuotationId { get; set; }
+        public int ProductId { get; set; }
+        public int QuotationId { get; set; }
         public virtual Product Product { get; set; }
         public virtual Quotation Quotation { get; set; }
     }

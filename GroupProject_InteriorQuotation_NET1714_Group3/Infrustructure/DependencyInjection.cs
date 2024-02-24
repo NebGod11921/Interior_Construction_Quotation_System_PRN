@@ -33,6 +33,15 @@ namespace Infrustructure
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService,UserService>();
+            services.AddAutoMapper(typeof(MapperConfigurationsProfile).Assembly);
+            services.AddScoped<IUserRepository, UserRepository>();
+
+
+
+            //Service
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
             return services;
         }
