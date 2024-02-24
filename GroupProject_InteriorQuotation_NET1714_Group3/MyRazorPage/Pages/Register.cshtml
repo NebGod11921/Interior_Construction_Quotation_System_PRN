@@ -16,47 +16,61 @@
         <form method="post" autocomplete="on">
             <!--First name-->
             <div class="box">
-                <label for="firstName" class="fl fontLabel"> First Name: </label>
+                <label for="firstName" class="fl fontLabel"> Full Name: </label>
                 <div class="new iconBox">
                     <i class="fa fa-user" aria-hidden="true"></i>
                 </div>
                 <div class="fr">
-                    <input type="text" name="firstName" placeholder="First Name"
+                    <input type="text" name="fullname" placeholder="Full Name"
                            class="textBox" autofocus="on" required>
                 </div>
                 <div class="clr"></div>
             </div>
+            @if (ViewData["fullname"] != null)
+            {
+                <p>@ViewData["fullname"]</p>
+            }
             <!--First name-->
-            <!--Second name-->
             <div class="box">
-                <label for="secondName" class="fl fontLabel"> Seconed Name: </label>
+                <label for="secondName" class="fl fontLabel"> Address: </label>
                 <div class="fl iconBox"><i class="fa fa-user" aria-hidden="true"></i></div>
                 <div class="fr">
-                    <input type="text" required name="secondName"
-                           placeholder="Last Name" class="textBox">
+                    <input type="text" required name="address"
+                           placeholder="Address" class="textBox">
                 </div>
                 <div class="clr"></div>
             </div>
-            <!--Second name-->
+            @if (ViewData["address"] != null)
+            {
+                <p>@ViewData["address"]</p>
+            }
             <!---Phone No.------>
             <div class="box">
                 <label for="phone" class="fl fontLabel"> Phone No.: </label>
                 <div class="fl iconBox"><i class="fa fa-phone-square" aria-hidden="true"></i></div>
                 <div class="fr">
-                    <input type="text" required name="phoneNo" maxlength="10" placeholder="Phone No." class="textBox">
+                    <input type="text" required name="phone" maxlength="10" placeholder="Phone No." class="textBox">
                 </div>
                 <div class="clr"></div>
             </div>
+            @if (ViewData["telephone"] != null)
+            {
+                <p>@ViewData["telephone"]</p>
+            }
             <!---Phone No.---->
             <!---Email ID---->
             <div class="box">
-                <label for="email" class="fl fontLabel"> Email ID: </label>
+                <label for="email" class="fl fontLabel"> Email: </label>
                 <div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
                 <div class="fr">
                     <input type="email" required name="email" placeholder="Email Id" class="textBox">
                 </div>
                 <div class="clr"></div>
             </div>
+            @if (ViewData["email"] != null)
+            {
+                <p>@ViewData["email"]</p>
+            }
             <!--Email ID----->
             <!---Password------>
             <div class="box">
@@ -67,24 +81,45 @@
                 </div>
                 <div class="clr"></div>
             </div>
+            @if (ViewData["password"] != null)
+            {
+                <p>@ViewData["password"]</p>
+            }
             <!---Password---->
+            <div class="box">
+                <label for="password" class="fl fontLabel"> Confirm Password </label>
+                <div class="fl iconBox"><i class="fa fa-key" aria-hidden="true"></i></div>
+                <div class="fr">
+                    <input type="Password" required name="cfpassword" placeholder="Confirm Password" class="textBox">
+                </div>
+                <div class="clr"></div>
+            </div>
+            @if (ViewData["cfpassword"] != null)
+            {
+                <p>@ViewData["cfpassword"]</p>
+            }
             <!---Gender----->
             <div class="box radio">
                 <label for="gender" class="fl fontLabel"> Gender: </label>
                 <input type="radio" name="Gender" value="Male" required> Male &nbsp; &nbsp; &nbsp; &nbsp;
                 <input type="radio" name="Gender" value="Female" required> Female
             </div>
+            @if (ViewData["gender"] != null)
+            {
+                <p>@ViewData["gender"]</p>
+            }
             <!---Gender--->
             <!--Terms and Conditions------>
-            <div class="box terms">
-                <input type="checkbox" name="Terms" required> &nbsp; I accept the terms and conditions
-            </div>
             <!--Terms and Conditions------>
             <!---Submit Button------>
             <div class="box" style="background: #2d3e3f">
                 <input type="Submit" name="Submit" class="submit" value="SUBMIT">
             </div>
-            <!---Submit Button----->
+            <!---Submit Button-----> 
+            @if (ViewData["msgRegister"] != null)
+            {
+                <p>@ViewData["msgRegister"]</p>
+            }
         </form>
     </div>
     <!--Body of Form ends--->
