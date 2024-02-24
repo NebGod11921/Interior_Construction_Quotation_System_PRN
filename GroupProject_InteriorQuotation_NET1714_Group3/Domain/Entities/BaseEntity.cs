@@ -10,7 +10,7 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         public Guid? CreatedBy { get; set; }
 
@@ -22,7 +22,7 @@ namespace Domain.Entities
 
         public Guid? DeleteBy { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
 
     }
 }
