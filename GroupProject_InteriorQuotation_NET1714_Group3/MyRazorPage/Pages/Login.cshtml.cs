@@ -32,7 +32,7 @@ namespace MyRazorPage.Pages
                 }
                 else
                 {
-                    return RedirectToPage("/Home");
+                    return RedirectToPage("/Index");
                 }
             }
             OnGet();

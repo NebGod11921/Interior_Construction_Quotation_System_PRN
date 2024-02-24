@@ -100,26 +100,30 @@ namespace Infrastructure.Repositories
             }
         }
 
-        //public Task<bool> Register(User user)
-        //{
-        //    try
-        //    {
-        //        bool registered = 
-        //        if (users != null)
-        //        {
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception(e.InnerException.ToString());
-        //    }
-        //}
+        public bool Register(User user)
+        {
+            try
+            {
+                 _db.Add(user);
+                if(SaveChange() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.InnerException.ToString());
+            }
+        }
 
+        public int SaveChange()
+        {
+           return  _db.SaveChanges();
+        }
         public async Task<IEnumerable<User>> SearchAccountByNameAsync(string name)
         {
             try
