@@ -9,9 +9,11 @@ namespace MyRazorPage.Pages
     public class LoginModel : PageModel
     {
         private readonly IAccountService _account;
-        public LoginModel(IAccountService account)
+        private readonly IConfiguration _config;
+        public LoginModel(IAccountService account, IConfiguration config)
         {
             _account = account;
+            _config = config;
         }
         public void OnGet()
         {
@@ -21,18 +23,26 @@ namespace MyRazorPage.Pages
         {
             if(validatetion(email, password) == true)
             {
-                AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
-                accountLoginDTO.EmailAddress = email;
-                accountLoginDTO.Password = password;
-                bool c = await _account.CheckEmailAddressExisted(email);
-                AccountDTO login = await _account.Login(accountLoginDTO);
-                if (login == null)
+                if (CheckAdmin(email, password))
                 {
-                    ViewData["msgLogin"] = "Cant found account in system.Please checked again";
+                    return RedirectToPage("/Admin");
                 }
                 else
                 {
-                    return RedirectToPage("/Index");
+                    AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
+                    accountLoginDTO.EmailAddress = email;
+                    accountLoginDTO.Password = password;
+                    bool c = await _account.CheckEmailAddressExisted(email);
+                    AccountDTO login = await _account.Login(accountLoginDTO);
+                    if (login == null)
+                    {
+
+                        ViewData["msgLogin"] = "Cant found account in system.Please checked again";
+                    }
+                    else
+                    {
+                        return RedirectToPage("/Index");
+                    }
                 }
             }
             OnGet();
@@ -53,6 +63,17 @@ namespace MyRazorPage.Pages
                 flag = false;
             }
             return flag;
+        }
+        private bool CheckAdmin(string name, string password)
+        {
+            IConfiguration config = new ConfigurationBuilder()
+                                .SetBasePath(Directory.GetCurrentDirectory())
+                                       .AddJsonFile("appsettings.json", true, true)
+                                       .Build();
+            var aEmail = _config["Admin:UserName"];
+            var aPass = _config["Admin:Password"];
+
+            return name.ToLower() == aEmail.ToLower() && password.ToLower() == aPass.ToLower();
         }
     }
 }
