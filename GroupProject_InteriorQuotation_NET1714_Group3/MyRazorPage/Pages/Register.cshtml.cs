@@ -20,28 +20,37 @@ namespace MyRazorPage.Pages
 
         public async void OnPost(string fullname, string Address, string phone, string email, string password, string cfpassword) 
         {
-            string selectedGender = Request.Form["Gender"];
 
+            string selectedGender = Request.Form["Gender"];
+            ViewData["fullnamedata"] = fullname;
+            ViewData["Addressdata"] = Address;
+            ViewData["phonedata"] = phone;
+            ViewData["emaildata"] = email;
+            ViewData["passworddata"] = password;
+            ViewData["cfpassworddata"] = cfpassword;
+            ViewData["genderdata"] = selectedGender;
             if (Validate( fullname, Address, phone, email, password, cfpassword, selectedGender) == true)
             {
-                AccountDTO account = new AccountDTO();
-                account.FullName = fullname;
-                account.Address = Address;
-                account.TelephoneNumber = phone;
-                account.Password = password;
-                account.Gender = selectedGender;
-                account.EmailAddress = email;
-                account.RoleName = "Customer";
-                account.Status = 1;
-                bool registed = await _account.Register(account);
-                if (registed == true)
-                {
-                    ViewData["msgRegister"] = "You are registed new account successfully!";
-                }
-                else
-                {
-                    ViewData["msgRegister"] = "Registed account failed";
-                }
+                
+                    AccountDTO account = new AccountDTO();
+                    account.FullName = fullname;
+                    account.Address = Address;
+                    account.TelephoneNumber = phone;
+                    account.Password = password;
+                    account.Gender = selectedGender;
+                    account.EmailAddress = email;
+                    account.RoleName = "Customer";
+                    account.Status = 1;
+                    bool registed = await _account.Register(account);
+                    if (registed == true)
+                    {
+                        ViewData["msgRegister"] = "You are registed new account successfully!";
+                    }
+                    else
+                    {
+                        ViewData["msgRegister"] = "Registed account failed";
+                    }
+                
             }
             OnGet();
         }    
@@ -78,17 +87,21 @@ namespace MyRazorPage.Pages
                 ViewData["cfpassword"] = "Please fill cfpassword";
                 flag = false;
             }
-            if (!cfpassword.Equals(password))
-            {
-                ViewData["cfpassword"] = "Please choose gender";
-                flag = false;
-            }
             if (string.IsNullOrEmpty(gender))
             {
                 ViewData["gender"] = "Please choose gender";
                 flag = false;
             }
-            return flag;
+            if (!string.IsNullOrEmpty(cfpassword) && !string.IsNullOrEmpty(password)) 
+            {
+                if (!cfpassword.Equals(password))
+                {
+                    ViewData["cfpasswordnotsame"] = "Password must equal confirm password";
+                    flag = false;
+                }
+            }
+            
+           return flag;
         }
     }
 }
