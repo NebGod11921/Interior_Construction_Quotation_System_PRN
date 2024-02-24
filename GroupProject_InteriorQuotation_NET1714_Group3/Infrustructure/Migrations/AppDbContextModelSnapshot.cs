@@ -275,7 +275,7 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("QuotationId")
+                    b.Property<int?>("QuotationId")
                         .HasColumnType("int");
 
                     b.Property<float>("Size")
@@ -592,9 +592,7 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Domain.Entities.Quotation", "Quotation")
                         .WithMany()
-                        .HasForeignKey("QuotationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("QuotationId");
 
                     b.Navigation("Category");
 
