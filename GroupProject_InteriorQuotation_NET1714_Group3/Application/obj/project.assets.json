@@ -2700,19 +2700,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
+    "C:\\Users\\ROG\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj",
+      "projectUniqueName": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\obj\\",
+      "projectPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\ROG\\.nuget\\packages\\",
+      "outputPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ROG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2720,14 +2725,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Domain.csproj"
+            "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Domain.csproj"
             }
           }
         }
@@ -2767,16 +2773,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

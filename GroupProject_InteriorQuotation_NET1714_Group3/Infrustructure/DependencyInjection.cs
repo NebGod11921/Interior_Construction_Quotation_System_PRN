@@ -6,6 +6,7 @@ using Infrastructure;
 using Infrastructure.Mappers;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,6 @@ namespace Infrustructure
             services.AddScoped<IUserService,UserService>();
             services.AddAutoMapper(typeof(MapperConfigurationsProfile).Assembly);
             services.AddScoped<IUserRepository, UserRepository>();
-
 
 
             //Service

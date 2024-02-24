@@ -86,14 +86,14 @@ namespace Application.Services
             try
             {
                 User user_mapper = _mapper.Map<User>(account);
-                await _unit.UserRepository.AddAsync(user_mapper);
-                if (await _unit.SaveChangeAsync() > 0)
+                bool registed = _unit.UserRepository.Register(user_mapper);
+                if (registed == false) 
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
                 
             }
