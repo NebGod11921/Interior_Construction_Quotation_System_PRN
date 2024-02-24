@@ -10,7 +10,7 @@ var configuration = builder.Configuration.Get<AppConfiguration>() ?? new AppConf
 builder.Services.AddRazorPages().AddRazorPagesOptions(op =>
 {
     op.RootDirectory = "/Pages";
-    op.Conventions.AddPageRoute("/Login", "");
+    op.Conventions.AddPageRoute("/Test", "");
 });
 builder.Services.AddInfrastructuresService(configuration.DatabaseConnection);
 builder.Services.AddSession();
@@ -28,8 +28,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -39,9 +37,9 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapRazorPages();
-app.UseEndpoints(endpoints =>
+/*app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
-    endpoints.MapFallbackToPage("/Login");
-});
+    endpoints.MapFallbackToPage("/Index");
+});*/
 app.Run();

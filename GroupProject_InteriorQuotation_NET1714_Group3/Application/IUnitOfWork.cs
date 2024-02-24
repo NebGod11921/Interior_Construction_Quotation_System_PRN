@@ -9,7 +9,10 @@ namespace Application
 {
     public interface IUnitOfWork
     {
+        public IProductRepository ProductRepository { get; }
         public IUserRepository UserRepository { get; }
+        public IRoomTypeRepository RoomTypeRepository { get; }
         public Task<int> SaveChangeAsync();
+
     }
 }

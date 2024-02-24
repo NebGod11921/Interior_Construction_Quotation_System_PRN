@@ -1,4 +1,9 @@
 ﻿using Application.IRepositories;
+using Domain.Entities;
+using Infrustructure;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Application.Repositories;
 using Domain.Entities;
 using Infrustructure;
@@ -15,10 +20,12 @@ namespace Infrastructure.Repositories
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
         private readonly AppDbContext _db;
-        public UserRepository(AppDbContext db) : base(db)
+        public UserRepository(AppDbContext appDbContext) : base(appDbContext)
         {
-            _db = db;
+            _db = appDbContext;
         }
+            
+        
 
         public async Task<bool> CheckEmailAddressExisted(string emailaddress)
         {
