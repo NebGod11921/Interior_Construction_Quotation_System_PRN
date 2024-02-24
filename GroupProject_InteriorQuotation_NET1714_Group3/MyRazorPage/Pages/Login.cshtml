@@ -144,9 +144,8 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form>
         <h3>Login Here</h3>
-        <form asp-page-handler="Login" method="post">
+        <form method="post">
             <label for="username">Username</label>
             <input type="text" placeholder="Email" id="email" name="email">
             @if (ViewData["email"] != null)
@@ -166,10 +165,8 @@ button{
             }
         </form>
         <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        <div class="go"><a asp-page="/Register">Register</a></div>
         </div>
-    </form>
 </body>
 </html>
 

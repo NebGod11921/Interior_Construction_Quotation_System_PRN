@@ -91,7 +91,7 @@ namespace Infrastructure.Repositories
         {
             try
             {
-                var users = await _db.Users.Where(x => x.EmailAddress.ToLower().Equals(Email.ToLower()) && x.Password.Equals(passwordHash)).FirstOrDefaultAsync();
+                var users = await _db.Users.FirstOrDefaultAsync(x => x.EmailAddress.ToLower().Equals(Email.ToLower()) && x.Password.Equals(passwordHash));
                 if (users != null)
                 {
                     return users;
