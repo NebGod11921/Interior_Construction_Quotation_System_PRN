@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,6 +53,27 @@ namespace Application.Services
                 else
                 {
                     return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
+
+        public async Task<List<AccountDTO>> GetAccounts()
+        {
+            try
+            {
+                var user =(List<User>) await _unit.UserRepository.GetSortedAccountAsync();
+                if (user != null)
+                {
+                    List<AccountDTO> accountDTO = _mapper.Map<List<AccountDTO>>(user);
+                    return accountDTO;
+                }
+                else
+                {
+                    return null;
                 }
             }
             catch (Exception ex)

@@ -14,5 +14,6 @@ namespace Application.Interfaces
         Task<bool> CheckEmailAddressExisted(string emailaddress);
         Task<bool> CheckPhoneNumberExited(string phonenumber);
         Task<bool> Register(AccountDTO account);
+        Task<List<AccountDTO>> GetAccounts();
     }
 }
