@@ -20,7 +20,8 @@ namespace Infrustructure
     {
         public static IServiceCollection AddInfrastructuresService(this IServiceCollection services, string databaseConnection)
         {
-            services.AddDbContext<AppDbContext>(option => option.UseSqlServer(databaseConnection));
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(databaseConnection), ServiceLifetime.Scoped);
             //return services;
             services.AddAutoMapper(typeof(MapperConfigurationsProfile).Assembly);
             services.AddScoped<MapperConfigurationsProfile>();

@@ -40,7 +40,6 @@ namespace Application.Services
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
         public async Task<bool> CheckPhoneNumberExited(string phonenumber)
         {
             try
@@ -60,7 +59,44 @@ namespace Application.Services
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
+        public async Task<bool> DeleteAccount(int id)
+        {
+            try
+            {
+                if (_unit.UserRepository.Delete(id) == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
+        public async Task<AccountDTO> GetAccountByID(int id)
+        {
+            try
+            {
+                var user = (User?)await _unit.UserRepository.GetByIdAsync(id);
+                if (user != null)
+                {
+                    AccountDTO accountDTO = _mapper.Map<AccountDTO>(user);
+                    return accountDTO;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
         public async Task<List<AccountDTO>> GetAccounts()
         {
             try
@@ -81,7 +117,6 @@ namespace Application.Services
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
         public  async Task<AccountDTO> Login(AccountLoginDTO account)
         {
             try
@@ -102,7 +137,6 @@ namespace Application.Services
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
         public async Task<bool> Register(AccountDTO account)
         {
             try

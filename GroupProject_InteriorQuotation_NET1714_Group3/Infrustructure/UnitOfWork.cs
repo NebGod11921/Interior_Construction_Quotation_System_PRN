@@ -12,6 +12,7 @@ namespace Infrastructure
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _dbContext;
+
         private readonly IUserRepository _userRepository;
         private readonly IProductRepository _productRepo;
         private readonly IRoomTypeRepository _roomTypeRepository;

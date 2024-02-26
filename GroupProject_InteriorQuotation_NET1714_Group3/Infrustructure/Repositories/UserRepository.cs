@@ -25,8 +25,6 @@ namespace Infrastructure.Repositories
             _db = appDbContext;
         }
             
-        
-
         public async Task<bool> CheckEmailAddressExisted(string emailaddress)
         {
             try
@@ -124,6 +122,30 @@ namespace Infrastructure.Repositories
             catch (Exception e)
             {
                 throw new Exception(e.InnerException.ToString());
+            }
+        }
+        public bool Delete(int id) 
+        {
+            try
+            {
+                var d = _db.Users.First(x => x.Id == id);
+                if (d != null)
+                {
+                    _db.Remove(d);
+                    if (SaveChange() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.ToString());
             }
         }
 
