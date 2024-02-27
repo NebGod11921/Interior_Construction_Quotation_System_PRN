@@ -1,6 +1,5 @@
 ﻿using Application.Interfaces;
 using Application.IRepositories;
-using Application.ServiceResponse;
 using Application.ViewModels;
 using AutoMapper;
 using System;

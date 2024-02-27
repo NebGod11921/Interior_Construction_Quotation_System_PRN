@@ -109,7 +109,7 @@ namespace Infrastructure.Repositories
         {
             
                 await _db.AddAsync(user);
-                if(await SaveChangeAsync() > 0)
+                if(await SaveChangeAsync()> 0)
                 {
                     return true;
                 }

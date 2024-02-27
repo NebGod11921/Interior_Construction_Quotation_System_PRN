@@ -19,28 +19,33 @@ namespace MyRazorPage.Pages
             accountDTOs = await _account.GetAccounts() ?? new List<AccountDTO>();
         }
 
-        public async void OnPostDeleteCustomer(int csID)
+        public async Task OnPostDeleteCustomer(int csID)
         {
-            AccountDTO aexits = await _account.GetAccountByID(csID);
+            var aexits = await _account.GetAccountByID(csID);
             if (aexits.Status == 0)
             {
                 ViewData["msgdelete"] = "Account has deleted, Cant delete again.";
             }
             else
             {
-                AccountDTO accountforUpdate = await _account.GetAccountByID(csID);
-                accountforUpdate.Status = 0;
-                bool deleted = await _account.DeleteAccount(accountforUpdate);
+                
+                var deleted = await _account.DeleteAccount(aexits);
+                
                 if (deleted == true) 
                 {
                     ViewData["msgdelete"] = "Account has be deleted successfully";
+                    
+
                 }
                 else
                 {
                     ViewData["msgdelete"] = "Account has be deleted fail";
+                    
                 }
+               
             }
-            OnGet();
+            await OnGet();
+           
         }
     }
 }

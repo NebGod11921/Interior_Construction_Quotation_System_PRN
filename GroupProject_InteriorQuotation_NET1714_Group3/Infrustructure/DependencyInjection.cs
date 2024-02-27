@@ -31,12 +31,13 @@ namespace Infrustructure
             services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
             services.AddScoped<IRoomTypeService, RoomTypeService>();
 
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService,UserService>();
             services.AddAutoMapper(typeof(MapperConfigurationsProfile).Assembly);
 
             //Service
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountService, AccountService>();
+            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 

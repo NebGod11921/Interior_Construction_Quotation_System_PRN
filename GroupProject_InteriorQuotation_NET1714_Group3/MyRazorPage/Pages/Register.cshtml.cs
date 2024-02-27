@@ -18,7 +18,7 @@ namespace MyRazorPage.Pages
         {
         }
 
-        public async void OnPost(string fullname, string Address, string phone, string email, string password, string cfpassword) 
+        public async Task OnPost(string fullname, string Address, string phone, string email, string password, string cfpassword) 
         {
 
             string selectedGender = Request.Form["Gender"];

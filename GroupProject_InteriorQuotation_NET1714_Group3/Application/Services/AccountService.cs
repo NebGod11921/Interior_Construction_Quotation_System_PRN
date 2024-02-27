@@ -37,7 +37,7 @@ namespace Application.Services
                 }
             }catch(Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
             }
         }
         public async Task<bool> CheckPhoneNumberExited(string phonenumber)
@@ -56,7 +56,7 @@ namespace Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
             }
         }
         public async Task<bool> DeleteAccount(AccountDTO account)
@@ -65,9 +65,12 @@ namespace Application.Services
             {
                 var user_mapper = _mapper.Map<User>(account);
                 user_mapper.Status = 0;
-                _unit.UserRepository.Update(user_mapper);
-                if ( await _unit.SaveChangeAsync() > 0 )
+                _unit.UserRepository.SoftRemove(user_mapper);
+                var isSuccess = await _unit.SaveChangeAsync() > 0;
+
+                if (isSuccess)
                 {
+                   
                     return true;
                 }
                 else
@@ -77,14 +80,14 @@ namespace Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
             }
         }
         public async Task<AccountDTO> GetAccountByID(int id)
         {
             try
             {
-                var user = (User?)await _unit.UserRepository.GetByIdAsync(id);
+                var user = (User?) await _unit.UserRepository.GetByIdAsync(id);
                 if (user != null)
                 {
                     AccountDTO accountDTO = _mapper.Map<AccountDTO>(user);
@@ -97,7 +100,7 @@ namespace Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
             }
         }
         public async Task<List<AccountDTO>> GetAccounts()
@@ -117,7 +120,7 @@ namespace Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message );
             }
         }
         public  async Task<AccountDTO> Login(AccountLoginDTO account)
@@ -137,7 +140,7 @@ namespace Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
             }
         }
         public async Task<bool> Register(AccountDTO account)
@@ -158,7 +161,7 @@ namespace Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
             }
         }
     }
