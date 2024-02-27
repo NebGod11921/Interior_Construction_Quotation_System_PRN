@@ -36,7 +36,7 @@ namespace Infrastructure
 
         public IRoomTypeRepository RoomTypeRepository => _roomTypeRepository;
 
-        public async Task<int> SaveChangeAsync()
+        public async Task<int> SaveChangeAsync() 
         {
             return await _dbContext.SaveChangesAsync();
         }

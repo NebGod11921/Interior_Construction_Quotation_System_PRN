@@ -16,6 +16,6 @@ namespace Application.Interfaces
         Task<bool> Register(AccountDTO account);
         Task<List<AccountDTO>> GetAccounts();
         Task<AccountDTO> GetAccountByID(int id);
-        Task<bool> DeleteAccount(int csID);
+        Task<bool> DeleteAccount(AccountDTO account);
     }
 }

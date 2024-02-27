@@ -105,12 +105,11 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public bool Register(User user)
+        public async Task<bool> Register(User user)
         {
-            try
-            {
-                 _db.Add(user);
-                if(SaveChange() > 0)
+            
+                await _db.AddAsync(user);
+                if(await SaveChangeAsync() > 0)
                 {
                     return true;
                 }
@@ -118,40 +117,31 @@ namespace Infrastructure.Repositories
                 {
                     return false;
                 }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.InnerException.ToString());
-            }
+            
         }
-        public bool Delete(int id) 
+        public async Task<bool> Delete(User user)
         {
-            try
-            {
-                var d = _db.Users.First(x => x.Id == id);
-                if (d != null)
+            bool flag = true;
+                var exits = await _db.Users.FirstOrDefaultAsync(x => x.Id == user.Id);
+                if (exits != null)
                 {
-                    _db.Remove(d);
-                    if (SaveChange() > 0)
+                     _db.Update(exits);
+                    if (await _db.SaveChangesAsync() > 0)
                     {
-                        return true;
+                        flag = true;
                     }
                     else
                     {
-                        return false;
+                        flag = false;
                     }
                 }
-                return false;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.ToString());
-            }
+            return flag;
         }
 
-        public int SaveChange()
+        // Method to save changes
+        private async Task<int> SaveChangeAsync()
         {
-           return  _db.SaveChanges();
+            return await _db.SaveChangesAsync();
         }
         public async Task<IEnumerable<User>> SearchAccountByNameAsync(string name)
         {

@@ -59,11 +59,14 @@ namespace Application.Services
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-        public async Task<bool> DeleteAccount(int id)
+        public async Task<bool> DeleteAccount(AccountDTO account)
         {
             try
             {
-                if (_unit.UserRepository.Delete(id) == true)
+                var user_mapper = _mapper.Map<User>(account);
+                user_mapper.Status = 0;
+                _unit.UserRepository.Update(user_mapper);
+                if ( await _unit.SaveChangeAsync() > 0 )
                 {
                     return true;
                 }
@@ -142,7 +145,7 @@ namespace Application.Services
             try
             {
                 User user_mapper = _mapper.Map<User>(account);
-                bool registed = _unit.UserRepository.Register(user_mapper);
+                bool registed = await _unit.UserRepository.Register(user_mapper);
                 if (registed == false) 
                 {
                     return false;

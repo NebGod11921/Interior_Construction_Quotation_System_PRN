@@ -28,8 +28,9 @@ namespace MyRazorPage.Pages
             }
             else
             {
-
-                bool deleted = await _account.DeleteAccount(csID);
+                AccountDTO accountforUpdate = await _account.GetAccountByID(csID);
+                accountforUpdate.Status = 0;
+                bool deleted = await _account.DeleteAccount(accountforUpdate);
                 if (deleted == true) 
                 {
                     ViewData["msgdelete"] = "Account has be deleted successfully";
