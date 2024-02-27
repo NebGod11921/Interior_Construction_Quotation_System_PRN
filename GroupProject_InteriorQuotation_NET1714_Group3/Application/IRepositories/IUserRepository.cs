@@ -16,6 +16,7 @@ namespace Application.IRepositories
         Task<IEnumerable<User>> SearchAccountByNameAsync(string name);
         Task<IEnumerable<User>> SearchAccountByRoleNameAsync(string roleName);
         Task<IEnumerable<User>> GetSortedAccountAsync();
-        bool Register(User user);
+        Task<bool> Register(User user);
+        Task<bool> Delete(User user);
     }
 }

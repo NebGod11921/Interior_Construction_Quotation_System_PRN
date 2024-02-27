@@ -1,5 +1,197 @@
 ﻿@page
 @model MyRazorPage.Pages.AdminModel
 @{
+    Layout = null;
 }
-<h1>Hello Admin</h1>
+<span style="font-family: verdana, geneva, sans-serif;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <style>
+            .popup {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0,0,0,0.4);
+            }
+
+            .popup-content {
+                background-color: #fefefe;
+                margin: 15% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+            }
+
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+                .close:hover,
+                .close:focus {
+                    color: black;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+          <img src="./pic/logo.jpg">
+          <span class="nav-item">Admin</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-menorah"></i>
+          <span class="nav-item">Dashboard</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-comment"></i>
+          <span class="nav-item">Message</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-database"></i>
+          <span class="nav-item">Report</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-chart-bar"></i>
+          <span class="nav-item">Attendance</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-cog"></i>
+          <span class="nav-item">Setting</span>
+        </a></li>
+
+        <li><a href="#" class="logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="nav-item">Log out</span>
+        </a></li>
+      </ul>
+    </nav>
+
+
+    <section class="main">
+      <div class="main-top">
+        <h1>Manager Customer</h1>
+        <i class="fas fa-user-cog"></i>
+      </div>
+      <div class="users">
+        @foreach (var user in Model.accountDTOs.Take(4).ToList())
+        {
+            <div class="card">
+                @if(user.Gender.ToLower().Equals("male"))
+                {
+                     <img src="https://png.pngtree.com/png-clipart/20230102/original/pngtree-business-man-avatar-png-image_8855195.png">
+                }
+                else
+                {
+                     <img src="https://tse1.mm.bing.net/th?id=OIP.k8K8knEPxXTaK1C4wWJd_AHaHa&pid=Api&P=0&h=220">
+                }
+                <h4>@user.FullName</h4>
+                <p>@user.RoleName</p>
+                <div class="per">
+                    <table>
+                        <tr>
+                            <td><span>@user.EmailAddress</span></td>
+                            <td><span>@(user.Status == 1? "Acitve": "InActive")</span></td>
+                        </tr>
+                        <tr>
+                            <td>@user.TelephoneNumber</td>
+                            <td>@user.Gender</td>
+                        </tr>
+                    </table>
+                </div>
+                <button>Profile</button>
+            </div>
+        }
+                    
+      </div>
+
+      <section class="attendance">
+        <div class="attendance-list">
+          <h1>Attendance List</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Telephone</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Model.accountDTOs)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.FullName</td>
+                    <td>@user.EmailAddress</td>
+                    <td>@user.Gender</td>
+                    <td>@user.TelephoneNumber</td>
+                    <td>@user.Address</td>
+                    <td>@(user.Status == 1 ? "Acitve" : "InActive")</td>
+                    <td>
+                        <button>Update</button>
+                        <br></br>
+                        <button  onclick="openPopupCFDeleteCS('@user.Id')">Delete</button>
+                        <div id="popupdeleteCustomer_@user.Id" class="popup">
+                            <div class="popup-content">
+                                <span class="close" onclick="closePopupCFDeleteCS('@user.Id')">&times;</span>
+                                <div class="update-customer-form">
+                                    <h2>Delete Customer Information</h2>
+                                    <p>Are you sure for delete this account : @user.FullName</p>
+                                    <form asp-page-handler="DeleteCustomer" method="post">
+                                        <input type="hidden" name="csID" value="@user.Id">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                    <button type="submit" onclick="closePopupCFDeleteCS('@user.Id')">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                        @if(ViewData["msgdelete"] != null)
+                        {
+                            <p>@ViewData["msgdelete"]</p>
+                        }
+                    </td>
+                </tr>
+            }
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </div>
+  <script>
+      //Customer
+        function openPopupCFDeleteCS(customerId) {
+            var popupId = 'popupdeleteCustomer_' + customerId;
+            document.getElementById(popupId).style.display = "block";
+        }
+        function closePopupCFDeleteCS(customerId) {
+            var popupId = 'popupdeleteCustomer_' + customerId;
+            document.getElementById(popupId).style.display = "none";
+        }
+
+  </script>
+</body>
+</html>
+</span>

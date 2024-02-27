@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,7 +40,6 @@ namespace Application.Services
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
         public async Task<bool> CheckPhoneNumberExited(string phonenumber)
         {
             try
@@ -59,7 +59,67 @@ namespace Application.Services
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
+        public async Task<bool> DeleteAccount(AccountDTO account)
+        {
+            try
+            {
+                var user_mapper = _mapper.Map<User>(account);
+                user_mapper.Status = 0;
+                _unit.UserRepository.Update(user_mapper);
+                if ( await _unit.SaveChangeAsync() > 0 )
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
+        public async Task<AccountDTO> GetAccountByID(int id)
+        {
+            try
+            {
+                var user = (User?)await _unit.UserRepository.GetByIdAsync(id);
+                if (user != null)
+                {
+                    AccountDTO accountDTO = _mapper.Map<AccountDTO>(user);
+                    return accountDTO;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
+        public async Task<List<AccountDTO>> GetAccounts()
+        {
+            try
+            {
+                var user =(List<User>) await _unit.UserRepository.GetSortedAccountAsync();
+                if (user != null)
+                {
+                    List<AccountDTO> accountDTO = _mapper.Map<List<AccountDTO>>(user);
+                    return accountDTO;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
         public  async Task<AccountDTO> Login(AccountLoginDTO account)
         {
             try
@@ -80,13 +140,12 @@ namespace Application.Services
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
         public async Task<bool> Register(AccountDTO account)
         {
             try
             {
                 User user_mapper = _mapper.Map<User>(account);
-                bool registed = _unit.UserRepository.Register(user_mapper);
+                bool registed = await _unit.UserRepository.Register(user_mapper);
                 if (registed == false) 
                 {
                     return false;
