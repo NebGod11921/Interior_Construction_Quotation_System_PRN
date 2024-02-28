@@ -12,6 +12,7 @@ namespace Infrastructure
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _dbContext;
+
         private readonly IUserRepository _userRepository;
         private readonly IProductRepository _productRepo;
         private readonly IRoomTypeRepository _roomTypeRepository;
@@ -38,11 +39,7 @@ namespace Infrastructure
 
         public IRoomTypeRepository RoomTypeRepository => _roomTypeRepository;
 
-       // public IProductImageRepo ProductImageRepo => _productImageRepo;
-
-        //public IImageRepo ImageRepo => _imageRepo;
-
-		public async Task<int> SaveChangeAsync()
+        public async Task<int> SaveChangeAsync() 
         {
             return await _dbContext.SaveChangesAsync();
         }

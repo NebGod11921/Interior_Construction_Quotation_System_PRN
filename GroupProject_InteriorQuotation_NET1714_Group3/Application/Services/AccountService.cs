@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,10 +37,9 @@ namespace Application.Services
                 }
             }catch(Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
             }
         }
-
         public async Task<bool> CheckPhoneNumberExited(string phonenumber)
         {
             try
@@ -56,10 +56,98 @@ namespace Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<bool> DeleteAccount(AccountDTO account)
+        {
+            try
+            {
+                var userexited = await _unit.UserRepository.GetByIdAsync(account.Id);
+
+                if (userexited != null)
+                {
+                    userexited.Status = 0; // Đánh dấu tài khoản là đã xóa
+
+                    //_unit.UserRepository.SoftRemove(userexited); // Xóa mềm tài khoản
+
+                    await _unit.SaveChangeAsync(); // Lưu thay đổi
+
+                    return true;
+                }
+                else
+                {
+                    return false; // Không tìm thấy tài khoản cần xóa
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
+        public async Task<AccountDTO> GetAccountByID(int id)
+        {
+            try
+            {
+                var user = (User?) await _unit.UserRepository.GetByIdAsync(id);
+                if (user != null)
+                {
+                    AccountDTO accountDTO = _mapper.Map<AccountDTO>(user);
+                    return accountDTO;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<AccountDTO>> GetAccountByName(string name)
+        {
+            try
+            {
+                var user = (List<User>)await _unit.UserRepository.SearchAccountByFullNameAsync(name);
+                if (user != null)
+                {
+                    List<AccountDTO> accountDTO = _mapper.Map<List<AccountDTO>>(user);
+                    return accountDTO;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<AccountDTO>> GetAccounts()
+        {
+            try
+            {
+                var user =(List<User>) await _unit.UserRepository.GetSortedAccountAsync();
+                if (user != null)
+                {
+                    List<AccountDTO> accountDTO = _mapper.Map<List<AccountDTO>>(user);
+                    return accountDTO;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message );
+            }
+        }
         public  async Task<AccountDTO> Login(AccountLoginDTO account)
         {
             try
@@ -77,16 +165,15 @@ namespace Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
             }
         }
-
         public async Task<bool> Register(AccountDTO account)
         {
             try
             {
                 User user_mapper = _mapper.Map<User>(account);
-                bool registed = _unit.UserRepository.Register(user_mapper);
+                bool registed = await _unit.UserRepository.Register(user_mapper);
                 if (registed == false) 
                 {
                     return false;
@@ -99,7 +186,37 @@ namespace Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.ToString());
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<bool> UpdateAccount(AccountDTO account)
+        {
+            try
+            {
+                var userexited = await _unit.UserRepository.GetByIdAsync(account.Id);
+
+                if (userexited != null)
+                {
+                    userexited.FullName = account.FullName;
+                    userexited.EmailAddress = account.EmailAddress;
+                    userexited.Password = account.Password;
+                    userexited.Address = account.Address;
+                    userexited.TelephoneNumber = account.TelephoneNumber;
+                    userexited.Status = account.Status;
+                    userexited.Gender = account.Gender;
+                    userexited.RoleName = account.RoleName;
+                    await _unit.SaveChangeAsync();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }

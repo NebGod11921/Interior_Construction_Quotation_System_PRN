@@ -25,8 +25,6 @@ namespace Infrastructure.Repositories
             _db = appDbContext;
         }
             
-        
-
         public async Task<bool> CheckEmailAddressExisted(string emailaddress)
         {
             try
@@ -107,12 +105,11 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public bool Register(User user)
+        public async Task<bool> Register(User user)
         {
-            try
-            {
-                 _db.Add(user);
-                if(SaveChange() > 0)
+            
+                await _db.AddAsync(user);
+                if(await SaveChangeAsync()> 0)
                 {
                     return true;
                 }
@@ -120,22 +117,37 @@ namespace Infrastructure.Repositories
                 {
                     return false;
                 }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.InnerException.ToString());
-            }
+            
+        }
+        public async Task<bool> Delete(User user)
+        {
+            bool flag = true;
+                var exits = await _db.Users.FirstOrDefaultAsync(x => x.Id == user.Id);
+                if (exits != null)
+                {
+                     _db.Update(exits);
+                    if (await _db.SaveChangesAsync() > 0)
+                    {
+                        flag = true;
+                    }
+                    else
+                    {
+                        flag = false;
+                    }
+                }
+            return flag;
         }
 
-        public int SaveChange()
+        // Method to save changes
+        private async Task<int> SaveChangeAsync()
         {
-           return  _db.SaveChanges();
+            return await _db.SaveChangesAsync();
         }
-        public async Task<IEnumerable<User>> SearchAccountByNameAsync(string name)
+        public async Task<IEnumerable<User>> SearchAccountByFullNameAsync(string name)
         {
             try
             {
-                var users = await _db.Users.Where(x => x.FullName.ToLower().Equals(name.ToLower())).ToListAsync();
+                var users = await _db.Users.Where(x => x.FullName.ToLower().Contains(name.ToLower())).ToListAsync();
                 if (users.Count > 0)
                 {
                     return users;
