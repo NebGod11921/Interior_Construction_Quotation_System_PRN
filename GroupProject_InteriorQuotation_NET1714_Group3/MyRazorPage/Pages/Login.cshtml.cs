@@ -3,6 +3,8 @@ using Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Numerics;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace MyRazorPage.Pages
 {
@@ -25,6 +27,12 @@ namespace MyRazorPage.Pages
             {
                 if (CheckAdmin(email, password))
                 {
+
+                    var csSession = JsonSerializer.Serialize("admin", new JsonSerializerOptions()
+                    {
+                        ReferenceHandler = ReferenceHandler.IgnoreCycles
+                    });
+                    HttpContext.Session.SetString("csSession", csSession);
                     return RedirectToPage("/Admin");
                 }
                 else
@@ -41,7 +49,19 @@ namespace MyRazorPage.Pages
                     }
                     else
                     {
-                        return RedirectToPage("/Index");
+                        if (login.Status == 0)
+                        {
+                            ViewData["msgLogin"] = "Account is banned, cant login.";
+                        }
+                        else
+                        {
+                            var csSession = JsonSerializer.Serialize(login, new JsonSerializerOptions()
+                            {
+                                ReferenceHandler = ReferenceHandler.IgnoreCycles
+                            });
+                            HttpContext.Session.SetString("csSession", csSession);
+                            return RedirectToPage("/Index");
+                        }
                     }
                 }
             }
@@ -74,6 +94,12 @@ namespace MyRazorPage.Pages
             var aPass = _config["Admin:Password"];
 
             return name.ToLower() == aEmail.ToLower() && password.ToLower() == aPass.ToLower();
+        }
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToPage("/Login");
         }
     }
 }

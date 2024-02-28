@@ -77,7 +77,7 @@
           <span class="nav-item">Setting</span>
         </a></li>
 
-        <li><a href="#" class="logout">
+        <li><a asp-page="/Login" asp-page-handler="Logout" class="logout">
           <i class="fas fa-sign-out-alt"></i>
           <span class="nav-item">Log out</span>
         </a></li>
@@ -91,7 +91,7 @@
         <i class="fas fa-user-cog"></i>
       </div>
       <div class="users">
-        @foreach (var user in Model.accountDTOs.Take(4).ToList())
+        @foreach (var user in Model.accountDTOs.OrderByDescending(x => x.Id).Take(4).ToList())
         {
             <div class="card">
                 @if(user.Gender.ToLower().Equals("male"))
@@ -116,7 +116,7 @@
                         </tr>
                     </table>
                 </div>
-                <button>Profile</button>
+                <button onclick="openPopupCFUpdateCS('@user.Id')">Profile</button>
             </div>
         }
                     
@@ -130,51 +130,84 @@
                         <h2>Add New Item</h2>
                         <form asp-page-handler="AddNewCustomer" method="POST">
                             <label for="fullName">Full Name:</label>
-                            <input type="text" id="fullName" name="fullName" value="@ViewData["Fullname"]" required>
+                            <input type="text" id="fullName" name="fullName" value="@ViewData["fullnamedata"]" required>
                             @if (ViewData["msgfullname"] != null)
                             {
                                 <p>@ViewData["msgfullname"]</p>
                             }
                             <br></br>
                             <label for="telephone">Telephone:</label>
-                            <input type="text" id="telephone" name="telephone" @ViewData["Telephone"] required>
+                            <input type="text" id="telephone" name="telephone" value="@ViewData["telephonedata"]" required>
                             @if (ViewData["msgtelephone"] != null)
                             {
                                 <p>@ViewData["msgtelephone"]</p>
                             }
-
                             <br></br>
-
-                            <label for="email">Email Address:</label>
-                            <input type="email" id="email" name="email" @ViewData["Email"] required>
-
-                            <br></br>
-
-                            <label for="birthday">Birthday:</label>
-                            <input type="date" id="birthday" name="birthday" @ViewData["Birthday"] required>
-                            @if (ViewData["msgbirthday"] != null)
+                            <label for="telephone">Address:</label>
+                            <input type="text" id="telephone" name="address" value="@ViewData["addressdata"]" required>
+                            @if (ViewData["msgaddress"] != null)
                             {
-                                <p>@ViewData["msgbirthday"]</p>
+                                <p>@ViewData["msgaddress"]</p>
                             }
-
                             <br></br>
-
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" value="@ViewData["emaildata"]" required>
+                            @if (ViewData["msgemail"] != null)
+                            {
+                                <p>@ViewData["msgemail"]</p>
+                            }
+                            <br></br>
                             <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" @ViewData["Password"] required>
+                            <input type="password" id="password" name="password" value="@ViewData["passworddata"]" required>
                             @if (ViewData["msgpassword"] != null)
                             {
                                 <p>@ViewData["msgpassword"]</p>
                             }
+                            <br></br>
                             <label for="password">Confirm Password:</label>
-                            <input type="password" id="password" name="cfpassword" @ViewData["Cfpassword"] required>
+                            <input type="password" id="password" name="cfpassword" value="@ViewData["cfpassworddata"]" required>
                             @if (ViewData["msgcfpassword"] != null)
                             {
                                 <p>@ViewData["msgcfpassword"]</p>
                             }
 
                             <br></br>
+                            <label>Gender:</label><br></br>
+                            <input type="checkbox" id="maleCheckbox" name="gender" value="male" @(ViewData["genderdata"] != null && ViewData["genderdata"].Equals("male") ? "checked" : "")>
+                            <label for="maleCheckbox">Male</label><br> 
 
-                            <input type="submit" value="Register">
+                            <input type="checkbox" id="femaleCheckbox" name="gender" value="female" @(ViewData["genderdata"] != null && ViewData["genderdata"].Equals("female") ? "checked" : "")>
+                            <label for="femaleCheckbox">Female</label><br>
+                            @if (ViewData["msggender"] != null)
+                            {
+                                <p>@ViewData["msggender"]</p>
+                            }
+                            <br></br>
+                            <label>Role:</label>
+                            <select name="role">
+                                @if (ViewData["roledata"] != null && ViewData["roledata"].Equals("Customer"))
+                                {
+                                    <option value="Customer" selected>Customer</option>
+                                    <option value="Staff">Staff</option>
+                                }
+                                else if (ViewData["roledata"] != null && ViewData["roledata"].Equals("Staff"))
+                                {
+                                    <option value="Staff" selected >Staff</option>
+                                    <option value="Customer">Customer</option>
+                                }
+                                else
+                                {
+                                    <option value="Staff">Staff</option>
+                                    <option value="Customer">Customer</option>
+                                }
+
+                            </select>
+                            @if (ViewData["msgrole"] != null)
+                            {
+                                <p>@ViewData["msgrole"]</p>
+                            }
+                            <br></br>
+                            <input type="submit" value="Add New Customer">
                             @if (ViewData["Registed"] != null)
                             {
                                 <p>@ViewData["Registed"]</p>
@@ -211,7 +244,161 @@
                     <td>@user.Address</td>
                     <td>@(user.Status == 1 ? "Acitve" : "InActive")</td>
                     <td>
-                        <button>Update</button>
+                    <button onclick="openPopupCFUpdateCS('@user.Id')" >Update</button>
+                    <div id="popupupdateCustomer_@user.Id" class="popup">
+                    <div class="popup-content">
+                        <!-- Nội dung của popup ở đây -->
+                        <span class="close" onclick="closePopupCFUpdateCS('@user.Id')">&times;</span>
+                        <h2>Update account</h2>
+                        <form asp-page-handler="UpdateAccount" method="POST">
+                            <input type="hidden" value="@user.Id" name="csID" />
+                            <label for="fullName">Full Name:</label>
+                            <input type="text" id="fullName" name="fullName" value="@(ViewData["fullnamedata"] != null? ViewData["fullnamedata"] :user.FullName)" required>
+                            @if (ViewData["msgfullname"] != null)
+                            {
+                                <p>@ViewData["msgfullname"]</p>
+                            }
+                            <br></br>
+                            <label for="telephone">Telephone:</label>
+                                                        <input type="text" id="telephone" name="telephone" value="@(ViewData["telephonedata"] != null? ViewData["telephonedata"] :user.TelephoneNumber)" required>
+                            @if (ViewData["msgtelephone"] != null)
+                            {
+                                <p>@ViewData["msgtelephone"]</p>
+                            }
+                            <br></br>
+                            <label for="telephone">Address:</label>
+                                                        <input type="text" id="telephone" name="address" value="@(ViewData["addressdata"] != null? ViewData["addressdata"] :user.Address)" required>
+                            @if (ViewData["msgaddress"] != null)
+                            {
+                                <p>@ViewData["msgaddress"]</p>
+                            }
+                            <br></br>
+                            <label for="email">Email Address:</label>
+                                                        <input type="email" id="email" name="email" value="@(ViewData["emaildata"] != null? ViewData["emaildata"] :user.EmailAddress)" required>
+                            @if (ViewData["msgemail"] != null)
+                            {
+                                <p>@ViewData["msgemail"]</p>
+                            }
+                            <br></br>
+                            <label for="password">Password:</label>
+                                                        <input type="password" id="password" name="password" value="@(ViewData["passworddata"] != null? ViewData["passworddata"] :user.Password)" required>
+                            @if (ViewData["msgpassword"] != null)
+                            {
+                                <p>@ViewData["msgpassword"]</p>
+                            }
+                            <br></br>
+                            <label for="password">Confirm Password:</label>
+                                                        <input type="password" id="password" name="cfpassword" value="@(ViewData["cfpassworddata"] != null? ViewData["cfpassworddata"] : "")" required>
+                            @if (ViewData["msgcfpassword"] != null)
+                            {
+                                <p>@ViewData["msgcfpassword"]</p>
+                            }
+
+                            <br></br>
+                            <label>Gender:</label><br></br>
+                                <input type="checkbox" id="maleCheckbox" name="gender" value="male" @(ViewData["genderdata"] != null ? (ViewData["genderdata"].Equals("male".ToLower()) ? "checked" : "") : (user.Gender.ToLower().Equals("male".ToLower()) ? "checked" : ""))>
+                                <label for="maleCheckbox">Male</label><br>
+
+                                <input type="checkbox" id="femaleCheckbox" name="gender" value="felmale" @(ViewData["genderdata"] != null ? (ViewData["genderdata"].Equals("female".ToLower()) ? "checked" : "") : (user.Gender.ToLower().Equals("female".ToLower()) ? "checked" : ""))>
+                            <label for="femaleCheckbox">Female</label><br>
+                            @if (ViewData["msggender"] != null)
+                            {
+                                <p>@ViewData["msggender"]</p>
+                            }
+                            <br></br>
+                            <label>Role:</label>
+                            <select name="role">
+                                @if(ViewData["roledata"] != null)
+                                {
+                                    @if (ViewData["roledata"] == "Customer")
+                                    {
+                                        <option value="Customer" selected>Customer</option>
+                                        <option value="Staff">Staff</option>
+                                    }
+                                    else if (ViewData["roledata"] == "Staff")
+                                    {
+                                        <option value="Customer">Customer</option>
+                                        <option value="Staff" selected>Staff</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Customer">Customer</option>
+                                        <option value="Staff">Staff</option>
+                                    }
+                                }else
+                                {
+                                    @if (user.RoleName == "Customer")
+                                    {
+                                        <option value="Customer" selected>Customer</option>
+                                        <option value="Staff">Staff</option>
+                                    }
+                                    else if (user.RoleName == "Staff")
+                                    {
+                                        <option value="Customer">Customer</option>
+                                        <option value="Staff" selected>Staff</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Customer">Customer</option>
+                                        <option value="Staff">Staff</option>
+                                    }
+                                }
+                            </select>
+                            @if (ViewData["msgrole"] != null)
+                            {
+                                <p>@ViewData["msgrole"]</p>
+                            }
+                            <br></br>
+
+                            <label>Status:</label>
+                            <select name="status">
+                                @if(ViewData["statusdata"] != null)
+                                {
+                                    @if (ViewData["statusdata"] == "0")
+                                    {
+                                        <option value="0" selected>Inactive</option>
+                                        <option value="1">Active</option>
+                                    }
+                                    else if (ViewData["statusdata"] == "1")
+                                    {
+                                        <option value="1">Active</option>
+                                        <option value="0" selected>Inactive</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    }
+                                }else
+                                {
+                                    @if (user.Status == 1)
+                                    {
+                                        <option value="1" selected>Active</option>
+                                        <option value="0">InActive</option>
+                                    }
+                                    else if (user.Status == 0)
+                                    {
+                                        <option value="0">InActive</option>
+                                        <option value="1" selected>Active</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    }
+                                }
+                            </select>
+
+                            <br></br>
+                            <input type="submit" value="Update Account">
+                            @if (ViewData["msgupdate"] != null)
+                            {
+                                <p>@ViewData["msgupdate"]</p>
+                            }
+                        </form>
+                    </div>
+                </div>
+                <!--popup-->
                         <br></br>
                         <button  onclick="openPopupCFDeleteCS('@user.Id')">Delete</button>
                         <div id="popupdeleteCustomer_@user.Id" class="popup">
@@ -241,9 +428,10 @@
       </section>
     </section>
   </div>
+        
   <script>
       //Customer
-
+        
         function openCreateCSPopup() {
             document.getElementById("popup").style.display = "block";
         }
@@ -258,8 +446,49 @@
             var popupId = 'popupdeleteCustomer_' + customerId;
             document.getElementById(popupId).style.display = "none";
         }
+        function openPopupCFUpdateCS(customerId)
+        {
+            var popupId = 'popupupdateCustomer_' + customerId;
+            document.getElementById(popupId).style.display = "block";
+        }
+        function closePopupCFUpdateCS(customerId)
+        {
+            var popupId = 'popupupdateCustomer_' + customerId;
+            document.getElementById(popupId).style.display = "none";
+        }
+        </script>
+        <!--hold-->
+        @if (TempData["PopupState"] != null && TempData["PopupState"].ToString() == "open")
+        {
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    openCreateCSPopup();
+                });
 
-  </script>
+                function openCreateCSPopup() {
+                    var popup = document.getElementById("popup");
+                    if (popup) {
+                        popup.style.display = "block";
+                    }
+                }
+            </script>
+        }
+        @if (TempData["PopupUpdateState"] != null && TempData["PopupUpdateState"].ToString() == "open")
+        {
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    openPopupCFUpdateCS();
+                });
+
+                function openPopupCFUpdateCS(CustomerId) {
+                    var popup = document.getElementById("popupupdateCustomer_" + @TempData["csID"]);
+                    if (popup) {
+                        popup.style.display = "block";
+                    }
+                }
+            </script>
+        }
+
 </body>
 </html>
 </span>

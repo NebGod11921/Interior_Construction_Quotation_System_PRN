@@ -167,5 +167,35 @@ namespace Application.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<bool> UpdateAccount(AccountDTO account)
+        {
+            try
+            {
+                var userexited = await _unit.UserRepository.GetByIdAsync(account.Id);
+
+                if (userexited != null)
+                {
+                    userexited.FullName = account.FullName;
+                    userexited.EmailAddress = account.EmailAddress;
+                    userexited.Password = account.Password;
+                    userexited.Address = account.Address;
+                    userexited.TelephoneNumber = account.TelephoneNumber;
+                    userexited.Status = account.Status;
+                    userexited.Gender = account.Gender;
+                    userexited.RoleName = account.RoleName;
+                    await _unit.SaveChangeAsync();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
