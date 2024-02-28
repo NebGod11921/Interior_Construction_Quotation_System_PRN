@@ -22,7 +22,7 @@ namespace MyRazorPage.Pages
         }
         public async Task<IActionResult> OnPostSearch(string searchinput)
         {
-            if(searchinput == null)
+            if(string.IsNullOrWhiteSpace(searchinput))
             {
                 ViewData["msgSearch"] = "Please fill input for result you wan to it.";
             }
