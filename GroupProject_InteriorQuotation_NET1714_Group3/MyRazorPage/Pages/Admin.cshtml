@@ -121,10 +121,71 @@
         }
                     
       </div>
+      <!--popup-->
+                <button onclick="openCreateCSPopup()">Add New Customer</button>
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <!-- Nội dung của popup ở đây -->
+                        <span class="close" onclick="closeCreateCSPopup()">&times;</span>
+                        <h2>Add New Item</h2>
+                        <form asp-page-handler="AddNewCustomer" method="POST">
+                            <label for="fullName">Full Name:</label>
+                            <input type="text" id="fullName" name="fullName" value="@ViewData["Fullname"]" required>
+                            @if (ViewData["msgfullname"] != null)
+                            {
+                                <p>@ViewData["msgfullname"]</p>
+                            }
+                            <br></br>
+                            <label for="telephone">Telephone:</label>
+                            <input type="text" id="telephone" name="telephone" @ViewData["Telephone"] required>
+                            @if (ViewData["msgtelephone"] != null)
+                            {
+                                <p>@ViewData["msgtelephone"]</p>
+                            }
 
+                            <br></br>
+
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" @ViewData["Email"] required>
+
+                            <br></br>
+
+                            <label for="birthday">Birthday:</label>
+                            <input type="date" id="birthday" name="birthday" @ViewData["Birthday"] required>
+                            @if (ViewData["msgbirthday"] != null)
+                            {
+                                <p>@ViewData["msgbirthday"]</p>
+                            }
+
+                            <br></br>
+
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" @ViewData["Password"] required>
+                            @if (ViewData["msgpassword"] != null)
+                            {
+                                <p>@ViewData["msgpassword"]</p>
+                            }
+                            <label for="password">Confirm Password:</label>
+                            <input type="password" id="password" name="cfpassword" @ViewData["Cfpassword"] required>
+                            @if (ViewData["msgcfpassword"] != null)
+                            {
+                                <p>@ViewData["msgcfpassword"]</p>
+                            }
+
+                            <br></br>
+
+                            <input type="submit" value="Register">
+                            @if (ViewData["Registed"] != null)
+                            {
+                                <p>@ViewData["Registed"]</p>
+                            }
+                        </form>
+                    </div>
+                </div>
+                <!--popup-->
       <section class="attendance">
         <div class="attendance-list">
-          <h1>Attendance List</h1>
+          <h1>Customer List</h1>
           <table class="table">
             <thead>
               <tr>
@@ -182,6 +243,13 @@
   </div>
   <script>
       //Customer
+
+        function openCreateCSPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+        function closeCreateCSPopup() {
+            document.getElementById("popup").style.display = "none";
+        }
         function openPopupCFDeleteCS(customerId) {
             var popupId = 'popupdeleteCustomer_' + customerId;
             document.getElementById(popupId).style.display = "block";

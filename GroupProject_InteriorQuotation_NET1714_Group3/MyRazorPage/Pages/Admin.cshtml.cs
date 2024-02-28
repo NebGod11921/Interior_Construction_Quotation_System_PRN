@@ -47,5 +47,14 @@ namespace MyRazorPage.Pages
             await OnGet();
            
         }
+        public async Task OnPostAddNewCustomer()
+        {
+            
+        }
+
+        private bool checkValidate(string fullname)
+        {
+
+        }
     }
 }

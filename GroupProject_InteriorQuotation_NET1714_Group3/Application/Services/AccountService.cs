@@ -63,19 +63,21 @@ namespace Application.Services
         {
             try
             {
-                var user_mapper = _mapper.Map<User>(account);
-                user_mapper.Status = 0;
-                _unit.UserRepository.SoftRemove(user_mapper);
-                var isSuccess = await _unit.SaveChangeAsync() > 0;
+                var userexited = await _unit.UserRepository.GetByIdAsync(account.Id);
 
-                if (isSuccess)
+                if (userexited != null)
                 {
-                   
+                    userexited.Status = 0; // Đánh dấu tài khoản là đã xóa
+
+                    //_unit.UserRepository.SoftRemove(userexited); // Xóa mềm tài khoản
+
+                    await _unit.SaveChangeAsync(); // Lưu thay đổi
+
                     return true;
                 }
                 else
                 {
-                    return false;
+                    return false; // Không tìm thấy tài khoản cần xóa
                 }
             }
             catch (Exception ex)
@@ -83,6 +85,7 @@ namespace Application.Services
                 throw new Exception(ex.Message);
             }
         }
+
         public async Task<AccountDTO> GetAccountByID(int id)
         {
             try
