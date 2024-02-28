@@ -125,36 +125,43 @@
                 <input type="text" name="searchinput" placeholder="Tìm kiếm...">
                 <button type="submit"></button>
             </form>
+            @if (ViewData["msgSearch"] != null)
+            {
+                <p>@ViewData["msgSearch"]</p>
+            }
         </div>
       </div>
       <div class="users">
-        @foreach (var user in Model.accountDTOTop4)
-        {
-            <div class="card">
-                @if(user.Gender.ToLower().Equals("male"))
-                {
-                     <img src="https://png.pngtree.com/png-clipart/20230102/original/pngtree-business-man-avatar-png-image_8855195.png">
-                }
-                else
-                {
-                     <img src="https://tse1.mm.bing.net/th?id=OIP.k8K8knEPxXTaK1C4wWJd_AHaHa&pid=Api&P=0&h=220">
-                }
-                <h4>@user.FullName</h4>
-                <p>@user.RoleName</p>
-                <div class="per">
-                    <table>
-                        <tr>
-                            <td><span>@user.EmailAddress</span></td>
-                            <td><span>@(user.Status == 1? "Acitve": "InActive")</span></td>
-                        </tr>
-                        <tr>
-                            <td>@user.TelephoneNumber</td>
-                            <td>@user.Gender</td>
-                        </tr>
-                    </table>
+          @if(Model.accountDTOTop4 != null && Model.accountDTOTop4.Any())
+          {
+            @foreach (var user in Model.accountDTOTop4)
+            {
+                <div class="card">
+                    @if(user.Gender.ToLower().Equals("male"))
+                    {
+                            <img src="https://png.pngtree.com/png-clipart/20230102/original/pngtree-business-man-avatar-png-image_8855195.png">
+                    }
+                    else
+                    {
+                            <img src="https://tse1.mm.bing.net/th?id=OIP.k8K8knEPxXTaK1C4wWJd_AHaHa&pid=Api&P=0&h=220">
+                    }
+                    <h4>@user.FullName</h4>
+                    <p>@user.RoleName</p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><span>@user.EmailAddress</span></td>
+                                <td><span>@(user.Status == 1? "Acitve": "InActive")</span></td>
+                            </tr>
+                            <tr>
+                                <td>@user.TelephoneNumber</td>
+                                <td>@user.Gender</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button onclick="openPopupCFUpdateCS('@user.Id')">Profile</button>
                 </div>
-                <button onclick="openPopupCFUpdateCS('@user.Id')">Profile</button>
-            </div>
+            }
         }
                     
       </div>
@@ -277,6 +284,8 @@
               </tr>
             </thead>
             <tbody>
+        @if(Model.accountDTOs != null && Model.accountDTOs.Any())
+        {           
             @foreach (var user in Model.accountDTOs)
             {
                 <tr>
@@ -466,6 +475,8 @@
                     </td>
                 </tr>
             }
+         }
+
             </tbody>
           </table>
         </div>
