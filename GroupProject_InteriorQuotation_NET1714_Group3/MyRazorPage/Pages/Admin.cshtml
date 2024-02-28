@@ -46,6 +46,37 @@
                     text-decoration: none;
                     cursor: pointer;
                 }
+
+            .search-container {
+                position: relative;
+                margin: 20px auto;
+                max-width: 300px;
+            }
+
+                .search-container input[type=text] {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    outline: none;
+                }
+
+                .search-container button {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    padding: 10px 15px;
+                    border: none;
+                    background: #4CAF50;
+                    color: white;
+                    border-radius: 0 5px 5px 0;
+                    cursor: pointer;
+                }
+
+                    .search-container button:hover {
+                        background: #45a049;
+                    }
+
     </style>
 </head>
 <body>
@@ -83,15 +114,21 @@
         </a></li>
       </ul>
     </nav>
-
+   
 
     <section class="main">
       <div class="main-top">
         <h1>Manager Customer</h1>
-        <i class="fas fa-user-cog"></i>
+        <!--Search-->
+        <div class="search-container">
+            <form asp-page-handler="Search" method="post">
+                <input type="text" name="searchinput" placeholder="Tìm kiếm...">
+                <button type="submit"></button>
+            </form>
+        </div>
       </div>
       <div class="users">
-        @foreach (var user in Model.accountDTOs.OrderByDescending(x => x.Id).Take(4).ToList())
+        @foreach (var user in Model.accountDTOTop4)
         {
             <div class="card">
                 @if(user.Gender.ToLower().Equals("male"))
@@ -208,14 +245,21 @@
                             }
                             <br></br>
                             <input type="submit" value="Add New Customer">
-                            @if (ViewData["Registed"] != null)
+                            @if (ViewData["AddNewCS"] != null)
                             {
-                                <p>@ViewData["Registed"]</p>
+                                <p>@ViewData["AddNewCS"]</p>
                             }
                         </form>
                     </div>
                 </div>
                 <!--popup-->
+                <div class="combobox-container">
+                    <select name="sort">
+                        <option value="" disabled selected hidden>Filter List</option>
+                        <option value="Asc">Ascending By Name</option>
+                        <option value="Desc">Descending By Name</option>
+                    </select>
+                </div>
       <section class="attendance">
         <div class="attendance-list">
           <h1>Customer List</h1>

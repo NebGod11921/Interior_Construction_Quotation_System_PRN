@@ -13,7 +13,7 @@ namespace Application.IRepositories
         Task<User> GetUserByEmailAddressAndPasswordHash(string Email, string passwordHash);
         Task<bool> CheckEmailAddressExisted(string emailaddress);
         Task<bool> CheckPhoneNumberExited(string phonenumber);
-        Task<IEnumerable<User>> SearchAccountByNameAsync(string name);
+        Task<IEnumerable<User>> SearchAccountByFullNameAsync(string name);
         Task<IEnumerable<User>> SearchAccountByRoleNameAsync(string roleName);
         Task<IEnumerable<User>> GetSortedAccountAsync();
         Task<bool> Register(User user);

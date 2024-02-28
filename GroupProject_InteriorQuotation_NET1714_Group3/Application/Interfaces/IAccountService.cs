@@ -15,6 +15,7 @@ namespace Application.Interfaces
         Task<bool> CheckPhoneNumberExited(string phonenumber);
         Task<bool> Register(AccountDTO account);
         Task<List<AccountDTO>> GetAccounts();
+        Task<List<AccountDTO>> GetAccountByName(string name);
         Task<AccountDTO> GetAccountByID(int id);
         Task<bool> DeleteAccount(AccountDTO account);
         Task<bool> UpdateAccount(AccountDTO account);

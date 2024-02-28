@@ -106,6 +106,28 @@ namespace Application.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<List<AccountDTO>> GetAccountByName(string name)
+        {
+            try
+            {
+                var user = (List<User>)await _unit.UserRepository.SearchAccountByFullNameAsync(name);
+                if (user != null)
+                {
+                    List<AccountDTO> accountDTO = _mapper.Map<List<AccountDTO>>(user);
+                    return accountDTO;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<List<AccountDTO>> GetAccounts()
         {
             try
