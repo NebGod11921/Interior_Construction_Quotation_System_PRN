@@ -14,11 +14,25 @@ namespace MyRazorPage.Pages
             _account = account;
         }
         public List<AccountDTO> accountDTOs;
+        public List<AccountDTO> accountDTOTop4;
         public async Task OnGet()
         {
             accountDTOs = await _account.GetAccounts() ?? new List<AccountDTO>();
+            accountDTOTop4 = accountDTOs.OrderByDescending(x => x.Id).Take(4).ToList() ?? new List<AccountDTO>();
         }
-
+        public async Task<IActionResult> OnPostSearch(string searchinput)
+        {
+            if(searchinput == null)
+            {
+                ViewData["msgSearch"] = "Please fill input for result you wan to it.";
+            }
+            else
+            {
+                accountDTOs = await _account.GetAccountByName(searchinput);
+                accountDTOTop4 = accountDTOs.OrderByDescending(x => x.Id).Take(4).ToList() ?? new List<AccountDTO>();
+            }
+            return Page();
+        }
         public async Task OnPostDeleteCustomer(int csID)
         {
             var aexits = await _account.GetAccountByID(csID);

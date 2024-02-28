@@ -143,11 +143,11 @@ namespace Infrastructure.Repositories
         {
             return await _db.SaveChangesAsync();
         }
-        public async Task<IEnumerable<User>> SearchAccountByNameAsync(string name)
+        public async Task<IEnumerable<User>> SearchAccountByFullNameAsync(string name)
         {
             try
             {
-                var users = await _db.Users.Where(x => x.FullName.ToLower().Equals(name.ToLower())).ToListAsync();
+                var users = await _db.Users.Where(x => x.FullName.ToLower().Contains(name.ToLower())).ToListAsync();
                 if (users.Count > 0)
                 {
                     return users;
