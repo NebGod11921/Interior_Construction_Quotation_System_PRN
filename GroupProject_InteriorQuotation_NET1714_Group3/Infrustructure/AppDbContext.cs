@@ -25,7 +25,11 @@ namespace Infrustructure
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
         public DbSet<User> Users { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<RoomProduct> RoomProduct { get; set; }
+		public DbSet<ProductImage> ProductImage { get; set; }
+
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductImageConfiguration).Assembly);
         }

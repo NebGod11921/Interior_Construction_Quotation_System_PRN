@@ -12,7 +12,11 @@ namespace Application
         public IProductRepository ProductRepository { get; }
         public IUserRepository UserRepository { get; }
         public IRoomTypeRepository RoomTypeRepository { get; }
-        public Task<int> SaveChangeAsync();
+		//public IProductImageRepo ProductImageRepo { get; }
+		//public IImageRepo ImageRepo { get; }
+
+
+		public Task<int> SaveChangeAsync();
 
     }
 }

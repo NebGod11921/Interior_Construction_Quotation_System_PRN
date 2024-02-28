@@ -37,13 +37,17 @@ namespace Infrustructure
             services.AddAutoMapper(typeof(MapperConfigurationsProfile).Assembly);
             services.AddScoped<IUserRepository, UserRepository>();
 
-
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
             //Service
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+			
+
+			//services.AddScoped<IImage, ProductService>();
 
 
-            return services;
+			return services;
         }
        
     }

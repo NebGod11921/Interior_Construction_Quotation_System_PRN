@@ -10,6 +10,6 @@ namespace Application.IRepositories
 {
     public interface IRoomTypeRepository : IGenericRepository<RoomType>
     {
-        public IQueryable<RoomType> GetAllRoomTypesWithProducts();
+        public IQueryable<RoomType> GetAllRoomTypes();
     }
 }

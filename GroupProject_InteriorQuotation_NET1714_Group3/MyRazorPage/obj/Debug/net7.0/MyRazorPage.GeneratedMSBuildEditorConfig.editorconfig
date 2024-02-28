@@ -10,6 +10,8 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MyRazorPage
 build_property.RootNamespace = MyRazorPage
 build_property.ProjectDir = D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
@@ -34,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/RoomDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbURldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Shared/_ValidationScriptsPartial.cshtml]

@@ -28,12 +28,16 @@ body {
 }
 
 .product-item {
-    flex: 1 0 calc(25% - 20px); 
-    max-width: calc(25% - 20px); 
-    text-align: center; 
-    border: 1px solid #ddd; 
-    padding: 10px; 
+    flex: 1 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 10px;
     box-sizing: border-box; /* Đảm bảo rằng padding không tăng kích thước của phần tử */
+    position: relative; 
+}
+.product-area {
+    font-size: 12px; /* Kích thước phù hợp cho diện tích */
 }
 
     .product-item img {

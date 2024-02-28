@@ -37,9 +37,9 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapRazorPages();
-/*app.UseEndpoints(endpoints =>
+app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
-    endpoints.MapFallbackToPage("/Index");
-});*/
+    endpoints.MapFallbackToPage("/Test");
+});
 app.Run();

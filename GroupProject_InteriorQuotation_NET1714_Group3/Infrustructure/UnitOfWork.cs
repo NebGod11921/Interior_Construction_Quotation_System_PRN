@@ -15,16 +15,19 @@ namespace Infrastructure
         private readonly IUserRepository _userRepository;
         private readonly IProductRepository _productRepo;
         private readonly IRoomTypeRepository _roomTypeRepository;
-        public UnitOfWork(AppDbContext dbContext, 
+		//private readonly IProductImageRepo _productImageRepo;
+		//private readonly IImageRepo _imageRepo;
+
+		public UnitOfWork(AppDbContext dbContext, 
             IUserRepository userRepository, 
             IProductRepository productRepo,
-             IRoomTypeRepository roomTypeRepository
-            )
+             IRoomTypeRepository roomTypeRepository)
         {
             _dbContext = dbContext;
             _userRepository = userRepository;
             _productRepo = productRepo;
             _roomTypeRepository = roomTypeRepository;
+            
         }
 
         public IUserRepository UserRepository => _userRepository;
@@ -35,7 +38,11 @@ namespace Infrastructure
 
         public IRoomTypeRepository RoomTypeRepository => _roomTypeRepository;
 
-        public async Task<int> SaveChangeAsync()
+       // public IProductImageRepo ProductImageRepo => _productImageRepo;
+
+        //public IImageRepo ImageRepo => _imageRepo;
+
+		public async Task<int> SaveChangeAsync()
         {
             return await _dbContext.SaveChangesAsync();
         }
