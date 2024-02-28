@@ -17,6 +17,22 @@ namespace Infrastructure.Repositories
         {
             _appDbContext = appDbContext;
         }
-       
-    }
+
+	public List<Product> getProductByRoomId(int roomId)
+{
+    var products = _appDbContext.RoomProduct
+        .Where(rp => rp.RoomId == roomId)
+        .Include(rp => rp.Product.Material)
+        .Include(rp => rp.Product.Color)
+        .Include(rp => rp.Product.ProductImages)
+            .ThenInclude(pi => pi.Image)
+        .Select(rp => rp.Product) // Select the product before applying any further includes
+        .ToList();
+
+    return products;
+}
+
+
+
+	}
 }

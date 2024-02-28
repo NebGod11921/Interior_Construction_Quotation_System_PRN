@@ -9,6 +9,6 @@ namespace Application.Interfaces
 {
     public interface IRoomTypeService
     {
-        List<RoomHomePageProduct> GetAllRoomTypesWithProducts();
+        List<RoomHomePageTitle> GetAllRoomTypes();
     }
 }

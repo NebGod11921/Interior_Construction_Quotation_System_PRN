@@ -20,16 +20,23 @@ else
 {
     @foreach (var room in Model.ProductsHomePage)
     {
-        @if (room.Products.Any())
+        @if (room.RoomInType.Any())
         {
             <h3>@room.RoomType</h3>
             <div class="product-grid">
-                @foreach (var product in room.Products.Take(4))
+                @foreach (var product in room.RoomInType.Take(4))
                 {
+                    
                     <div class="product-item">
-                        <img src="@Url.Content(Model.GetRoomTypeImageUrl(room.RoomType, product.ImageUrl))" alt="Product Image">
-                        <div class="product-name">@product.ProductName</div>
-                    </div>
+
+                            <a asp-page="./RoomDetail" asp-route-roomId="@product.RoomId" >
+                        <img src="@Url.Content(Model.GetRoomTypeImageUrl(room.RoomType,product.ImageProduct.FirstOrDefault()?.ImageUrl))" alt="Product Image">
+                        </a>
+                        <div class="product-info">
+                                <div class="product-name">@product.RoomName</div>
+                                <div class="product-area">Area: @product.AreaRoom m2</div>
+                        </div>
+                    </div>  
                 }
             </div>
         }

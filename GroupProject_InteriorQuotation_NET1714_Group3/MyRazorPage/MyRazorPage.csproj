@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\assets\" />
+    <Folder Include="wwwroot\Images\KitChen\" />
     <Folder Include="wwwroot\vendor\" />
   </ItemGroup>
 
