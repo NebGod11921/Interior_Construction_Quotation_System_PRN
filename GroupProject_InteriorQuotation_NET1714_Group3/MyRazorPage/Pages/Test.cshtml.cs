@@ -9,7 +9,7 @@ namespace MyRazorPage.Pages
     {
         private readonly ILogger<TestModel> _logger;
         private readonly IRoomTypeService _roomTypeService;
-        public List<RoomHomePageProduct> ProductsHomePage { get; set; }
+        public List<RoomHomePageTitle> ProductsHomePage { get; set; }
         public TestModel(ILogger<TestModel> logger, IRoomTypeService roomService)
         {
             _logger = logger;
@@ -18,19 +18,19 @@ namespace MyRazorPage.Pages
 
         public void OnGet()
         {
-            var check= _roomTypeService.GetAllRoomTypesWithProducts();
+            var check= _roomTypeService.GetAllRoomTypes();
             if (check == null)
             {
-                Console.WriteLine("hehe");
+                Console.WriteLine("Not Found");
             }
             else
             {
-                ProductsHomePage = _roomTypeService.GetAllRoomTypesWithProducts();
+                ProductsHomePage = _roomTypeService.GetAllRoomTypes();
             }
         }
         public string GetRoomTypeImageUrl(string roomType, string imageName)
         {
-            return $"/images/{roomType}/{Path.GetFileName(imageName)}";
+            return $"/Images/{roomType}/{Path.GetFileName(imageName)}";
         }
 
     }

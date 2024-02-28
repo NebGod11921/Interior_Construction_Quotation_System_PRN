@@ -326,6 +326,7 @@ D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject
 D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\scopedcss\bundle\MyRazorPage.styles.css
 D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\scopedcss\projectbundle\MyRazorPage.bundle.scp.css
-D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\MyRazorPage.csproj.CopyComplete
 D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\MyRazorPage.genruntimeconfig.cache
 D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\ref\MyRazorPage.dll
+D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\MyRazorPage.sourcelink.json
+D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\obj\Debug\net7.0\MyRazorP.01ED05D4.Up2Date

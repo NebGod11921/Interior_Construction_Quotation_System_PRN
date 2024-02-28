@@ -1,0 +1,90 @@
+﻿/* General Styles */
+/*body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}*/
+
+/*h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold; /* Keep this for bold title */
+}
+
+*/
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* Product Grid */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%; /* Adjust width as needed */
+}
+
+.product-item {
+    margin: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 25%; /* Adjust width as needed */
+    text-align: center;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+    .product-info div { /* This targets all child divs within .product-info */
+        font-weight: bold; /* Make all child divs bold initially */
+    }
+
+    /* Unbold specific elements (adjust as needed) */
+    .product-info img, /* Unbold image */
+    .product-name span, /* Unbold "Name:" text */
+    .product-description span, /* Unbold "Description:" text */
+    .product-quantity span /* Unbold "Quantity:" text */ {
+        font-weight: normal; /* Unbold these elements */
+    }
+
+/* Image Styles */
+.product-img {
+    width: 100%; /* Adjust width as needed */
+    height: auto;
+    object-fit: cover; /* Ensures image fills the container */
+    border-radius: 5px; /* Consistent with product-item borders */
+}
+
+/* Hover Effects (Optional) */
+.product-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer; /* Indicate interactivity */
+}
+
+/* Prices (Adapt as needed) */
+.product-price {
+    font-weight: bold;
+    color: #333;
+}

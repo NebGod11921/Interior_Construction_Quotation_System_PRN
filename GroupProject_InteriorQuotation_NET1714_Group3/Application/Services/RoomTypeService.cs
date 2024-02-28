@@ -19,24 +19,24 @@ namespace Application.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public List<RoomHomePageProduct> GetAllRoomTypesWithProducts()
+        public List<RoomHomePageTitle> GetAllRoomTypes()
         {
-            var roomTypes = _unitOfWork.RoomTypeRepository.GetAllRoomTypesWithProducts();
-            var roomTypeViewModels = roomTypes.Select(roomType => new RoomHomePageProduct
+            var roomTypes = _unitOfWork.RoomTypeRepository.GetAllRoomTypes();
+            var roomTypeViewModels = roomTypes.Select(roomType => new RoomHomePageTitle
             {
                 RoomType = roomType.RoomTypeName,
-                Products = roomType.Rooms.SelectMany(room => room.RoomProducts.Select(rp => new ProductDTO
+                RoomInType = roomType.Rooms.Select(room => new RoomHomePageDTO
                 {
-                    ProductName = rp.Product.ProductName,
-                    ImageUrl = rp.Product.ProductImages.FirstOrDefault().Image.ImageName
-                })).ToList()
+                    RoomId = room.Id.ToString(),
+                    RoomName = room.RoomDescription,
+                    AreaRoom = room.Area,
+                    ImageProduct = room.RoomProducts.Select(image => new ImageRoomInTypeDTO
+                    {
+                        ImageUrl = image.Product.ProductImages.FirstOrDefault().Image.ImageName
+                    }).ToList()
+                }).ToList()
             }).ToList();
-
             return roomTypeViewModels;
-
-            //var roomTypes = _unitOfWork.RoomTypeRepository.GetAllRoomTypesWithProducts();
-            //var roomTypeViewModels = _mapper.Map<List<RoomHomePageProduct>>(roomTypes);
-            //return roomTypeViewModels;
         }
     }
 }

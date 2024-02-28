@@ -18,7 +18,7 @@ namespace Infrastructure.Repositories
             _appDbContext = appDbContext;
         }
 
-        public IQueryable<RoomType> GetAllRoomTypesWithProducts()
+        public IQueryable<RoomType> GetAllRoomTypes()
         {
             return _appDbContext.RoomTypes
          .Include(rt => rt.Rooms)

@@ -11,7 +11,7 @@ namespace Application.Interfaces
 {
     public interface IProductService
     {
-        //List<RoomHomePageProduct> GetProductsInRoomService();      
-
-    }
+       List<ProductDto> GetAllProductByRoomId(int roomid);
+		
+	}
 }
