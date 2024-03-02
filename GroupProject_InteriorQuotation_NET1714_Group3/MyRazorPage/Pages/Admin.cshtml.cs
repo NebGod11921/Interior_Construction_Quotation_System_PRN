@@ -77,32 +77,37 @@ namespace MyRazorPage.Pages
             ViewData["cfpassworddata"] = cfpassword;
             ViewData["genderdata"] = gender;
             ViewData["roledata"] = role;
-            bool v = checkValidate(fullName, email, address, password, cfpassword, telephone, gender, role);
-            if (v)
-            {
-                AccountDTO account = new AccountDTO();
-                account.FullName = fullName;
-                account.EmailAddress = email;
-                account.Password = password;
-                account.TelephoneNumber = telephone;
-                account.Address = address;
-                account.Gender = gender;
-                account.RoleName = role;
-                account.Status = 1;
-                bool added = await _account.Register(account);
-                if (added == true)
+            bool v = await checkValidate(fullName, email, address, password, cfpassword, telephone, gender, role);
+            
+            
+            
+                if (v)
                 {
-                    ViewData["AddNewCS"] = "You are add new account successfully";
-                }
-                else
-                {
-                    ViewData["AddNewCS"] = "Add New Account Fail";
-                }
+                    AccountDTO account = new AccountDTO();
+                    account.FullName = fullName;
+                    account.EmailAddress = email;
+                    account.Password = password;
+                    account.TelephoneNumber = telephone;
+                    account.Address = address;
+                    account.Gender = gender;
+                    account.RoleName = role;
+                    account.Status = 1;
+                    bool added = await _account.Register(account);
+                    if (added == true)
+                    {
+                        ViewData["AddNewCS"] = "You are add new account successfully";
+                    }
+                    else
+                    {
+                        ViewData["AddNewCS"] = "Add New Account Fail";
+                    }
+                
             }
+            
             await OnGet();
         }
 
-        private bool checkValidate(string fullname, string email, string address, string pass, string cfpass, string telephone, string gender, string rolename)
+        private async Task<bool> checkValidate(string fullname, string email, string address, string pass, string cfpass, string telephone, string gender, string rolename)
         {
             bool flag = true;
             if (string.IsNullOrEmpty(fullname) || string.IsNullOrWhiteSpace(fullname))
@@ -161,6 +166,14 @@ namespace MyRazorPage.Pages
                 ViewData["msgrole"] = "PlePlease choose role";
                 flag = false;
             }
+            if(!string.IsNullOrEmpty(email))
+            {
+                if (await _account.CheckEmailAddressExisted(email) == true)
+                
+                    ViewData["AddNewCS"] = "Email exists";
+                    flag = false;
+                
+            }
             return flag;
         }
 
@@ -182,7 +195,7 @@ namespace MyRazorPage.Pages
             ViewData["genderdata"] = gender;
             ViewData["roledata"] = role;
             ViewData["statusdata"] = status;
-            bool v = checkValidate(fullName, email, address, password, cfpassword, telephone, gender, role);
+            bool v = await checkValidate(fullName, email, address, password, cfpassword, telephone, gender, role);
             if (v)
             {
                 AccountDTO account = new AccountDTO();
