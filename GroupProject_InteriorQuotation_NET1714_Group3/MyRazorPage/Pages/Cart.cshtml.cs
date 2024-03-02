@@ -1,6 +1,6 @@
 using Application.Interfaces;
 using Application.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MyRazorPage.Pages
@@ -15,9 +15,9 @@ namespace MyRazorPage.Pages
             _p = p;
         }
         public List<CartDTO> carts;
-        public ProductDto getProduct(int productId)
+        public ProductDto getProductById(int productId)
         {
-            return _p.
+            return _p.GetAllProductById(productId);
         }
         public void OnGet() 
         {

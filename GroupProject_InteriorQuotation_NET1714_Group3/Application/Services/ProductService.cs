@@ -23,14 +23,15 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<List<Product>> GetAllProduct()
+        public async Task<ProductDto> GetAllProductById(int id)
         {
             try
             {
-                var products = await _unitOfWork.ProductRepository.GetAllAsync();
-                if(products.Any() == true)
+                var product = await _unitOfWork.ProductRepository.GetByIdAsync(id);
+
+                if(product != null)
                 {
-                    return products;
+                    return _mapper.Map<ProductDto>(product);
                 }
                 else
                 {
@@ -61,8 +62,6 @@ namespace Application.Services
 			return productDtos;
         }
 
-		
-	
-	}
+    }
 }
     

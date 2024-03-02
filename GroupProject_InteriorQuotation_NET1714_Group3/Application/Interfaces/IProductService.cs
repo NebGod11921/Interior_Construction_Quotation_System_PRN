@@ -1,4 +1,5 @@
 ﻿
+using Application.Repositories;
 using Application.ViewModels;
 using Domain.Entities;
 using System;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface IProductService
+    public interface IProductService : IGenericRepository<Product>
     {
        List<ProductDto> GetAllProductByRoomId(int roomid);
-       Task<List<Product>> GetAllProduct();
+       Task<ProductDto> GetProductById(int id);
 		
 	}
 }
