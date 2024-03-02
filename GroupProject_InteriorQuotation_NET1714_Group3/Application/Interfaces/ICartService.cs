@@ -15,6 +15,6 @@ namespace Application.Interfaces
         public void AddToCart(CartDTO cart);
         public void DeleteCartAll();
         public void DeleteCart(int cartid);
-        public bool UpdateCart(DateTime startdate, DateTime endDate, int id);
+        public bool UpdateCart(int id, int quantity);
     }
 }

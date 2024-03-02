@@ -12,6 +12,7 @@ namespace Application.Interfaces
     public interface IProductService
     {
        List<ProductDto> GetAllProductByRoomId(int roomid);
+       Task<List<Product>> GetAllProduct();
 		
 	}
 }

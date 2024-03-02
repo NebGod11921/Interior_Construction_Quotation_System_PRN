@@ -23,6 +23,25 @@ namespace Application.Services
             _mapper = mapper;
         }
 
+        public async Task<List<Product>> GetAllProduct()
+        {
+            try
+            {
+                var products = await _unitOfWork.ProductRepository.GetAllAsync();
+                if(products.Any() == true)
+                {
+                    return products;
+                }
+                else
+                {
+                    return null;
+                }
+            }catch(Exception e)
+            {
+                throw new Exception(e.InnerException.ToString());
+            }
+        }
+
         public List<ProductDto> GetAllProductByRoomId(int roomid)
         {
 			var product = _unitOfWork.ProductRepository.getProductByRoomId(roomid);
