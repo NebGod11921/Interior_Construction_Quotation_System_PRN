@@ -170,7 +170,7 @@ namespace MyRazorPage.Pages
             {
                 if (await _account.CheckEmailAddressExisted(email) == true)
                 
-                    ViewData["AddNewCS"] = "Email exists";
+                    ViewData["msgemail"] = "Email exists";
                     flag = false;
                 
             }
