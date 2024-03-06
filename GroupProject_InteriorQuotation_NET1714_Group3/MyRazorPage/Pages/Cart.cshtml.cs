@@ -3,6 +3,7 @@ using Application.ViewModels;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 
 namespace MyRazorPage.Pages
 {
@@ -26,15 +27,37 @@ namespace MyRazorPage.Pages
             carts = _cart.getAllCart() ?? new List<CartDTO>();
         }
 
-        public IActionResult OnPostAddToCartProduct(int pId) 
+        public void OnPostAddToCartProduct(int pId) 
         {
-            int cartId = _cart.GetIdNew();
             CartDTO cartForAdd = new CartDTO();
-            cartForAdd.Id = cartId;
             cartForAdd.productId = pId;
-            cartForAdd.quantity = 1;
             _cart.AddToCart(cartForAdd);
+            OnGet();
+        }
+
+        public IActionResult OnPostAddToCartListProduct(int rId)
+        {
+            var room = _p.GetAllProductByRoomId(rId);
+            foreach (var item in room)
+            {
+                CartDTO cartForAdd = new CartDTO();
+                cartForAdd.productId = item.ProductId;
+                _cart.AddToCart(cartForAdd);
+                OnGet();
+            }
+            
             return RedirectToPage("/Cart");
+        }
+
+        public void OnPostUpdateQuantity(int id, int quantity)
+        {
+            var cart = _cart.getCartByID(id);
+            if (cart != null)
+            {
+                cart.quantity = quantity;
+                _cart.UpdateCart(id, cart.quantity);
+            }
+            OnGet();
         }
     }
 }

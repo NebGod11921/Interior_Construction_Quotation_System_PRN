@@ -16,6 +16,8 @@ namespace Application.Services
         private static object instanceLock = new object();
 
         public CartService() { }
+
+        private int cartID;
         public static CartService Instance
         {
             get
@@ -50,14 +52,33 @@ namespace Application.Services
         }
         public void AddToCart(CartDTO cart)
         {
-            var exitcart = carts.Where(c => c.Id == cart.Id).FirstOrDefault();
-            if (exitcart != null)
+            if (checkProductInCart(cart.productId) == true)
             {
+                var exitcart = carts.Where(c => c.Id == cartID && c.Id != 0).FirstOrDefault();
                 exitcart.quantity++;
+                UpdateCart(cartID, exitcart.quantity);
             }
             else
             {
-                carts.Add(cart);
+                
+                    cart.Id = GetIdNew();
+                    cart.quantity = 1;
+                    carts.Add(cart);
+            }
+           
+        }
+
+        public bool checkProductInCart(int pId)
+        {
+            var cart = carts.Where(x => x.productId == pId).FirstOrDefault();
+            if (cart != null)
+            {
+                cartID = cart.Id;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         public void DeleteCartAll()
