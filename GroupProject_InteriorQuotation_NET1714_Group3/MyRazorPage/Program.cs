@@ -16,6 +16,7 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(op =>
 });
 builder.Services.AddInfrastructuresService(configuration.DatabaseConnection);
 builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers()
         .AddJsonOptions(options =>
         {

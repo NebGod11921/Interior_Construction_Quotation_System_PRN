@@ -59,5 +59,15 @@ namespace MyRazorPage.Pages
             }
             OnGet();
         }
+
+        public void OnPostDeleteCart(int cID)
+        {
+            var cart = _cart.getCartByID(cID);
+            if (cart != null)
+            {
+                _cart.DeleteCart(cID);
+            }
+            OnGet();
+        }
     }
 }
