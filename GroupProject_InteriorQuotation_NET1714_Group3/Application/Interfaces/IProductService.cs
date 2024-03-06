@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface IProductService : IGenericRepository<Product>
+    public interface IProductService
     {
        List<ProductDto> GetAllProductByRoomId(int roomid);
-       Task<ProductDto> GetProductById(int id);
-		
+       ProductDto GetProductById(int id);
+        ProductDto GetProductByIdToCart(int id);
 	}
 }

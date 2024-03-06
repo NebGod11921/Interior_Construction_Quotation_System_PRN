@@ -11,8 +11,9 @@ namespace Application.IRepositories
 {
     public interface IProductRepository
     {
-      public List<ProductDto> getProductByRoomId(int roomId);
-      public Task<ProductDto> GetAllProductById(int id);
+      public List<Product> getProductByRoomId(int roomId);
+      Product GetProductById(int id);
+        Product GetProductByIdToCart(int id);
 
     }
 }

@@ -23,13 +23,33 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<ProductDto> GetAllProductById(int id)
+        public List<ProductDto> GetAllProductByRoomId(int roomid)
+        {
+			var product = _unitOfWork.ProductRepository.getProductByRoomId(roomid);
+            var productDtos = product.Select(p => new ProductDto
+            {
+                ProductId = p.Id,
+                ProductName = p.ProductName,
+                Description = p.Description,
+                Quantity = p.Quantity,
+                Size = p.Size,
+                Price = p.Price,
+                ImageUrl = p.ProductImages.FirstOrDefault()?.Image?.ImageName,
+                Color = p.Color.ColourName,
+                Material = p.Material.MaterialName
+            }).ToList();
+
+
+			return productDtos;
+        }
+
+        public ProductDto GetProductById(int id)
         {
             try
             {
-                var product = await _unitOfWork.ProductRepository.GetByIdAsync(id);
+                var product =  _unitOfWork.ProductRepository.GetProductById(id);
 
-                if(product != null)
+                if (product != null)
                 {
                     return _mapper.Map<ProductDto>(product);
                 }
@@ -37,31 +57,36 @@ namespace Application.Services
                 {
                     return null;
                 }
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
-                throw new Exception(e.InnerException.ToString());
+                return null;
             }
         }
 
-        public List<ProductDto> GetAllProductByRoomId(int roomid)
+        public ProductDto GetProductByIdToCart(int id)
         {
-			var product = _unitOfWork.ProductRepository.getProductByRoomId(roomid);
-			var productDtos = product.Select(p => new ProductDto
-			{				
-				ProductName = p.ProductName,
-				Description = p.Description,
-				Quantity = p.Quantity,
-				Size = p.Size,
-				Price = p.Price,
-				ImageUrl = p.ProductImages.FirstOrDefault()?.Image?.ImageName,
-				Color = p.Color.ColourName,
-				Material = p.Material.MaterialName
-			}).ToList();
-
-
-			return productDtos;
+            var pro = _unitOfWork.ProductRepository.GetProductByIdToCart(id);
+            if (pro == null)
+            {
+                return null;
+            }
+            else {
+                var aa = new ProductDto
+                {
+                    ProductId = pro.Id,
+                    ProductName = pro.ProductName,
+                    Description = pro.Description,
+                    Quantity = pro.Quantity,
+                    Size = pro.Size,
+                    Price = pro.Price,
+                    ImageUrl = pro.ProductImages.FirstOrDefault()?.Image?.ImageName,
+                    Color = pro.Color.ColourName,
+                    Material = pro.Material.MaterialName
+                };
+                return aa;
+            }
         }
-
     }
 }
     
