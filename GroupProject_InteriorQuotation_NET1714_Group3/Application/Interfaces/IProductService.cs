@@ -1,4 +1,5 @@
 ﻿
+using Application.Repositories;
 using Application.ViewModels;
 using Domain.Entities;
 using System;
@@ -12,6 +13,7 @@ namespace Application.Interfaces
     public interface IProductService
     {
        List<ProductDto> GetAllProductByRoomId(int roomid);
-		
+       ProductDto GetProductById(int id);
+        ProductDto GetProductByIdToCart(int id);
 	}
 }

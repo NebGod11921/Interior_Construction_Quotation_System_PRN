@@ -38,6 +38,8 @@ namespace Infrustructure
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
 
+            services.AddSingleton<ICartService, CartService>();
+
             //Service
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountService, AccountService>();

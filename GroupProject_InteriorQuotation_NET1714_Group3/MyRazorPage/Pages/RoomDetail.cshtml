@@ -26,16 +26,21 @@ else
                 {
                     <img src="@product.ImageUrl" alt="Product Image">
                 } *@
-                <div class="product-info">
-                    <img src="@product.ImageUrl" alt="Product Image">
-                    <div class="product-name">Name: @product.ProductName</div>
-                    <div class="product-description">Description: @product.Description</div>
-                    <div class="product-quantity">Quantity: @product.Quantity</div>
-                    <div class="product-size">Size: @product.Size</div>
-                    <div class="product-color">Color: @product.Color</div>
-                    <div class="product-material">Material: @product.Material</div>
-                    <div class="product-price">Price: @product.Price</div>
-                </div>
+                
+                    <div class="product-info">
+                        <img src="@product.ImageUrl" alt="Product Image">
+                        <div class="product-name">Name: @product.ProductName</div>
+                        <div class="product-description">Description: @product.Description</div>
+                        <div class="product-quantity">Quantity: @product.Quantity</div>
+                        <div class="product-size">Size: @product.Size</div>
+                        <div class="product-color">Color: @product.Color</div>
+                        <div class="product-material">Material: @product.Material</div>
+                        <div class="product-price">Price: @product.Price</div>
+                    </div>
+                <form asp-page="/Cart" asp-page-handler="AddToCartProduct" method="post">
+                    <input type="hidden" value="@product.ProductId" name="pId" />
+                    <button type="submit">Add To Cart</button>
+                </form>
             </div>
         }
 

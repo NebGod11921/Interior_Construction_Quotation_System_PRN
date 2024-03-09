@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Text.Json
+@using Application.ViewModels
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,6 +22,8 @@
     <link rel="stylesheet" href="../assets/css/templatemo-plot-listing.css">
     <link rel="stylesheet" href="../assets/css/animated.css">
     <link rel="stylesheet" href="../assets/css/owl.css">
+    <link rel="stylesheet" href="../wwwroot/css/cart.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
 
 
@@ -61,8 +65,35 @@
                             <li><a href="index.html" class="active">Home</a></li>
                             <li><a href="category.html">Category</a></li>
                             <li><a href="listing.html">Listing</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                            <li><div class="main-white-button"><a href="#"><i class="fa fa-plus"></i> Add Your Listing</a></div></li>
+                            <li><a asp-page="/Cart">Cart</a></li>
+                            <li>
+                                
+
+                                @{
+                                    var viewContext = ViewContext.HttpContext;
+                                    var csSessionValue = viewContext.Session.GetString("csSession");
+                                    if (csSessionValue != null)
+                                    {
+                                        var myObject = JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
+                                        <div class="main-white-button">
+                                            <a asp-page="/Login" asp-page-handler="Logout" class="logout">
+                                                <i class="bi bi-door-closed-fill"></i>
+                                                <span class="nav-item">Logout</span>
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="main-white-button">
+                                            <a asp-page="/Login" class="logout">
+                                                <i class="bi bi-door-closed-fill"></i>
+                                                <span class="nav-item">Login</span>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                                    
+                            </li>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
