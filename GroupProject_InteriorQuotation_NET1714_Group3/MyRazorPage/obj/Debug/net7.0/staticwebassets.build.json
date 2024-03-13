@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YhFj6D1qBv6NCaGy5r6CyavUkXLiwrON7ZWLxZJVwd4=",
+  "Hash": "p4GhE4Ox2U7zGtG506TZEMGMqOcHWigA6pQT/x9ftLo=",
   "Source": "MyRazorPage",
   "BasePath": "_content/MyRazorPage",
   "Mode": "Default",
@@ -899,6 +899,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\admin.css"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\cart.css",
+      "SourceId": "MyRazorPage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\",
+      "BasePath": "_content/MyRazorPage",
+      "RelativePath": "css/cart.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\cart.css"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\register.css",

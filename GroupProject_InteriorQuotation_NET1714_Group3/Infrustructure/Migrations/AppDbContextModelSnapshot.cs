@@ -317,6 +317,12 @@ namespace Infrastructure.Migrations
                     b.Property<int>("QuotationId")
                         .HasColumnType("int");
 
+                    b.Property<float>("ActualPrice")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("ProductId", "QuotationId");
 
                     b.HasIndex("QuotationId");
