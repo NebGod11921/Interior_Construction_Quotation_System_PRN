@@ -39,6 +39,8 @@ namespace Infrustructure
             services.AddScoped<IProductService, ProductService>();
 
             services.AddSingleton<ICartService, CartService>();
+            services.AddScoped<IQuotationRepository, QuotationRepository>();
+            services.AddScoped<IQuotationService, QuotationService>();
 
             //Service
             services.AddScoped<IUserRepository, UserRepository>();

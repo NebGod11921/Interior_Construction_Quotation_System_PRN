@@ -22,6 +22,11 @@ namespace MyRazorPage.Pages
             var p = _p.GetProductByIdToCart(productId);
             return p;
         }
+        public ProductDto getProductById1(int productId)
+        {
+            var p = _p.GetProductById(productId);
+            return p;
+        }
         public async Task OnGet() 
         {
             carts = _cart.getAllCart() ?? new List<CartDTO>();
@@ -68,6 +73,45 @@ namespace MyRazorPage.Pages
                 _cart.DeleteCart(cID);
             }
             OnGet();
+        }
+
+        public void OnPostCaculator(int roomAre)
+        {
+            var carts = _cart.getAllCart();
+            foreach (var item in carts)
+            {
+                var size = (int)_p.GetProductById(item.productId).Size;
+                var categoryId = (int)_p.GetProductById(item.productId).Category.Id;
+                item.quantity =  calProduct(roomAre,size, categoryId);
+                _cart.UpdateCart(item.Id, item.quantity);
+            }
+            OnGet();
+        }
+
+        private int calProduct(int rAre, int productsize, int category)
+        {
+            double requiredAreaWithBuffer = rAre * 1.1;
+            double numberOfProducts = 0;
+            switch (category)
+            {
+                case 1: // gh?
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 6;
+                    break;
+                case 2:// g??ng
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 2;
+                    break;
+                case 3:// gi??ng
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 1;
+                    break;
+                case 4:// ?èn 
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 5;
+                    break;
+                default:
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 3;
+                    break;
+            }
+            return (int)Math.Ceiling(numberOfProducts);
+
         }
     }
 }

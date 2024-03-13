@@ -21,7 +21,8 @@ namespace Infrastructure.Repositories
 
         public Product GetProductById(int id)
         {
-            var products = _appDbContext.Products
+            var products = _appDbContext.Products.
+                            Include(x => x.Category)
                            .FirstOrDefault(rp => rp.Id == id);
             return products;
         }
