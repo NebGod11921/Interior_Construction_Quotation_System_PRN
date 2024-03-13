@@ -217,10 +217,10 @@
 
                             <br></br>
                             <label>Gender:</label><br></br>
-                            <input type="checkbox" id="maleCheckbox" name="gender" value="male" @(ViewData["genderdata"] != null && ViewData["genderdata"].Equals("male") ? "checked" : "")>
+                            <input type="radio" id="maleCheckbox" name="gender" value="male" @(ViewData["genderdata"] != null && ViewData["genderdata"].Equals("male") ? "checked" : "")>
                             <label for="maleCheckbox">Male</label><br> 
 
-                            <input type="checkbox" id="femaleCheckbox" name="gender" value="female" @(ViewData["genderdata"] != null && ViewData["genderdata"].Equals("female") ? "checked" : "")>
+                            <input type="radio" id="femaleCheckbox" name="gender" value="female" @(ViewData["genderdata"] != null && ViewData["genderdata"].Equals("female") ? "checked" : "")>
                             <label for="femaleCheckbox">Female</label><br>
                             @if (ViewData["msggender"] != null)
                             {
