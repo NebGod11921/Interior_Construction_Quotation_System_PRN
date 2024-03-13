@@ -14,7 +14,7 @@ namespace Application
         public IRoomTypeRepository RoomTypeRepository { get; }
 		//public IProductImageRepo ProductImageRepo { get; }
 		//public IImageRepo ImageRepo { get; }
-
+        public IQuotationRepository QuotationRepository { get; }
 
 		public Task<int> SaveChangeAsync();
 

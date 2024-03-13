@@ -30,6 +30,7 @@ namespace Infrastructure.Mappers
 
             CreateMap<User,AccountDTO>().ReverseMap();
             CreateMap<User, AccountLoginDTO>().ReverseMap();
+            CreateMap<Quotation, QuotationDTO>().ReverseMap();
         }
     }
 }
