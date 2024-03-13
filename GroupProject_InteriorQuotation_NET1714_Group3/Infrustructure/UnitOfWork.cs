@@ -16,22 +16,26 @@ namespace Infrastructure
         private readonly IUserRepository _userRepository;
         private readonly IProductRepository _productRepo;
         private readonly IRoomTypeRepository _roomTypeRepository;
+        private readonly IQuotationRepository _quotationRepository;
 		//private readonly IProductImageRepo _productImageRepo;
 		//private readonly IImageRepo _imageRepo;
 
 		public UnitOfWork(AppDbContext dbContext, 
             IUserRepository userRepository, 
             IProductRepository productRepo,
-             IRoomTypeRepository roomTypeRepository)
+             IRoomTypeRepository roomTypeRepository,
+             IQuotationRepository quotationRepository)
         {
             _dbContext = dbContext;
             _userRepository = userRepository;
             _productRepo = productRepo;
             _roomTypeRepository = roomTypeRepository;
+            _quotationRepository = quotationRepository;
             
         }
 
         public IUserRepository UserRepository => _userRepository;
+        public IQuotationRepository QuotationRepository => _quotationRepository;
 
         public IProductRepository ProductRepository => _productRepo;
 

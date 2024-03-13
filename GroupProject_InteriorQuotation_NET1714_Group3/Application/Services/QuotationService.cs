@@ -1,5 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.ViewModels;
+using AutoMapper;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,33 @@ namespace Application.Services
 {
     public class QuotationService : IQuotationService
     {
-        public Task<bool> CreateQuotation(QuotationDTO quotationDTO)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        public QuotationService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+        }
+
+        public async Task<bool> CreateQuotation(QuotationDTO quotationDTO)
+        {
+            try
+            {
+                Quotation q_mapper = _mapper.Map<Quotation>(quotationDTO);
+                await _unitOfWork.QuotationRepository.AddAsync(q_mapper);
+                if (await _unitOfWork.SaveChangeAsync() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message, e);
+            }
         }
 
         public Task<bool> DeleteQuotation(int id)
@@ -25,9 +51,23 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<QuotationDTO>> GetQuotationByCsId(int csId)
+        public List<QuotationDTO> GetQuotationByCsId(int csId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var quotations = _unitOfWork.QuotationRepository.GetQuotationsByCsID(csId);
+                var quotationDTOs = _mapper.Map<List<QuotationDTO>>(quotations);
+                if (quotations == null && quotations.Count > 0) 
+                {
+                    return quotationDTOs;
+                }
+                else
+                {
+                    return null;
+                }
+            }catch {
+             throw new NotImplementedException();
+            }
         }
 
         public Task<QuotationDTO> GetQuotationById(int id)

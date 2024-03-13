@@ -12,7 +12,7 @@ namespace Application.Interfaces
     {
         Task<List<QuotationDTO>> GetAllQuotation();
         Task<QuotationDTO> GetQuotationById(int id);
-        Task<List<QuotationDTO>> GetQuotationByCsId(int csId);
+        List<QuotationDTO> GetQuotationByCsId(int csId);
         Task<bool> DeleteQuotation(int id);
         Task<bool> CreateQuotation(QuotationDTO quotationDTO);
         Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id);
