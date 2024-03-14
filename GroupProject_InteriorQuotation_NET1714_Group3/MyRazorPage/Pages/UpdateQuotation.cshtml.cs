@@ -21,7 +21,7 @@ namespace MyRazorPage.Pages
         {
 
 
-            Quotations = await _quotationService.GetAllQuotation();
+           
             
           
         }

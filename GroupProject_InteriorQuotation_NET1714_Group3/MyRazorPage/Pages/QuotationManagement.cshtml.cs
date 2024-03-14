@@ -1,5 +1,6 @@
 using Application.Interfaces;
 using Application.ViewModels;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
@@ -82,32 +83,39 @@ namespace MyRazorPage.Pages.Shared
 			await OnGet();
 
 		}
-        public async Task OnPostTransferUpdate(int quotationId)
+        /*public async Task OnPostTransferUpdate(int quotationId)
         {
-            ViewData["QuotationId"] = quotationId;
-
-            try
+			ViewData["QuotationId"] = quotationId;
+			try
             {
-                var getQuotationById = await _quotationService.GetQuotationById(quotationId);
-                if (getQuotationById != null)
+				var httpGet = HttpContext.Session.GetString("quotationById");
+                if (httpGet != null)
                 {
-                    var json = JsonSerializer.Serialize(getQuotationById);
-                    HttpContext.Session.SetString("quotationById", json);
-                    RedirectToPage("/UpdateQuotation");
-                }
-                else
-                {
-                    Page();
-                }
+                    var json = JsonSerializer.Deserialize<QuotationDTO>(httpGet);
+					var getQuotationById = await _quotationService.GetQuotationById(json.Id);
+					if (getQuotationById != null && quotationId == getQuotationById.Id)
+					{
+						var result = JsonSerializer.Serialize(getQuotationById);
+						HttpContext.Session.SetString("qqq", result);
+						RedirectToPage("/UpdateQuotation");
+					}
+					else
+					{
+						Page();
+					}
+				}
+
+				
 
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+
             await OnGet();
+        }*/
 
-        }
-
-	}
+    }
 }
