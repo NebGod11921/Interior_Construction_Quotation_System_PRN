@@ -8,8 +8,8 @@ namespace MyRazorPage.Pages.Shared
     public class QuotationManagementModel : PageModel
     {
         private readonly IQuotationService _quotationService;
-        public List<QuotationDTO> Quotations { get; set; }
-        public QuotationDTO QuotationDTO { get; set; }
+        public IEnumerable<QuotationDTO> Quotations { get; set; }
+        
 
         public QuotationManagementModel(IQuotationService quotationService)
         {
@@ -52,7 +52,7 @@ namespace MyRazorPage.Pages.Shared
         }
 		public async Task OnPostReConfirm(int quotationId)
 		{
-			ViewData["QuotationId1"] = quotationId;
+			ViewData["QuotationId"] = quotationId;
 			try
 			{
 				var getQuotationId = await _quotationService.GetQuotationById(quotationId);
@@ -73,8 +73,6 @@ namespace MyRazorPage.Pages.Shared
 				{
 					Page();
 				}
-
-
 			}
 			catch (Exception ex)
 			{

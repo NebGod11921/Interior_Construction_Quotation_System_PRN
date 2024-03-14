@@ -10,7 +10,7 @@ namespace Application.Interfaces
 {
     public interface IQuotationService
     {
-        Task<List<QuotationDTO>> GetAllQuotation();
+        Task<IEnumerable<QuotationDTO>> GetAllQuotation();
         Task<QuotationDTO> GetQuotationById(int id);
         List<QuotationDTO> GetQuotationByCsId(int csId);
         Task<bool> DeleteQuotation(int id);

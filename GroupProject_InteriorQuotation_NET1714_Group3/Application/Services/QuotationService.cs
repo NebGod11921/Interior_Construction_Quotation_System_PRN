@@ -73,14 +73,14 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<QuotationDTO>> GetAllQuotation()
+        public async Task<IEnumerable<QuotationDTO>> GetAllQuotation()
         {
             try
             {
                 var result = await _unitOfWork.QuotationRepository.GetAllAsync();
                 if (result != null)
                 {
-                    var mappedResult = _mapper.Map<List<QuotationDTO>>(result);
+                    var mappedResult = _mapper.Map<IEnumerable<QuotationDTO>>(result);
                     return mappedResult;
                 } else
                 {
@@ -177,7 +177,7 @@ namespace Application.Services
 					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
 					if (IsSuccess)
 					{
-						var mapped = _mapper.Map(getQuotationId, quotation);
+						var mapped =  _mapper.Map(getQuotationId, quotation);
 						return true;
 					}
 					return false;

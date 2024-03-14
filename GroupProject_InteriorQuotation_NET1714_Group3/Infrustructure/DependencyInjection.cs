@@ -21,7 +21,8 @@ namespace Infrustructure
         public static IServiceCollection AddInfrastructuresService(this IServiceCollection services, string databaseConnection)
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(databaseConnection));
+                options.UseSqlServer(databaseConnection)
+                ,ServiceLifetime.Transient);
             //return services;
             services.AddScoped<MapperConfigurationsProfile>();
 
