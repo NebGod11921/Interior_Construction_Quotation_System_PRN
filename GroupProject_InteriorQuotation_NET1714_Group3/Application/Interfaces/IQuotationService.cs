@@ -16,5 +16,6 @@ namespace Application.Interfaces
         Task<bool> DeleteQuotation(int id);
         Task<bool> CreateQuotation(QuotationDTO quotationDTO);
         Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id);
+        Task<IEnumerable<QuotationDTO>> SearchQuotationByName(string name);
     }
 }

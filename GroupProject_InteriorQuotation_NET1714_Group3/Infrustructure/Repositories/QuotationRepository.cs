@@ -1,6 +1,7 @@
 ﻿using Application.IRepositories;
 using Domain.Entities;
 using Infrustructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -29,6 +30,28 @@ namespace Infrastructure.Repositories
             }catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public async Task<IEnumerable<Quotation>> SearchQuotationByQuotationName(string name)
+        {
+            try
+            {
+                var quotation = await _appDbContext.Quotations.Where(x => x.QuotationName.Contains(name)).ToListAsync();
+                if (quotation.Count > 0)
+                {
+                    return quotation;
+                }
+                else
+                {
+                    return null;
+                }
+
+
+
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }

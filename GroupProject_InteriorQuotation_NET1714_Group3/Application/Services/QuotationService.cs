@@ -75,6 +75,28 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<QuotationDTO>> SearchQuotationByName(string name)
+        {
+            try
+            {
+                var result = await _unitOfWork.QuotationRepository.SearchQuotationByQuotationName(name);
+                if (result == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    var mappedResult = _mapper.Map<IEnumerable<QuotationDTO>>(result);
+                    return mappedResult;
+                }
+
+            } catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            
+            }
+        }
+
         public Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id)
         {
             throw new NotImplementedException();
