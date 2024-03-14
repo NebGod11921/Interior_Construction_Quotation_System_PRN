@@ -198,9 +198,10 @@
 							<div class="pull-right">
 								<div class="btn-group">
 									<button type="button" class="btn btn-success btn-filter" data-target="pagado">Successfully</button>
-									<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
+									@* <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button> *@
 									<button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancel</button>
 									<button type="button" class="btn btn-default btn-filter" data-target="all">ListAll</button>
+									
 								</div>
 							</div>
 							<div class="table-container">
@@ -208,6 +209,7 @@
 									<tbody>
 										@foreach(var q in Model.Quotations)
 										{
+											
 											if (q.Status == 1)
 											{
 												<tr data-status="pagado">
@@ -238,7 +240,11 @@
 															<input type="hidden" name="QuotationId" value="@q.Id"/>
 															<input type="submit"  class="btn btn-danger" value="Cancel"/>
 														</form>
-														
+														<form asp-page-handler="TransferUpdate" method="post">
+															@* <input type="hidden" name="QuotationId" value="@q.Id" />
+															<input type="submit" class="btn btn-warning" value="Update"/> *@
+															<a asp-page="TransferUpdate?QuotationId=@q.Id" class="btn btn-warning">Update</a>
+														</form>
 														
 													</td>
 													
@@ -246,7 +252,7 @@
 											}
 										
 										
-										<tr data-status="pendiente">
+										@* <tr data-status="pendiente">
 											<td>
 												
 											</td>
@@ -268,7 +274,7 @@
 													</div>
 												</div>
 											</td>
-										</tr>
+										</tr> *@
 											@if(q.Status == 0)
 											{
 												<tr data-status="cancelado">
@@ -290,7 +296,7 @@
 																<span class="media-meta pull-right">@q.CreateDate</span>
 																<h4 class="title">
 																	Canceling quotation
-																	<span class="pull-right cancelado">(Cancelado)</span>
+																	<span class="pull-right cancelado">(Canceled)</span>
 																</h4>
 																<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
 															</div>
@@ -301,6 +307,13 @@
 															<input type="hidden" name="QuotationId" value="@q.Id" />
 															<input type="submit" class="btn btn-success" value="Re-Confirm" />
 														</form>
+														<form asp-page-handler="TransferUpdate" method="post">
+															<input type="hidden" name="QuotationId" value="@q.Id" />
+															<input type="submit" class="btn btn-warning" value="Update" />
+														</form>
+														
+															
+														
 													</td>
 												</tr>
 											}

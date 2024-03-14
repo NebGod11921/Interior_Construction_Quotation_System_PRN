@@ -1,0 +1,21 @@
+﻿@page
+@using System.Text.Json
+@using Application.ViewModels
+@model MyRazorPage.Pages.UpdateQuotationModel
+@{
+    var result = HttpContext.Session.GetString("quotationById");
+}
+
+
+
+@if(result != null)
+{
+    var json = JsonSerializer.Deserialize<QuotationDTO>(result);
+    
+    <div>@json.QuotationName</div>
+    <div>@json.Id</div>
+
+
+
+
+}
