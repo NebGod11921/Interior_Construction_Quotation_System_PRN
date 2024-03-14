@@ -46,9 +46,25 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<QuotationDTO>> GetAllQuotation()
+        public async Task<List<QuotationDTO>> GetAllQuotation()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await _unitOfWork.QuotationRepository.GetAllAsync();
+                if (result != null)
+                {
+                    var mappedResult = _mapper.Map<List<QuotationDTO>>(result);
+                    return mappedResult;
+                } else
+                {
+                    return null;
+                }
+
+
+            }catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<QuotationDTO> GetQuotationByCsId(int csId)
