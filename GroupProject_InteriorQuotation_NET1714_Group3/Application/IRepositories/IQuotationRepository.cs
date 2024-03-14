@@ -12,5 +12,6 @@ namespace Application.IRepositories
     {
         List<Quotation> GetQuotationsByCsID(int csID);
         Task<IEnumerable<Quotation>> SearchQuotationByQuotationName(string name);
+        
     }
 }

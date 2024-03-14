@@ -212,26 +212,39 @@
 											{
 												<tr data-status="pagado">
 													<td>
+														@q.QuotationName
 													</td>
 													<td>
-														@q.QuotationName;
+														@q.UnitPrice
+													</td>
+													<td>
+														@q.TotalPrice
 													</td>
 													<td>
 														<div class="media">
 															
 															<div class="media-body">
-																<span class="media-meta pull-right">Febrero 13, 2016</span>
+																<span class="media-meta pull-right">@q.CreateDate</span>
 																<h4 class="title">
-																	Lorem Impsum
-																	<span class="pull-right pagado">(Pagado)</span>
+																	Confirming quotation
+																	<span class="pull-right pagado">(Successful)</span>
 																</h4>
 																<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
 															</div>
 														</div>
 													</td>
+													<td>
+														<form asp-page-handler="Cancel" method="post">
+															<input type="hidden" name="QuotationId" value="@q.Id"/>
+															<input type="submit"  class="btn btn-danger" value="Cancel"/>
+														</form>
+														
+														
+													</td>
+													
 												</tr>
 											}
-										}
+										
 										
 										<tr data-status="pendiente">
 											<td>
@@ -256,75 +269,44 @@
 												</div>
 											</td>
 										</tr>
-										<tr data-status="cancelado">
-											<td>
-												
-											</td>
-											<td>
-												
-											</td>
-											<td>
-												<div class="media">
-													<a href="#" class="pull-left">
-														<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-													</a>
-													<div class="media-body">
-														<span class="media-meta pull-right">Febrero 13, 2016</span>
-														<h4 class="title">
-															Lorem Impsum
-															<span class="pull-right cancelado">(Cancelado)</span>
-														</h4>
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr data-status="pagado" class="selected">
-											<td>
-												
-											</td>
-											<td>
-												
-											</td>
-											<td>
-												<div class="media">
-													<a href="#" class="pull-left">
-														<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-													</a>
-													<div class="media-body">
-														<span class="media-meta pull-right">Febrero 13, 2016</span>
-														<h4 class="title">
-															Lorem Impsum
-															<span class="pull-right pagado">(Pagado)</span>
-														</h4>
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr data-status="pendiente">
-											<td>
-												
-											</td>
-											<td>
-												
-											</td>
-											<td>
-												<div class="media">
-													<a href="#" class="pull-left">
-														<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-													</a>
-													<div class="media-body">
-														<span class="media-meta pull-right">Febrero 13, 2016</span>
-														<h4 class="title">
-															Lorem Impsum
-															<span class="pull-right pendiente">(Pendiente)</span>
-														</h4>
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-													</div>
-												</div>
-											</td>
-										</tr>
+											@if(q.Status == 0)
+											{
+												<tr data-status="cancelado">
+													<td>
+														@q.QuotationName
+													</td>
+													<td>
+														@q.UnitPrice
+													</td>
+													<td>
+														@q.TotalPrice
+													</td>
+													<td>
+														<div class="media">
+															<a href="#" class="pull-left">
+																<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+															</a>
+															<div class="media-body">
+																<span class="media-meta pull-right">@q.CreateDate</span>
+																<h4 class="title">
+																	Canceling quotation
+																	<span class="pull-right cancelado">(Cancelado)</span>
+																</h4>
+																<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+															</div>
+														</div>
+													</td>
+													<td>
+														<form asp-page-handler="ReConfirm" method="post">
+															<input type="hidden" name="QuotationId1" value="@q.Id" />
+															<input type="submit" class="btn btn-success" value="Re-Confirm" />
+														</form>
+														
+														
+													</td>
+												</tr>
+											}
+										}
 									</tbody>
 								</table>
 							</div>
