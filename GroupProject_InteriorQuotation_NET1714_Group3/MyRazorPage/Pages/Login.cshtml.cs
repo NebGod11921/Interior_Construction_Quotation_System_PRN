@@ -56,6 +56,15 @@ namespace MyRazorPage.Pages
                         {
                             ViewData["msgLogin"] = "Account is banned, cant login.";
                         }
+                        else if (login.RoleName == "Staff")
+                        {
+                            var session = JsonSerializer.Serialize(login, new JsonSerializerOptions()
+                            {
+                                ReferenceHandler = ReferenceHandler.IgnoreCycles
+                            });
+                            HttpContext.Session.SetString("staffSession", session);
+                            return RedirectToPage("/QuotationManagement");
+                        }
                         else
                         {
                             var csSession = JsonSerializer.Serialize(login, new JsonSerializerOptions()
