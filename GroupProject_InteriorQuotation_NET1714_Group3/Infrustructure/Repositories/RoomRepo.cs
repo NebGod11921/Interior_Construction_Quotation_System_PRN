@@ -18,6 +18,8 @@ namespace Infrastructure.Repositories
             _appDbContext = appDbContext;
         }
 
+        
+
         public async Task<IEnumerable<Room>> GetAllRooms()
         {
             try
@@ -58,12 +60,30 @@ namespace Infrastructure.Repositories
                 throw new Exception(ex.Message);
             }
 		}
+        public async Task<bool> CreateRoom(Room room)
+        {
+            try
+            {
+                var r = _appDbContext.Rooms.Include(b => b.RoomType).Select(x => x.RoomType.Id);
+                if (r != null)
+                {
+                    await _appDbContext.AddAsync(room);
+                    
+                    return true;
+                }
+
+                return false;
+
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
 
 
 
-
-		public string GetRoomNameByRoomId(int roomId)
+        public string GetRoomNameByRoomId(int roomId)
         {
             return _appDbContext.Rooms
                 .Where(r => r.Id == roomId)

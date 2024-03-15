@@ -73,14 +73,14 @@
                         }
                         <br></br>
                         <label for="RoomDescription">RoomDescription:</label>
-                        <input type="text" id="RoomDescription" name="ArRoomDescriptionea" value="@ViewData["RoomDescriptiondata"]" required>
+                        <input type="text" id="RoomDescription" name="RoomDescription" value="@ViewData["RoomDescriptiondata"]" required>
                         @if (ViewData["msgRoomDescription"] != null)
                         {
                             <p>@ViewData["msgRoomDescription"]</p>
                         }
                         <br></br>
                         <label for="CreationDate">CreationDate:</label>
-                        <input type="text" id="CreationDate" name="CreationDate" value="@ViewData["CreationDatedata"]" required>
+                        <input type="date" id="CreationDate" name="CreationDate" value="@ViewData["CreationDatedata"]" required>
                         @if (ViewData["msgCreationDate"] != null)
                         {
                             <p>@ViewData["msgCreationDate"]</p>
@@ -91,7 +91,7 @@
                             <option value="">Select Room Type</option> <!-- Default option -->
                             @foreach (var roomType in Model.roomTypeDTOs)
                             {
-                                <option value="@roomType.Id">@roomType.RoomTypeName</option>
+                            <option  value="@roomType.Id">@roomType.RoomTypeName</option>
                             }
                         </select>
                        
@@ -118,9 +118,6 @@
                       </form>
                 </div>
             </div>
-
-
-
         </div>
     </section>
     <section class="product">

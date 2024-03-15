@@ -41,7 +41,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Color", b =>
@@ -63,7 +63,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.ToTable("Colors", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Image", b =>
@@ -85,7 +85,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images");
+                    b.ToTable("Images", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Material", b =>
@@ -107,7 +107,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Materials");
+                    b.ToTable("Materials", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>
@@ -140,7 +140,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("QuotationId");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
@@ -189,7 +189,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("MaterialId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.ProductImage", b =>
@@ -204,7 +204,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ImageId");
 
-                    b.ToTable("ProductImage");
+                    b.ToTable("ProductImage", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.ProductQuotation", b =>
@@ -225,7 +225,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("QuotationId");
 
-                    b.ToTable("ProductQuotation");
+                    b.ToTable("ProductQuotation", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Quotation", b =>
@@ -274,7 +274,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Quotations");
+                    b.ToTable("Quotations", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Room", b =>
@@ -304,7 +304,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("RoomTypeId");
 
-                    b.ToTable("Rooms");
+                    b.ToTable("Rooms", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.RoomProduct", b =>
@@ -325,7 +325,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("RoomProduct");
+                    b.ToTable("RoomProduct", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.RoomType", b =>
@@ -350,7 +350,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoomTypes");
+                    b.ToTable("RoomTypes", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -393,7 +393,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>

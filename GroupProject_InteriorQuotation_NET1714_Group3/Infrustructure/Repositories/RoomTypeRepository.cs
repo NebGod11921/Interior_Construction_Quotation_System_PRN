@@ -104,5 +104,27 @@ namespace Infrastructure.Repositories
                 throw new Exception(ex.Message);
             }
 		}
-	} 
+
+        public async Task<IEnumerable<RoomType>> GetAllRoomType()
+        {
+            try
+            {
+                var result = await _appDbContext.RoomTypes.Include("Rooms").ToListAsync();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
+    
 }

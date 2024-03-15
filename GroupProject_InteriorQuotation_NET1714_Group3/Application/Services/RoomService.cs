@@ -39,7 +39,8 @@ namespace Application.Services
 			try
 			{
 				var mapping = _mapper.Map<Room>(roomDTOS);
-				await _unitOfWork.RoomRepo.AddAsync(mapping);
+				
+				await _unitOfWork.RoomRepo.CreateRoom(mapping);
 				var isSuccess = await _unitOfWork.SaveChangeAsync() > 0;
 				if (isSuccess)
 				{

@@ -20,6 +20,7 @@ namespace Application.IRepositories
         //Luan
         public Task<RoomType> GetRoomTypeById(int roomTypeId);
         public Task<IEnumerable<RoomType>> GetAllRoomTypesById (int roomTypeId);
+        public Task<IEnumerable<RoomType>> GetAllRoomType();
 
     }
 }

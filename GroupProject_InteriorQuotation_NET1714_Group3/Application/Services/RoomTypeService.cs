@@ -54,8 +54,8 @@ namespace Application.Services
         {
             try
             {
-                var result = await _unitOfWork.RoomTypeRepository.GetAllAsync();    
-                if (result.Count > 0)
+                var result = await _unitOfWork.RoomTypeRepository.GetAllRoomType();    
+                if (result != null)
                 {
                     var mapper = _mapper.Map<IEnumerable<RoomTypeDTOS>>(result);
                     return mapper;
