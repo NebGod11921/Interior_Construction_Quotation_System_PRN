@@ -84,8 +84,7 @@ namespace Infrastructure.Repositories
             return product;
         }
 
-        public List<Product> getProductByRoomId(int roomId)
-        {
+      
         public Product GetProductById(int id)
         {
             var products = _appDbContext.Products.
@@ -163,7 +162,7 @@ namespace Infrastructure.Repositories
             var existingProduct = await _appDbContext.Products.AnyAsync(p => p.ProductName == productName);
             return existingProduct;
         }
-    return products;
-}
+    
+
     }
 }

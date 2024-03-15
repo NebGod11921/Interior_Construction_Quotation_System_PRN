@@ -17,14 +17,15 @@ namespace Application
         public IMaterialRepo MaterialRepo { get; } 
         public IRoomRepo RoomRepo { get; }
         public ICateRepo CateRepo { get; }
-        public void AddProductImage(ProductImage productImage);
         public IImageRepo ImageRepo { get; }
+        public void AddProductImage(ProductImage productImage);
+        //.public IImageRepo _imageRepo { get; }
         public Task<int> SaveChangeAsync();
 		//public IProductImageRepo ProductImageRepo { get; }
 		//public IImageRepo ImageRepo { get; }
         public IQuotationRepository QuotationRepository { get; }
 
-		public Task<int> SaveChangeAsync();
+		//public Task<int> SaveChangeAsync();
 
     }
 }
