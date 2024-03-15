@@ -48,8 +48,7 @@ namespace Infrastructure.Mappers
             CreateMap<Room, RoomDTOS>().ReverseMap();
             CreateMap<RoomType, RoomTypeDTOS>().ReverseMap();
             CreateMap<RoomTypeDTOS, RoomDTOS>().ReverseMap();
-            CreateMap<RoomTypeDTOS, Room>().ReverseMap();
-            CreateMap<RoomDTOS, RoomType>().ReverseMap();
+            
 
         }
     }
