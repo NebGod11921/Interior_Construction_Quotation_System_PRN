@@ -44,12 +44,15 @@ namespace Application.Services
                 return 1;
             }
         }
-        public int GetItemIdNew()
+        public int GetItemIdNew(int cartID)
         {
-            if (items.Any())
+            var itemsInCart = carts.Where(cart => cart.Id == cartID)
+                           .SelectMany(cart => cart.Items)
+                           .ToList();
+            if (itemsInCart.Any())
             {
-                var id = items.Max(x => x.Id);
-                return id + 1;
+                var maxId = itemsInCart.Max(item => item.Id);
+                return maxId + 1;
             }
             else
             {
@@ -66,7 +69,6 @@ namespace Application.Services
             ItemDTO? c = items.SingleOrDefault(project => project.Id == id);
             return c;
         }
-
         public void AddToCart(CartDTO cart)
         {
             if(cartIdToBuyCont == 0 || cartIdToBuyCont == null)
@@ -93,61 +95,49 @@ namespace Application.Services
            
         }
 
+        //public bool checkItemInCart(int itemId)
+        //{
+        //    var cart = carts.Where(x => x.productId == pId).FirstOrDefault();
+        //    if (cart != null)
+        //    {
+        //        cartID = cart.Id;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //public bool checkItemInCart(int itemId)
+        //{
+        //    var cart = carts.Where(x => x.productId == pId).FirstOrDefault();
+        //    if (cart != null)
+        //    {
+        //        cartID = cart.Id;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
         public void DeleteCartAll()
         {
-            throw new NotImplementedException();
+            carts.Clear();
         }
-
-        public void DeleteCart(int cartid)
+        public void DeleteItemInCart(int cartid, int itemid)
         {
-            throw new NotImplementedException();
+            var cart = getCartByID(cartid);
+            if (cart != null)
+            {
+                var itemToRemove = cart.Items.FirstOrDefault(x => x.Id == itemid); 
+                if (itemToRemove != null)
+                {
+                    cart.Items.Remove(itemToRemove); 
+                }
+            }
         }
-
-        public bool UpdateCart(int id, int quantity)
-        {
-            throw new NotImplementedException();
-        }
-
-        //public bool checkItemInCart(int itemId)
-        //{
-        //    var cart = carts.Where(x => x.productId == pId).FirstOrDefault();
-        //    if (cart != null)
-        //    {
-        //        cartID = cart.Id;
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        //public bool checkItemInCart(int itemId)
-        //{
-        //    var cart = carts.Where(x => x.productId == pId).FirstOrDefault();
-        //    if (cart != null)
-        //    {
-        //        cartID = cart.Id;
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-        //public void DeleteCartAll()
-        //{
-        //    carts.Clear();
-        //}
-        //public void DeleteCart(int cartid)
-        //{
-        //    var cart = carts.FirstOrDefault(x => x.Id == cartid);
-        //    if (cart != null)
-        //    {
-        //        carts.Remove(cart);
-        //    }
-        //}
-
         public void UpdateCartItems(List<ItemDTO> updatedItems)
         {
             foreach (var updatedItem in updatedItems)
@@ -159,7 +149,6 @@ namespace Application.Services
                     existingItem.productId = updatedItem.productId;
                     existingItem.cartId = updatedItem.cartId;
                     existingItem.quanity = updatedItem.quanity;
-
                 }
             }
         }
