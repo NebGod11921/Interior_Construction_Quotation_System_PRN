@@ -1,4 +1,5 @@
 ﻿using Application.IRepositories;
+using Application.ViewModels;
 using Domain.Entities;
 using Infrustructure;
 using Microsoft.EntityFrameworkCore;
@@ -85,6 +86,30 @@ namespace Infrastructure.Repositories
 
         public List<Product> getProductByRoomId(int roomId)
         {
+        public Product GetProductById(int id)
+        {
+            var products = _appDbContext.Products.
+                            Include(x => x.Category)
+                           .FirstOrDefault(rp => rp.Id == id);
+            return products;
+        }
+
+        public Product GetProductByIdToCart(int id)
+        {
+            var products = _appDbContext.Products
+        .Where(p => p.Id == id)
+        .Include(rp => rp.Category)
+        .Include(rp => rp.Material)
+        .Include(rp => rp.Color)
+        .Include(rp => rp.ProductImages)
+            .ThenInclude(pi => pi.Image)
+        .FirstOrDefault();
+
+            return products;
+        }
+
+        public List<Product> getProductByRoomId(int roomId)
+{
     var products = _appDbContext.RoomProduct
         .Where(rp => rp.RoomId == roomId)
         .Include(rp => rp.Product.Material)
@@ -138,5 +163,7 @@ namespace Infrastructure.Repositories
             var existingProduct = await _appDbContext.Products.AnyAsync(p => p.ProductName == productName);
             return existingProduct;
         }
+    return products;
+}
     }
 }

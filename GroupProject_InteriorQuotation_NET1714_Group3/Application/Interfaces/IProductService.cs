@@ -1,4 +1,5 @@
 ﻿
+using Application.Repositories;
 using Application.ViewModels;
 using Domain.Entities;
 using System;
@@ -22,5 +23,8 @@ namespace Application.Interfaces
         Task<bool> CheckExistProductName(string name);
         
         
-    }
+    
+       ProductDto GetProductById(int id);
+        ProductDto GetProductByIdToCart(int id);
+	}
 }

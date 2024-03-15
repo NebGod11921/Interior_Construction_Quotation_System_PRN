@@ -9,7 +9,7 @@ namespace Domain.Entities
     public class Category : BaseEntity
     {
         
-        public string CategoryName { get; set; }
-        public IEnumerable<Product> Products { get; set; }
+        public string? CategoryName { get; set; }
+        public IEnumerable<Product>? Products { get; set; }
     }
 }

@@ -1,0 +1,467 @@
+﻿@page
+@using System.Text.Json
+@using Application.ViewModels
+@model MyRazorPage.Pages.Shared.QuotationManagementModel
+@{
+	var getSession = HttpContext.Session.GetString("staffSession");
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+	/*    --------------------------------------------------
+		:: General
+		-------------------------------------------------- */
+	body {
+		font-family: 'Open Sans', sans-serif;
+		color: #353535;
+	}
+
+	.content h1 {
+		text-align: center;
+	}
+
+	.content .content-footer p {
+		color: #6d6d6d;
+		font-size: 12px;
+		text-align: center;
+	}
+
+		.content .content-footer p a {
+			color: inherit;
+			font-weight: bold;
+		}
+
+	/*	--------------------------------------------------
+		:: Table Filter
+		-------------------------------------------------- */
+	.panel {
+		border: 1px solid #ddd;
+		background-color: #fcfcfc;
+	}
+
+		.panel .btn-group {
+			margin: 15px 0 30px;
+		}
+
+			.panel .btn-group .btn {
+				transition: background-color .3s ease;
+			}
+
+	.table-filter {
+		background-color: #fff;
+		border-bottom: 1px solid #eee;
+	}
+
+		.table-filter tbody tr:hover {
+			cursor: pointer;
+			background-color: #eee;
+		}
+
+		.table-filter tbody tr td {
+			padding: 10px;
+			vertical-align: middle;
+			border-top-color: #eee;
+		}
+
+		.table-filter tbody tr.selected td {
+			background-color: #eee;
+		}
+
+		.table-filter tr td:first-child {
+			width: 38px;
+		}
+
+		.table-filter tr td:nth-child(2) {
+			width: 35px;
+		}
+
+	.ckbox {
+		position: relative;
+	}
+
+		.ckbox input[type="checkbox"] {
+			opacity: 0;
+		}
+
+		.ckbox label {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+			.ckbox label:before {
+				content: '';
+				top: 1px;
+				left: 0;
+				width: 18px;
+				height: 18px;
+				display: block;
+				position: absolute;
+				border-radius: 2px;
+				border: 1px solid #bbb;
+				background-color: #fff;
+			}
+
+		.ckbox input[type="checkbox"]:checked + label:before {
+			border-color: #2BBCDE;
+			background-color: #2BBCDE;
+		}
+
+		.ckbox input[type="checkbox"]:checked + label:after {
+			top: 3px;
+			left: 3.5px;
+			content: '\e013';
+			color: #fff;
+			font-size: 11px;
+			font-family: 'Glyphicons Halflings';
+			position: absolute;
+		}
+
+	.table-filter .star {
+		color: #ccc;
+		text-align: center;
+		display: block;
+	}
+
+		.table-filter .star.star-checked {
+			color: #F0AD4E;
+		}
+
+		.table-filter .star:hover {
+			color: #ccc;
+		}
+
+		.table-filter .star.star-checked:hover {
+			color: #F0AD4E;
+		}
+
+	.table-filter .media-photo {
+		width: 35px;
+	}
+
+	.table-filter .media-body {
+		display: block;
+		/* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+	}
+
+	.table-filter .media-meta {
+		font-size: 11px;
+		color: #999;
+	}
+
+	.table-filter .media .title {
+		color: #2BBCDE;
+		font-size: 14px;
+		font-weight: bold;
+		line-height: normal;
+		margin: 0;
+	}
+
+		.table-filter .media .title span {
+			font-size: .8em;
+			margin-right: 20px;
+		}
+
+			.table-filter .media .title span.pagado {
+				color: #5cb85c;
+			}
+
+			.table-filter .media .title span.pendiente {
+				color: #f0ad4e;
+			}
+
+			.table-filter .media .title span.cancelado {
+				color: #d9534f;
+			}
+
+	.table-filter .media .summary {
+		font-size: 14px;
+	}
+
+	.popup {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgba(0,0,0,0.4);
+	}
+
+	.popup-content {
+		background-color: #fefefe;
+		margin: 15% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+	}
+
+	.close {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+
+		.close:hover,
+		.close:focus {
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+</style>
+@if(getSession != null)
+{
+	var json = JsonSerializer.Deserialize<AccountDTO>(getSession);
+
+	<h1>Welcome @json.FullName</h1>
+	<div class="container">
+		<div class="row">
+
+			<section class="content">
+				<h1>Quotation Management</h1>
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="pull-right">
+								<div class="btn-group">
+									<button type="button" class="btn btn-success btn-filter" data-target="pagado">Successfully</button>
+									@* <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button> *@
+									<button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancel</button>
+									<button type="button" class="btn btn-default btn-filter" data-target="all">ListAll</button>
+									
+								</div>
+							</div>
+							<div class="table-container">
+								<table class="table table-filter">
+									<tbody>
+										@foreach(var q in Model.Quotations)
+										{
+											
+											if (q.Status == 1)
+											{
+												<tr data-status="pagado">
+													<td>
+														@q.QuotationName
+													</td>
+													<td>
+														@q.UnitPrice
+													</td>
+													<td>
+														@q.TotalPrice
+													</td>
+													<td>
+														<div class="media">
+															
+															<div class="media-body">
+																<span class="media-meta pull-right">@q.CreateDate</span>
+																<h4 class="title">
+																	Confirming quotation
+																	<span class="pull-right pagado">(Successful)</span>
+																</h4>
+																<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+															</div>
+														</div>
+													</td>
+													<td>
+														<form asp-page-handler="Cancel" method="post">
+															<input type="hidden" name="QuotationId" value="@q.Id"/>
+															<input type="submit"  class="btn btn-danger" value="Cancel"/>
+														</form>
+														@* <form asp-page-handler="TransferUpdate" method="post">
+											<input type="hidden" name="QuotationId" value="@q.Id" />
+											<input type="submit" class="btn btn-warning" value="Update" />
+											</form> *@
+														<button onclick="openUpdateQPopup('@q.Id')">Update</button>
+														<div id="popup_@q.Id" class="popup">
+															<div class="popup-content">
+																<span class="close" onclick="closeUpdateQPopup('@q.Id')">&times;</span>
+																<h2>Update Quotation</h2>
+																<form asp-page-handler="UpdateQuotation" method="post">
+																	<input type="hidden" value="@q.Id" name="qID" />
+																	<label for="">Quotation Name:</label>
+																	<input type="text" id="quotationName" name="quotationName" value="@(ViewData["quotationnamedata"] != null? ViewData["quotationnamedata"] :q.QuotationName)" required>
+																	@if (ViewData["msgquotation"] != null)
+																	{
+																		<p>@ViewData["msgquotation"]</p>
+																	}
+																	<br></br>
+																	<label for="telephone">Telephone:</label>
+																	<input type="text" id="telephone" name="telephone" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" required>
+																	@if (ViewData["msgunitprice"] != null)
+																	{
+																		<p>@ViewData["msgtotalprice"]</p>
+																	}
+																	<br></br>
+																	<label for="telephone">Address:</label>
+																	<input type="text" id="telephone" name="address" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" required>
+																	@if (ViewData["msgaddress"] != null)
+																	{
+																		<p>@ViewData["msgaddress"]</p>
+																	}
+																	<br></br>
+																	<label for="email">Email Address:</label>
+																	<input type="email" id="email" name="email" value="@(ViewData["createdatedata"] != null? ViewData["createdatedata"] :q.CreateDate)" required>
+																	@if (ViewData["msgcreatedate"] != null)
+																	{
+																		<p>@ViewData["msgcreatedate"]</p>
+																	}
+																	<br></br>
+																</form>
+																<input type="submit" value="Update Quotation">
+																@if (ViewData["msgupdate"] != null)
+																{
+																	<p>@ViewData["msgupdate"]</p>
+																}
+
+															</div>
+
+														</div>
+
+														
+
+													</td>
+													
+												</tr>
+											}
+										
+										
+										@* <tr data-status="pendiente">
+											<td>
+												
+											</td>
+											<td>
+												
+											</td>
+											<td>
+												<div class="media">
+													<a href="#" class="pull-left">
+														<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+													</a>
+													<div class="media-body">
+														<span class="media-meta pull-right">Febrero 13, 2016</span>
+														<h4 class="title">
+															Lorem Impsum
+															<span class="pull-right pendiente">(Pendiente)</span>
+														</h4>
+														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+													</div>
+												</div>
+											</td>
+										</tr> *@
+											@if(q.Status == 0)
+											{
+												<tr data-status="cancelado">
+													<td>
+														@q.QuotationName
+													</td>
+													<td>
+														@q.UnitPrice
+													</td>
+													<td>
+														@q.TotalPrice
+													</td>
+													<td>
+														<div class="media">
+															<a href="#" class="pull-left">
+																<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+															</a>
+															<div class="media-body">
+																<span class="media-meta pull-right">@q.CreateDate</span>
+																<h4 class="title">
+																	Canceling quotation
+																	<span class="pull-right cancelado">(Canceled)</span>
+																</h4>
+																<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+															</div>
+														</div>
+													</td>
+													<td>
+														<form asp-page-handler="ReConfirm" method="post">
+															<input type="hidden" name="QuotationId" value="@q.Id" />
+															<input type="submit" class="btn btn-success" value="Re-Confirm" />
+														</form>
+														
+													</td>
+												</tr>
+											}
+										}
+									</tbody>
+									
+									
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</section>
+			
+		</div>
+	</div>
+}
+<script>
+	function openUpdateQPopup(quotationId) {
+		document.getElementById("popup_" + quotationId).style.display = "block";
+	}
+	function closeUpdateQPopup(quotationId) {
+		document.getElementById("popup_" + quotationId).style.display = "none";
+	}
+</script>
+
+
+
+<!--hold-->
+@if (TempData["PopupUpdateState"] != null && TempData["PopupUpdateState"].ToString() == "open")
+{
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			openUpdateQPopup();
+		});
+
+		function openUpdateQPopup(quotationId) {
+			var popup = document.getElementById("popup_" + @TempData["qID"]);
+			if (popup) {
+				popup.style.display = "block";
+			}
+		}
+	</script>
+}
+
+<script>
+	$(document).ready(function () {
+
+		$('.star').on('click', function () {
+			$(this).toggleClass('star-checked');
+		});
+
+		$('.ckbox label').on('click', function () {
+			$(this).parents('tr').toggleClass('selected');
+		});
+
+		$('.btn-filter').on('click', function () {
+			var $target = $(this).data('target');
+			if ($target != 'all') {
+				$('.table tr').css('display', 'none');
+				$('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+			} else {
+				$('.table tr').css('display', 'none').fadeIn('slow');
+			}
+		});
+
+	});
+</script> 
+
+
+
+
+
+
+
+

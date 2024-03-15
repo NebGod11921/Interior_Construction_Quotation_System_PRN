@@ -41,6 +41,11 @@ namespace Infrustructure
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IRoomRepo, RoomRepo>();
             services.AddScoped<IRoomService, RoomService>();
+
+            services.AddSingleton<ICartService, CartService>();
+            services.AddScoped<IQuotationRepository, QuotationRepository>();
+            services.AddScoped<IQuotationService, QuotationService>();
+
             //Service
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICateRepo, CateRepo>();

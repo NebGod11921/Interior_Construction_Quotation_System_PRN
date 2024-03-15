@@ -8,8 +8,8 @@ namespace Domain.Entities
 {
     public class RoomType : BaseEntity
     {
-        public string RoomTypeName {  get; set; }
-        public string RoomTypeDescription { get; set; }
-        public virtual IEnumerable<Room> Rooms { get; set; }
+        public string? RoomTypeName {  get; set; }
+        public string? RoomTypeDescription { get; set; }
+        public virtual IEnumerable<Room>? Rooms { get; set; }
     }
 }

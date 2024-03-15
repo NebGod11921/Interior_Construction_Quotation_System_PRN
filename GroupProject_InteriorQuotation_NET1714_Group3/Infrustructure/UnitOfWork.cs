@@ -22,11 +22,16 @@ namespace Infrastructure
         private readonly IRoomRepo _roomRepo;
         private readonly ICateRepo _cateRepo;
         private readonly IImageRepo _imageRepo;
+        private readonly IQuotationRepository _quotationRepository;
+		//private readonly IProductImageRepo _productImageRepo;
+		//private readonly IImageRepo _imageRepo;
+
 		public UnitOfWork(AppDbContext dbContext, 
             IUserRepository userRepository, 
             IProductRepository productRepo,
              IRoomTypeRepository roomTypeRepository,
              IColorRepo colorRepo, IMaterialRepo materialRepo, IRoomRepo roomRepo, ICateRepo cateRepo, IImageRepo imageRepo )
+             IQuotationRepository quotationRepository)
         {
             _dbContext = dbContext;
             _userRepository = userRepository;
@@ -37,9 +42,12 @@ namespace Infrastructure
             _roomRepo = roomRepo;
             _cateRepo = cateRepo;
             _imageRepo = imageRepo;
+            _quotationRepository = quotationRepository;
+            
         }
 
         public IUserRepository UserRepository => _userRepository;
+        public IQuotationRepository QuotationRepository => _quotationRepository;
 
         public IProductRepository ProductRepository => _productRepo;
         public IRoomTypeRepository RoomTypeRepository => _roomTypeRepository;

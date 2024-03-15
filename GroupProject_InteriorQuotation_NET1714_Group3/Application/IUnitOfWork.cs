@@ -20,6 +20,11 @@ namespace Application
         public void AddProductImage(ProductImage productImage);
         public IImageRepo ImageRepo { get; }
         public Task<int> SaveChangeAsync();
+		//public IProductImageRepo ProductImageRepo { get; }
+		//public IImageRepo ImageRepo { get; }
+        public IQuotationRepository QuotationRepository { get; }
+
+		public Task<int> SaveChangeAsync();
 
     }
 }

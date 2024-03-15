@@ -29,13 +29,17 @@ else
                     
                     <div class="product-item">
 
-                            <a asp-page="./RoomDetail" asp-route-roomId="@product.RoomId" >
+                        <a asp-page="./RoomDetail" asp-route-roomId="@product.RoomId" >
                         <img src="@Url.Content(Model.GetRoomTypeImageUrl(room.RoomType,product.ImageProduct.FirstOrDefault()?.ImageUrl))" alt="Product Image">
                         </a>
                         <div class="product-info">
                                 <div class="product-name">@product.RoomName</div>
                                 <div class="product-area">Area: @product.AreaRoom m2</div>
                         </div>
+                        <form asp-page="/Cart" asp-page-handler="AddToCartListProduct" method="post">
+                            <input type="hidden" value="@product.RoomId" name="rId" />
+                            <button type="submit">Make Quotation</button>
+                        </form>
                     </div>  
                 }
             </div>

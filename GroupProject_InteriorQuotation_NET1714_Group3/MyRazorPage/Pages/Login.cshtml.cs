@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Numerics;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace MyRazorPage.Pages
 {
@@ -12,10 +13,12 @@ namespace MyRazorPage.Pages
     {
         private readonly IAccountService _account;
         private readonly IConfiguration _config;
-        public LoginModel(IAccountService account, IConfiguration config)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public LoginModel(IAccountService account, IConfiguration config, IHttpContextAccessor httpContextAccessor)
         {
             _account = account;
             _config = config;
+            _httpContextAccessor = httpContextAccessor;
         }
         public void OnGet()
         {
@@ -52,6 +55,15 @@ namespace MyRazorPage.Pages
                         if (login.Status == 0)
                         {
                             ViewData["msgLogin"] = "Account is banned, cant login.";
+                        }
+                        else if (login.RoleName == "Staff")
+                        {
+                            var session = JsonSerializer.Serialize(login, new JsonSerializerOptions()
+                            {
+                                ReferenceHandler = ReferenceHandler.IgnoreCycles
+                            });
+                            HttpContext.Session.SetString("staffSession", session);
+                            return RedirectToPage("/QuotationManagement");
                         }
                         else
                         {
@@ -96,9 +108,9 @@ namespace MyRazorPage.Pages
             return name.ToLower() == aEmail.ToLower() && password.ToLower() == aPass.ToLower();
         }
 
-        public IActionResult OnPostLogout()
+        public IActionResult OnGetLogout()
         {
-            HttpContext.Session.Clear();
+            _httpContextAccessor.HttpContext.Session.Clear();
             return RedirectToPage("/Login");
         }
     }
