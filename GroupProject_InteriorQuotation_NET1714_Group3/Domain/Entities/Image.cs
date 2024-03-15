@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public class Image : BaseEntity
     {
-        public string ImageName { get; set; }
-        public virtual IEnumerable<ProductImage> ProductImages { get; set; }
+        public string? ImageName { get; set; }
+        public virtual IEnumerable<ProductImage>? ProductImages { get; set; }
     }
 }

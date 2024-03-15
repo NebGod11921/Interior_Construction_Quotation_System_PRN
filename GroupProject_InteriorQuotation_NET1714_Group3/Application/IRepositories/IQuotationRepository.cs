@@ -11,5 +11,6 @@ namespace Application.IRepositories
     public interface IQuotationRepository : IGenericRepository<Quotation>
     {
         List<Quotation> GetQuotationsByCsID(int csID);
+        Task<IEnumerable<Quotation>> SearchQuotationByQuotationName(string name);
     }
 }

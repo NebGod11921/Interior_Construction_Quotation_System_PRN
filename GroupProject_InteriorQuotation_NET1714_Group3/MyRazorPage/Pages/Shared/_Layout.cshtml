@@ -72,9 +72,20 @@
                                 @{
                                     var viewContext = ViewContext.HttpContext;
                                     var csSessionValue = viewContext.Session.GetString("csSession");
+                                    var staffSessionValue = viewContext.Session.GetString("staffSession");
                                     if (csSessionValue != null)
                                     {
                                         var myObject = JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
+                                        <div class="main-white-button">
+                                            <a asp-page="/Login" asp-page-handler="Logout" class="logout">
+                                                <i class="bi bi-door-closed-fill"></i>
+                                                <span class="nav-item">Logout</span>
+                                            </a>
+                                        </div>
+                                    }
+                                    else if (staffSessionValue != null)
+                                    {
+                                        var myObject2 = JsonSerializer.Deserialize<AccountDTO>(staffSessionValue);
                                         <div class="main-white-button">
                                             <a asp-page="/Login" asp-page-handler="Logout" class="logout">
                                                 <i class="bi bi-door-closed-fill"></i>

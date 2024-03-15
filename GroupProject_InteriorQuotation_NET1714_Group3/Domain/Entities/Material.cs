@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public class Material : BaseEntity
     {
-        public string MaterialName { get; set; }
-        public virtual IEnumerable<Product> Products { get; set;}
+        public string? MaterialName { get; set; }
+        public virtual IEnumerable<Product>? Products { get; set;}
     }
 }
