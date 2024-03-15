@@ -178,9 +178,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("QuotationId")
-                        .HasColumnType("int");
-
                     b.Property<float>("Size")
                         .HasColumnType("real");
 
@@ -191,8 +188,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ColorId");
 
                     b.HasIndex("MaterialId");
-
-                    b.HasIndex("QuotationId");
 
                     b.ToTable("Products");
                 });
@@ -320,6 +315,12 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("RoomId")
                         .HasColumnType("int");
 
+                    b.Property<float?>("ActualPrice")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("ProductId", "RoomId");
 
                     b.HasIndex("RoomId");
@@ -420,17 +421,11 @@ namespace Infrastructure.Migrations
                         .WithMany("Products")
                         .HasForeignKey("MaterialId");
 
-                    b.HasOne("Domain.Entities.Quotation", "Quotation")
-                        .WithMany()
-                        .HasForeignKey("QuotationId");
-
                     b.Navigation("Category");
 
                     b.Navigation("Color");
 
                     b.Navigation("Material");
-
-                    b.Navigation("Quotation");
                 });
 
             modelBuilder.Entity("Domain.Entities.ProductImage", b =>

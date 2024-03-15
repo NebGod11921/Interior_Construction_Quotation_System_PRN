@@ -9,103 +9,101 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MyRazorPage
 build_property.RootNamespace = MyRazorPage
-build_property.ProjectDir = D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Users\Admin\Documents\GitHub\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\CN7\PRN221\ProjectPRN\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage
+build_property.MSBuildProjectDirectory = C:\Users\Admin\Documents\GitHub\Interior_Construction_Quotation_System_PRN\GroupProject_InteriorQuotation_NET1714_Group3\MyRazorPage
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/AddProduct.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/AddProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRkUHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/CustomerByAdmin.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/CustomerByAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3VzdG9tZXJCeUFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/DeleteProduct.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/DeleteProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGVsZXRlUHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/HomeAdmin.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/HomeAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSG9tZUFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/ProductByAdmin.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/ProductByAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdEJ5QWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/UpdateProduct.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/UpdateProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXBkYXRlUHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/AllProduct.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/AllProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxsUHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Cart.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Error.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Login.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Privacy.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/QuotationHistory.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/QuotationHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUXVvdGF0aW9uSGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/QuotationManagement.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/QuotationManagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUXVvdGF0aW9uTWFuYWdlbWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Register.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/RoomDetail.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/RoomDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbURldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Shared/_LayoutAdmin.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Shared/_LayoutAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Test.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Test.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/UpdateQuotation.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/UpdateQuotation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlUXVvdGF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/_ViewImports.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/_ViewStart.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CN7/PRN221/ProjectPRN/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Shared/_Layout.cshtml]
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-h585kgjiel
