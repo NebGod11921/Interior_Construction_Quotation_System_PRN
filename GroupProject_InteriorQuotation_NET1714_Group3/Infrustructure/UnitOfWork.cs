@@ -20,18 +20,21 @@ namespace Infrastructure
 		//private readonly IProductImageRepo _productImageRepo;
 		//private readonly IImageRepo _imageRepo;
 
+        private readonly IRoomRepository _roomRepository;
+
 		public UnitOfWork(AppDbContext dbContext, 
             IUserRepository userRepository, 
             IProductRepository productRepo,
              IRoomTypeRepository roomTypeRepository,
-             IQuotationRepository quotationRepository)
+             IQuotationRepository quotationRepository,
+             IRoomRepository roomRepository)
         {
             _dbContext = dbContext;
             _userRepository = userRepository;
             _productRepo = productRepo;
             _roomTypeRepository = roomTypeRepository;
             _quotationRepository = quotationRepository;
-            
+            _roomRepository = roomRepository;
         }
 
         public IUserRepository UserRepository => _userRepository;
@@ -39,9 +42,8 @@ namespace Infrastructure
 
         public IProductRepository ProductRepository => _productRepo;
 
-        //public IRoomTypeRepository RoomRepository => _roomRepository;
-
         public IRoomTypeRepository RoomTypeRepository => _roomTypeRepository;
+        public IRoomRepository RoomRepository => _roomRepository;
 
         public async Task<int> SaveChangeAsync() 
         {

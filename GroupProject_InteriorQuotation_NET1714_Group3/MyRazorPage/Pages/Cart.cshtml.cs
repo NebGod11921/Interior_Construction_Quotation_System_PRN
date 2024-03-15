@@ -11,12 +11,20 @@ namespace MyRazorPage.Pages
     {
         private readonly ICartService _cart;
         private readonly IProductService _p;
-        public CartModel(ICartService cart, IProductService p)
+        private readonly IQuotationService _q;
+        private readonly IRoomService _r;
+        private readonly IRoomTypeService _rt;
+        private float Are;
+        public CartModel(ICartService cart, IProductService p, IQuotationService q, IRoomService r, IRoomTypeService rt)
         {
             _cart = cart;
             _p = p;
+            _q = q;
+            _r = r;
+            _rt = rt;
         }
         public List<CartDTO> carts;
+        public List<RoomTypeDTO> roomtypes; 
         public ProductDto getProductById(int productId)
         {
             var p = _p.GetProductByIdToCart(productId);
@@ -30,6 +38,7 @@ namespace MyRazorPage.Pages
         public async Task OnGet() 
         {
             carts = _cart.getAllCart() ?? new List<CartDTO>();
+            roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
 
         public void OnPostAddToCartProduct(int pId) 
@@ -77,6 +86,7 @@ namespace MyRazorPage.Pages
 
         public void OnPostCaculator(int roomAre)
         {
+            Are = roomAre;
             var carts = _cart.getAllCart();
             foreach (var item in carts)
             {
@@ -113,5 +123,30 @@ namespace MyRazorPage.Pages
             return (int)Math.Ceiling(numberOfProducts);
 
         }
+
+        public async void OnPostAddQuotation(DateTime createdate , string rdescription, int SelectedOption)
+        {
+            if(_cart.getAllCart().Count <= 0)
+            {
+                ViewData["msgcheckcart"] = "Please choose least one product or more than for make quotation.";
+            }
+            else
+            {
+                //room
+                //room product
+                //quotation
+                RoomDTO rFA = new RoomDTO();
+                rFA.Area = Are;
+                rFA.RoomDescription = rdescription;
+                bool createRSucsess = await _r.CreateRoom(rFA);
+                if (createRSucsess)
+                {
+
+                }
+
+            }
+            OnGet();
+        }
+
     }
 }

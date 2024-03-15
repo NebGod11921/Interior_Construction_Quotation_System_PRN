@@ -15,6 +15,7 @@ namespace Application
 		//public IProductImageRepo ProductImageRepo { get; }
 		//public IImageRepo ImageRepo { get; }
         public IQuotationRepository QuotationRepository { get; }
+        public IRoomRepository RoomRepository { get; }
 
 		public Task<int> SaveChangeAsync();
 

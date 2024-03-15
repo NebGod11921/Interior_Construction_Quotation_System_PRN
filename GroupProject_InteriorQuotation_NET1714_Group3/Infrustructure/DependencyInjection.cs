@@ -45,7 +45,9 @@ namespace Infrustructure
             //Service
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountService, AccountService>();
-            
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 			
 

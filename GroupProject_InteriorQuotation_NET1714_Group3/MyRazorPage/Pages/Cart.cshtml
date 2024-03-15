@@ -83,43 +83,58 @@
                                     {
                                         var myObject = JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
 
-                                        
-                                <form class="mb-5">
+
+                                        <form class="mb-5" asp-page-handler="AddQuotation" method="post">
+                                            <select name="SelectedOption">
+                                            @foreach(var item in Model.roomtypes)
+                                            {
+                                                <option value="@item.Id">@item.RoomTypeName</option>
+                                            }
+                                    </select>
+                                    <div class="form-outline mb-5">
+                                        <input type="text" id="typeText" name="rdescription" class="form-control form-control-lg" 
+                                               value=""  />
+                                        <label class="form-label" for="typeText">Phone Number</label>
+                                    </div>
 
                                     <div class="form-outline mb-5">
                                         <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                                               value="@myObject.TelephoneNumber" minlength="19" maxlength="19" />
-                                        <label class="form-label" for="typeText">Card Number</label>
+                                               value="@myObject.TelephoneNumber"  minlength="19" maxlength="19" />
+                                        <label class="form-label" for="typeText">Phone Number</label>
                                     </div>
 
                                     <div class="form-outline mb-5">
                                         <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
                                                value="@myObject.FullName" />
-                                        <label class="form-label" for="typeName">Name on card</label>
+                                        <label class="form-label" for="typeName">Your Name</label>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-6 mb-5">
                                             <div class="form-outline">
-                                                <input type="text" id="typeExp" class="form-control form-control-lg" value="@DateTime.UtcNow"
-                                                       size="7" id="exp" minlength="7" maxlength="7" />
+                                                <input type="datetime" id="typeExp" class="form-control form-control-lg" name="createdate" value="@DateTime.UtcNow" />
                                                 <label class="form-label" for="typeExp">DateTime CheckOut</label>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
-                                    <p class="mb-5">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit <a href="#!">obcaecati sapiente</a>.
-                                    </p>
-
-                                    <button type="button" class="btn btn-primary btn-block btn-lg">CheckOut</button>
-
-                                    <h5 class="fw-bold mb-5" style="position: absolute; bottom: 0;">
-                                        <a asp-page="/Test">Back to shopping</a>
-                                    </h5>
-                                </form>
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg">CheckOut</button>
+                                    
+                                    @if (ViewData["msgcheckcart"] != null)
+                                    {
+                                        <p>@ViewData["msgcheckcart"]</p>
+                                    }
+                                    </form>
+                                    }
+                                    else
+                                    {
+                                        <p class="mb-5">
+                                            Please Login For Make New Quotation <a asp-page="/Login">Go To</a>.
+                                        </p>
+                                    }
                                 }
-                                }
+                                <h5 class="fw-bold mb-5" style="position: absolute; bottom: 0;">
+                                    <a asp-page="/Test">Back to shopping</a>
+                                </h5>
                             </div>
                         </div>
 

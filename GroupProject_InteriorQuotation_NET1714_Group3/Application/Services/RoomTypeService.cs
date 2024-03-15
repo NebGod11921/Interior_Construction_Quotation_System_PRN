@@ -38,5 +38,24 @@ namespace Application.Services
             }).ToList();
             return roomTypeViewModels;
         }
+
+        public async Task<List<RoomTypeDTO>> GetAllRoomTypeDTOs()
+        {
+            try
+            {
+                var r = await _unitOfWork.RoomTypeRepository.GetAllAsync();
+                if (r == null)
+                {
+                    return new List<RoomTypeDTO>();
+                }
+                else
+                {
+                    return _mapper.Map<List<RoomTypeDTO>>(r);
+                }
+            }catch(Exception e)
+            {
+                return new List<RoomTypeDTO>();
+            }
+        }
     }
 }
