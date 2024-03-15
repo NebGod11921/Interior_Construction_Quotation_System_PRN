@@ -3209,23 +3209,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Users\\ROG\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Infrastructure.csproj",
+      "projectUniqueName": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\obj\\",
+      "projectPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\ROG\\.nuget\\packages\\",
+      "outputPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ROG\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3241,11 +3241,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj"
+            "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj": {
+              "projectPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj"
             },
-            "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Domain.csproj"
+            "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Domain.csproj"
             }
           }
         }
@@ -3313,7 +3313,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.407\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
