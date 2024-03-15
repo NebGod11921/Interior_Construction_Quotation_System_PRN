@@ -20,7 +20,34 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateQuotation(QuotationDTO quotationDTO)
+		public async Task<bool> CancelQuotationStatus(int quotationId, QuotationDTO quotation)
+		{
+			try
+            {
+                var getQuotationId = await _unitOfWork.QuotationRepository.GetByIdAsync(quotationId);
+                if (getQuotationId == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    getQuotationId.Status = 0;
+                    var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
+                    if (IsSuccess)
+                    {
+						var mapped = _mapper.Map(getQuotationId, quotation);
+						return true;
+					}
+					return false;
+				}
+                
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+		}
+
+		public async Task<bool> CreateQuotation(QuotationDTO quotationDTO)
         {
             try
             {
@@ -46,9 +73,25 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<QuotationDTO>> GetAllQuotation()
+        public async Task<IEnumerable<QuotationDTO>> GetAllQuotation()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await _unitOfWork.QuotationRepository.GetAllAsync();
+                if (result != null)
+                {
+                    var mappedResult = _mapper.Map<IEnumerable<QuotationDTO>>(result);
+                    return mappedResult;
+                } else
+                {
+                    return null;
+                }
+
+
+            }catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<QuotationDTO> GetQuotationByCsId(int csId)
@@ -70,9 +113,26 @@ namespace Application.Services
             }
         }
 
-        public Task<QuotationDTO> GetQuotationById(int id)
+        public async Task<QuotationDTO> GetQuotationById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await _unitOfWork.QuotationRepository.GetByIdAsync(id);
+                if (result != null)
+                {
+                    var mapped = _mapper.Map<QuotationDTO>(result);
+                    return mapped;
+                }
+                else
+                {
+                    return null;
+                }
+
+
+            } catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public async Task<IEnumerable<QuotationDTO>> SearchQuotationByName(string name)
@@ -101,5 +161,33 @@ namespace Application.Services
         {
             throw new NotImplementedException();
         }
-    }
+
+		public async Task<bool> UpdatesQuotationStatus(int quotationId, QuotationDTO quotation)
+		{
+			try
+			{
+				var getQuotationId = await _unitOfWork.QuotationRepository.GetByIdAsync(quotationId);
+				if (getQuotationId == null)
+				{
+					return false;
+				}
+				else
+				{
+					getQuotationId.Status = 1;
+					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
+					if (IsSuccess)
+					{
+						var mapped =  _mapper.Map(getQuotationId, quotation);
+						return true;
+					}
+					return false;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+		}
+	}
 }

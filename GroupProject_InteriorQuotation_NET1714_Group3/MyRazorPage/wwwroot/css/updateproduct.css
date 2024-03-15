@@ -1,0 +1,72 @@
+﻿body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+}
+
+img {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* updateproduct.css (overrides or refines styles) */
+
+form {
+    max-width: 600px;
+    margin: 0 auto; /* Center the form horizontally */
+}
+.readonly-field {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: default;
+    padding: 0;
+}
+.readonly-input {
+    background-color: #f4f4f4; /* Màu nền xám nhạt */
+    color: #555; /* Màu chữ tối */
+    cursor: not-allowed; /* Không cho phép sử dụng con trỏ */
+}
+
+/* Định dạng phần input readonly */
+input[readonly] {
+    border: none; /* Loại bỏ viền */
+    outline: none; /* Loại bỏ đường viền */
+    padding: 10px; /* Cải thiện phần padding */
+    width: calc(100% - 20px); /* Thay đổi kích thước để phù hợp với phần input */
+    box-sizing: border-box; /* Đảm bảo rằng padding không tăng kích thước của phần tử */
+}

@@ -12,5 +12,7 @@ namespace Domain.Entities
         public  int? RoomId { get; set; } 
         public virtual Product? Product { get; set; }
         public virtual Room? Room { get; set; }
+        public int? Quantity { get; set; }
+        public float? ActualPrice { get; set; }
     }
 }

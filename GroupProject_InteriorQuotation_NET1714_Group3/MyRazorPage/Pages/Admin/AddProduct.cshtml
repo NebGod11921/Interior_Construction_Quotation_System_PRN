@@ -1,0 +1,218 @@
+﻿@page
+@model MyRazorPage.Pages.Admin.AddProductModel
+@{
+    Layout = "/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Product</title>
+    @* <link rel="stylesheet" href="~/css/adminproduct.css" /> *@
+    <link rel="stylesheet" href="~/css/AddProduct.css" />
+</head>
+<body>
+    <h1>Create Product</h1>
+    <form method="post" enctype="multipart/form-data">
+        <label for="productname">Product Name:</label>
+        <input type="text" id="productname" name="ProductName" >
+        
+        <label for="category">Category:</label>
+        <select id="category" name="Product.CategoryId" onchange="updateSelectedCategoryId()" >
+            <option value="">Select material...</option> <!-- Placeholder option -->
+            @if (Model.Categories != null)
+            {
+                @foreach (var cate in Model.Categories)
+                {
+                    <option value="@cate.CateId">@cate.CateName</option>
+                }
+            }
+        </select>
+
+        <label for="roomtypename">Room Type Name:</label>
+        <select id="roomtypename" name="Product.RoomTypeId" onchange="updateSelectedRoomTypeId()" >
+            <option value="">Select room type...</option> @if (Model.RoomType != null)
+            {
+                @foreach (var roomtype in Model.RoomType)
+                {
+                    <option value="@roomtype.RoomTypeId">@roomtype.RoomTypeName</option>
+                }
+            }
+        </select>
+        <label for="roomname">Room Name:</label>
+        <select id="roomname" name="Product.RoomId" onchange="updateSelectedRoomId()" >
+            <option value="">Select Room...</option>
+            @if (Model.Rooms != null)
+            {
+                @foreach (var room in Model.Rooms)
+                {
+                    <option value="@room.RoomId">@room.RoomName</option>
+                }
+            }
+        </select>
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="Description" ></textarea>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="Product.Quantity" >
+
+        <label for="size">Size:</label>
+        <input type="number" id="size" name="Product.Size" >
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="Product.Price" >
+
+        <label for="imageUrl">Image URL:</label>
+        <input type="file" id="imageFile" name="imageFile" accept="image/*" >
+
+        <label for="color">Color:</label>
+        <select id="color" name="Product.ColorId" onchange="updateSelectedColorId()" >
+            <option value="">Select color...</option> <!-- Placeholder option -->
+            @if (Model.Color != null)
+            {
+                @foreach (var color in Model.Color)
+                {
+                    <option value="@color.ColorId">@color.ColourName</option>
+                }
+            }
+        </select>
+
+        <label for="material">Material:</label>
+        <select id="material" name="Product.MaterialId" onchange="updateSelectedMaterialId()" >
+            <option value="">Select material...</option> <!-- Placeholder option -->
+            @if (Model.Material != null)
+            {
+                @foreach (var material in Model.Material)
+                {
+                    <option value="@material.MaterialId">@material.MaterialName</option>
+                }
+            }
+        </select>
+
+        <button type="submit">Create Product</button>
+        <input type="hidden" id="selectedRoomId" name="selectedRoomId">
+        <input type="hidden" id="selectedRoomTypeId" name="selectedRoomTypeId">
+        <input type="hidden" id="selectedColorId" name="selectedColorId">
+        <input type="hidden" id="selectedMaterialId" name="selectedMaterialId">
+        <input type="hidden" id="selectedCategoryId" name="selectedCategoryId">
+
+    </form>
+</body>
+<script>
+    document.getElementById('roomtypename').addEventListener('change', function () {
+        var selectedRoomTypeId = this.value;
+        var roomNameSelect = document.getElementById('roomname');
+        roomNameSelect.innerHTML = ''; // Clear existing options
+
+        if (selectedRoomTypeId !== '') {
+            // Send AJAX request to server to get rooms for selected room type
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/Admin/AddProduct?handler=GetRoomsByRoomType&roomtypeid=" + selectedRoomTypeId, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var rooms = JSON.parse(xhr.responseText);
+                        rooms.forEach(function (room) {
+                            var option = document.createElement("option");
+                            option.value = room.id; // Assuming 'id' property in the room object
+                            option.text = room.roomDescription; // Assuming 'roomDescription' property
+                            roomNameSelect.appendChild(option);
+                        });
+                    } else {
+                        // Handle errors (e.g., display an error message)
+                        console.error("Error fetching rooms:", xhr.statusText);
+                    }
+                }
+            };
+            xhr.send();
+        }
+    });
+</script>
+
+<script>
+    function updateSelectedRoomTypeId() {
+        var selectedRoomTypeId = document.getElementById('roomtypename').value;
+        document.getElementById('selectedRoomTypeId').value = selectedRoomTypeId;
+    }
+</script>
+
+<script>
+    document.getElementById('roomname').addEventListener('change', function () {
+        var selectedRoomId = this.value; // Assuming 'value' attribute holds room ID
+        document.getElementById('selectedRoomId').value = selectedRoomId;
+    });
+</script>
+
+<script>
+    function updateSelectedRoomId() {
+        var selectedRoomId = document.getElementById('roomname').value;
+        document.getElementById('selectedRoomId').value = selectedRoomId;
+    }
+</script>
+
+<script>
+    function updateSelectedColorId() {
+        var selectedColorId = document.getElementById('color').value; // Lấy giá trị đã chọn từ combobox color
+        document.getElementById('selectedColorId').value = selectedColorId; // Cập nhật giá trị vào hidden input field
+    }
+</script>
+<script>
+    document.getElementById('color').addEventListener('change', function () {
+        updateSelectedColorId();
+    });
+</script>
+
+<script>
+    function updateSelectedMaterialId() {
+        var selectedMaterialId = document.getElementById('material').value; // Lấy giá trị đã chọn từ combobox material
+        document.getElementById('selectedMaterialId').value = selectedMaterialId; // Cập nhật giá trị vào hidden input field
+    }
+</script>
+<script>
+    document.getElementById('material').addEventListener('change', function () {
+        updateSelectedMaterialId();
+    });
+</script>
+
+<script>
+    function updateSelectedCategoryId() {
+        var selectedMaterialId = document.getElementById('category').value; // Lấy giá trị đã chọn từ combobox material
+        document.getElementById('selectedCategoryId').value = selectedMaterialId; // Cập nhật giá trị vào hidden input field
+    }
+</script>
+<script>
+    document.getElementById('category').addEventListener('change', function () {
+        updateSelectedCategoryId();
+    });
+</script>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" id="successMessage">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" id="errorMessage">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<script>
+    // Auto dismiss success message after 2 seconds
+    setTimeout(function () {
+        var successMessage = document.getElementById('errorMessage');
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+    }, 3000);
+</script>
+<script>
+    // Auto dismiss success message after 2 seconds
+    setTimeout(function () {
+        var successMessage = document.getElementById('successMessage');
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+    }, 2000);
+</script>                                                                                                       

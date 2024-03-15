@@ -9,6 +9,7 @@ namespace Application.ViewModels
 {
     public class QuotationDTO
     {
+        public int Id { get; set; }
         public int Quantity { get; set; }
         public string QuotationName { get; set; }
         public float UnitPrice { get; set; }

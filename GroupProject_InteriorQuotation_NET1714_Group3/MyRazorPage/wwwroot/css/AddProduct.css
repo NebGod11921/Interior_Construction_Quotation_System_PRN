@@ -1,0 +1,43 @@
+﻿/* AddProduct.css */
+
+/* Style the form container */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+    /* Style form labels */
+    form label {
+        margin-top: 1em;
+        display: block;
+        font-weight: bold;
+    }
+
+    /* Style form inputs */
+    form input[type="text"],
+    form input[type="number"],
+    form select,
+    form textarea {
+        width: 100%;
+        padding: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 1em;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+
+    /* Style the submit button */
+    form button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 0.7em 1em;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        /* Style the submit button on hover */
+        form button[type="submit"]:hover {
+            background-color: #45a049;

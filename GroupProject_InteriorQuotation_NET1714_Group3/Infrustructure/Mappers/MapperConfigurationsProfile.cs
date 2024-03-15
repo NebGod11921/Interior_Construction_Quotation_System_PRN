@@ -12,10 +12,21 @@ namespace Infrastructure.Mappers
     public class MapperConfigurationsProfile : Profile
     {
         public MapperConfigurationsProfile()
-        {
+        {              
             CreateMap<Product, RoomHomePageDTO>().ReverseMap();
-            CreateMap<Product, ProductDto>().ReverseMap();
-            //CreateMap<Room, RoomHomePageProduct>().ReverseMap();
+            CreateMap<Product, ProductDto>()
+                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color))
+                .ForMember(dest => dest.Material, opt => opt.MapFrom(src => src.Material)).ReverseMap(); //add reser if need
+
+            //            CreateMap<ProductDto, Product>()
+            //.ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color))
+            //.ForMember(dest => dest.Material, opt => opt.MapFrom(src => src.Material));
+            CreateMap<ProductDto, Product>()
+                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => new Color { ColourName = src.Color }))
+            .ForMember(dest => dest.Material, opt => opt.MapFrom(src => new Material { MaterialName = src.Material }))
+            .ForMember(dest => dest.Category, opt => opt.MapFrom(src => new Category { CategoryName = src.Category }));
+
+            CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<RoomType, RoomHomePageTitle>()
             .ForMember(dest => dest.RoomType, opt => opt.MapFrom(src => src.RoomTypeName))
             .ForMember(dest => dest.RoomInType, opt => opt.MapFrom(src => src.Rooms.SelectMany(room => room.RoomProducts.Select(rp => new RoomHomePageDTO
@@ -27,9 +38,10 @@ namespace Infrastructure.Mappers
                 }).ToList()
 
             }).ToList())));
-
+            
             CreateMap<User,AccountDTO>().ReverseMap();
             CreateMap<User, AccountLoginDTO>().ReverseMap();
+
             CreateMap<Quotation, QuotationDTO>().ReverseMap();
             CreateMap<Room, RoomDTO>().ReverseMap();
             CreateMap<RoomType, RoomTypeDTO>().ReverseMap();

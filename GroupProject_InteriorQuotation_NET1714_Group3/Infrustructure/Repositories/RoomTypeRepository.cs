@@ -1,4 +1,5 @@
 ﻿using Application.IRepositories;
+using Application.ViewModels;
 using Domain.Entities;
 using Infrustructure;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,40 @@ namespace Infrastructure.Repositories
              .ThenInclude(r => r.RoomProducts)
                  .ThenInclude(rp => rp.Product)
                      .ThenInclude(p => p.ProductImages);
+        }
+
+        public async Task<List<RoomTypeDTO>> GetAllRoomTypeToAdd()
+        {
+            var typename = await _appDbContext.RoomTypes.ToListAsync();
+            return typename.Select(color => new RoomTypeDTO
+            {
+                RoomTypeId = color.Id,
+                RoomTypeName = color.RoomTypeName,
+                
+            }).ToList();
+        }
+
+        public async Task<RoomTypeDTO> GetRoomTypeNameById(int id)
+        {
+            var aa = await _appDbContext.RoomTypes.FirstOrDefaultAsync(c => c.Id == id);
+            if (aa != null)
+            {
+                var color = new RoomTypeDTO
+                {
+                    RoomTypeId = aa.Id,
+                    RoomTypeName = aa.RoomTypeName
+                };
+                return color;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public async Task<RoomType> GetRoomTypeNameByName(string typename)
+        {
+            return await _appDbContext.RoomTypes.FirstOrDefaultAsync(c => c.RoomTypeName == typename);
         }
     } 
 }

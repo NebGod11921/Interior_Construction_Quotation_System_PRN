@@ -80,6 +80,14 @@ namespace Application.Services
         public Task<bool> UpdateRoom(RoomDTO roomDTO, int id)
         {
             throw new NotImplementedException();
+        public string GetRoomNameByRoomID(int roomId)
+        {
+            return _unitOfWork.RoomRepo.GetRoomNameByRoomId(roomId);
+        }
+
+        public IEnumerable<Room> GetRoomsByRoomType(int roomTypeId)
+        {
+            return _unitOfWork.RoomRepo.GetRoomsByRoomType(roomTypeId);
         }
     }
 }

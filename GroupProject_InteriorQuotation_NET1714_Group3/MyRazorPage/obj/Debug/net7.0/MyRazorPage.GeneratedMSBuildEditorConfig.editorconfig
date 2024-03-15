@@ -20,6 +20,34 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/AddProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRkUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/CustomerByAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3VzdG9tZXJCeUFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/DeleteProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGVsZXRlUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/HomeAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSG9tZUFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/ProductByAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdEJ5QWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Admin/UpdateProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXBkYXRlUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/AllProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxsUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,12 +80,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbURldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/Test.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/UpdateQuotation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlUXVvdGF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Documents/GitHub/Interior_Construction_Quotation_System_PRN/GroupProject_InteriorQuotation_NET1714_Group3/MyRazorPage/Pages/_ViewImports.cshtml]

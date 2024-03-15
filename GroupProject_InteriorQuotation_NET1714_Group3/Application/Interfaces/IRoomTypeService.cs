@@ -11,5 +11,8 @@ namespace Application.Interfaces
     {
         List<RoomHomePageTitle> GetAllRoomTypes();
         Task<List<RoomTypeDTO>> GetAllRoomTypeDTOs();
+        Task<List<RoomTypeDTO>> GetAllRoomTypeToAdd();
+        Task<RoomTypeDTO> GetRoomTypeNameById(int id);
+        
     }
 }
