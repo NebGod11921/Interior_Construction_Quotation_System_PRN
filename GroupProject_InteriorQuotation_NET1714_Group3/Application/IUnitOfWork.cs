@@ -1,4 +1,5 @@
 ﻿using Application.IRepositories;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,13 @@ namespace Application
         public IProductRepository ProductRepository { get; }
         public IUserRepository UserRepository { get; }
         public IRoomTypeRepository RoomTypeRepository { get; }
-		//public IProductImageRepo ProductImageRepo { get; }
-		//public IImageRepo ImageRepo { get; }
-
-
-		public Task<int> SaveChangeAsync();
+        public IColorRepo ColorRepository { get; }
+        public IMaterialRepo MaterialRepo { get; } 
+        public IRoomRepo RoomRepo { get; }
+        public ICateRepo CateRepo { get; }
+        public void AddProductImage(ProductImage productImage);
+        public IImageRepo ImageRepo { get; }
+        public Task<int> SaveChangeAsync();
 
     }
 }

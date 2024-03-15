@@ -10,5 +10,8 @@ namespace Application.Interfaces
     public interface IRoomTypeService
     {
         List<RoomHomePageTitle> GetAllRoomTypes();
+        Task<List<RoomTypeDTO>> GetAllRoomTypeToAdd();
+        Task<RoomTypeDTO> GetRoomTypeNameById(int id);
+        
     }
 }

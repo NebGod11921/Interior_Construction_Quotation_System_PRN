@@ -1,0 +1,92 @@
+﻿@page
+@model MyRazorPage.Pages.Admin.UpdateProductModel
+@{
+    Layout = "/Pages/Shared/_LayoutAdmin.cshtml";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Product</title>
+    <link rel="stylesheet" href="~/css/adminproduct.css" />
+    <link rel="stylesheet" href="~/css/updateproduct.css" /> 
+</head>
+<body>
+    <h1>Update Product</h1>
+    <form method="post" >
+             
+        <input type="hidden" name="id" value="@(Model.Product != null ? Model.Product.ProductId : 0)">
+
+        <label for="productname">product name:</label>
+        <input type="text" id="productname" name="productname" value="@(Model.Product != null ? Model.Product.ProductName : "")">
+
+        <label for="roomtypename">room type name(read only):</label>
+        <input type="text" id="roomtypename" name="roomtypename" value="@(Model.Product != null ? Model.Product.RoomTypeName : "")" readonly>
+
+        <label for="roomname">room name(read only):</label>
+        <input type="text" id="roomname" name="roomname" value="@(Model.Product != null ? Model.Product.RoomName : "")" readonly required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description">@(Model.Product != null ? Model.Product.Description : "")</textarea>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="@(Model.Product != null ? Model.Product.Quantity : "")">
+
+        <label for="size">Size:</label>
+        <input type="number" id="size" name="size" value="@(Model.Product != null ? Model.Product.Size : "")">
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="@(Model.Product != null ? Model.Product.Price : "")">
+
+        <label for="imageUrl">Image:</label>
+        <img src="@(Model.Product != null ? Model.Product.ImageUrl : "")" alt="Product Image">
+ 
+        <label for="color">Color:</label>
+        <select id="color" name="colorId"> 
+            @if(Model.Color != null){
+            @foreach (var color in Model.Color)
+            {
+                <option value="@color.ColorId" selected="@(color.ColourName == Model.Product.Color ? "selected" : null)">@color.ColourName</option>
+            }
+            }
+        </select>
+
+        <label for="material">Material:</label>
+        <select id="material" name="materialId">
+            @if (Model.Material != null){
+            @foreach (var material in Model.Material)
+            {
+                <option value="@material.MaterialId" selected="@(material.MaterialName == Model.Product.Material ? "selected" : null)">@material.MaterialName</option>
+            }
+            }
+        </select>
+
+        <label for="active">Active</label>
+        <input type="radio" id="active" name="isDeleted" value="true" @(Model.Product != null && !Model.Product.IsDeleted ? "checked" : "") onchange="updateIsDeleted(this)">
+
+        <label for="inactive">Inactive</label>
+        <input type="radio" id="inactive" name="isDeleted" value="false" disabled>
+
+        @* <input type="hidden" id="isDeletedHidden" name="isDeletedHidden" value="@(Model.Product != null && Model.Product.IsDeleted ? "true" : "false")"> *@
+
+        <br />
+            <button type="submit">Update Product</button>
+        
+    </form>
+</body>
+<script>
+    function updateIsDeleted(element) {
+        var activeRadio = document.getElementById("active");
+        var inactiveRadio = document.getElementById("inactive");
+
+        // Nếu active được chọn, thì đặt giá trị của isDeleted thành true
+        if (element.id === "active") {
+            activeRadio.checked = true;
+            inactiveRadio.checked = false;
+        }
+        // Nếu inactive được chọn, thì đặt giá trị của isDeleted thành false
+        else if (element.id === "inactive") {
+            activeRadio.checked = false;
+            inactiveRadio.checked = true;
+        }
+    }
+</script>

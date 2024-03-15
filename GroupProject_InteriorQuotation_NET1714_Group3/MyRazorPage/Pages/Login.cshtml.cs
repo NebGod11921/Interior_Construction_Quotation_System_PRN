@@ -33,7 +33,7 @@ namespace MyRazorPage.Pages
                         ReferenceHandler = ReferenceHandler.IgnoreCycles
                     });
                     HttpContext.Session.SetString("csSession", csSession);
-                    return RedirectToPage("/Admin");
+                    return RedirectToPage("/Admin/HomeAdmin");
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace MyRazorPage.Pages
                                 ReferenceHandler = ReferenceHandler.IgnoreCycles
                             });
                             HttpContext.Session.SetString("csSession", csSession);
-                            return RedirectToPage("/Index");
+                            return RedirectToPage("/Test");
                         }
                     }
                 }

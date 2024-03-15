@@ -30,13 +30,23 @@ namespace Application.Services
                     RoomId = room.Id.ToString(),
                     RoomName = room.RoomDescription,
                     AreaRoom = room.Area,
-                    ImageProduct = room.RoomProducts.Select(image => new ImageRoomInTypeDTO
+                    ImageProduct = room.RoomProducts.Select(image => new Application.ViewModels.ImageRoomInTypeDTO
                     {
                         ImageUrl = image.Product.ProductImages.FirstOrDefault().Image.ImageName
                     }).ToList()
                 }).ToList()
             }).ToList();
             return roomTypeViewModels;
+        }
+
+        public async Task<List<RoomTypeDTO>> GetAllRoomTypeToAdd()
+        {
+            return await _unitOfWork.RoomTypeRepository.GetAllRoomTypeToAdd();
+        }
+
+        public Task<RoomTypeDTO> GetRoomTypeNameById(int id)
+        {
+            return _unitOfWork.RoomTypeRepository.GetRoomTypeNameById(id);
         }
     }
 }

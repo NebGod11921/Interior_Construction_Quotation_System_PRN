@@ -5,6 +5,7 @@ using Application.Services;
 using Infrastructure;
 using Infrastructure.Mappers;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,21 +35,31 @@ namespace Infrustructure
             services.AddScoped<IUserService,UserService>();
             services.AddAutoMapper(typeof(MapperConfigurationsProfile).Assembly);
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<IImageRepo, ImageRepocs>();
+            services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
-
+            services.AddScoped<IRoomRepo, RoomRepo>();
+            services.AddScoped<IRoomService, RoomService>();
             //Service
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICateRepo, CateRepo>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountService, AccountService>();
-            
+            services.AddScoped<IColorRepo, ColorRepo>();
+            services.AddScoped<IColorService, ColorService>();
+            services.AddScoped<IMaterialService, MaterialService>();
+            services.AddScoped<IMaterialRepo, MaterialRepo>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-			
+            services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = long.MaxValue;
+            });
 
-			//services.AddScoped<IImage, ProductService>();
+            //services.AddScoped<IImage, ProductService>();
 
 
-			return services;
+            return services;
         }
        
     }

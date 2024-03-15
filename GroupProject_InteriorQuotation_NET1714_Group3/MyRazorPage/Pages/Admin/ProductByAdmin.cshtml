@@ -1,0 +1,82 @@
+﻿@page
+@model ProductByAdminModel
+@{
+    Layout = "/Pages/Shared/_LayoutAdmin.cshtml";
+            //ViewData["Title"] = "Product";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="~/css/adminproduct.css" />
+    <script src="~/js/product-admin.js"></script>
+</head>
+
+<a href="/Admin/AddProduct" class="btn btn-primary">Add</a>
+<body>
+    <form method="get" class="search-form">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Search for Product...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>   
+    @if (Model.productDtos != null && Model.productDtos.Any())
+    {
+        <section class="product">
+            <div class="product-list">
+                <h1>Product List</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>RoomTypeName</th>
+                            <th>RoomName</th>
+                            <th>ProductName</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Color</th>
+                            <th>Material</th>
+                            <th>Actions</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.productDtos)
+                        {
+                            <tr>
+                                <td>@product.ProductId</td>
+                                <td>@product.RoomTypeName</td>
+                                <td>@product.RoomName</td>
+                                <td>@product.ProductName</td>
+                                <td>@product.Description</td>
+                                <td>@product.Quantity</td>
+                                <td>@product.Size</td>
+                                <td>@product.Price</td>
+                                <td><img src="@product.ImageUrl" alt="Product Image"></td>
+                                <td>@product.Color</td>
+                                <td>@product.Material</td>
+                                <td>@(product.IsDeleted ? "active" : "inactive")</td>
+
+
+                                <td>    
+                                    <a href="/Admin/UpdateProduct?id=@product.ProductId" class="btn btn-primary">Update</a>
+                                    <a href="/Admin/DeleteProduct?id=@product.ProductId" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    }
+</body>
+@* </html> *@
+
+
+
