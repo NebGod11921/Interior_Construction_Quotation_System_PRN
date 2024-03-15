@@ -12,7 +12,7 @@ var configuration = builder.Configuration.Get<AppConfiguration>() ?? new AppConf
 builder.Services.AddRazorPages().AddRazorPagesOptions(op =>
 {
     op.RootDirectory = "/Pages";
-    op.Conventions.AddPageRoute("/Login", "");
+    op.Conventions.AddPageRoute("/Test", "");
 });
 builder.Services.AddInfrastructuresService(configuration.DatabaseConnection);
 builder.Services.AddSession();

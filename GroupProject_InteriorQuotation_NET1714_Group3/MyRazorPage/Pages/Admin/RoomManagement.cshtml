@@ -1,0 +1,177 @@
+﻿@page
+@using System.Text.Json
+@using Application.ViewModels
+@model RoomManagementModel
+@{
+    Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+    var h = HttpContext.Session.GetString("getId");
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="~/css/adminproduct.css"/>
+    <script src="~/js/product-admin.js"></script>
+</head>
+<body>
+    <section class="product">
+        <div class="product-list">
+            <h1>Room List</h1>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Area</th>
+                        <th>RoomDescription</th>
+                        <th>CreationDate</th>
+                        <th>RoomType</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var room in Model.roomDTOs)
+                    {
+                        
+                        <tr>
+                            <td>@room.Id</td>
+                            <td>@room.Area</td>
+                            <td>@room.RoomDescription</td>
+                            <td>@room.CreationDate</td>
+                            <td>
+                                @foreach(var rr in Model.roomTypeDTOs)
+                                {
+                                    if (rr.Id == room.RoomType.Id)
+                                    {
+                                        <div>@rr.RoomTypeName</div>
+                                    }
+                                }
+
+                            </td>
+                            <td>@((room.IsDeleted) == false ? "Active": "InActive")</td>
+                            <td>
+                                <input type="submit" class="btn btn-warning" value="Update"/>
+                                <input type="submit" class="btn btn-danger" value="Delete"/>
+                            </td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+            <button onclick="openCreateRoomPopup()">Add New Room</button>
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closeCreateRoomPopup()">&times;</span>
+                     <form asp-page-handler="AddNewRoom" method="post">
+                        <label for="Area">Area:</label>
+                        <input type="text" id="Area" name="Area" value="@ViewData["Areadata"]" required>
+                        @if (ViewData["msgArea"] != null)
+                        {
+                            <p>@ViewData["msgArea"]</p>
+                        }
+                        <br></br>
+                        <label for="RoomDescription">RoomDescription:</label>
+                        <input type="text" id="RoomDescription" name="ArRoomDescriptionea" value="@ViewData["RoomDescriptiondata"]" required>
+                        @if (ViewData["msgRoomDescription"] != null)
+                        {
+                            <p>@ViewData["msgRoomDescription"]</p>
+                        }
+                        <br></br>
+                        <label for="CreationDate">CreationDate:</label>
+                        <input type="text" id="CreationDate" name="CreationDate" value="@ViewData["CreationDatedata"]" required>
+                        @if (ViewData["msgCreationDate"] != null)
+                        {
+                            <p>@ViewData["msgCreationDate"]</p>
+                        }
+                        <br></br>
+                        <label for="RoomType">RoomType:</label>
+                        <select id="RoomType" name="RoomType" value="@ViewData["RoomTypedata"]" required />
+                            <option value="">Select Room Type</option> <!-- Default option -->
+                            @foreach (var roomType in Model.roomTypeDTOs)
+                            {
+                                <option value="@roomType.Id">@roomType.RoomTypeName</option>
+                            }
+                        </select>
+                       
+                        
+                        
+                        <br></br>
+                        @if (ViewData["msgRoomType"] != null)
+                        {
+                            <p>@ViewData["msgRoomType"]</p>
+                        }
+                        <br></br>
+                        <label>Status:</label><br></br>
+                        <input type="radio" id="activeCheckbox" name="IsDeleted" value="Active" @(ViewData["Statusdata"] != null && ViewData["Statusdata"].Equals("Active") ? "checked" : "")>
+                        <label for="activeCheckbox">Active</label><br>
+
+                        <input type="radio" id="inActiveCheckbox" name="IsDeleted" value="InActive" @(ViewData["Statusdata"] != null && ViewData["Statusdata"].Equals("InActive") ? "checked" : "")>
+                        <label for="inActiveCheckbox">InActive</label><br>
+                        @if (ViewData["msgStatus"] != null)
+                        {
+                            <p>@ViewData["msgStatus"]</p>
+                        }
+                        <br></br>
+                        <input type="submit" class="btn btn-primary" value="Create" />
+                      </form>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+    <section class="product">
+        <div class="product-list">
+            <h1>Product List</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>RoomTypeName</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model.roomTypeDTOs)
+                    {
+                        <tr>
+                            <td>
+                                <input type="hidden" name="typeId" value="@r.Id"/>
+                                @r.Id
+                                
+                            </td>
+                            <td>@r.RoomTypeName</td>
+                            <td>@r.RoomTypeDescription</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+<script>
+    function openCreateRoomPopup() {
+        document.getElementById("popup").style.display = "block";
+    }
+    function closeCreateRoomPopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
+@if (TempData["PopupState"] != null && TempData["PopupState"].ToString() == "open")
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            openCreateRoomPopup();
+        });
+
+        function openCreateRoomPopup() {
+            var popup = document.getElementById("popup");
+            if (popup) {
+                popup.style.display = "block";
+            }
+        }
+    </script>
+}

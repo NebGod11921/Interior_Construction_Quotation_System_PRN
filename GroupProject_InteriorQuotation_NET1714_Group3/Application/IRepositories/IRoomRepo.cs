@@ -12,5 +12,12 @@ namespace Application.IRepositories
     {
         IEnumerable<Room> GetRoomsByRoomType(int roomTypeId);
         string GetRoomNameByRoomId(int roomId);
+
+        //Luan
+        public Task<Room> GetRoomById(int roomId);
+        public Task<IEnumerable<Room>> GetAllRooms();
+        
+
+
     }
 }

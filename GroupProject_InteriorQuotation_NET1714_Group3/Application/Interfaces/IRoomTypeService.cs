@@ -1,4 +1,5 @@
-﻿using Application.ViewModels;
+﻿using Application.Services;
+using Application.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,11 @@ namespace Application.Interfaces
         Task<List<RoomTypeDTO>> GetAllRoomTypeToAdd();
         Task<RoomTypeDTO> GetRoomTypeNameById(int id);
         
+        //Luan
+        public Task<IEnumerable<RoomTypeDTOS>> GetRoomTypesById(int id);
+        public Task<IEnumerable<RoomTypeDTOS>> GetAllTypesRoom();
+        public Task<RoomTypeDTOS> GetRoomTypeById(int id);
+
+
     }
 }

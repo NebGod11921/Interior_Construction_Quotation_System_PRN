@@ -15,5 +15,11 @@ namespace Application.IRepositories
         Task<List<RoomTypeDTO>> GetAllRoomTypeToAdd();
         Task<RoomTypeDTO> GetRoomTypeNameById(int id);
         //Task<RoomType> GetRoomTypeNameByName(string typename);
+
+
+        //Luan
+        public Task<RoomType> GetRoomTypeById(int roomTypeId);
+        public Task<IEnumerable<RoomType>> GetAllRoomTypesById (int roomTypeId);
+
     }
 }

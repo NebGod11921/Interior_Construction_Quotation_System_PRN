@@ -28,7 +28,9 @@ namespace Infrastructure.Repositories
                      .ThenInclude(p => p.ProductImages);
         }
 
-        public async Task<List<RoomTypeDTO>> GetAllRoomTypeToAdd()
+		
+
+		public async Task<List<RoomTypeDTO>> GetAllRoomTypeToAdd()
         {
             var typename = await _appDbContext.RoomTypes.ToListAsync();
             return typename.Select(color => new RoomTypeDTO
@@ -38,8 +40,9 @@ namespace Infrastructure.Repositories
                 
             }).ToList();
         }
+		
 
-        public async Task<RoomTypeDTO> GetRoomTypeNameById(int id)
+		public async Task<RoomTypeDTO> GetRoomTypeNameById(int id)
         {
             var aa = await _appDbContext.RoomTypes.FirstOrDefaultAsync(c => c.Id == id);
             if (aa != null)
@@ -61,5 +64,45 @@ namespace Infrastructure.Repositories
         {
             return await _appDbContext.RoomTypes.FirstOrDefaultAsync(c => c.RoomTypeName == typename);
         }
-    } 
+
+        //Luan
+		public async Task<IEnumerable<RoomType>> GetAllRoomTypesById(int roomTypeId)
+		{
+			try
+            {
+                var result = await _appDbContext.RoomTypes.Where(x => x.Id == roomTypeId).ToListAsync();
+                if (result.Count > 0)
+                {
+                    return result;
+                } else
+                {
+                    return null;
+                }
+
+            }catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+		}
+		public Task<RoomType> GetRoomTypeById(int roomTypeId)
+		{
+			try
+            {
+                var result = _appDbContext.RoomTypes.Where(x => x.Id == roomTypeId).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    return null; 
+                }
+
+
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+		}
+	} 
 }
