@@ -137,18 +137,18 @@ namespace MyRazorPage.Pages
         //    }
         //    OnGet();
         //}
-        public void OnPostCaculator(int roomAre)
+        /*public void OnPostCaculator(int roomAre)
         {
             var carts = _cart.getAllCart();
             foreach (var item in carts)
             {
-                var size = (int)_p.GetProductById(item.productId).Size;
+                var size = (int)_p.GetProductById(item.productid).Size;
                 var categoryId = (int)_p.GetProductById(item.productId).Categorys.Id;
                 item.quantity =  calProduct(roomAre,size, categoryId);
                 _cart.UpdateCart(item.Id, item.quantity);
             }
             OnGet();
-        }
+        }*/
 
         private int calProduct(int rAre, int productsize, int category)
         {

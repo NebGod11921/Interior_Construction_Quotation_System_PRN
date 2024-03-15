@@ -32,9 +32,8 @@ namespace Infrastructure
             IUserRepository userRepository, 
             IProductRepository productRepo,
              IRoomTypeRepository roomTypeRepository,
-             IQuotationRepository quotationRepository,
-             IRoomRepository roomRepository)
-             IColorRepo colorRepo, IMaterialRepo materialRepo, IRoomRepo roomRepo, ICateRepo cateRepo, IImageRepo imageRepo ,
+             IRoomRepository roomRepository,
+             IColorRepo colorRepo, IMaterialRepo materialRepo, IRoomRepo roomRepo, ICateRepo cateRepo, IImageRepo imageRepo,
              IQuotationRepository quotationRepository)
         {
             _dbContext = dbContext;
