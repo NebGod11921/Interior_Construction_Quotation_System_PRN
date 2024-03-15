@@ -12,7 +12,7 @@ var configuration = builder.Configuration.Get<AppConfiguration>() ?? new AppConf
 builder.Services.AddRazorPages().AddRazorPagesOptions(op =>
 {
     op.RootDirectory = "/Pages";
-    op.Conventions.AddPageRoute("/Test", "");
+    op.Conventions.AddPageRoute("/Login", "");
 });
 builder.Services.AddInfrastructuresService(configuration.DatabaseConnection);
 builder.Services.AddSession();
@@ -43,6 +43,6 @@ app.MapRazorPages();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
-    endpoints.MapFallbackToPage("/Test");
+    endpoints.MapFallbackToPage("/Login");
 });
 app.Run();
