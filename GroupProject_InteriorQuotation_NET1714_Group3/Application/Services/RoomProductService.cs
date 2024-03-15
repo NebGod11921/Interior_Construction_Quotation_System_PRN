@@ -14,7 +14,7 @@ namespace Application.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public RoomService(IUnitOfWork unitOfWork, IMapper mapper)
+        public RoomProductService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -39,6 +39,11 @@ namespace Application.Services
             {
                 throw new Exception(e.Message, e);
             }
+        }
+
+        public Task<bool> CreateRoomProduct(RoomDTO roomDTO)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -17,42 +17,57 @@
                                 @if (Model.carts != null)
                                 {
                                     var totalprice = 0f;
-                                    @foreach (var item in Model.carts)
+                                    @foreach (var cart in Model.carts)
                                     {
-                                        <div class="d-flex align-items-center mb-5">
-                                            <div class="flex-shrink-0">
-                                                <img src="@Model.getProductById(item.productId).ImageUrl"
-                                                     class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
-                                            </div>
-                                            <div class="flex-grow-1 ms-3">
-                                                <form asp-page-handler="DeleteCart" method="post">
-                                                    <input type="hidden" value="@item.Id" name="cID" />
-                                                    <button type="submit" class="btn btn-link p-0">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
-                                                <h5 class="text-primary">@Model.getProductById(item.productId).ProductName</h5>
-                                                <h6 style="color: #9e9e9e;">Color: @Model.getProductById(item.productId).Color</h6>
-                                                <p class="fw-bold mb-0 me-5 pe-3">@Model.getProductById1(item.productId).Category.CategoryName</p>
-                                                <div class="d-flex align-items-center">
-                                                    <p class="fw-bold mb-0 me-5 pe-3">@Model.getProductById(item.productId).Price$</p>
-                                                    
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <form method="post" asp-page-handler="UpdateQuantity">
-                                                        <input class="quantity fw-bold text-black" min="1" name="quantity" value="@item.quantity"
-                                                               type="number">
-                                                        @{
-                                                            var price = @item.quantity * @Model.getProductById(item.productId).Price;
-                                                            totalprice += price;
-                                                        }
-                                                        <p>Price: @price$</p>
-                                                            <input type="hidden" name="id" value="@item.Id" />
-                                                            <button type="submit">Update</button>
-                                                        </form>
+                                        var items = cart.Items.Where(x => x.cartId == cart.Id).ToList() ?? new List<ItemDTO>();
+                                        <div>
+                                                <h1>Room @cart.Id</h1>
+                                                <select name="SelectedOption">
+                                                    @foreach (var item in Model.roomtypes)
+                                                    {
+                                                        <option value="@item.Id">@item.RoomTypeName</option>
+                                                    }
+                                                </select>
+                                                @foreach (var p in items)
+                                                {
+                                                    <div class="d-flex align-items-center mb-5">
+                                                        <div class="flex-shrink-0">
+                                                            <img src="@Model.getProductById(p.productId).ImageUrl"
+                                                                 class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-3">
+                                                            <form asp-page-handler="DeleteCart" method="post">
+                                                                <input type="hidden" value="@p.Id" name="cID" />
+                                                                <button type="submit" class="btn btn-link p-0">
+                                                                    <i class="bi bi-trash"></i>
+                                                                </button>
+                                                            </form>
+                                                            <h5 class="text-primary">@Model.getProductById(p.productId).ProductName</h5>
+                                                            <h6 style="color: #9e9e9e;">Color: @Model.getProductById(p.productId).Color</h6>
+                                                            <p class="fw-bold mb-0 me-5 pe-3">@Model.getProductById1(p.productId).Category.CategoryName</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="fw-bold mb-0 me-5 pe-3">@Model.getProductById(p.productId).Price$</p>
+
+                                                                <div class="def-number-input number-input safari_only">
+                                                                    <form method="post" asp-page-handler="UpdateQuantity">
+                                                                        <input class="quantity fw-bold text-black" min="1" name="quantity" value="@p.quanity"
+                                                                               type="number">
+                                                                        @{
+                                                                            var price = @p.quanity * @Model.getProductById(p.productId).Price;
+                                                                            totalprice += price;
+                                                                        }
+                                                                        <p>Price: @price$</p>
+                                                                        <input type="hidden" name="id" value="@p.Id" />
+                                                                        <button type="submit">Update</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                }
                                         </div>
+                                        <p>--------------------------------------------------------------------------------</p>
+                                        
                                     }
                                 <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
 
@@ -85,12 +100,7 @@
 
 
                                         <form class="mb-5" asp-page-handler="AddQuotation" method="post">
-                                            <select name="SelectedOption">
-                                            @foreach(var item in Model.roomtypes)
-                                            {
-                                                <option value="@item.Id">@item.RoomTypeName</option>
-                                            }
-                                    </select>
+                                            
                                     <div class="form-outline mb-5">
                                         <input type="text" id="typeText" name="rdescription" class="form-control form-control-lg" 
                                                value=""  />

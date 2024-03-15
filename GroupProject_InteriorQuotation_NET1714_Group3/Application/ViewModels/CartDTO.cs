@@ -8,8 +8,12 @@ namespace Application.ViewModels
 {
     public class CartDTO
     {
+        //public int Id { get; set; }
+        //public int productId { get; set; }
+        //public int quantity { get; set; }
+
         public int Id { get; set; }
-        public int productId { get; set; }
-        public int quantity { get; set; }
+        public int roomId { get; set; }
+        public virtual List<ItemDTO> Items { get; set; }
     }
 }

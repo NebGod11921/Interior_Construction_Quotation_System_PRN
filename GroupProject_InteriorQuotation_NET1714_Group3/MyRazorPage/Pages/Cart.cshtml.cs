@@ -41,38 +41,78 @@ namespace MyRazorPage.Pages
             roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
 
-        public void OnPostAddToCartProduct(int pId) 
-        {
-            CartDTO cartForAdd = new CartDTO();
-            cartForAdd.productId = pId;
-            _cart.AddToCart(cartForAdd);
-            OnGet();
-        }
+        //public void OnPostAddToCartProduct(int pId) 
+        //{
+        //    CartDTO cartForAdd = new CartDTO();
+        //    cartForAdd.Items.Add(new ItemDTO { productId = pId });
+        //    _cart.AddToCart(cartForAdd);
+        //    OnGet();
+        //}
 
         public IActionResult OnPostAddToCartListProduct(int rId)
         {
-            var room = _p.GetAllProductByRoomId(rId);
-            foreach (var item in room)
+            var cexits = _cart.getAllCart().Where(x => x.roomId == rId).FirstOrDefault();
+            if (cexits == null)
             {
+                var room = _p.GetAllProductByRoomId(rId);
                 CartDTO cartForAdd = new CartDTO();
-                cartForAdd.productId = item.ProductId;
+                cartForAdd.Id = _cart.GetCartIdNew();
+                cartForAdd.roomId = rId;
+                if (cartForAdd.Items == null)
+                {
+                    cartForAdd.Items = new List<ItemDTO>();
+                }
+                foreach (var item in room)
+                {
+                    cartForAdd.Items.Add(new ItemDTO
+                    {
+                        Id = _cart.GetItemIdNew(),
+                        productId = item.ProductId,
+                        cartId = cartForAdd.Id,
+                        quanity = 1
+                    });
+                }
                 _cart.AddToCart(cartForAdd);
-                OnGet();
             }
-            
+            else
+            {
+                UpdateQuanityListCartExits(cexits.Id, rId);
+            }
             return RedirectToPage("/Cart");
         }
 
-        public void OnPostUpdateQuantity(int id, int quantity)
+        public void UpdateQuanityListCartExits(int cartid, int rid)
         {
-            var cart = _cart.getCartByID(id);
-            if (cart != null)
+            List<ItemDTO> itemlist = _cart.getItemByCartId(cartid);
+            if (itemlist != null)
             {
-                cart.quantity = quantity;
-                _cart.UpdateCart(id, cart.quantity);
+                var listp = _p.GetAllProductByRoomId(rid);
+                foreach (var item in itemlist)
+                {
+                    foreach (var item1 in listp)
+                    {
+                        if (item.productId == item1.ProductId)
+                        {
+                            item.quanity++;
+                        }
+                    }
+                }
+
+                _cart.UpdateCartItems(itemlist);
             }
-            OnGet();
         }
+
+
+        //public void OnPostUpdateQuantity(int id, int quantity)
+        //{
+        //    var cart = _cart.getCartByID(id);
+        //    if (cart != null)
+        //    {
+        //        cart.quantity = quantity;
+        //        _cart.UpdateCart(id, cart.quantity);
+        //    }
+        //    OnGet();
+        //}
 
         public void OnPostDeleteCart(int cID)
         {
@@ -84,19 +124,19 @@ namespace MyRazorPage.Pages
             OnGet();
         }
 
-        public void OnPostCaculator(int roomAre)
-        {
-            Are = roomAre;
-            var carts = _cart.getAllCart();
-            foreach (var item in carts)
-            {
-                var size = (int)_p.GetProductById(item.productId).Size;
-                var categoryId = (int)_p.GetProductById(item.productId).Category.Id;
-                item.quantity =  calProduct(roomAre,size, categoryId);
-                _cart.UpdateCart(item.Id, item.quantity);
-            }
-            OnGet();
-        }
+        //public void OnPostCaculator(int roomAre)
+        //{
+        //    Are = roomAre;
+        //    var carts = _cart.getAllCart();
+        //    foreach (var item in carts)
+        //    {
+        //        var size = (int)_p.GetProductById(item.productId).Size;
+        //        var categoryId = (int)_p.GetProductById(item.productId).Category.Id;
+        //        item.quantity =  calProduct(roomAre,size, categoryId);
+        //        _cart.UpdateCart(item.Id, item.quantity);
+        //    }
+        //    OnGet();
+        //}
 
         private int calProduct(int rAre, int productsize, int category)
         {
@@ -141,7 +181,10 @@ namespace MyRazorPage.Pages
                 bool createRSucsess = await _r.CreateRoom(rFA);
                 if (createRSucsess)
                 {
-
+                    foreach (var p in _cart.getAllCart())
+                    {
+                        
+                    }
                 }
 
             }
