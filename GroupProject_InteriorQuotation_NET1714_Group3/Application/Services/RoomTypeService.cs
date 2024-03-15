@@ -52,10 +52,12 @@ namespace Application.Services
                 {
                     return _mapper.Map<List<RoomTypeDTO>>(r);
                 }
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return new List<RoomTypeDTO>();
             }
+        }
         public async Task<List<RoomTypeDTO>> GetAllRoomTypeToAdd()
         {
             return await _unitOfWork.RoomTypeRepository.GetAllRoomTypeToAdd();

@@ -12,7 +12,6 @@ namespace Application.ViewModels
         public string RoomTypeName { get; set; }
         public string RoomTypeDescription { get; set; }
         public int RoomTypeId { get; set; }
-        public string RoomTypeName { get; set; }
         public List<RoomHomePageDTO> Rooms { get; set; }
         public RoomTypeDTO()
         {
