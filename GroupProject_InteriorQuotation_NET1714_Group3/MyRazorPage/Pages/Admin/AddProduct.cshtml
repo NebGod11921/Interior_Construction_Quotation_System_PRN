@@ -19,7 +19,7 @@
         
         <label for="category">Category:</label>
         <select id="category" name="Product.CategoryId" onchange="updateSelectedCategoryId()" >
-            <option value="">Select material...</option> <!-- Placeholder option -->
+            <option value="">Select cate...</option> <!-- Placeholder option -->
             @if (Model.Categories != null)
             {
                 @foreach (var cate in Model.Categories)
@@ -129,6 +129,24 @@
         }
     });
 </script>
+   
+
+
+
+<script>
+    // Auto dismiss success message after 2 seconds
+    setTimeout(function () {
+        var successMessage = document.getElementById('successMessage');
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+    }, 2000);
+</script>
+
+
+
+
+
 
 <script>
     function updateSelectedRoomTypeId() {
@@ -186,33 +204,3 @@
         updateSelectedCategoryId();
     });
 </script>
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success" id="successMessage">
-        @TempData["SuccessMessage"]
-    </div>
-}
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger" id="errorMessage">
-        @TempData["ErrorMessage"]
-    </div>
-}
-<script>
-    // Auto dismiss success message after 2 seconds
-    setTimeout(function () {
-        var successMessage = document.getElementById('errorMessage');
-        if (successMessage) {
-            successMessage.style.display = 'none';
-        }
-    }, 3000);
-</script>
-<script>
-    // Auto dismiss success message after 2 seconds
-    setTimeout(function () {
-        var successMessage = document.getElementById('successMessage');
-        if (successMessage) {
-            successMessage.style.display = 'none';
-        }
-    }, 2000);
-</script>                                                                                                       

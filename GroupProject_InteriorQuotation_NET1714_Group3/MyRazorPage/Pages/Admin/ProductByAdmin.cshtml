@@ -61,7 +61,16 @@
                                 <td><img src="@product.ImageUrl" alt="Product Image"></td>
                                 <td>@product.Color</td>
                                 <td>@product.Material</td>
-                                <td>@(product.IsDeleted ? "active" : "inactive")</td>
+                                <td>
+                                    @if (product.IsDeleted == true)
+                                    {
+                                        <span>active</span>
+                                    }
+                                    else
+                                    {
+                                        <span>inactive</span>
+                                    }
+                                </td>
 
 
                                 <td>    
