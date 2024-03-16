@@ -1,23 +1,19 @@
-﻿    using Application.Interfaces;
+﻿using Application.Interfaces;
 using Application.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services
 {
     public class CartService : ICartService
     {
         List<CartDTO> carts = new List<CartDTO>();
-
+        List<ItemDTO> items = new List<ItemDTO>();
         private static CartService instance = null;
         private static object instanceLock = new object();
 
         public CartService() { }
-
         private int cartID;
+        private int? cartIdToBuyCont = 0;
         public static CartService Instance
         {
             get
@@ -33,7 +29,10 @@ namespace Application.Services
             }
         }
         public List<CartDTO> getAllCart() => carts.OrderByDescending(c => c.Id).ToList();
-        public int GetIdNew()
+        public List<ItemDTO> getItemByCartId(int cartID) => carts.SelectMany(cart => cart.Items)
+                .Where(item => item.cartId == cartID)
+                .ToList();
+        public int GetCartIdNew()
         {
             if (carts.Any())
             {
@@ -45,72 +44,114 @@ namespace Application.Services
                 return 1;
             }
         }
+        public int GetItemIdNew(int cartID)
+        {
+            var itemsInCart = carts.Where(cart => cart.Id == cartID)
+                           .SelectMany(cart => cart.Items)
+                           .ToList();
+            if (itemsInCart.Any())
+            {
+                var maxId = itemsInCart.Max(item => item.Id);
+                return maxId + 1;
+            }
+            else
+            {
+                return 1;
+            }
+        }
         public CartDTO getCartByID(int id)
         {
             CartDTO? c = carts.SingleOrDefault(project => project.Id == id);
             return c;
         }
+        public ItemDTO getItemByID(int id)
+        {
+            ItemDTO? c = items.SingleOrDefault(project => project.Id == id);
+            return c;
+        }
         public void AddToCart(CartDTO cart)
         {
-            if (checkProductInCart(cart.productId) == true)
+            if(cartIdToBuyCont == 0 || cartIdToBuyCont == null)
             {
-                var exitcart = carts.Where(c => c.Id == cartID && c.Id != 0).FirstOrDefault();
-                exitcart.quantity++;
-                UpdateCart(cartID, exitcart.quantity);
+                carts.Add(cart);
             }
             else
             {
-                
-                    cart.Id = GetIdNew();
-                    cart.quantity = 1;
-                    carts.Add(cart);
+                carts.Add(cart);
             }
+            //if (checkProductInCart(cart.productId) == true)
+            //{
+            //    var exitcart = carts.Where(c => c.Id == cartID && c.Id != 0).FirstOrDefault();
+            //    exitcart.quantity++;
+            //    UpdateCart(cartID, exitcart.quantity);
+            //}
+            //else
+            //{
+                
+            //        cart.Id = GetIdNew();
+            //        cart.quantity = 1;
+            //        carts.Add(cart);
+            //}
            
         }
 
-        public bool checkProductInCart(int pId)
-        {
-            var cart = carts.Where(x => x.productId == pId).FirstOrDefault();
-            if (cart != null)
-            {
-                cartID = cart.Id;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //public bool checkItemInCart(int itemId)
+        //{
+        //    var cart = carts.Where(x => x.productId == pId).FirstOrDefault();
+        //    if (cart != null)
+        //    {
+        //        cartID = cart.Id;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //public bool checkItemInCart(int itemId)
+        //{
+        //    var cart = carts.Where(x => x.productId == pId).FirstOrDefault();
+        //    if (cart != null)
+        //    {
+        //        cartID = cart.Id;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
         public void DeleteCartAll()
         {
             carts.Clear();
         }
-        public void DeleteCart(int cartid)
+        public void DeleteItemInCart(int cartid, int itemid)
         {
-            var cart = carts.FirstOrDefault(x => x.Id == cartid);
+            var cart = getCartByID(cartid);
             if (cart != null)
             {
-                carts.Remove(cart);
+                var itemToRemove = cart.Items.FirstOrDefault(x => x.Id == itemid); 
+                if (itemToRemove != null)
+                {
+                    cart.Items.Remove(itemToRemove); 
+                }
             }
         }
-
-        public bool UpdateCart(int id, int quantity)
+        public void UpdateCartItems(List<ItemDTO> updatedItems)
         {
-            var exitcart = carts.Where(c => c.Id == id).FirstOrDefault();
-            if (exitcart != null)
+            foreach (var updatedItem in updatedItems)
             {
-                if(quantity <= 0)
+                var existingItem = items.FirstOrDefault(i => i.Id == updatedItem.Id);
+
+                if (existingItem != null)
                 {
-                    return false;
-                }
-                else
-                {
-                    exitcart.quantity = quantity;
-                    return true;    
+                    existingItem.productId = updatedItem.productId;
+                    existingItem.cartId = updatedItem.cartId;
+                    existingItem.quanity = updatedItem.quanity;
                 }
             }
-            return false;
         }
 
-    }
+        }
 }

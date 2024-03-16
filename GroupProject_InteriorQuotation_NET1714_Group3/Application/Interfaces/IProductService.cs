@@ -24,7 +24,7 @@ namespace Application.Interfaces
         
         
     
-       ProductDto GetProductById(int id);
+       ProductDto1 GetProductById(int id);
         ProductDto GetProductByIdToCart(int id);
 	}
 }

@@ -32,7 +32,7 @@ namespace MyRazorPage.Pages
 
         public async Task OnGet()
         {
-            roomDTOs = await _roomService.GetAllRoom();
+            roomDTOs = await _roomService.GetAllRooms();
             roomTypeDTOs = await _roomTypeService.GetAllTypesRoom();
             
         }

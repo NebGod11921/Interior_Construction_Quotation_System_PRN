@@ -37,22 +37,15 @@
                             <td>@room.Area</td>
                             <td>@room.RoomDescription</td>
                             <td>@room.CreationDate</td>
-                            <td>
-                               
-                                   @*  @Model.GetRoomTypeById(room.RoomType.Id); *@
-                                    
-                                
-                                
-                                
-                            </td>
+                            <td></td>
                             <td>@((room.IsDeleted) == false ? "Active": "InActive")</td>
                             <td>
                                 <input type="submit" class="btn btn-warning" value="Update"/>
                                 <input type="submit" class="btn btn-danger" value="Delete"/>
                             </td>
                         </tr>
-                        }
-                    }
+                     }
+                    
                 </tbody>
             </table>
 
@@ -118,7 +111,7 @@
     </section>
     <section class="product">
         <div class="product-list">
-            <h1>Product List</h1>
+            <h1>RoomType List</h1>
             <table class="table">
                 <thead>
                     <tr>
