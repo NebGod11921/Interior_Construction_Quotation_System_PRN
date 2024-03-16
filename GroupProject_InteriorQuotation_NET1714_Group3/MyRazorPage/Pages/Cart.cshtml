@@ -33,7 +33,7 @@
                                                 </form>
                                                 <h5 class="text-primary">@Model.getProductById(item.productId).ProductName</h5>
                                                 <h6 style="color: #9e9e9e;">Color: @Model.getProductById(item.productId).Color</h6>
-                                                <p class="fw-bold mb-0 me-5 pe-3">@Model.getProductById1(item.productId).Categorys.CategoryName</p>
+                                                <p class="fw-bold mb-0 me-5 pe-3">@Model.getProductById1(item.productId).Category.CategoryName</p>
                                                 <div class="d-flex align-items-center">
                                                     <p class="fw-bold mb-0 me-5 pe-3">@Model.getProductById(item.productId).Price$</p>
                                                     
@@ -109,7 +109,7 @@
                                         
                                     </div>
                                     <p class="mb-5">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit <a href="#!">obcaecati sapiente</a>.
+                                       
                                     </p>
 
                                     <button type="button" class="btn btn-primary btn-block btn-lg">CheckOut</button>

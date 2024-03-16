@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6TOZTqUDJjwYf3fe3i7x9Hz66c7/ufV+CZbv0kk8Qu0=",
+  "Hash": "iIJnctlzwCAe5rupg/cbvDFPtYNmHs1Hk86B/KJf4S8=",
   "Source": "MyRazorPage",
   "BasePath": "_content/MyRazorPage",
   "Mode": "Default",
@@ -1207,6 +1207,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\BathRoom\\c97e1c3a-ef55-4ef5-a314-5fbbc31ea00c.png"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\BathRoom\\d9b98856-ac82-4f86-abdc-b3c42241df32.png",
+      "SourceId": "MyRazorPage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\",
+      "BasePath": "_content/MyRazorPage",
+      "RelativePath": "Images/BathRoom/d9b98856-ac82-4f86-abdc-b3c42241df32.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\BathRoom\\d9b98856-ac82-4f86-abdc-b3c42241df32.png"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\BathRoom\\MirrorR11.jpg",
       "SourceId": "MyRazorPage",
       "SourceType": "Discovered",
@@ -1496,6 +1513,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\Bed Room\\7df6269c-e27f-4446-bc2c-bfee1a7cd9c4.png"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\8cf81b38-eda3-4d07-94a8-62ad9e5197b3.png",
+      "SourceId": "MyRazorPage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\",
+      "BasePath": "_content/MyRazorPage",
+      "RelativePath": "Images/Bed Room/8cf81b38-eda3-4d07-94a8-62ad9e5197b3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Bed Room\\8cf81b38-eda3-4d07-94a8-62ad9e5197b3.png"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\BedR10.jpg",
       "SourceId": "MyRazorPage",
       "SourceType": "Discovered",
@@ -1647,6 +1681,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Bed Room\\CeilinglightR7.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\d0bdfc30-302d-477f-a382-382606bd6562.png",
+      "SourceId": "MyRazorPage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\",
+      "BasePath": "_content/MyRazorPage",
+      "RelativePath": "Images/Bed Room/d0bdfc30-302d-477f-a382-382606bd6562.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Bed Room\\d0bdfc30-302d-477f-a382-382606bd6562.png"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\DeskR9.JPG",
@@ -2176,6 +2227,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\Living Room\\BookSeftR4.jpg"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\c6abf814-d936-445a-ac74-4a4b48d7c7aa.png",
+      "SourceId": "MyRazorPage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\",
+      "BasePath": "_content/MyRazorPage",
+      "RelativePath": "Images/Living Room/c6abf814-d936-445a-ac74-4a4b48d7c7aa.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Living Room\\c6abf814-d936-445a-ac74-4a4b48d7c7aa.png"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\CoffeTable.jpg",
       "SourceId": "MyRazorPage",
       "SourceType": "Discovered",
@@ -2208,6 +2276,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Living Room\\CoffeTableBlackR2.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\e6da896e-26f8-4674-a8e1-bd0537d70ece.png",
+      "SourceId": "MyRazorPage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\",
+      "BasePath": "_content/MyRazorPage",
+      "RelativePath": "Images/Living Room/e6da896e-26f8-4674-a8e1-bd0537d70ece.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Living Room\\e6da896e-26f8-4674-a8e1-bd0537d70ece.png"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\ef5f61af-33c9-4d60-b6b1-524a6f441994.png",

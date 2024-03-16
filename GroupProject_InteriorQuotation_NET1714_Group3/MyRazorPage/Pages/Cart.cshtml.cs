@@ -81,7 +81,7 @@ namespace MyRazorPage.Pages
             foreach (var item in carts)
             {
                 var size = (int)_p.GetProductById(item.productId).Size;
-                var categoryId = (int)_p.GetProductById(item.productId).Categorys.Id;
+                var categoryId = (int)_p.GetProductById(item.productId).Category.Id;
                 item.quantity =  calProduct(roomAre,size, categoryId);
                 _cart.UpdateCart(item.Id, item.quantity);
             }
