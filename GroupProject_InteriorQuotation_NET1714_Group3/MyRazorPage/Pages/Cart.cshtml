@@ -363,8 +363,7 @@
         </div>
     </div>
 </section>
-<input > Check me
-
+<div id="result"></div>
 
 <script>
     function getCheckboxValue() {
@@ -377,28 +376,11 @@
             }
         });
 
-        // if (checkedValues.length > 0) {
-        //     alert("Checked values: " + checkedValues.join(", "));
-        // } else {
-        //     alert("No checkboxes are checked");
-        // }
+        var resultDiv = document.getElementById("result");
         if (checkedValues.length > 0) {
-            var jsonData = JSON.stringify(checkedValues);
-
-            // Gửi dữ liệu đến server bằng AJAX
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/AddQuotation");
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.onload = function () {
-                if (xhr.status == 200) {
-                    alert("Data sent to server successfully.");
-                } else {
-                    alert("Failed to send data to server.");
-                }
-            };
-            xhr.send(jsonData);
+            resultDiv.innerHTML = "Checked values: " + checkedValues.join(", ");
         } else {
-            alert("No checkboxes are checked");
+            resultDiv.innerHTML = "No checkboxes are checked";
         }
     }
 </script>

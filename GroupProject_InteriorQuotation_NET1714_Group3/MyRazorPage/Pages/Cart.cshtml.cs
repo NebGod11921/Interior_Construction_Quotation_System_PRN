@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MyRazorPage.Pages
 {
@@ -213,33 +214,14 @@ namespace MyRazorPage.Pages
             return (int)Math.Ceiling(numberOfProducts);
 
         }
-        public IActionResult OnPostAddQuotation()
+        public void OnPostAddQuotation()
         {
-            using (var reader = new StreamReader(Request.Body))
-            {
-                var body = reader.ReadToEnd();
-                var checkedValues = JsonConvert.DeserializeObject<List<string>>(body);
-
-                // L?u d? li?u vào session
-                HttpContext.Session.Set("CheckedValues", Encoding.UTF8.GetBytes(body));
-            }
-            //room
-            //room product
-            //quotation
-            RoomDTO rFA = new RoomDTO();
-                rFA.Area = Are;
-                //rFA.RoomDescription = rdescription;
-                //bool createRSucsess = await _r.CreateRoom(rFA);
-                //if (createRSucsess)
-                //{
-                //    foreach (var p in _cart.getAllCart())
-                //    {
-
-                //    }
-                //}
-
-            return Page();
+            
         }
+
+
+
+
 
     }
 }
