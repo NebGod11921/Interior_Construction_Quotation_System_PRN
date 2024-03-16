@@ -14,6 +14,7 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(op =>
     op.RootDirectory = "/Pages";
     op.Conventions.AddPageRoute("/Test", "");
 });
+
 builder.Services.AddInfrastructuresService(configuration.DatabaseConnection);
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();

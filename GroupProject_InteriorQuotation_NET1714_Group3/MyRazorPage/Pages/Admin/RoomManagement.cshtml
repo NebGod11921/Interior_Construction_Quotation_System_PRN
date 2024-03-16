@@ -4,7 +4,7 @@
 @model RoomManagementModel
 @{
     Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
-    var h = HttpContext.Session.GetString("getId");
+    
 }
 <head>
     <meta charset="utf-8" />
@@ -21,7 +21,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Area</th>
                         <th>RoomDescription</th>
                         <th>CreationDate</th>
@@ -35,19 +34,16 @@
                     {
                         
                         <tr>
-                            <td>@room.Id</td>
                             <td>@room.Area</td>
                             <td>@room.RoomDescription</td>
                             <td>@room.CreationDate</td>
                             <td>
-                                @foreach(var rr in Model.roomTypeDTOs)
-                                {
-                                    if (rr.Id == room.RoomType.Id)
-                                    {
-                                        <div>@rr.RoomTypeName</div>
-                                    }
-                                }
-
+                               
+                                   @*  @Model.GetRoomTypeById(room.RoomType.Id); *@
+                                    
+                                
+                                
+                                
                             </td>
                             <td>@((room.IsDeleted) == false ? "Active": "InActive")</td>
                             <td>

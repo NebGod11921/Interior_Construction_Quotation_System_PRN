@@ -24,7 +24,11 @@ namespace MyRazorPage.Pages
         }
         public IEnumerable<RoomDTOS> roomDTOs { get; set; }
         public IEnumerable<RoomTypeDTOS> roomTypeDTOs { get; set; }
-        
+        public async Task<IEnumerable<RoomTypeDTOS>>GetRoomTypeById(int id)
+        {
+            return await _roomTypeService.GetRoomTypesById(id);
+        }
+        /*public RoomTypeDTOS typesDTOS { get; set; }*/
 
         public async Task OnGet()
         {
@@ -35,6 +39,8 @@ namespace MyRazorPage.Pages
         
         public async Task OnPostAddNewRoom(float area, string roomdescription, DateTime creationDate, int RoomType, bool IsDeleted)
         {
+            
+            
             ViewData["Areadata"] = area;
             ViewData["RoomDescriptiondata"] = roomdescription;
             ViewData["CreationDatedata"] = creationDate;
@@ -44,7 +50,7 @@ namespace MyRazorPage.Pages
 
             try
             {
-                var getRoomTypeId = await _roomTypeService.GetRoomTypeById(RoomType);
+                /*var getRoomTypeId = await _roomTypeService.GetRoomTypeById(RoomType);*/
                 RoomDTOS roomDTOS = new RoomDTOS();
                 bool v = CheckValidate(area,roomdescription,creationDate, RoomType, IsDeleted);
                 if (v)
@@ -53,8 +59,9 @@ namespace MyRazorPage.Pages
                     roomDTOS.Area = area;
                     roomDTOS.RoomDescription = roomdescription;
                     roomDTOS.CreationDate = creationDate;
-                    roomDTOS.RoomTypeId = getRoomTypeId.Id;
+                    /*roomDTOS.RoomType.Id = RoomType;*/
                     roomDTOS.IsDeleted = IsDeleted;
+                    
                     var result = await _roomService.CreateRoom(roomDTOS);
                     if (result != null)
                     {

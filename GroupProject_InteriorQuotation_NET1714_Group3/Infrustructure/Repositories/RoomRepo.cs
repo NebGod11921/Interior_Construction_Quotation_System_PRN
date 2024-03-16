@@ -24,7 +24,7 @@ namespace Infrastructure.Repositories
         {
             try
             {
-                var result = await _appDbContext.Rooms.Include("RoomType").ToListAsync();
+                var result = await _appDbContext.Rooms.Include(x => x.RoomType).ToListAsync();
                 if (result == null)
                 {
                     return null;
@@ -64,14 +64,12 @@ namespace Infrastructure.Repositories
         {
             try
             {
-                var r = _appDbContext.Rooms.Include(b => b.RoomType).Select(x => x.RoomType.Id);
+                 var r =    await _appDbContext.Rooms.AddAsync(room);
                 if (r != null)
                 {
-                    await _appDbContext.AddAsync(room);
-                    
+                    await _appDbContext.SaveChangesAsync();
                     return true;
                 }
-
                 return false;
 
             }catch(Exception ex)

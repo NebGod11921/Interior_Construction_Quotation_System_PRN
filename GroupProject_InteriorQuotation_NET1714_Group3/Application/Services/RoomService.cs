@@ -34,28 +34,37 @@ namespace Application.Services
 
 
 		//Create Rooms
-		public async Task<bool> CreateRoom(RoomDTOS roomDTOS)
+		public async Task<RoomDTOS> CreateRoom(RoomDTOS roomDTOS)
 		{
 			try
 			{
 				var mapping = _mapper.Map<Room>(roomDTOS);
+
 				
-				await _unitOfWork.RoomRepo.CreateRoom(mapping);
-				var isSuccess = await _unitOfWork.SaveChangeAsync() > 0;
-				if (isSuccess)
+
+                mapping.Area = roomDTOS.Area;
+			
+				mapping.IsDeleted = roomDTOS.IsDeleted ;
+				mapping.CreationDate = roomDTOS.CreationDate;
+				mapping.RoomDescription = roomDTOS.RoomDescription;
+                await _unitOfWork.RoomRepo.CreateRoom(mapping);
+                var mappedDTOS = _mapper.Map<RoomDTOS>(mapping);
+				if (mappedDTOS != null)
 				{
-					return true;
-				}
-				else
+                    return mappedDTOS;
+                } else
 				{
-					return false;
+					return null;
 				}
+				
 
 
 			} catch (Exception ex)
 			{
+				
 				throw new Exception(ex.Message);
-			}
+                ;
+            }
 		}
 
 		public async Task<bool> DeleteRoom(RoomDTOS r, int roomId)

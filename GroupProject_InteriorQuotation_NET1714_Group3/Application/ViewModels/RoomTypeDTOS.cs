@@ -11,10 +11,9 @@ namespace Application.ViewModels
 {
     public class RoomTypeDTOS
     {
-        
         public int Id { get; set; }
         public string? RoomTypeName { get; set; }
         public string? RoomTypeDescription { get; set; }
-        public virtual IEnumerable<Room>? Rooms { get; set; }
+        public virtual IEnumerable<RoomDTOS>? Rooms { get; set; }
     }
 }

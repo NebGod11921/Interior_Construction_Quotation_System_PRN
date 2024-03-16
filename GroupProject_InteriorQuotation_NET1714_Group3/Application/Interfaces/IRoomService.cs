@@ -16,7 +16,7 @@ namespace Application.Interfaces
         //Luan
         public Task<IEnumerable<RoomDTOS>> GetAllRoom();
         public Task<RoomDTOS> GetRoomById(int roomId);
-        public Task<bool> CreateRoom(RoomDTOS roomDTOS);
+        public Task<RoomDTOS> CreateRoom(RoomDTOS roomDTOS);
         public Task<bool> DeleteRoom(RoomDTOS roomDTOS,int roomId);
         public Task<bool> UpdateRoom(RoomDTOS roomDTOS, int roomId);
 
