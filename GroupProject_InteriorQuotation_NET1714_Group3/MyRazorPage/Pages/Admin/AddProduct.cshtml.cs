@@ -229,7 +229,7 @@ namespace MyRazorPage.Pages.Admin
                     ImageUrl = imagePath,
                     Color = colorname,
                     Material = materiala,
-                    Category = catenameee,
+                    Categorys = catenameee,
                     IsDeleted = true
                 };
 

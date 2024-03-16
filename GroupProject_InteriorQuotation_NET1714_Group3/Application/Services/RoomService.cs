@@ -82,6 +82,7 @@ namespace Application.Services
             throw new NotImplementedException();
         }
         
+       
 		public string GetRoomNameByRoomID(int roomId)
         {
             return _unitOfWork.RoomRepo.GetRoomNameByRoomId(roomId);
@@ -123,7 +124,7 @@ namespace Application.Services
 			{
 				
 				throw new Exception(ex.Message);
-                ;
+                
             }
 		}
 

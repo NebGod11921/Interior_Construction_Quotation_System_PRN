@@ -24,7 +24,7 @@ namespace Infrastructure.Mappers
             CreateMap<ProductDto, Product>()
                 .ForMember(dest => dest.Color, opt => opt.MapFrom(src => new Color { ColourName = src.Color }))
             .ForMember(dest => dest.Material, opt => opt.MapFrom(src => new Material { MaterialName = src.Material }))
-            .ForMember(dest => dest.Category, opt => opt.MapFrom(src => new Category { CategoryName = src.Category }));
+            .ForMember(dest => dest.Category, opt => opt.MapFrom(src => new Category { CategoryName = src.Categorys }));
 
             CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<RoomType, RoomHomePageTitle>()
