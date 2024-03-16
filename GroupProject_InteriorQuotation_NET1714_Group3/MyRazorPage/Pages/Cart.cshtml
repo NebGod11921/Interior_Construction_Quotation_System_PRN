@@ -311,12 +311,6 @@
                                     <form id="quotationForm" class="mb-5" asp-page-handler="AddQuotation" method="post">
                                             
                                     <div class="form-outline mb-5">
-                                        <input type="text" id="typeText" name="rdescription" class="form-control form-control-lg" 
-                                               value=""  />
-                                        <label class="form-label" for="typeText">Phone Number</label>
-                                    </div>
-
-                                    <div class="form-outline mb-5">
                                         <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
                                                value="@myObject.TelephoneNumber"  minlength="19" maxlength="19" />
                                         <label class="form-label" for="typeText">Phone Number</label>
@@ -336,7 +330,7 @@
                                         </div>
 
                                     </div>
-                                    <button onclick="getCheckboxValue()" type="submit" class="btn btn-primary btn-block btn-lg">CheckOut</button>
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg">CheckOut</button>
                                     
                                     @if (ViewData["msgcheckcart"] != null)
                                     {
@@ -365,7 +359,7 @@
 </section>
 <div id="result"></div>
 
-<script>
+@* <script>
     function getCheckboxValue() {
         var checkedValues = [];
 
@@ -383,6 +377,6 @@
             resultDiv.innerHTML = "No checkboxes are checked";
         }
     }
-</script>
+</script> *@
 
 

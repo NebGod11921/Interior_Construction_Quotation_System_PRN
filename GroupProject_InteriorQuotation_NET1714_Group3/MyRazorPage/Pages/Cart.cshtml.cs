@@ -216,12 +216,15 @@ namespace MyRazorPage.Pages
         }
         public void OnPostAddQuotation()
         {
-            
+            var carts = _cart.getAllCart();
+            if(carts.Count <= 0)
+            {
+                ViewData["msgAQ"] = "Please choose one or more room for make quotation.";
+            }
+            else
+            {
+
+            }
         }
-
-
-
-
-
     }
 }
