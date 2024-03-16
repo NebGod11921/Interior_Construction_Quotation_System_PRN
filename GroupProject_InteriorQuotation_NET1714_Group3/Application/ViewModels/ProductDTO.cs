@@ -25,4 +25,9 @@ namespace Application.ViewModels
         public string Category {  get; set; }
         public bool? IsDeleted { get; set; }
     }
+
+    public class ProductDto1
+    {
+        public virtual Category? Category { get; set; }
+    }
 }

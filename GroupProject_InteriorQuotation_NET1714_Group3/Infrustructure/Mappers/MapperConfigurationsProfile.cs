@@ -43,6 +43,10 @@ namespace Infrastructure.Mappers
             CreateMap<User, AccountLoginDTO>().ReverseMap();
 
             CreateMap<Quotation, QuotationDTO>().ReverseMap();
+            CreateMap<Room, RoomDTO>().ReverseMap();
+            CreateMap<RoomType, RoomTypeDTO>().ReverseMap();
+            CreateMap<RoomType, RoomTypeDTO1>().ReverseMap();
+            CreateMap<Product, ProductDto1>().ReverseMap();
 
 
             CreateMap<Room, RoomDTOS>().ReverseMap();

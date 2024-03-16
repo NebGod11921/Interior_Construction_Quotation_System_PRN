@@ -10,11 +10,14 @@ namespace Application.Interfaces
     public interface ICartService
     {
         public List<CartDTO> getAllCart();
-        public int GetIdNew();
+        public int GetCartIdNew();
+        public int GetItemIdNew(int cartID);
         public CartDTO getCartByID(int id);
+        public ItemDTO getItemByID(int id);
+        public List<ItemDTO> getItemByCartId(int id);
         public void AddToCart(CartDTO cart);
         public void DeleteCartAll();
-        public void DeleteCart(int cartid);
-        public bool UpdateCart(int id, int quantity);
+        public void DeleteItemInCart(int cartid, int itemid);
+        public void UpdateCartItems(List<ItemDTO> updatedItems);
     }
 }

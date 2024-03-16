@@ -56,6 +56,9 @@ namespace Infrustructure
             services.AddScoped<ICateRepo, CateRepo>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+
             services.AddScoped<IColorRepo, ColorRepo>();
             services.AddScoped<IColorService, ColorService>();
             services.AddScoped<IMaterialService, MaterialService>();
