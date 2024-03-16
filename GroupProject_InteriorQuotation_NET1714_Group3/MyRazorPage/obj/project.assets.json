@@ -1333,7 +1333,8 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "Domain": "1.0.0"
+          "Domain": "1.0.0",
+          "Microsoft.AspNetCore.Http": "2.2.2"
         },
         "compile": {
           "bin/placeholder/Application.dll": {}
@@ -1348,6 +1349,7 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.EntityFrameworkCore": "7.0.15",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.15",
           "Microsoft.Extensions.DependencyInjection": "7.0.0"
@@ -3549,6 +3551,7 @@
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "Infrastructure >= 1.0.0",
+      "Microsoft.AspNetCore.Http >= 2.2.2",
       "Microsoft.EntityFrameworkCore >= 7.0.15",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.15",
       "Microsoft.Extensions.Configuration >= 7.0.0",
@@ -3558,23 +3561,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ROG\\.nuget\\packages\\": {},
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\MyRazorPage.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\MyRazorPage.csproj",
       "projectName": "MyRazorPage",
-      "projectPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\MyRazorPage.csproj",
-      "packagesPath": "C:\\Users\\ROG\\.nuget\\packages\\",
-      "outputPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\MyRazorPage.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ROG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3590,11 +3593,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj": {
-              "projectPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj"
+            "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Application.csproj"
             },
-            "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Infrastructure.csproj": {
-              "projectPath": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Infrastructure.csproj"
+            "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Infrastructure.csproj"
             }
           }
         }
@@ -3616,6 +3619,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[12.0.1, )"
+          },
+          "Microsoft.AspNetCore.Http": {
+            "target": "Package",
+            "version": "[2.2.2, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -3663,7 +3670,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.407\\RuntimeIdentifierGraph.json"
       }
     }
   },

@@ -77,10 +77,12 @@ namespace Application.Services
         //    throw new NotImplementedException();
         //}
 
-        //public Task<bool> UpdateRoom(RoomDTO roomDTO, int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<bool> UpdateRoom(RoomDTO roomDTO, int id)
+        {
+            throw new NotImplementedException();
+        }
+        
+       
 		public string GetRoomNameByRoomID(int roomId)
         {
             return _unitOfWork.RoomRepo.GetRoomNameByRoomId(roomId);
@@ -122,7 +124,7 @@ namespace Application.Services
 			{
 				
 				throw new Exception(ex.Message);
-                ;
+                
             }
 		}
 
@@ -130,7 +132,7 @@ namespace Application.Services
 		{
 			try
 			{
-				var getRoomId = await _unitOfWork.RoomRepo.GetRoomById(roomId);
+				var getRoomId = await _unitOfWork.RoomRepo.GetRoomByIds(roomId);
 				if (getRoomId != null)
 				{
 					getRoomId.IsDeleted = true;
@@ -150,20 +152,20 @@ namespace Application.Services
 			}
 		}
 
-		//public async Task<IEnumerable<RoomDTOS>> GetAllRoom()
-		//{
-		//	try
-		//	{
-		//		var result = await _unitOfWork.RoomRepo.GetAllRooms();
-		//		if (result != null)
-		//		{
-		//			var mapped = _mapper.Map<IEnumerable<RoomDTOS>>(result);
-		//			return mapped;
-		//		}
-		//		else
-		//		{
-		//			return null;
-		//		}
+		public async Task<IEnumerable<RoomDTOS>> GetAllRooms()
+		{
+			try
+			{
+				var result = await _unitOfWork.RoomRepo.GetAllRooms();
+				if (result != null)
+				{
+					var mapped = _mapper.Map<IEnumerable<RoomDTOS>>(result);
+					return mapped;
+				}
+				else
+				{
+					return null;
+				}
 
 
 		//	} catch (Exception ex)
@@ -172,11 +174,11 @@ namespace Application.Services
 		//	}
 		//}
 
-		public async Task<RoomDTOS> GetRoomById(int roomId)
+		public async Task<RoomDTOS> GetRoomByIds(int roomId)
 		{
 			try
 			{
-				var result = await _unitOfWork.RoomRepo.GetRoomById(roomId);
+				var result = await _unitOfWork.RoomRepo.GetRoomByIds(roomId);
 				if (result != null)
 				{
 					var mapped = _mapper.Map<RoomDTOS>(result);
@@ -201,7 +203,7 @@ namespace Application.Services
 		{
 			try
 			{
-				var getRoomId = await _unitOfWork.RoomRepo.GetRoomById(roomId);
+				var getRoomId = await _unitOfWork.RoomRepo.GetRoomByIds(roomId);
 				if (getRoomId != null)
 				{
 					getRoomId.Area = roomDTOS.Area;
@@ -220,5 +222,7 @@ namespace Application.Services
 				throw new Exception(ex.Message);
 			}
 		}
-	}
+
+        
+    }
 }

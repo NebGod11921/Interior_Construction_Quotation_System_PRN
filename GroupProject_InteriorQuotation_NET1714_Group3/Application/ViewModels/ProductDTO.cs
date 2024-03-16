@@ -19,10 +19,10 @@ namespace Application.ViewModels
         public float Size { get; set; }
         public float Price { get; set; }
         public string ImageUrl { get; set; }
-        public virtual Category Categorys { get; set; }
+        public virtual Category Category { get; set; }
         public string Color { get; set; }
         public string Material { get; set; }
-        public string Category {  get; set; }
+        public string Categorys {  get; set; }
         public bool? IsDeleted { get; set; }
     }
 
