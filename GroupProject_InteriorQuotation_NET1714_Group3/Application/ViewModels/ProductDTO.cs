@@ -23,7 +23,7 @@ namespace Application.ViewModels
         public string Color { get; set; }
         public string Material { get; set; }
         public string Category {  get; set; }
-        public bool IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 
     public class ProductDto1

@@ -42,34 +42,19 @@ namespace MyRazorPage.Pages.Admin
         public List<CategoryDTO> Categories { get; set; } 
         public async Task OnGetAsync()
         {
-            Color = await _colorService.GetAllColors();
-            Categories = await _categoryService.GetAllCate();
-            Material = await _materialService.GetAllMaterial();
-            RoomType = await _roomTypeService.GetAllRoomTypeToAdd();
-            Product = new ProductDto
+            if (Color == null)
             {
-                ProductName = TempData["ProductName"] as string,
-                Description = TempData["Description"] as string,
-                Quantity = TempData["Quantity"] != null ? Convert.ToInt32(TempData["Quantity"]) : 0,
-                Size = TempData["Size"] != null ? Convert.ToInt32(TempData["Size"]) : 0,
-                Price = TempData["Price"] != null ? Convert.ToSingle(TempData["Price"]) : 0,
-                Color = TempData["ColorId"] as string,
-                Material = TempData["MaterialId"] as string,
-                RoomTypeId = TempData["RoomTypeId"] != null ? Convert.ToInt32(TempData["RoomTypeId"]) : 0,
-                RoomName = TempData["RoomName"] as string,
-                Category = TempData["CategoryName"] as string              
-            };
-            TempData.Keep("ProductName");
-            TempData.Keep("Description");
-            TempData.Keep("Quantity");
-            TempData.Keep("Size");
-            TempData.Keep("Price");
-            TempData.Keep("ColorId");
-            TempData.Keep("MaterialId");
-            TempData.Keep("RoomTypeId");
-            TempData.Keep("RoomName");
-            TempData.Keep("CategoryName");
-
+                Color = await _colorService.GetAllColors();
+            }
+            if (Material == null)
+            {
+                Material = await _materialService.GetAllMaterial();
+            }
+            if (Categories == null)
+            {
+                Categories = await _categoryService.GetAllCate();
+            }
+            RoomType = await _roomTypeService.GetAllRoomTypeToAdd();          
         }
         public IActionResult OnGetGetRoomsByRoomType(int roomtypeId)
         {
@@ -106,13 +91,12 @@ namespace MyRazorPage.Pages.Admin
             {
                 await imageFile.CopyToAsync(stream);
             }         
-            int imageId = await _imageService.AddImageToDatabaseAsync(relativePath);         
+            int imageId = await _imageService.AddImageToDatabaseAsync(relativePath);     
            return (relativePath, imageId);
         }
 
         public async Task<IActionResult> OnPost(string ProductName, IFormFile imageFile, string Description, int Quantity, int Size, float Price)
         {
-
             try
             {
                 var roomtypeId = Convert.ToInt32(Request.Form["selectedRoomTypeId"]);
@@ -122,65 +106,66 @@ namespace MyRazorPage.Pages.Admin
                 var cateid = Convert.ToInt32(Request.Form["selectedCategoryId"]);
                 if (string.IsNullOrWhiteSpace(ProductName) && string.IsNullOrWhiteSpace(Description))
                 {
-                    TempData["ErrorMessage"] = "All fields need required";
+                    ModelState.AddModelError("", "Product name and description are required.");
                     return Page();
+
                 }
                 else
                 {
                     bool isProductNameExists = await _productService.CheckExistProductName(ProductName);
                     if (isProductNameExists)
                     {
-                        TempData["ErrorMessage"] = "Product name already exists.";
+                        ModelState.AddModelError("", "Product name exist");
                         return Page();
                     }
                     if (Request.Form["selectedCategoryId"].Count == 0)
                     {
-                        TempData["ErrorMessage"] = "Category must be selected.";
+                        ModelState.AddModelError("", "selectedCategoryId  are required.");
                         return Page();
                     }
                     //var cateid = Convert.ToInt32(Request.Form["selectedCategoryId"]);
                     if (Request.Form["selectedRoomTypeId"].Count == 0)
                     {
-                        TempData["ErrorMessage"] = "Room type must be selected.";
+                        ModelState.AddModelError("", "selectedRoomTypeId  are required.");
                         return Page();
                     }
                     //var roomtypeId = Convert.ToInt32(Request.Form["selectedRoomTypeId"]);
                     if (Request.Form["selectedRoomId"].Count == 0)
                     {
-                        TempData["ErrorMessage"] = "Room must be selected.";
+                        ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
                     //var roomId = Convert.ToInt32(Request.Form["selectedRoomId"]);
-                    if (!int.TryParse(Request.Form["Quantity"], out int quantity) && quantity < 0)
+                    if (!int.TryParse(Request.Form["Product.Quantity"], out int quantity) && quantity < 0)
                     {
-                        TempData["ErrorMessage"] = "Quantity must be a non-negative integer.";
+                        ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
 
-                    if (!int.TryParse(Request.Form["Size"], out int size) && size < 0)
+                    if (!int.TryParse(Request.Form["Product.Size"], out int size) && size < 0)
                     {
-                        TempData["ErrorMessage"] = "Size must be a non-negative integer.";
+                        ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
-                    if (!float.TryParse(Request.Form["Price"], out float price) && price < 0)
+                    if (!float.TryParse(Request.Form["Product.Price"], out float price) && price < 0)
                     {
-                        TempData["ErrorMessage"] = "Price must be a non-negative number.";
+                        ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
                     if (imageFile == null || imageFile.Length == null || string.IsNullOrEmpty(imageFile.FileName))
                     {
-                        TempData["ErrorMessage"] = "Image file is required.";
+                        ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
                     if (Request.Form["selectedColorId"].Count == 0)
                     {
-                        TempData["ErrorMessage"] = "Color must be selected.";
+                        ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
                     //var clorid = Convert.ToInt32(Request.Form["selectedColorId"]);
                     if (Request.Form["selectedMaterialId"].Count == 0)
                     {
-                        TempData["ErrorMessage"] = "Material must be selected.";
+                        ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
 
@@ -198,46 +183,49 @@ namespace MyRazorPage.Pages.Admin
                     ModelState.AddModelError("roomTypeNameId", "Room type not found.");
                     return Page();
                 }
+                var catename = await _categoryService.GetCateNameById(cateid);
+                if (catename == null)
+                {
+                    ModelState.AddModelError("", "cate  are faield.");
+                    return Page();
+                }
+                var catenameee = catename.CateName;
+
+
                 var roomTypeName = roomtypename.RoomTypeName;
                 var roomidname = _roomService.GetRoomNameByRoomID(roomId);
                 var (imagePath, imageid) = await SaveImageAsync(imageFile, roomTypeName);
                 if (string.IsNullOrEmpty(imagePath))
                 {
-                    TempData["ErrorMessage"] = "Fail to save image";
+                    ModelState.AddModelError("", "image  are failed.");
                     return Page();
                 }
                 var color = await _colorService.GetColorNameById(clorid);
                 if (color == null)
                 {
-                    TempData["ErrorMessage"] = "Invalid color selected";
+                    ModelState.AddModelError("", "colro are failed");
                     return Page();
                 }
                 var colorname = color.ColourName;
                 var material = await _materialService.GetMaterialById(materid);
                 if (material == null)
                 {
-                    TempData["ErrorMessage"] = "Invalid material selected";
+                    ModelState.AddModelError("", "material  are faield.");
                     return Page();
                 }
                 var materiala = material.MaterialName;
-                var catename = await _categoryService.GetCateNameById(cateid);
-                if (catename == null)
-                {
-                    TempData["ErrorMessage"] = "Invalid catename selected";
-                    return Page();
-                }
-                var catenameee = catename.CateName;
+
                 var productDto = new ProductDto
                 {
                     ProductName = Request.Form["ProductName"],
                     RoomTypeId = roomtypeId,
                     Description = Request.Form["Description"],
-                    Quantity = Convert.ToInt32(Request.Form["Quantity"]),
+                    Quantity = Convert.ToInt32(Request.Form["Product.Quantity"]),
                     RoomName = roomidname,
                     RoomId = roomId,
                     RoomTypeName = Convert.ToString(roomTypeName),
-                    Size = Convert.ToInt32(Request.Form["Size"]),
-                    Price = Convert.ToSingle(Request.Form["Price"]),
+                    Size = Convert.ToInt32(Request.Form["Product.Size"]),
+                    Price = Convert.ToSingle(Request.Form["Product.Price"]),
                     ImageUrl = imagePath,
                     Color = colorname,
                     Material = materiala,
@@ -265,12 +253,12 @@ namespace MyRazorPage.Pages.Admin
 
                         if (added)
                         {
-                            TempData["SuccessMessage"] = "Product add successfully.";
+
                             return RedirectToPage("/Admin/ProductByAdmin");
                         }
                         else
                         {
-                            TempData["ErrorMessage"] = "Failed to add product";
+                            ModelState.AddModelError("", "failed add");
                             return Page();
                         }
                     }
@@ -281,15 +269,11 @@ namespace MyRazorPage.Pages.Admin
                     }
                 }
 
-                else
-                {
-                    TempData["ErrorMessage"] = "Failed not can be more add product";
-                    return Page();
-                }
+                return Page();
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
+                ModelState.AddModelError("", "An error occurred while processing your request. Please try again later.");
                 return Page();
             }
 

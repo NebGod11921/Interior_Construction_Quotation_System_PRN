@@ -157,9 +157,30 @@ namespace Application.Services
             }
         }
 
-        public Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id)
+        public async Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var getQuotationId = await _unitOfWork.QuotationRepository.GetByIdAsync(id);
+                if (getQuotationId != null)
+                {
+                    getQuotationId.QuotationName = quotationDTO.QuotationName;
+                    getQuotationId.CreateDate = quotationDTO.CreateDate;
+                    getQuotationId.TotalPrice = quotationDTO.TotalPrice;
+                    getQuotationId.UnitPrice = quotationDTO.UnitPrice;
+                    var isSuccess = await _unitOfWork.SaveChangeAsync() > 0;
+                    if (isSuccess)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+
+
+            } catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
 		public async Task<bool> UpdatesQuotationStatus(int quotationId, QuotationDTO quotation)

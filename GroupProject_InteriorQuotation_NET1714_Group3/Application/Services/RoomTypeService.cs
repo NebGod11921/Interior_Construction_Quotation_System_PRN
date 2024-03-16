@@ -63,9 +63,81 @@ namespace Application.Services
             return await _unitOfWork.RoomTypeRepository.GetAllRoomTypeToAdd();
         }
 
+        
+
         public Task<RoomTypeDTO> GetRoomTypeNameById(int id)
         {
             return _unitOfWork.RoomTypeRepository.GetRoomTypeNameById(id);
+        }
+        public async Task<IEnumerable<RoomTypeDTOS>> GetAllTypesRoom()
+        {
+            try
+            {
+                var result = await _unitOfWork.RoomTypeRepository.GetAllRoomType();    
+                if (result != null)
+                {
+                    var mapper = _mapper.Map<IEnumerable<RoomTypeDTOS>>(result);
+                    return mapper;
+                } else
+                {
+                    return null;
+                }
+
+
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<RoomTypeDTOS> GetRoomTypeById(int id)
+        {
+            try
+            {
+                var result = await _unitOfWork.RoomTypeRepository.GetByIdAsync(id);
+                if (result != null)
+                {
+                    var mapper = _mapper.Map<RoomTypeDTOS>(result);
+                    return mapper;
+                }
+                else
+                {
+                    return null;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+
+
+
+        public async Task<IEnumerable<RoomTypeDTOS>> GetRoomTypesById(int id)
+        {
+            try
+            {
+                var result = await _unitOfWork.RoomTypeRepository.GetAllRoomTypesById(id);
+                if (result != null)
+                {
+                    var mapper = _mapper.Map<IEnumerable<RoomTypeDTOS>>(result);
+                    return mapper;
+                }
+                else
+                {
+                    return null;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

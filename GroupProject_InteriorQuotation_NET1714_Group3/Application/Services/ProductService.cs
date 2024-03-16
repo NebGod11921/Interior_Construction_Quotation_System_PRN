@@ -78,7 +78,7 @@ namespace Application.Services
                 ImageUrl = p.ProductImages.FirstOrDefault()?.Image?.ImageName,
                 Color = p.Color.ColourName,
                 Material = p.Material.MaterialName,
-                IsDeleted = p.IsDeleted.HasValue
+                IsDeleted = p.IsDeleted
             }).ToList();
             return dtos;
         }
@@ -117,7 +117,7 @@ namespace Application.Services
                 ImageUrl = p.ProductImages.FirstOrDefault()?.Image?.ImageName,
                 Color = p.Color.ColourName,
                 Material = p.Material.MaterialName,
-                IsDeleted = !p.IsDeleted.HasValue || !p.IsDeleted.Value
+                IsDeleted = p.IsDeleted
             }).ToList();
             return dto;
         }
