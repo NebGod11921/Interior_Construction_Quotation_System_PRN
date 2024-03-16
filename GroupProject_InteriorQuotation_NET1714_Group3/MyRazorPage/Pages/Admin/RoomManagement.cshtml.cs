@@ -44,6 +44,7 @@ namespace MyRazorPage.Pages
 
             try
             {
+                var getRoomTypeId = await _roomTypeService.GetRoomTypeById(RoomType);
                 RoomDTOS roomDTOS = new RoomDTOS();
                 bool v = CheckValidate(area,roomdescription,creationDate, RoomType, IsDeleted);
                 if (v)
@@ -52,7 +53,7 @@ namespace MyRazorPage.Pages
                     roomDTOS.Area = area;
                     roomDTOS.RoomDescription = roomdescription;
                     roomDTOS.CreationDate = creationDate;
-                    roomDTOS.RoomTypeId = RoomType;
+                    roomDTOS.RoomTypeId = getRoomTypeId.Id;
                     roomDTOS.IsDeleted = IsDeleted;
                     var result = await _roomService.CreateRoom(roomDTOS);
                     if (result != null)

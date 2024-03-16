@@ -91,7 +91,7 @@
                             <option value="">Select Room Type</option> <!-- Default option -->
                             @foreach (var roomType in Model.roomTypeDTOs)
                             {
-                            <option  value="@roomType.Id">@roomType.RoomTypeName</option>
+                            <option value="@roomType.Id">@roomType.RoomTypeName</option>
                             }
                         </select>
                        
@@ -136,7 +136,7 @@
                     {
                         <tr>
                             <td>
-                                <input type="hidden" name="typeId" value="@r.Id"/>
+                                <input type="hidden" name="typeId" value="@r.Id" />
                                 @r.Id
                                 
                             </td>
