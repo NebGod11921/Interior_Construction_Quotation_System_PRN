@@ -4,6 +4,9 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
+using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MyRazorPage.Pages
 {
@@ -11,86 +14,169 @@ namespace MyRazorPage.Pages
     {
         private readonly ICartService _cart;
         private readonly IProductService _p;
-        public CartModel(ICartService cart, IProductService p)
+        private readonly IQuotationService _q;
+        private readonly IRoomService _r;
+        private readonly IRoomTypeService _rt;
+        private float Are;
+
+        [BindProperty]
+        public List<int> SelectedCartIDs { get; set; }
+        public CartModel(ICartService cart, IProductService p, IQuotationService q, IRoomService r, IRoomTypeService rt)
         {
             _cart = cart;
             _p = p;
+            _q = q;
+            _r = r;
+            _rt = rt;
         }
         public List<CartDTO> carts;
+        public List<RoomTypeDTO1> roomtypes; 
         public ProductDto getProductById(int productId)
         {
             var p = _p.GetProductByIdToCart(productId);
             return p;
         }
-        public ProductDto getProductById1(int productId)
+        public Task<ProductDto> getProductById1(int productId)
         {
-            var p = _p.GetProductById(productId);
+            var p = _p.GetProductByIdWithAll(productId);
             return p;
         }
         public async Task OnGet() 
         {
             carts = _cart.getAllCart() ?? new List<CartDTO>();
+            roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
 
-        public void OnPostAddToCartProduct(int pId) 
+        public async Task OnPostAddToCartProduct(int pId)
         {
-            CartDTO cartForAdd = new CartDTO();
-            cartForAdd.productId = pId;
-            _cart.AddToCart(cartForAdd);
-            OnGet();
+            var cexits = _cart.getAllCart().Where(x => x.roomId == 0 || x.roomId == null).FirstOrDefault();
+            if (cexits == null)
+            {
+                CartDTO cartForAdd = new CartDTO();
+                cartForAdd.Id = _cart.GetCartIdNew();
+                cartForAdd.roomId = 0;
+                cartForAdd.rAre = 0f;
+                cartForAdd.rType = 0;
+                cartForAdd.rDescrip = "";
+                if (cartForAdd.Items == null)
+                {
+                    cartForAdd.Items = new List<ItemDTO>();
+                }
+                    int itemid = _cart.GetItemIdNew(cartForAdd.Id);
+                    cartForAdd.Items.Add(new ItemDTO
+                    {
+                        Id = itemid,
+                        productId = pId,
+                        cartId = cartForAdd.Id,
+                        quanity = 1
+                    });
+                _cart.AddToCart(cartForAdd);
+            }
+            carts = _cart.getAllCart() ?? new List<CartDTO>();
+            roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
 
         public IActionResult OnPostAddToCartListProduct(int rId)
         {
-            var room = _p.GetAllProductByRoomId(rId);
-            foreach (var item in room)
+            var cexits = _cart.getAllCart().Where(x => x.roomId == rId).FirstOrDefault();
+            if (cexits == null)
             {
+                var room = _p.GetAllProductByRoomId(rId);
                 CartDTO cartForAdd = new CartDTO();
-                cartForAdd.productId = item.ProductId;
+                cartForAdd.Id = _cart.GetCartIdNew();
+                cartForAdd.roomId = rId;
+                cartForAdd.rAre = 0f;
+                cartForAdd.rType = 0;
+                cartForAdd.rDescrip = "";
+                if (cartForAdd.Items == null)
+                {
+                    cartForAdd.Items = new List<ItemDTO>();
+                }
+                int itemid = 1;
+                foreach (var item in room)
+                {
+                    cartForAdd.Items.Add(new ItemDTO
+                    {
+                        Id = itemid,
+                        productId = item.ProductId,
+                        cartId = cartForAdd.Id,
+                        quanity = 1
+                    });
+                    itemid++;
+                }
                 _cart.AddToCart(cartForAdd);
-                OnGet();
             }
-            
+            else
+            {
+                UpdateQuanityListCartExits(cexits.Id, rId);
+            }
             return RedirectToPage("/Cart");
         }
-
-        public void OnPostUpdateQuantity(int id, int quantity)
+        public void UpdateQuanityListCartExits(int cartid, int rid)
         {
-            var cart = _cart.getCartByID(id);
+            List<ItemDTO> itemlist = _cart.getItemByCartId(cartid);
+            if (itemlist != null)
+            {
+                var listp = _p.GetAllProductByRoomId(rid);
+                foreach (var item in itemlist)
+                {
+                    foreach (var item1 in listp)
+                    {
+                        if (item.productId == item1.ProductId)
+                        {
+                            item.quanity++;
+                        }
+                    }
+                }
+                _cart.UpdateCartItems(itemlist);
+            }
+        }
+        public async Task OnPostDeleteCart(int cID, int itemid)
+        {
+            var cart = _cart.getItemByCartId(cID);
             if (cart != null)
             {
-                cart.quantity = quantity;
-                _cart.UpdateCart(id, cart.quantity);
+                _cart.DeleteItemInCart(cID, itemid);
             }
-            OnGet();
+            carts = _cart.getAllCart() ?? new List<CartDTO>();
+            roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
-
-        public void OnPostDeleteCart(int cID)
+        public async Task OnPostUpdateQuantity(int cID, int itemid, int quantity)
         {
-            var cart = _cart.getCartByID(cID);
+            var cart = _cart.getItemByCartId(cID);
             if (cart != null)
             {
-                _cart.DeleteCart(cID);
+                foreach (var item in cart)
+                {
+                    if(item.Id == itemid)
+                    {
+                        item.quanity = quantity;
+                        _cart.UpdateCartItems(cart);
+                    }
+                }
             }
-            OnGet();
+            carts = _cart.getAllCart() ?? new List<CartDTO>();
+            roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
-
-        public void OnPostCaculator(int roomAre)
+        public async Task OnPostCaculator(int cartID, int roomArea, int SelectedOption, string rDescription)
         {
-            var carts = _cart.getAllCart();
-            foreach (var item in carts)
+            var cart = _cart.getCartByID(cartID);
+            cart.rAre = roomArea;
+            cart.rType = SelectedOption;
+            cart.rDescrip = rDescription;
+            var items = _cart.getItemByCartId(cartID);
+            foreach (var item in items)
             {
-                var size = (int)_p.GetProductById(item.productId).Size;
                 var categoryId = (int)_p.GetProductById(item.productId).Category.Id;
-                item.quantity =  calProduct(roomAre,size, categoryId);
-                _cart.UpdateCart(item.Id, item.quantity);
+                item.quanity = calProduct(roomArea, categoryId);
+                _cart.UpdateCartItems(items);
             }
-            OnGet();
+            carts = _cart.getAllCart() ?? new List<CartDTO>();
+            roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
-
-        private int calProduct(int rAre, int productsize, int category)
+        private int calProduct(int rAre, int category)
         {
-            double requiredAreaWithBuffer = rAre * 1.1;
+            double requiredAreaWithBuffer = rAre;
             double numberOfProducts = 0;
             switch (category)
             {
@@ -103,8 +189,23 @@ namespace MyRazorPage.Pages
                 case 3:// gi??ng
                     numberOfProducts = (requiredAreaWithBuffer / 20.0) * 1;
                     break;
-                case 4:// ?èn 
+                case 4:// light 
                     numberOfProducts = (requiredAreaWithBuffer / 20.0) * 5;
+                    break;
+                case 5:// rug 
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 1;
+                    break;
+                case 6:// bookshefk 
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 1;
+                    break;
+                case 7:// table 
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 1;
+                    break;
+                case 8: // modem  
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 2;
+                    break;
+                case 9:// Tivi 
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 1;
                     break;
                 default:
                     numberOfProducts = (requiredAreaWithBuffer / 20.0) * 3;
@@ -112,6 +213,18 @@ namespace MyRazorPage.Pages
             }
             return (int)Math.Ceiling(numberOfProducts);
 
+        }
+        public void OnPostAddQuotation()
+        {
+            var carts = _cart.getAllCart();
+            if(carts.Count <= 0)
+            {
+                ViewData["msgAQ"] = "Please choose one or more room for make quotation.";
+            }
+            else
+            {
+
+            }
         }
     }
 }

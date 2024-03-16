@@ -222,7 +222,7 @@ namespace Application.Services
         {
             return await _unitOfWork.ProductRepository.IsProductNameExistsAsync(name);
         }
-        public ProductDto GetProductById(int id)
+        public ProductDto1 GetProductById(int id)
         {
             try
             {
@@ -230,7 +230,7 @@ namespace Application.Services
 
                 if (product != null)
                 {
-                    return _mapper.Map<ProductDto>(product);
+                    return _mapper.Map<ProductDto1>(product);
                 }
                 else
                 {
