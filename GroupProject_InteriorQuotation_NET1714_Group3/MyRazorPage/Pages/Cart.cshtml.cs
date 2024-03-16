@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace MyRazorPage.Pages
 {
@@ -44,13 +46,34 @@ namespace MyRazorPage.Pages
             roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
 
-        //public void OnPostAddToCartProduct(int pId) 
-        //{
-        //    CartDTO cartForAdd = new CartDTO();
-        //    cartForAdd.Items.Add(new ItemDTO { productId = pId });
-        //    _cart.AddToCart(cartForAdd);
-        //    OnGet();
-        //}
+        public async Task OnPostAddToCartProduct(int pId)
+        {
+            var cexits = _cart.getAllCart().Where(x => x.roomId == 0 || x.roomId == null).FirstOrDefault();
+            if (cexits == null)
+            {
+                CartDTO cartForAdd = new CartDTO();
+                cartForAdd.Id = _cart.GetCartIdNew();
+                cartForAdd.roomId = 0;
+                cartForAdd.rAre = 0f;
+                cartForAdd.rType = 0;
+                cartForAdd.rDescrip = "";
+                if (cartForAdd.Items == null)
+                {
+                    cartForAdd.Items = new List<ItemDTO>();
+                }
+                    int itemid = _cart.GetItemIdNew(cartForAdd.Id);
+                    cartForAdd.Items.Add(new ItemDTO
+                    {
+                        Id = itemid,
+                        productId = pId,
+                        cartId = cartForAdd.Id,
+                        quanity = 1
+                    });
+                _cart.AddToCart(cartForAdd);
+            }
+            carts = _cart.getAllCart() ?? new List<CartDTO>();
+            roomtypes = await _rt.GetAllRoomTypeDTOs();
+        }
 
         public IActionResult OnPostAddToCartListProduct(int rId)
         {
@@ -136,10 +159,13 @@ namespace MyRazorPage.Pages
         }
         public async Task OnPostCaculator(int cartID, int roomArea, int SelectedOption, string rDescription)
         {
+            var cart = _cart.getCartByID(cartID);
+            cart.rAre = roomArea;
+            cart.rType = SelectedOption;
+            cart.rDescrip = rDescription;
             var items = _cart.getItemByCartId(cartID);
             foreach (var item in items)
             {
-                //var size = (int)_p.GetProductById(item.productId).Size;
                 var categoryId = (int)_p.GetProductById(item.productId).Category.Id;
                 item.quanity = calProduct(roomArea, categoryId);
                 _cart.UpdateCartItems(items);
@@ -187,16 +213,22 @@ namespace MyRazorPage.Pages
             return (int)Math.Ceiling(numberOfProducts);
 
         }
-        public IActionResult OnPostAddQuotation([FromQuery] List<string> listcheckbox, DateTime createdate , string rdescription, int SelectedOption)
+        public IActionResult OnPostAddQuotation()
         {
+            using (var reader = new StreamReader(Request.Body))
+            {
+                var body = reader.ReadToEnd();
+                var checkedValues = JsonConvert.DeserializeObject<List<string>>(body);
 
-            List<string> ss = ViewData["listcheckbox"] as List<string>;
+                // L?u d? li?u vào session
+                HttpContext.Session.Set("CheckedValues", Encoding.UTF8.GetBytes(body));
+            }
             //room
             //room product
             //quotation
             RoomDTO rFA = new RoomDTO();
                 rFA.Area = Are;
-                rFA.RoomDescription = rdescription;
+                //rFA.RoomDescription = rdescription;
                 //bool createRSucsess = await _r.CreateRoom(rFA);
                 //if (createRSucsess)
                 //{
