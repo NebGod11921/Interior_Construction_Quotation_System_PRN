@@ -41,7 +41,7 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public async Task<Room> GetRoomById(int roomId)
+        public async Task<Room> GetRoomByIds(int roomId)
 		{
 			try
             {

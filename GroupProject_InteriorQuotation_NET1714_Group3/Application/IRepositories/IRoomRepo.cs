@@ -14,7 +14,7 @@ namespace Application.IRepositories
         string GetRoomNameByRoomId(int roomId);
 
         //Luan
-        public Task<Room> GetRoomById(int roomId);
+        public Task<Room> GetRoomByIds(int roomId);
         public Task<IEnumerable<Room>> GetAllRooms();
         public Task<bool> CreateRoom(Room room);
 
