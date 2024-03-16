@@ -116,6 +116,59 @@ namespace MyRazorPage.Pages.Shared
 
             await OnGet();
         }*/
+        public async Task OnPostUpdateQuotation(int qID, string quotationName, float unitPrice, float totalPrice, DateTime createDate)
+        {
+            TempData["PopupUpdateState"] = "open";
+            TempData["qID"] = qID;
 
+            ViewData["quotationnamedata"] = quotationName;
+            ViewData["unitpricedata"] = unitPrice;
+            ViewData["totalpricedata"] = totalPrice;
+            ViewData["createdatedata"] = createDate;
+			bool val = Validation(quotationName, unitPrice, totalPrice, createDate);
+			if (val)
+			{
+				QuotationDTO quotationDTO = new QuotationDTO();
+				quotationDTO.QuotationName = quotationName;
+				quotationDTO.UnitPrice = unitPrice;
+				quotationDTO.TotalPrice = totalPrice;
+				var result = await _quotationService.UpdateQuotation(quotationDTO, qID);
+				if (result == true)
+				{
+					ViewData["msgupdate"] = "Quotation's details has be updated successfully";
+					TempData["PopupUpdateState"] = "open";
+				} else
+				{
+					ViewData["msgupdate"] = "Quotation's details has be update fail";
+				}
+			}
+			await OnGet();
+		}
+
+        private bool Validation(string quotationName, float unitPrice, float totalPrice, DateTime createDate)
+        {
+            bool flag = true;
+			if (string.IsNullOrEmpty(quotationName) || string.IsNullOrWhiteSpace(quotationName))
+			{
+				ViewData["msgfullname"] = "Please fill in quotation name , this not white space";
+				flag = false;
+			}
+			if (unitPrice < 0 || unitPrice.Equals(""))
+			{
+				ViewData["msgfullname"] = "Please fill in your unit price, price must not be empty";
+				flag = false;
+			}
+			if (totalPrice < 0 || totalPrice.Equals(""))
+			{
+				ViewData["msgfullname"] = "Please fill in your total price , price must not be empty";
+				flag = false;
+			}
+			if (createDate > DateTime.UtcNow || createDate.Equals(""))
+			{
+				ViewData["msgfullname"] = "Please fill in createDate , your createDate must be in the present";
+				flag = false;
+			}
+			return flag;
+		}
     }
 }

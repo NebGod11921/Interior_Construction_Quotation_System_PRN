@@ -24,7 +24,7 @@ namespace Domain.Entities
         public virtual IEnumerable<RoomProduct>? RoomProducts { get; set; }
         public virtual IEnumerable<ProductQuotation>? ProductQuotations { get; set; }
 
-        public virtual Quotation? Quotation { get; set; }
+        
         
 
     }

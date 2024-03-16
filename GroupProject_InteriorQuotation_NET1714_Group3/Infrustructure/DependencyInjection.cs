@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,11 @@ namespace Infrustructure
         public static IServiceCollection AddInfrastructuresService(this IServiceCollection services, string databaseConnection)
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(databaseConnection));
+            {
+
+                options.UseSqlServer(databaseConnection);
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            });
             //return services;
             services.AddScoped<MapperConfigurationsProfile>();
 
