@@ -34,7 +34,7 @@ namespace MyRazorPage.Pages.Admin
             {
                 return NotFound();
             }
-            ViewData["IsDeleted"] = Product.IsDeleted.Value ? "true" : "false";
+            ViewData["IsDeleted"] = Product.IsDeleted.ToString().ToLower();
             return Page();
         }
         public async Task<IActionResult> OnPost(string productName, string description, int quantity, int size, float price, int colorId, int materialId)
@@ -45,21 +45,18 @@ namespace MyRazorPage.Pages.Admin
 			{
 				return NotFound();
 			}           
-           
+            
             getpro.ProductName = productName;
             getpro.Description = description;
             getpro.Quantity = quantity;
             getpro.Size = size;
             getpro.Price = price;
-            bool isNewIsDeleted = Request.Form["isDeleted"] == "true";            
-            if (isNewIsDeleted)
+            //bool isNewIsDeleted = Request.Form["isDeleted"] == "true";
+            if (!getpro.IsDeleted.Value )
             {
                 getpro.IsDeleted = true;
             }
-            else
-            {
-                getpro.IsDeleted = false;
-            }
+            //getpro.IsDeleted = isDeleted;
             var colorName = await _colorService.GetColorNameById(colorId);
             if (colorName != null)
             {

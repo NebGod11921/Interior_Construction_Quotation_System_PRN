@@ -17,7 +17,7 @@
         <input type="hidden" name="id" value="@(Model.Product != null ? Model.Product.ProductId : 0)">
 
         <label for="productname">product name:</label>
-        <input type="text" id="productname" name="productname" value="@(Model.Product != null ? Model.Product.ProductName : "")">
+        <input type="text" id="productname" name="productName" value="@(Model.Product != null ? Model.Product.ProductName : "")">
 
         <label for="roomtypename">room type name(read only):</label>
         <input type="text" id="roomtypename" name="roomtypename" value="@(Model.Product != null ? Model.Product.RoomTypeName : "")" readonly>
@@ -65,11 +65,10 @@
         <input type="radio" id="inactive" name="isDeleted" value="false" style="display:none" @(Model.Product != null && Model.Product.IsDeleted.HasValue && !Model.Product.IsDeleted.Value ? "checked" : "")>   
          *@
         <label for="active">Active</label>
-        <input type="radio" id="active" name="isDeleted" value="true" @(Model.Product != null && Model.Product.IsDeleted.HasValue && Model.Product.IsDeleted.Value ? "checked" : "") onchange="updateIsDeleted(this)">
+        <input type="radio" id="active" name="isDeleted" value="true" @(Model.Product != null && !Model.Product.IsDeleted.Value ? "checked" : "") onchange="updateIsDeleted(this)">
 
         <label for="inactive">Inactive</label>
-        <input type="radio" id="inactive" name="isDeleted" value="false" @(Model.Product != null && Model.Product.IsDeleted.HasValue && !Model.Product.IsDeleted.Value ? "checked" : "") onchange="updateIsDeleted(this)">
-
+        <input type="radio" id="inactive" name="isDeleted" value="false" disabled>
         <br />
             <button type="submit">Update Product</button>
         

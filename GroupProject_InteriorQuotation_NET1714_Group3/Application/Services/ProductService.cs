@@ -163,8 +163,7 @@ namespace Application.Services
                     product.Quantity = productDto.Quantity;
                     product.Size = productDto.Size;
                     product.Price = productDto.Price;
-                    var color = await _unitOfWork.ColorRepository.GetColorByName(productDto.Color);
-                    product.IsDeleted = productDto.IsDeleted;
+                    var color = await _unitOfWork.ColorRepository.GetColorByName(productDto.Color);                
                     if(color != null)
                     {
                         product.Color = color;
@@ -182,8 +181,8 @@ namespace Application.Services
                     {
                         throw new Exception("material not found in the database.");
                     }
-
-                    _unitOfWork.SaveChangeAsync();
+                    product.IsDeleted = productDto.IsDeleted;
+                    await _unitOfWork.ProductRepository.UpdateProductAsyncNew(product);               
                     return true;
                 }
                 else
@@ -195,6 +194,7 @@ namespace Application.Services
             {
                 throw new Exception(ex.Message);
             }
+            
         }
         public async Task<bool> DeleteProduct(int productDto)
         {
