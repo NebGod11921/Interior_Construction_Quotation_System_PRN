@@ -67,21 +67,20 @@ namespace Application.Services
             }
         }
 
-        public List<RoomDTO> GetRoomByCsId(int csId)
-        {
-            throw new NotImplementedException();
-        }
+        //public List<RoomDTO> GetRoomByCsId(int csId)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<RoomDTO> GetRoomById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<RoomDTO> GetRoomById(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<bool> UpdateRoom(RoomDTO roomDTO, int id)
-        {
-            throw new NotImplementedException();
-        }
-        public string GetRoomNameByRoomID(int roomId)
+        //public Task<bool> UpdateRoom(RoomDTO roomDTO, int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 		public string GetRoomNameByRoomID(int roomId)
         {
             return _unitOfWork.RoomRepo.GetRoomNameByRoomId(roomId);
@@ -151,27 +150,27 @@ namespace Application.Services
 			}
 		}
 
-		public async Task<IEnumerable<RoomDTOS>> GetAllRoom()
-		{
-			try
-			{
-				var result = await _unitOfWork.RoomRepo.GetAllRooms();
-				if (result != null)
-				{
-					var mapped = _mapper.Map<IEnumerable<RoomDTOS>>(result);
-					return mapped;
-				}
-				else
-				{
-					return null;
-				}
+		//public async Task<IEnumerable<RoomDTOS>> GetAllRoom()
+		//{
+		//	try
+		//	{
+		//		var result = await _unitOfWork.RoomRepo.GetAllRooms();
+		//		if (result != null)
+		//		{
+		//			var mapped = _mapper.Map<IEnumerable<RoomDTOS>>(result);
+		//			return mapped;
+		//		}
+		//		else
+		//		{
+		//			return null;
+		//		}
 
 
-			} catch (Exception ex)
-			{
-				throw new Exception(ex.Message);
-			}
-		}
+		//	} catch (Exception ex)
+		//	{
+		//		throw new Exception(ex.Message);
+		//	}
+		//}
 
 		public async Task<RoomDTOS> GetRoomById(int roomId)
 		{

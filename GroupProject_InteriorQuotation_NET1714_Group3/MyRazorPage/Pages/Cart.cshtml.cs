@@ -223,7 +223,9 @@ namespace MyRazorPage.Pages
             }
             else
             {
-
+                //room 
+                //roomProduct
+                //Quotation
             }
         }
     }
