@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @using System.Text.Json
 @using Application.ViewModels
 @model MyRazorPage.Pages.CartModel
@@ -192,36 +192,6 @@
                                     var totalprice = 0f;
                                     @foreach (var cart in Model.carts)
                                     {
-                                        <div class="d-flex align-items-center mb-5">
-                                            <div class="flex-shrink-0">
-                                                <img src="@Model.getProductById(item.productId).ImageUrl"
-                                                     class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
-                                            </div>
-                                            <div class="flex-grow-1 ms-3">
-                                                <form asp-page-handler="DeleteCart" method="post">
-                                                    <input type="hidden" value="@item.Id" name="cID" />
-                                                    <button type="submit" class="btn btn-link p-0">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
-                                                <h5 class="text-primary">@Model.getProductById(item.productId).ProductName</h5>
-                                                <h6 style="color: #9e9e9e;">Color: @Model.getProductById(item.productId).Color</h6>
-                                                <p class="fw-bold mb-0 me-5 pe-3">@Model.getProductById1(item.productId).Category.CategoryName</p>
-                                                <div class="d-flex align-items-center">
-                                                    <p class="fw-bold mb-0 me-5 pe-3">@Model.getProductById(item.productId).Price$</p>
-                                                    
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <form method="post" asp-page-handler="UpdateQuantity">
-                                                        <input class="quantity fw-bold text-black" min="1" name="quantity" value="@item.quantity"
-                                                               type="number">
-                                                        @{
-                                                            var price = @item.quantity * @Model.getProductById(item.productId).Price;
-                                                            totalprice += price;
-                                                        }
-                                                        <p>Price: @price$</p>
-                                                            <input type="hidden" name="id" value="@item.Id" />
-                                                            <button type="submit">Update</button>
-                                                        </form>
                                         
                                         var items = cart.Items.Where(x => x.cartId == cart.Id).ToList() ?? new List<ItemDTO>();
                                         <div>
@@ -360,24 +330,13 @@
                                         </div>
 
                                     </div>
-                                    <p class="mb-5">
-                                       
-                                    </p>
-
-                                    <button type="button" class="btn btn-primary btn-block btn-lg">CheckOut</button>
-
-                                    <h5 class="fw-bold mb-5" style="position: absolute; bottom: 0;">
-                                        <a asp-page="/Test">Back to shopping</a>
-                                    </h5>
-                                </form>
-                                }
                                     <button type="submit" class="btn btn-primary btn-block btn-lg">CheckOut</button>
                                     
                                     @if (ViewData["msgcheckcart"] != null)
                                     {
                                         <p>@ViewData["msgcheckcart"]</p>
                                     }
-                                  
+                                    </form>
                                     }
                                     else
                                     {
@@ -419,5 +378,3 @@
         }
     }
 </script> *@
-
-
