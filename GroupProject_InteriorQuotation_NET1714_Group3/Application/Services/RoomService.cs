@@ -81,7 +81,7 @@ namespace Application.Services
         {
             throw new NotImplementedException();
         }
-        public string GetRoomNameByRoomID(int roomId)
+       
 		public string GetRoomNameByRoomID(int roomId)
         {
             return _unitOfWork.RoomRepo.GetRoomNameByRoomId(roomId);
@@ -123,7 +123,7 @@ namespace Application.Services
 			{
 				
 				throw new Exception(ex.Message);
-                ;
+                
             }
 		}
 
@@ -151,7 +151,7 @@ namespace Application.Services
 			}
 		}
 
-		public async Task<IEnumerable<RoomDTOS>> GetAllRoom()
+		public async Task<IEnumerable<RoomDTOS>> GetAllRooms()
 		{
 			try
 			{
@@ -173,7 +173,7 @@ namespace Application.Services
 			}
 		}
 
-		public async Task<RoomDTOS> GetRoomById(int roomId)
+		public async Task<RoomDTOS> GetRoomById2nd(int roomId)
 		{
 			try
 			{
