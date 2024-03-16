@@ -13,8 +13,9 @@
     <script src="~/js/product-admin.js"></script>
 </head>
 
-<a href="/Admin/AddProduct" class="btn btn-primary">Add</a>
+
 <body>
+    
     <form method="get" class="search-form">
         <div class="input-group">
             <input type="text" class="form-control" name="search" placeholder="Search for Product...">
@@ -22,7 +23,8 @@
                 <button class="btn btn-primary" type="submit">Search</button>
             </div>
         </div>
-    </form>   
+    </form> 
+    <a href="/Admin/AddProduct" >Add</a>
     @if (Model.productDtos != null && Model.productDtos.Any())
     {
         <section class="product">
@@ -74,8 +76,8 @@
 
 
                                 <td>    
-                                    <a href="/Admin/UpdateProduct?id=@product.ProductId" class="btn btn-primary">Update</a>
-                                    <a href="/Admin/DeleteProduct?id=@product.ProductId" class="btn btn-danger">Delete</a>
+                                    <a href="/Admin/UpdateProduct?id=@product.ProductId"> Update</a>
+                                    <a href="/Admin/DeleteProduct?id=@product.ProductId"> Delete</a>
                                 </td>
                             </tr>
                         }
