@@ -21,6 +21,8 @@ namespace Application.IRepositories
         Task<bool> IsProductNameExistsAsync(string productName);
       Product GetProductById(int id);
         Product GetProductByIdToCart(int id);
+        Task<bool> UpdateProduct(Product product);
+        Task UpdateProductAsyncNew(Product product);
 
     }
 }
