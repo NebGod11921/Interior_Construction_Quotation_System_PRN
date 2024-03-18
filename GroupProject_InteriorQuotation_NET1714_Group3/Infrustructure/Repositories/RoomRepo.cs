@@ -45,7 +45,7 @@ namespace Infrastructure.Repositories
 		{
 			try
             {
-                var result = await _appDbContext.Rooms.Where(x => x.Id == roomId).FirstOrDefaultAsync();
+                var result = await _appDbContext.Rooms.Include(r => r.RoomType).Where(x => x.Id == roomId).FirstOrDefaultAsync();
                 if (result == null)
                 {
                     return null;

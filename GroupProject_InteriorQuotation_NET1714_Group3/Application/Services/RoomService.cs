@@ -207,6 +207,9 @@ namespace Application.Services
 				{
 					getRoomId.Area = roomDTOS.Area;
 					getRoomId.RoomDescription = roomDTOS.RoomDescription;
+					getRoomId.CreationDate = roomDTOS.CreationDate;
+					getRoomId.RoomType.Id = roomDTOS.RoomTypeId;
+					_unitOfWork.RoomRepo.Update(getRoomId);
 					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
 					if (IsSuccess)
 					{

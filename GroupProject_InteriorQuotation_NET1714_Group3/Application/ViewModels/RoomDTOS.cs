@@ -11,11 +11,24 @@ namespace Application.ViewModels
 {
 	public class RoomDTOS
 	{
-       
+        public int Id { get; set; }
 		public float Area { get; set; }
 		public string? RoomDescription { get; set; }
 		public DateTime? CreationDate {  get; set; }
-        public virtual RoomTypeDTOS? RoomType { get; set; }
         public bool? IsDeleted { get; set; }
-	}
+        public int RoomTypeId { get; set; }
+        public string RoomTypeName { get; set; }
+
+        public RoomDTOS()
+        {
+            
+        }
+        public RoomDTOS(RoomTypeDTOS roomType)
+        {
+            RoomTypeId = roomType.Id;
+            RoomTypeName = roomType.RoomTypeName;
+        }
+
+
+    }
 }

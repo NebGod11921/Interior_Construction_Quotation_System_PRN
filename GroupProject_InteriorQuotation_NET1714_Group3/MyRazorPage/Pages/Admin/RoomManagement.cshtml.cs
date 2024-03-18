@@ -80,6 +80,52 @@ namespace MyRazorPage.Pages
             await OnGet();
         }
 
+        public async Task OnPostUpdateRoom(int rID, float area, string roomdescription, DateTime creationDate, int RoomType, bool IsDeleted)
+        {
+            ViewData["rID"] = rID;
+            ViewData["Areadata"] = area;
+            ViewData["RoomDescriptiondata"] = roomdescription;
+            ViewData["CreationDatedata"] = creationDate;
+            ViewData["RoomTypedata"] = RoomType;
+            ViewData["Statusdata"] = IsDeleted;
+
+            try
+            {
+                /*var getRoomTypeId = await _roomTypeService.GetRoomTypeById(RoomType);*/
+                RoomDTOS roomDTOS = new RoomDTOS();
+                bool v = CheckValidate(area, roomdescription, creationDate, RoomType, IsDeleted);
+                if (v)
+                {
+
+                    roomDTOS.Area = area;
+                    roomDTOS.RoomDescription = roomdescription;
+                    roomDTOS.CreationDate = creationDate;
+                    roomDTOS.RoomTypeId = RoomType;
+                    roomDTOS.IsDeleted = IsDeleted;
+
+                    var result = await _roomService.UpdateRoom(roomDTOS, rID);
+                    if (result != null)
+                    {
+                        RedirectToPage("/RoomManagement");
+                        
+                    }
+                    else
+                    {
+                        Page();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+           
+            await OnGet();
+        }
+
+
+
+
         private bool CheckValidate(float area, string roomdescription, DateTime creationDate, int roomTypeId, bool IsDeleted)
         {
             bool flag = true;
