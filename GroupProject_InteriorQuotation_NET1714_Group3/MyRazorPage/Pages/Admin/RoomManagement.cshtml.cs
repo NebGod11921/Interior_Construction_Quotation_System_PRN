@@ -122,6 +122,28 @@ namespace MyRazorPage.Pages
            
             await OnGet();
         }
+        public async Task OnPostDeleteRoom(int rID)
+        {
+            var getId = await _roomService.GetRoomById2nd(rID);
+            if (getId != null)
+            {
+                var deleteRoom = await _roomService.DeleteRoom(getId, getId.Id);
+                if (deleteRoom == true)
+                {
+                    ViewData["msgdelete"] = "Room has be deleted successfully";
+                } else
+                {
+                    ViewData["msgdelete"] = "Failed to delete room";
+                }
+            } else
+            {
+                ViewData["msgdelete"] = "Room has deleted, Cannot delete again.";
+            }
+            await OnGet();
+        }
+
+
+
 
 
 

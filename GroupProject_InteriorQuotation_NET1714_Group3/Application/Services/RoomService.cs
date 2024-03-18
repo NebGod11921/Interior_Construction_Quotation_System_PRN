@@ -134,7 +134,7 @@ namespace Application.Services
 				var getRoomId = await _unitOfWork.RoomRepo.GetRoomById(roomId);
 				if (getRoomId != null)
 				{
-					getRoomId.IsDeleted = true;
+					_unitOfWork.RoomRepo.SoftRemove(getRoomId);
 					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
 					if (IsSuccess)
 					{
@@ -208,14 +208,20 @@ namespace Application.Services
 					getRoomId.Area = roomDTOS.Area;
 					getRoomId.RoomDescription = roomDTOS.RoomDescription;
 					getRoomId.CreationDate = roomDTOS.CreationDate;
-					getRoomId.RoomType.Id = roomDTOS.RoomTypeId;
-					_unitOfWork.RoomRepo.Update(getRoomId);
-					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
-					if (IsSuccess)
+					var roomType = await _unitOfWork.RoomTypeRepository.GetRoomTypeById(roomDTOS.RoomTypeId);
+					if (roomType != null )
 					{
-						return true;
-					}
-					return false;
+						getRoomId.RoomType = roomType;
+                        _unitOfWork.RoomRepo.Update(getRoomId);
+                        var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
+                        if (IsSuccess)
+                        {
+                            return true;
+                        } else
+						{
+                            return false;
+                        }
+                    }
 				}
 				return false;
 

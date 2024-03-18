@@ -153,7 +153,25 @@
                                 </td>
                             <td>
                                 @* Delete *@
-                                <input type="submit" class="btn btn-danger" value="Delete" />
+                                <button onclick="openPopupDeleteRoom('@room.Id')">Delete</button>
+                                <div id="popupdeleteroom_@room.Id" class="popup">
+                                    <div class="popup-content">
+                                        <span class="close" onclick="closePopupDeleteRoom('@room.Id')">&times;</span>
+                                        <div class="update-customer-form">
+                                            <h2>Delete Room Information</h2>
+                                            <p>Are you sure for delete this Room : @room.Id</p>
+                                            <form asp-page-handler="DeleteRoom" method="post">
+                                                <input type="hidden" name="rID" value=" @room.Id">
+                                                <button type="submit">Delete</button>
+                                            </form>
+                                            <button type="submit" onclick="closePopupDeleteRoom('@room.Id')">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (ViewData["msgdelete"] != null)
+                                {
+                                    <p>@ViewData["msgdelete"]</p>
+                                }
                             </td>
                         </tr>
                      }
@@ -229,7 +247,7 @@
                     <tr>
                         <th>ID</th>
                         <th>RoomTypeName</th>
-                        <th></th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -264,6 +282,14 @@
     }
     function closePopupUpdateRoom(roomId) {
         var popupId = 'popup_' + roomId;
+        document.getElementById(popupId).style.display = "none";
+    }
+    function openPopupDeleteRoom(roomId) {
+        var popupId = 'popupdeleteroom_' + roomId;
+        document.getElementById(popupId).style.display = "block";
+    }
+    function closePopupDeleteRoom(roomId) {
+        var popupId = 'popupdeleteroom_' + roomId;
         document.getElementById(popupId).style.display = "none";
     }
 
