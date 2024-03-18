@@ -17,17 +17,19 @@ namespace MyRazorPage.Pages
         private readonly IQuotationService _q;
         private readonly IRoomService _r;
         private readonly IRoomTypeService _rt;
+        private readonly IRoomProductService _rp;
         private float Are;
 
         [BindProperty]
         public List<int> SelectedCartIDs { get; set; }
-        public CartModel(ICartService cart, IProductService p, IQuotationService q, IRoomService r, IRoomTypeService rt)
+        public CartModel(ICartService cart, IProductService p, IQuotationService q, IRoomService r, IRoomTypeService rt, IRoomProductService rp)
         {
             _cart = cart;
             _p = p;
             _q = q;
             _r = r;
             _rt = rt;
+            _rp = rp;
         }
         public List<CartDTO> carts;
         public List<RoomTypeDTO1> roomtypes; 
@@ -223,7 +225,25 @@ namespace MyRazorPage.Pages
             }
             else
             {
-
+                List<RoomDTO> roomDTOs = new List<RoomDTO>();
+                List<RoomProductDTO> roomProductDTOs = new List<RoomProductDTO>();
+                foreach (var cart in carts) 
+                {
+                    roomDTOs.Add(new RoomDTO
+                    {
+                        Area = (float)cart.rAre,
+                        RoomDescription = cart.rDescrip,
+                    });
+                    foreach (var item in _cart.getItemByCartId(cart.Id))
+                    {
+                        roomProductDTOs.Add(new RoomProductDTO 
+                        {
+                            ProductId = item.productId,
+                            RoomId = 
+                        });
+                    }
+                }
+                QuotationDTO quotationDTO = new QuotationDTO();
             }
         }
     }
