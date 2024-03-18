@@ -124,10 +124,11 @@ namespace MyRazorPage.Pages
         }
         public async Task OnPostDeleteRoom(int rID)
         {
+            ViewData["rID"] = rID;
             var getId = await _roomService.GetRoomById2nd(rID);
             if (getId != null)
             {
-                var deleteRoom = await _roomService.DeleteRoom(getId, getId.Id);
+                var deleteRoom = await _roomService.DeleteRoom(getId, rID);
                 if (deleteRoom == true)
                 {
                     ViewData["msgdelete"] = "Room has be deleted successfully";
