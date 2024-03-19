@@ -128,7 +128,7 @@ namespace MyRazorPage.Pages
             var getId = await _roomService.GetRoomById2nd(rID);
             if (getId != null)
             {
-                var deleteRoom = await _roomService.DeleteRoom(getId, rID);
+                var deleteRoom = await _roomService.DeleteRoom2nd(rID);
                 if (deleteRoom == true)
                 {
                     ViewData["msgdelete"] = "Room has be deleted successfully";

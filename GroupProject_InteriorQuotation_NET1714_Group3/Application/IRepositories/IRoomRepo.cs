@@ -17,7 +17,7 @@ namespace Application.IRepositories
         public Task<Room> GetRoomById(int roomId);
         public Task<IEnumerable<Room>> GetAllRooms();
         public Task<bool> CreateRoom(Room room);
-
+        public Task<bool> DeleteRoom(int roomId);   
 
     }
 }
