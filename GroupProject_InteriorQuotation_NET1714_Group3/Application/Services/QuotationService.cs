@@ -32,10 +32,11 @@ namespace Application.Services
                 else
                 {
                     getQuotationId.Status = 0;
+                     _unitOfWork.QuotationRepository.Update(getQuotationId);
                     var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
                     if (IsSuccess)
                     {
-						var mapped = _mapper.Map(getQuotationId, quotation);
+                        _mapper.Map<QuotationDTO>(getQuotationId);
 						return true;
 					}
 					return false;
@@ -195,10 +196,11 @@ namespace Application.Services
 				else
 				{
 					getQuotationId.Status = 1;
-					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
+                    _unitOfWork.QuotationRepository.Update(getQuotationId);
+                    var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
 					if (IsSuccess)
 					{
-						var mapped =  _mapper.Map(getQuotationId, quotation);
+						_mapper.Map<QuotationDTO>(getQuotationId);
 						return true;
 					}
 					return false;
