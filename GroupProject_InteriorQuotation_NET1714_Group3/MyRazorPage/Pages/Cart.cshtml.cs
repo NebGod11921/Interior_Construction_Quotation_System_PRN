@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using AutoMapper.Internal;
 
 namespace MyRazorPage.Pages
 {
@@ -216,7 +217,7 @@ namespace MyRazorPage.Pages
             return (int)Math.Ceiling(numberOfProducts);
 
         }
-        public void OnPostAddQuotation()
+        public async Task OnPostAddQuotation()
         {
             var carts = _cart.getAllCart();
             if (carts.Count <= 0)
@@ -230,12 +231,12 @@ namespace MyRazorPage.Pages
                 foreach (var cart in carts)
                 {
 
-                    var room = _r.CreateRoom(new RoomDTO
+                    var room = await _r.CreateRoom(new RoomDTO
                     {
                         Area = (float)cart.rAre,
                         RoomDescription = cart.rDescrip,
                     });
-
+                    roomDTOs.TryAdd(room);
                     if (room != null)
                     {
                         foreach (var item in _cart.getItemByCartId(cart.Id))
