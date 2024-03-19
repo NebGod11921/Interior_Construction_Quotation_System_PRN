@@ -18,6 +18,6 @@ namespace Application.IRepositories
         public Task<IEnumerable<Room>> GetAllRooms();
         public Task<bool> CreateRoom(Room room);
 
-
+        public Task<Room> GetNewRooms();
     }
 }

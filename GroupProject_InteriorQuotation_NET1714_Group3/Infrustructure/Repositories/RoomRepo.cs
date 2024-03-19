@@ -41,6 +41,27 @@ namespace Infrastructure.Repositories
             }
         }
 
+        public async Task<Room> GetNewRooms()
+        {
+            try
+            {
+                var result = await _appDbContext.Rooms.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+                if (result == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<Room> GetRoomById(int roomId)
 		{
 			try

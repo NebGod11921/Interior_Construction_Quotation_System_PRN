@@ -20,7 +20,7 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateRoom(RoomDTO roomDTO)
+        public async Task<RoomDTO> CreateRoom(RoomDTO roomDTO)
         {
             try
             {
@@ -28,11 +28,12 @@ namespace Application.Services
                 await _unitOfWork.RoomRepository.AddAsync(r_mapper);
                 if (await _unitOfWork.SaveChangeAsync() > 0)
                 {
-                    return true;
+					var roomnew = _mapper.Map<RoomDTO>(_unitOfWork.RoomRepo.GetNewRooms);
+                    return roomnew;
                 }
                 else
                 {
-                    return false;
+                    return null;
                 }
             }
             catch (Exception e)

@@ -17,22 +17,22 @@ namespace MyRazorPage.Pages
         private readonly IQuotationService _q;
         private readonly IRoomService _r;
         private readonly IRoomTypeService _rt;
-        private readonly IRoomProductService _rp;
+        //private readonly IRoomProductService _rp;
         private float Are;
 
         [BindProperty]
         public List<int> SelectedCartIDs { get; set; }
-        public CartModel(ICartService cart, IProductService p, IQuotationService q, IRoomService r, IRoomTypeService rt, IRoomProductService rp)
+        public CartModel(ICartService cart, IProductService p, IQuotationService q, IRoomService r, IRoomTypeService rt/*, IRoomProductService rp*/)
         {
             _cart = cart;
             _p = p;
             _q = q;
             _r = r;
             _rt = rt;
-            _rp = rp;
+            //_rp = rp;
         }
         public List<CartDTO> carts;
-        public List<RoomTypeDTO1> roomtypes; 
+        public List<RoomTypeDTO1> roomtypes;
         public ProductDto getProductById(int productId)
         {
             var p = _p.GetProductByIdToCart(productId);
@@ -43,7 +43,7 @@ namespace MyRazorPage.Pages
             var p = _p.GetProductByIdWithAll(productId);
             return p;
         }
-        public async Task OnGet() 
+        public async Task OnGet()
         {
             carts = _cart.getAllCart() ?? new List<CartDTO>();
             roomtypes = await _rt.GetAllRoomTypeDTOs();
@@ -64,14 +64,14 @@ namespace MyRazorPage.Pages
                 {
                     cartForAdd.Items = new List<ItemDTO>();
                 }
-                    int itemid = _cart.GetItemIdNew(cartForAdd.Id);
-                    cartForAdd.Items.Add(new ItemDTO
-                    {
-                        Id = itemid,
-                        productId = pId,
-                        cartId = cartForAdd.Id,
-                        quanity = 1
-                    });
+                int itemid = _cart.GetItemIdNew(cartForAdd.Id);
+                cartForAdd.Items.Add(new ItemDTO
+                {
+                    Id = itemid,
+                    productId = pId,
+                    cartId = cartForAdd.Id,
+                    quanity = 1
+                });
                 _cart.AddToCart(cartForAdd);
             }
             carts = _cart.getAllCart() ?? new List<CartDTO>();
@@ -150,7 +150,7 @@ namespace MyRazorPage.Pages
             {
                 foreach (var item in cart)
                 {
-                    if(item.Id == itemid)
+                    if (item.Id == itemid)
                     {
                         item.quanity = quantity;
                         _cart.UpdateCartItems(cart);
@@ -219,7 +219,7 @@ namespace MyRazorPage.Pages
         public void OnPostAddQuotation()
         {
             var carts = _cart.getAllCart();
-            if(carts.Count <= 0)
+            if (carts.Count <= 0)
             {
                 ViewData["msgAQ"] = "Please choose one or more room for make quotation.";
             }
@@ -227,23 +227,29 @@ namespace MyRazorPage.Pages
             {
                 List<RoomDTO> roomDTOs = new List<RoomDTO>();
                 List<RoomProductDTO> roomProductDTOs = new List<RoomProductDTO>();
-                foreach (var cart in carts) 
+                foreach (var cart in carts)
                 {
-                    roomDTOs.Add(new RoomDTO
+
+                    var room = _r.CreateRoom(new RoomDTO
                     {
                         Area = (float)cart.rAre,
                         RoomDescription = cart.rDescrip,
                     });
-                    foreach (var item in _cart.getItemByCartId(cart.Id))
+
+                    if (room != null)
                     {
-                        roomProductDTOs.Add(new RoomProductDTO 
+                        foreach (var item in _cart.getItemByCartId(cart.Id))
                         {
-                            ProductId = item.productId,
-                            RoomId = 
-                        });
+                            roomProductDTOs.Add(new RoomProductDTO
+                            {
+                                ProductId = item.productId,
+                                RoomId = room.Id
+                            });
+                        }
                     }
+
+                    QuotationDTO quotationDTO = new QuotationDTO();
                 }
-                QuotationDTO quotationDTO = new QuotationDTO();
             }
         }
     }
