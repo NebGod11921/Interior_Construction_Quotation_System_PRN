@@ -58,6 +58,7 @@ namespace Infrustructure
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IRoomProductService, RoomProductService>();
 
 
             services.AddScoped<IColorRepo, ColorRepo>();
@@ -69,6 +70,8 @@ namespace Infrustructure
             {
                 options.MultipartBodyLengthLimit = long.MaxValue;
             });
+
+            services.AddScoped<IRoomProductRepositiory, RoomProductRepository>();
 
             //services.AddScoped<IImage, ProductService>();
 

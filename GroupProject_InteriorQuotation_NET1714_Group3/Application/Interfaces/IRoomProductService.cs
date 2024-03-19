@@ -9,6 +9,6 @@ namespace Application.Interfaces
 {
     public interface IRoomProductService
     {
-        Task<bool> CreateRoomProduct(RoomDTO roomDTO);
+        Task<bool> CreateRoomProduct(RoomProductDTO roomProductDTO);
     }
 }

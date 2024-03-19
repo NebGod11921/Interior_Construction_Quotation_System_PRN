@@ -25,6 +25,8 @@ namespace Application.Services
             try
             {
                 Room r_mapper = _mapper.Map<Room>(roomDTO);
+				r_mapper.CreationDate = DateTime.Now;
+				r_mapper.IsDeleted = false;
                 await _unitOfWork.RoomRepository.AddAsync(r_mapper);
                 if (await _unitOfWork.SaveChangeAsync() > 0)
                 {
@@ -188,10 +190,6 @@ namespace Application.Services
 				{
 					return null;
 				}
-
-
-
-
 			} catch (Exception ex)
 			{
 				throw new Exception(ex.Message);
@@ -231,5 +229,27 @@ namespace Application.Services
 				throw new Exception(ex.Message);
 			}
 		}
-	}
+
+        public int getnewid()
+        {
+            try
+            {
+                var result =  _unitOfWork.RoomRepo.GetNewRooms().Result.Id;
+                if (result != null )
+                {
+                    return result;
+                }
+                else
+                {
+                    return result;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
 }

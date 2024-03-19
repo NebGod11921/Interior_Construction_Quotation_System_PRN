@@ -28,6 +28,7 @@ namespace Application.ViewModels
 
     public class ProductDto1
     {
+        public float Price { get; set; }
         public virtual Category? Category { get; set; }
     }
 }

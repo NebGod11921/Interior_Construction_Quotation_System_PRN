@@ -26,6 +26,7 @@ namespace Application.Interfaces
         public Task<RoomDTOS> CreateRoom(RoomDTOS roomDTOS);
         public Task<bool> DeleteRoom(RoomDTOS roomDTOS,int roomId);
         public Task<bool> UpdateRoom(RoomDTOS roomDTOS, int roomId);
+        public int getnewid();
 
     }
 }

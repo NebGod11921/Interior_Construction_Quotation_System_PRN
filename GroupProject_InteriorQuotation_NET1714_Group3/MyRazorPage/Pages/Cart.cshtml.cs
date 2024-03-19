@@ -8,6 +8,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using AutoMapper.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace MyRazorPage.Pages
 {
@@ -18,19 +19,19 @@ namespace MyRazorPage.Pages
         private readonly IQuotationService _q;
         private readonly IRoomService _r;
         private readonly IRoomTypeService _rt;
-        //private readonly IRoomProductService _rp;
+        private readonly IRoomProductService _rp;
         private float Are;
 
         [BindProperty]
         public List<int> SelectedCartIDs { get; set; }
-        public CartModel(ICartService cart, IProductService p, IQuotationService q, IRoomService r, IRoomTypeService rt/*, IRoomProductService rp*/)
+        public CartModel(ICartService cart, IProductService p, IQuotationService q, IRoomService r, IRoomTypeService rt, IRoomProductService rp)
         {
             _cart = cart;
             _p = p;
             _q = q;
             _r = r;
             _rt = rt;
-            //_rp = rp;
+            _rp = rp;
         }
         public List<CartDTO> carts;
         public List<RoomTypeDTO1> roomtypes;
@@ -226,6 +227,7 @@ namespace MyRazorPage.Pages
             }
             else
             {
+                float totalprice = 0;
                 List<RoomDTO> roomDTOs = new List<RoomDTO>();
                 List<RoomProductDTO> roomProductDTOs = new List<RoomProductDTO>();
                 foreach (var cart in carts)
@@ -235,23 +237,47 @@ namespace MyRazorPage.Pages
                     {
                         Area = (float)cart.rAre,
                         RoomDescription = cart.rDescrip,
+                        RoomTypeId = (int)cart.rType,
                     });
                     roomDTOs.TryAdd(room);
                     if (room != null)
                     {
                         foreach (var item in _cart.getItemByCartId(cart.Id))
                         {
+                            var price = _p.GetProductById(item.productId).Price;
+                            totalprice += price* item.quanity;
                             roomProductDTOs.Add(new RoomProductDTO
                             {
                                 ProductId = item.productId,
                                 RoomId = room.Id
                             });
                         }
+                        foreach (var rt in roomProductDTOs)
+                        {
+                            _rp.CreateRoomProduct(rt);
+                        }
                     }
-
                     QuotationDTO quotationDTO = new QuotationDTO();
+                    quotationDTO.QuotationName = "Room quote" + cart.rDescrip;
+                    quotationDTO.Quantity = 1;
+                    quotationDTO.UnitPrice = totalprice;
+                    quotationDTO.TotalPrice = totalprice;
+                    quotationDTO.Status = 1;
+                    quotationDTO.CreateDate = DateTime.Now;
+                    quotationDTO.EndDate = DateTime.Now.AddDays(8);
+                    quotationDTO.RoomId = _r.getnewid();
+                    bool ss = await _q.CreateQuotation(quotationDTO);
+                    if (ss)
+                    {
+                        ViewData["msgmakequotation"] = "Make Quotation Successfully";
+                    }
+                    else
+                    {
+                        ViewData["msgmakequotation"] = "Make Quotation Fail";
+                    }
                 }
             }
+            OnGet();
         }
     }
 }

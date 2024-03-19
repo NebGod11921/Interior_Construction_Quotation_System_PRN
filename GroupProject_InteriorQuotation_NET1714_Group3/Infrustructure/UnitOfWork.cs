@@ -23,8 +23,9 @@ namespace Infrastructure
         private readonly ICateRepo _cateRepo;
         private readonly IImageRepo _imageRepo;
         private readonly IQuotationRepository _quotationRepository;
-		//private readonly IProductImageRepo _productImageRepo;
-		//private readonly IImageRepo _imageRepo;
+        //private readonly IProductImageRepo _productImageRepo;
+        //private readonly IImageRepo _imageRepo;
+        private readonly IRoomProductRepositiory _roomProductRepositiory;
 
         private readonly IRoomRepository _roomRepository;
 
@@ -34,7 +35,8 @@ namespace Infrastructure
              IRoomTypeRepository roomTypeRepository,
              IRoomRepository roomRepository,
              IColorRepo colorRepo, IMaterialRepo materialRepo, IRoomRepo roomRepo, ICateRepo cateRepo, IImageRepo imageRepo,
-             IQuotationRepository quotationRepository)
+             IQuotationRepository quotationRepository,
+             IRoomProductRepositiory roomProductRepositiory)
         {
             _dbContext = dbContext;
             _userRepository = userRepository;
@@ -47,6 +49,7 @@ namespace Infrastructure
             _imageRepo = imageRepo;
             _quotationRepository = quotationRepository;
             _roomRepository = roomRepository;
+            _roomProductRepositiory = roomProductRepositiory;
         }
 
         public IUserRepository UserRepository => _userRepository;
@@ -65,6 +68,7 @@ namespace Infrastructure
         public ICateRepo CateRepo => _cateRepo;
 
         public IImageRepo ImageRepo => _imageRepo;
+        public IRoomProductRepositiory RoomProductRepositiory => _roomProductRepositiory;
 
         public void AddProductImage(ProductImage productImage)
         {
