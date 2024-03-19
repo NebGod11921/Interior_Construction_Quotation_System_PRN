@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "fx8wsoXP7X/kJw92CrcnstLVC1CBj1p4GRy9iQ1Gigk=",
+=======
+  "Hash": "u+j92rcv5L6iUf0saPHvwswNzOLgxjsMZ2fAk55DHms=",
+>>>>>>> f62c37d93de513767a8a172db5c23c52e48c02cc
   "Source": "MyRazorPage",
   "BasePath": "_content/MyRazorPage",
   "Mode": "Default",
@@ -2430,7 +2434,28 @@
       "OriginalItemSpec": "wwwroot\\Images\\DiningRoom\\StoreagecabinetR16.jpg"
     },
     {
+<<<<<<< HEAD
       "Identity": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\3de53c66-a981-4b3b-8deb-4d09803bbe94.png",
+=======
+      "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\0b782641-842b-4408-a50c-531f5decdffe.png",
+      "SourceId": "MyRazorPage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\",
+      "BasePath": "_content/MyRazorPage",
+      "RelativePath": "Images/Living Room/0b782641-842b-4408-a50c-531f5decdffe.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Living Room\\0b782641-842b-4408-a50c-531f5decdffe.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\GitHub\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\3de53c66-a981-4b3b-8deb-4d09803bbe94.png",
+>>>>>>> f62c37d93de513767a8a172db5c23c52e48c02cc
       "SourceId": "MyRazorPage",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\PRN221\\GitHubMain\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\",

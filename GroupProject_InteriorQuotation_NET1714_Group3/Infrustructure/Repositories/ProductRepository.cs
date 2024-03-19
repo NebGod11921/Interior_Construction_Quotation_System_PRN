@@ -31,7 +31,27 @@ namespace Infrastructure.Repositories
                 throw new Exception("Failed to remove product to database.", ex);
             }
         }
+        public async Task<bool> UpdateProduct(Product product)
+        {
+            try
+            {
+                
+                int rowsAffected = await _appDbContext.SaveChangesAsync();
 
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to add product to database.", ex);
+            }
+        }
 
         public async Task<int?> AddProduct(Product product)
         {
@@ -54,7 +74,11 @@ namespace Infrastructure.Repositories
                 throw new Exception("Failed to add product to database.", ex);
             }
         }
-
+        public async Task UpdateProductAsyncNew(Product product)
+        {
+             _appDbContext.Update(product);
+            await _appDbContext.SaveChangesAsync();
+        }
         public async Task AddProductToRoomAsync(RoomProduct roomProduct)
         {
             await _appDbContext.AddAsync(roomProduct);
@@ -65,7 +89,8 @@ namespace Infrastructure.Repositories
 
         //private async Task<int> SaveChangeAsync()
         //{
-        //    return await _appDbContext.SaveChangesAsync();
+        //    re
+        //    turn await _appDbContext.SaveChangesAsync();
         //}
 
         public async Task<Product> GetProductByIdWithAll(int id)
