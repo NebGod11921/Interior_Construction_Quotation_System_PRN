@@ -130,18 +130,18 @@ namespace Application.Services
             }
 		}
 
-		public async Task<bool> DeleteRoom(RoomDTOS r, int roomId)
+		public async Task<bool> DeleteRoom2nd(int roomId)
 		{
 			try
 			{
 				var getRoomId = await _unitOfWork.RoomRepo.GetRoomById(roomId);
 				if (getRoomId != null)
 				{
-					r.IsDeleted = true;
+					await _unitOfWork.RoomRepo.DeleteRoom(getRoomId.Id);
 					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
 					if (IsSuccess)
 					{
-						var mapped = _mapper.Map(r, getRoomId);
+						
 						return true;
 					}
 					return false;

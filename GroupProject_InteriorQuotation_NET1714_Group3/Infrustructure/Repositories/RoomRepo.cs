@@ -113,5 +113,28 @@ namespace Infrastructure.Repositories
         {
             return _appDbContext.Rooms.Where(r => r.RoomType.Id == roomTypeId).ToList();
         }
+
+        public async Task<bool> DeleteRoom(int roomId)
+        {
+            try
+            {
+                var result = await _appDbContext.Rooms.Where(x => x.Id == roomId).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    _appDbContext.Remove(result);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

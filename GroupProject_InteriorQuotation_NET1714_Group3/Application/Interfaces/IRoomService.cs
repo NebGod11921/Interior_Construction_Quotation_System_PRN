@@ -24,7 +24,7 @@ namespace Application.Interfaces
         public Task<IEnumerable<RoomDTOS>> GetAllRooms();
         public Task<RoomDTOS> GetRoomById2nd(int roomId);
         public Task<RoomDTOS> CreateRoom(RoomDTOS roomDTOS);
-        public Task<bool> DeleteRoom(RoomDTOS roomDTOS,int roomId);
+        public Task<bool> DeleteRoom2nd(int roomId);
         public Task<bool> UpdateRoom(RoomDTOS roomDTOS, int roomId);
         public int getnewid();
 
