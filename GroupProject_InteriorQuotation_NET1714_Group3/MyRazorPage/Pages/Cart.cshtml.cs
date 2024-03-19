@@ -249,7 +249,7 @@ namespace MyRazorPage.Pages
                             roomProductDTOs.Add(new RoomProductDTO
                             {
                                 ProductId = item.productId,
-                                RoomId = room.Id
+                                RoomId = _r.getnewid()
                             });
                         }
                         foreach (var rt in roomProductDTOs)
