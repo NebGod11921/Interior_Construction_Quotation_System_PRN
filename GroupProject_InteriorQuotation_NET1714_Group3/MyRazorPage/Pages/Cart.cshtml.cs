@@ -211,6 +211,9 @@ namespace MyRazorPage.Pages
                 case 9:// Tivi 
                     numberOfProducts = (requiredAreaWithBuffer / 20.0) * 1;
                     break;
+                case 10:// Shower 
+                    numberOfProducts = (requiredAreaWithBuffer / 20.0) * 1;
+                    break;
                 default:
                     numberOfProducts = (requiredAreaWithBuffer / 20.0) * 3;
                     break;
