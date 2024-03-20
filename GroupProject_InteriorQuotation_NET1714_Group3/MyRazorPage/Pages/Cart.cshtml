@@ -238,8 +238,10 @@
                                                     </div>
                                                 </div>
                                             </form>
-
-
+                                            @if (ViewData["msgmakequotation"] != null)
+                                            {
+                                                <p style="color:green">@ViewData["msgmakequotation"]</p>
+                                            }
                                             @foreach (var p in items)
                                             {
                                                 <div class="d-flex align-items-center mb-5">
