@@ -19,5 +19,6 @@ namespace Application.Interfaces
         Task<IEnumerable<QuotationDTO>> SearchQuotationByName(string name);
         Task<bool> CancelQuotationStatus(int quotationId, QuotationDTO quotation);
         Task<bool> UpdatesQuotationStatus(int quotationId, QuotationDTO quotation);
+        Task<bool> SuccessfulQuotationStatus(int quotationId, QuotationDTO quotation);
     }
 }
