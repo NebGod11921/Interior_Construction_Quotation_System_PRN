@@ -270,7 +270,7 @@ namespace MyRazorPage.Pages
                         foreach (var item in _cart.getItemByCartId(cart.Id))
                         {
                             var price = _p.GetProductById(item.productId).Price;
-                            totalprice += price* item.quanity;
+                            //totalprice += (price * item.quanity);
                             roomProductDTOs.Add(new RoomProductDTO
                             {
                                 ProductId = item.productId,
@@ -278,7 +278,10 @@ namespace MyRazorPage.Pages
                                 Quantity = item.quanity,
                                 ActualPrice = price * item.quanity
                             });
-                        }
+							var pricec = item.quanity * getProductById(item.productId).Price;
+                            totalprice += pricec;
+
+						}
                         foreach (var rt in roomProductDTOs)
                         {
                             _rp.CreateRoomProduct(rt);

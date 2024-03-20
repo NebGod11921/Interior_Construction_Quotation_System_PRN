@@ -76,6 +76,7 @@
                                     var staffSessionValue = viewContext.Session.GetString("staffSession");
                                     if (csSessionValue != null)
                                     {
+                                        
                                         var myObject = JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
                                         <div class="main-white-button">
                                             <a asp-page="/Login" asp-page-handler="Logout" class="logout">
@@ -83,6 +84,7 @@
                                                 <span class="nav-item">Logout</span>
                                             </a>
                                         </div>
+                                        <div> Welcome @myObject.FullName</div>
                                     }
                                     else if (staffSessionValue != null)
                                     {

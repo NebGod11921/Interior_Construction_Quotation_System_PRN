@@ -49,11 +49,14 @@ namespace Infrastructure.Repositories
                 if (latestRoomId == null)
                 {
                     throw new InvalidOperationException("No rooms found in the database.");
-                }
+                } else
+                {
+					var latestRoom = await _appDbContext.Rooms.FirstOrDefaultAsync(x => x.Id == latestRoomId);
 
-                var latestRoom = await _appDbContext.Rooms.FirstOrDefaultAsync(x => x.Id == latestRoomId);
+					return latestRoom;
+				}
 
-                return latestRoom;
+                
             }
             catch (Exception ex)
             {

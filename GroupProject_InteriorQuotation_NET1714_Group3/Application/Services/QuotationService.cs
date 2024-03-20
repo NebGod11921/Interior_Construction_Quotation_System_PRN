@@ -95,13 +95,13 @@ namespace Application.Services
             }
         }
 
-        public List<QuotationDTO> GetQuotationByCsId(int csId)
+        public async Task<IEnumerable<QuotationDTO>> GetQuotationByCsId(int csId)
         {
             try
             {
-                var quotations = _unitOfWork.QuotationRepository.GetQuotationsByCsID(csId);
+                var quotations = await _unitOfWork.QuotationRepository.GetQuotationsByCsID(csId);
                 var quotationDTOs = _mapper.Map<List<QuotationDTO>>(quotations);
-                if (quotations == null && quotations.Count > 0) 
+                if (quotations != null) 
                 {
                     return quotationDTOs;
                 }

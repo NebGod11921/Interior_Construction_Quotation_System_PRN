@@ -34,8 +34,18 @@ namespace MyRazorPage.Pages
 		 }*/
 		public async Task OnGet()
 		{
-			Quotations = await _quotationService.GetAllQuotation();
-			RoomDTOs = await _roomService.GetAllRooms();
+			var csSessionValue = HttpContext.Session.GetString("csSession");
+			if (csSessionValue != null)
+			{
+				var myObject = JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
+				Quotations = await  _quotationService.GetQuotationByCsId(myObject.Id);
+				RoomDTOs = await _roomService.GetAllRooms();
+			} else
+			{
+				Page();
+			}
+				
+			
 		}
 
 		public async Task OnPostCancel(int quotationId)

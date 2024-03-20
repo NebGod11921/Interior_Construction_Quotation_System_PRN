@@ -29,7 +29,7 @@ namespace MyRazorPage.Pages
             ViewData["passworddata"] = password;
             ViewData["cfpassworddata"] = cfpassword;
             ViewData["genderdata"] = selectedGender;
-            if (Validate( fullname, Address, phone, email, password, cfpassword, selectedGender) == true)
+            if ( await Validate( fullname, Address, phone, email, password, cfpassword, selectedGender) == true)
             {
                 
                     AccountDTO account = new AccountDTO();
@@ -54,7 +54,7 @@ namespace MyRazorPage.Pages
             }
             OnGet();
         }    
-        private bool Validate(string fullname, string address, string telephone, string email, string password, string cfpassword, string gender)
+        private async Task<bool> Validate(string fullname, string address, string telephone, string email, string password, string cfpassword, string gender)
         {
             bool flag = true;
             if (string.IsNullOrEmpty(fullname))
@@ -69,6 +69,7 @@ namespace MyRazorPage.Pages
             }
             if (string.IsNullOrEmpty(telephone))
             {
+                
                 ViewData["telephone"] = "Please fill telephone";
                 flag = false;
             }
@@ -100,7 +101,15 @@ namespace MyRazorPage.Pages
                     flag = false;
                 }
             }
-            
+            if(!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(email))
+            {
+                bool r = await _account.CheckEmailAddressExisted(email);
+                if (r == true)
+                {
+                    ViewData["email"] = "Email is existed";
+                    flag = false;
+                }
+            }
            return flag;
         }
     }

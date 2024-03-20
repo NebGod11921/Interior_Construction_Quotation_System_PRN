@@ -15,11 +15,11 @@ namespace Infrastructure.Repositories
 
 		
 
-		public List<Quotation> GetQuotationsByCsID(int csID)
+		public async Task<IEnumerable<Quotation>> GetQuotationsByCsID(int csID)
         {
             try
             {
-                var quotations = _appDbContext.Quotations.Where(x => x.User.Id == csID).ToList();
+                var quotations = await _appDbContext.Quotations.Include(x => x.Room).Where(x => x.UserId == csID).ToListAsync();
                 if (quotations.Count > 0)
                 {
                     return quotations;
