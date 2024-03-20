@@ -45,13 +45,13 @@ namespace Infrastructure.Repositories
         {
             try
             {
-                var latestRoomId = await _appDbContext.Rooms.MaxAsync(x => x.Id);
+                var latestRoomId = await _appDbContext.Rooms.Include(b => b.RoomType).MaxAsync(x => x.Id);
                 if (latestRoomId == null)
                 {
                     throw new InvalidOperationException("No rooms found in the database.");
                 } else
                 {
-					var latestRoom = await _appDbContext.Rooms.FirstOrDefaultAsync(x => x.Id == latestRoomId);
+					var latestRoom = await _appDbContext.Rooms.Include(x => x.RoomType).FirstOrDefaultAsync(x => x.Id == latestRoomId);
 
 					return latestRoom;
 				}
@@ -69,7 +69,7 @@ namespace Infrastructure.Repositories
 		{
 			try
             {
-                var result = await _appDbContext.Rooms.Include(r => r.RoomType).Where(x => x.Id == roomId).FirstOrDefaultAsync();
+                var result = await _appDbContext.Rooms.Where(x => x.Id == roomId).FirstOrDefaultAsync();
                 if (result == null)
                 {
                     return null;
