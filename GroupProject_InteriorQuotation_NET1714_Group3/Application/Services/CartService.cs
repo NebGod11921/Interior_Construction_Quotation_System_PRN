@@ -153,5 +153,17 @@ namespace Application.Services
             }
         }
 
+        public void UpdateCartItem(ItemDTO updatedItem)
+        {
+                var existingItem = items.FirstOrDefault(i => i.Id == updatedItem.Id);
+
+                if (existingItem != null)
+                {
+                    existingItem.productId = updatedItem.productId;
+                    existingItem.cartId = updatedItem.cartId;
+                    existingItem.quanity = updatedItem.quanity;
+                }
         }
+
+    }
 }

@@ -189,7 +189,6 @@
                                     var totalprice = 0f;
                                     @foreach (var cart in Model.carts)
                                     {
-
                                         var items = cart.Items.Where(x => x.cartId == cart.Id).ToList() ?? new List<ItemDTO>();
                                         <div>
                                             <form asp-page-handler="Caculator" method="post" class="form-container">
@@ -198,30 +197,36 @@
                                                     <div class="row top-row">
                                                         <div class="column half">
                                                             <div class="checkbox-container">
-                                                                <input type="checkbox" id="myCheckbox" class="myCheckbox" value="checkboxValue @cart.Id">
                                                                 <label class="form-check-label" for="selectedCarts">
                                                                     Select Cart
                                                                 </label>
-                                                                @if (cart.roomId != 0 || cart.roomId != null)
+                                                                @if (cart.roomId != 0)
                                                                 {
                                                                     <label for="selectedCart@cart.Id"> Room @cart.Id</label>
                                                                 }
                                                                 else
                                                                 {
-                                                                    <label for="selectedCart@cart.Id">Cart Custom Product @cart.Id</label>
+                                                                    <label for="selectedCart@cart.Id">Custom Quoation</label>
                                                                 }
                                                             </div>
                                                             <select name="SelectedOption" id="roomSelection" class="form-control">
                                                                 @foreach (var item in Model.roomtypes)
                                                                 {
-                                                                    <option value="@item.Id">@item.RoomTypeName</option>
+                                                                    @if (cart.rType == 0)
+                                                                    {
+                                                                        <option value="@item.Id">@item.RoomTypeName</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@item.Id" selected="@(cart.rType == item.Id)">@item.RoomTypeName</option>
+                                                                    }
                                                                 }
                                                             </select>
                                                         </div>
                                                         <div class="column half">
                                                             <div class="form-group">
                                                                 <label for="roomArea" class="form-label">Room Area</label>
-                                                                <input type="text" id="roomArea" name="roomArea" class="form-control" />
+                                                                <input type="text" id="roomArea" name="roomArea" class="form-control" value="@(cart.rAre == 0? 0:cart.rAre)" />
                                                             </div>
                                                             <button type="submit" class="submit-btn">Calculator</button>
                                                         </div>
@@ -231,7 +236,7 @@
                                                             <div class="form-container full-width">
                                                                 <div class="form-group">
                                                                     <label for="descriptionText" class="form-label">Description</label>
-                                                                    <input type="text" id="descriptionText" name="rDescription" class="form-control" />
+                                                                    <input type="text" id="descriptionText" name="rDescription" class="form-control" value="@(cart.rDescrip == ""?"":cart.rDescrip)" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -368,23 +373,3 @@
     </div>
 </section>
 <div id="result"></div>
-
-@* <script>
-    function getCheckboxValue() {
-        var checkedValues = [];
-
-        var checkboxes = document.querySelectorAll('.myCheckbox');
-        checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked) {
-                checkedValues.push(checkbox.value);
-            }
-        });
-
-        var resultDiv = document.getElementById("result");
-        if (checkedValues.length > 0) {
-            resultDiv.innerHTML = "Checked values: " + checkedValues.join(", ");
-        } else {
-            resultDiv.innerHTML = "No checkboxes are checked";
-        }
-    }
-</script> *@

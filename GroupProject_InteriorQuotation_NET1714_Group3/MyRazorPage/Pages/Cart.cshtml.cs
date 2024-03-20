@@ -6,10 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using AutoMapper.Internal;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
+using System.Text.Json;
 namespace MyRazorPage.Pages
 {
     public class CartModel : PageModel
@@ -50,7 +48,6 @@ namespace MyRazorPage.Pages
             carts = _cart.getAllCart() ?? new List<CartDTO>();
             roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
-
         public async Task OnPostAddToCartProduct(int pId)
         {
             var cexits = _cart.getAllCart().Where(x => x.roomId == 0 || x.roomId == null).FirstOrDefault();
@@ -62,24 +59,49 @@ namespace MyRazorPage.Pages
                 cartForAdd.rAre = 0f;
                 cartForAdd.rType = 0;
                 cartForAdd.rDescrip = "";
-                if (cartForAdd.Items == null)
+                if (cartForAdd.Items == null || cartForAdd.Items.Count <= 0)
                 {
                     cartForAdd.Items = new List<ItemDTO>();
                 }
-                int itemid = _cart.GetItemIdNew(cartForAdd.Id);
-                cartForAdd.Items.Add(new ItemDTO
+                    
+                    
+                    
+                        int itemid = _cart.GetItemIdNew(cartForAdd.Id);
+                        cartForAdd.Items.Add(new ItemDTO
+                        {
+                            Id = itemid,
+                            productId = pId,
+                            cartId = cartForAdd.Id,
+                            quanity = 1
+                        });
+                        _cart.AddToCart(cartForAdd);
+                    
+                    
+            }
+            else
+            {
+                var itemexits = cexits.Items.FirstOrDefault(x => x.productId == pId);
+                if (itemexits != null)
                 {
-                    Id = itemid,
-                    productId = pId,
-                    cartId = cartForAdd.Id,
-                    quanity = 1
-                });
-                _cart.AddToCart(cartForAdd);
+                    itemexits.quanity += 1;
+                    _cart.UpdateCartItem(itemexits);
+                }
+                else
+                {
+                    int itemid = _cart.GetItemIdNew(cexits.Id);
+                    cexits.Items.Add(new ItemDTO
+                    {
+                        Id = itemid,
+                        productId = pId,
+                        cartId = cexits.Id,
+                        quanity = 1
+                    });
+                }
+                
             }
             carts = _cart.getAllCart() ?? new List<CartDTO>();
             roomtypes = await _rt.GetAllRoomTypeDTOs();
         }
-
         public IActionResult OnPostAddToCartListProduct(int rId)
         {
             var cexits = _cart.getAllCart().Where(x => x.roomId == rId).FirstOrDefault();
@@ -235,7 +257,7 @@ namespace MyRazorPage.Pages
                 List<RoomProductDTO> roomProductDTOs = new List<RoomProductDTO>();
                 foreach (var cart in carts)
                 {
-
+                    roomProductDTOs.Clear();
                     var room = await _r.CreateRoom(new RoomDTO
                     {
                         Area = (float)cart.rAre,
@@ -252,7 +274,9 @@ namespace MyRazorPage.Pages
                             roomProductDTOs.Add(new RoomProductDTO
                             {
                                 ProductId = item.productId,
-                                RoomId = _r.getnewid()
+                                RoomId = _r.getnewid(),
+                                Quantity = item.quanity,
+                                ActualPrice = price * item.quanity
                             });
                         }
                         foreach (var rt in roomProductDTOs)
@@ -260,23 +284,31 @@ namespace MyRazorPage.Pages
                             _rp.CreateRoomProduct(rt);
                         }
                     }
-                    QuotationDTO quotationDTO = new QuotationDTO();
-                    quotationDTO.QuotationName = "Room quote" + cart.rDescrip;
-                    quotationDTO.Quantity = 1;
-                    quotationDTO.UnitPrice = totalprice;
-                    quotationDTO.TotalPrice = totalprice;
-                    quotationDTO.Status = 1;
-                    quotationDTO.CreateDate = DateTime.Now;
-                    quotationDTO.EndDate = DateTime.Now.AddDays(8);
-                    quotationDTO.RoomId = _r.getnewid();
-                    bool ss = await _q.CreateQuotation(quotationDTO);
-                    if (ss)
+                    var csSessionValue = HttpContext.Session.GetString("csSession");
+                    if (csSessionValue != null)
                     {
-                        ViewData["msgmakequotation"] = "Make Quotation Successfully";
-                    }
-                    else
-                    {
-                        ViewData["msgmakequotation"] = "Make Quotation Fail";
+                        var myObject = System.Text.Json.JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
+                        QuotationDTO quotationDTO = new QuotationDTO();
+                        quotationDTO.QuotationName = "Room quote" + cart.rDescrip;
+                        quotationDTO.Quantity = 1;
+                        quotationDTO.UnitPrice = totalprice;
+                        quotationDTO.TotalPrice = totalprice;
+                        quotationDTO.Status = 1;
+                        quotationDTO.CreateDate = DateTime.Now;
+                        quotationDTO.EndDate = DateTime.Now.AddDays(8);
+                        quotationDTO.RoomId = _r.getnewid();
+                        quotationDTO.UserId = myObject.Id;
+                        quotationDTO.CreateDate = DateTime.Now;
+                        bool ss = await _q.CreateQuotation(quotationDTO);
+                        if (ss)
+                        {
+                            ViewData["msgmakequotation"] = "Make Quotation Successfully";
+                            _cart.DeleteCartAll();
+                        }
+                        else
+                        {
+                            ViewData["msgmakequotation"] = "Make Quotation Fail";
+                        }
                     }
                 }
             }

@@ -45,22 +45,22 @@ namespace Infrastructure.Repositories
         {
             try
             {
-                var result = await _appDbContext.Rooms.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
-                if (result == null)
+                var latestRoomId = await _appDbContext.Rooms.MaxAsync(x => x.Id);
+                if (latestRoomId == null)
                 {
-                    return null;
-                }
-                else
-                {
-                    return result;
+                    throw new InvalidOperationException("No rooms found in the database.");
                 }
 
+                var latestRoom = await _appDbContext.Rooms.FirstOrDefaultAsync(x => x.Id == latestRoomId);
+
+                return latestRoom;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Error occurred while retrieving the latest room: " + ex.Message);
             }
         }
+
 
         public async Task<Room> GetRoomById(int roomId)
 		{
