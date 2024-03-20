@@ -158,7 +158,36 @@ namespace Application.Services
             }
         }
 
-        public async Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id)
+		public async Task<bool> SuccessfulQuotationStatus(int quotationId, QuotationDTO quotation)
+		{
+			try
+			{
+				var getQuotationId = await _unitOfWork.QuotationRepository.GetByIdAsync(quotationId);
+				if (getQuotationId == null)
+				{
+					return false;
+				}
+				else
+				{
+					getQuotationId.Status = 2;
+					_unitOfWork.QuotationRepository.Update(getQuotationId);
+					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
+					if (IsSuccess)
+					{
+						_mapper.Map<QuotationDTO>(getQuotationId);
+						return true;
+					}
+					return false;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+		}
+
+		public async Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id)
         {
             try
             {

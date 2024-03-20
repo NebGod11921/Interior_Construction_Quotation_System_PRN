@@ -19,7 +19,7 @@ namespace Domain.Entities
         public virtual Room? Room { get; set; }
         public virtual IEnumerable<Payment>? Payments { get; set; }
         public virtual IEnumerable<ProductQuotation>? ProductQuotations { get; set; }
-        
+        public virtual int? UserId { get; set; }
         public virtual User? User { get; set; }
 
     }
