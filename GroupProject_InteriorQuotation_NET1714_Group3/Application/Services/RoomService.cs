@@ -97,21 +97,21 @@ namespace Application.Services
 
 
 		//Create Rooms
-		public async Task<RoomDTOS> CreateRoom(RoomDTOS roomDTOS)
+		public async Task<RoomDTOS> CreateRoom2nd(RoomDTOS roomDTOS)
 		{
 			try
 			{
 				var mapping = _mapper.Map<Room>(roomDTOS);
 
-				
-
                 mapping.Area = roomDTOS.Area;
-			
 				mapping.IsDeleted = roomDTOS.IsDeleted ;
 				mapping.CreationDate = roomDTOS.CreationDate;
 				mapping.RoomDescription = roomDTOS.RoomDescription;
+				mapping.RoomTypeId = roomDTOS.RoomTypeId;
                 await _unitOfWork.RoomRepo.CreateRoom(mapping);
-                var mappedDTOS = _mapper.Map<RoomDTOS>(mapping);
+				await _unitOfWork.SaveChangeAsync();
+				var mappedDTOS = _mapper.Map<RoomDTOS>(mapping);
+				
 				if (mappedDTOS != null)
 				{
                     return mappedDTOS;

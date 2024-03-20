@@ -18,8 +18,10 @@ namespace Application.ViewModels
         public bool? IsDeleted { get; set; }
         public int RoomTypeId { get; set; }
         public string RoomTypeName { get; set; }
+        public string RoomTypeDescription { get; set; }
+        public virtual RoomTypeDTOS RoomType { get; set; }
 
-        public RoomDTOS()
+        /*public RoomDTOS()
         {
             
         }
@@ -27,7 +29,8 @@ namespace Application.ViewModels
         {
             RoomTypeId = roomType.Id;
             RoomTypeName = roomType.RoomTypeName;
-        }
+            RoomTypeDescription = roomType.RoomTypeDescription;
+        }*/
 
 
     }

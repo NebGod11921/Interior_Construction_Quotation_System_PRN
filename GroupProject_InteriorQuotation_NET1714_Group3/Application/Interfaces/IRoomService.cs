@@ -23,7 +23,7 @@ namespace Application.Interfaces
         //Luan
         public Task<IEnumerable<RoomDTOS>> GetAllRooms();
         public Task<RoomDTOS> GetRoomById2nd(int roomId);
-        public Task<RoomDTOS> CreateRoom(RoomDTOS roomDTOS);
+        public Task<RoomDTOS> CreateRoom2nd(RoomDTOS roomDTOS);
         public Task<bool> DeleteRoom2nd(int roomId);
         public Task<bool> UpdateRoom(RoomDTOS roomDTOS, int roomId);
         public int getnewid();

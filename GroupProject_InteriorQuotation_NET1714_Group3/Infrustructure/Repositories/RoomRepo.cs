@@ -85,10 +85,10 @@ namespace Infrastructure.Repositories
         {
             try
             {
+
                  var r =    await _appDbContext.Rooms.AddAsync(room);
                 if (r != null)
                 {
-                    await _appDbContext.SaveChangesAsync();
                     return true;
                 }
                 return false;

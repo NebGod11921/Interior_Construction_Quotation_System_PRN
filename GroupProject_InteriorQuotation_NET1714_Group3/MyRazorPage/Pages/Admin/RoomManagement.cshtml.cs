@@ -39,8 +39,6 @@ namespace MyRazorPage.Pages
         
         public async Task OnPostAddNewRoom(float area, string roomdescription, DateTime creationDate, int RoomType, bool IsDeleted)
         {
-            
-            
             ViewData["Areadata"] = area;
             ViewData["RoomDescriptiondata"] = roomdescription;
             ViewData["CreationDatedata"] = creationDate;
@@ -50,7 +48,7 @@ namespace MyRazorPage.Pages
 
             try
             {
-                /*var getRoomTypeId = await _roomTypeService.GetRoomTypeById(RoomType);*/
+                var getRoomTypeId = await _roomTypeService.GetRoomTypeById(RoomType);
                 RoomDTOS roomDTOS = new RoomDTOS();
                 bool v = CheckValidate(area,roomdescription,creationDate, RoomType, IsDeleted);
                 if (v)
@@ -59,10 +57,10 @@ namespace MyRazorPage.Pages
                     roomDTOS.Area = area;
                     roomDTOS.RoomDescription = roomdescription;
                     roomDTOS.CreationDate = creationDate;
-                    /*roomDTOS.RoomType.Id = RoomType;*/
+                    roomDTOS.RoomTypeId = RoomType;
                     roomDTOS.IsDeleted = IsDeleted;
                     
-                    var result = await _roomService.CreateRoom(roomDTOS);
+                    var result = await _roomService.CreateRoom2nd(roomDTOS);
                     if (result != null)
                     {
                         RedirectToPage("/RoomManagement");
@@ -119,7 +117,7 @@ namespace MyRazorPage.Pages
             {
                 throw new Exception(ex.Message);
             }
-           
+
             await OnGet();
         }
         public async Task OnPostDeleteRoom(int rID)

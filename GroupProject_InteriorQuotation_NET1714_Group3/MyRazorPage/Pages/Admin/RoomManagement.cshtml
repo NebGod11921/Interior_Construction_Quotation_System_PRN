@@ -96,28 +96,28 @@
                                         <form asp-page-handler="UpdateRoom" method="post">
                                             <input type="hidden" value="@room.Id" name="rID" />
                                             <label for="Area">Area:</label>
-                                            <input type="text" id="Area" name="Area" value="@(ViewData["Areadata"] != null? ViewData["Areadata"] : room.Area ) " required>
+                                            <input type="text" id="Area" name="Area" value="@room.Area" @(ViewData["Areadata"] != null ? ViewData["Areadata"] : room.Area) required>
                                             @if (ViewData["msgArea"] != null)
                                             {
                                                 <p>@ViewData["msgArea"]</p>
                                             }
                                             <br></br>
                                             <label for="RoomDescription">RoomDescription:</label>
-                                            <input type="text" id="RoomDescription" name="RoomDescription" value="@(ViewData["RoomDescriptiondata"] != null? ViewData["RoomDescriptiondata"] : room.RoomDescription) " required>
+                                            <input type="text" id="RoomDescription" name="RoomDescription" value="@room.RoomDescription" @(ViewData["RoomDescriptiondata"] != null ? ViewData["RoomDescriptiondata"] : room.RoomDescription) required>
                                             @if (ViewData["msgRoomDescription"] != null)
                                             {
                                                 <p>@ViewData["msgRoomDescription"]</p>
                                             }
                                             <br></br>
                                             <label for="CreationDate">CreationDate:</label>
-                                            <input type="date" id="CreationDate" name="CreationDate" value="@(ViewData["CreationDatedata"] != null? ViewData["CreationDatedata"] : room.CreationDate)" required>
+                                            <input type="date" id="CreationDate" name="CreationDate" value="@room.CreationDate" @(ViewData["CreationDatedata"] != null ? ViewData["CreationDatedata"] : room.CreationDate) required>
                                             @if (ViewData["msgCreationDate"] != null)
                                             {
                                                 <p>@ViewData["msgCreationDate"]</p>
                                             }
                                             <br></br>
                                             <label for="RoomType">RoomType:</label>
-                                            <select id="RoomType" name="RoomType" value="@ViewData["RoomTypedata"]" required>
+                                            <select id="RoomType" name="RoomType" value="" @ViewData["RoomTypedata"] required>
                                             <option>Select Room Type</option> <!-- Default option -->
                                             @foreach (var roomType in Model.roomTypeDTOs)
                                             {
