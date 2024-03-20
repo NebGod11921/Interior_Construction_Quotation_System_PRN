@@ -23,9 +23,47 @@ namespace MyRazorPage.Pages.Shared
         {
             Quotations = await _quotationService.GetAllQuotation();
         }
+		public async Task OnPostPlaceOrder(int quotationId)
+		{
+			ViewData["QuotationId"] = quotationId;
+			try
+			{
+				var getQuotationId = await _quotationService.GetQuotationById(quotationId);
+				if (getQuotationId != null)
+				{
+
+					var result = await _quotationService.SuccessfulQuotationStatus(getQuotationId.Id, getQuotationId);
+					if (result != null)
+					{
+						RedirectToPage("/QuotationManagement");
+					}
+					else
+					{
+						Page();
+					}
+				}
+				else
+				{
+					Page();
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+			await OnGet();
+		}
 
 
-        public async Task OnPostCancel(int quotationId)
+
+
+
+
+
+
+
+
+		public async Task OnPostCancel(int quotationId)
         {
             ViewData["QuotationId"] = quotationId;
             try
