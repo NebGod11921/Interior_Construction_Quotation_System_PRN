@@ -32,10 +32,11 @@ namespace Application.Services
                 else
                 {
                     getQuotationId.Status = 0;
+                     _unitOfWork.QuotationRepository.Update(getQuotationId);
                     var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
                     if (IsSuccess)
                     {
-						var mapped = _mapper.Map(getQuotationId, quotation);
+                        _mapper.Map<QuotationDTO>(getQuotationId);
 						return true;
 					}
 					return false;
@@ -94,13 +95,13 @@ namespace Application.Services
             }
         }
 
-        public List<QuotationDTO> GetQuotationByCsId(int csId)
+        public async Task<IEnumerable<QuotationDTO>> GetQuotationByCsId(int csId)
         {
             try
             {
-                var quotations = _unitOfWork.QuotationRepository.GetQuotationsByCsID(csId);
+                var quotations = await _unitOfWork.QuotationRepository.GetQuotationsByCsID(csId);
                 var quotationDTOs = _mapper.Map<List<QuotationDTO>>(quotations);
-                if (quotations == null && quotations.Count > 0) 
+                if (quotations != null) 
                 {
                     return quotationDTOs;
                 }
@@ -157,7 +158,36 @@ namespace Application.Services
             }
         }
 
-        public async Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id)
+		public async Task<bool> SuccessfulQuotationStatus(int quotationId, QuotationDTO quotation)
+		{
+			try
+			{
+				var getQuotationId = await _unitOfWork.QuotationRepository.GetByIdAsync(quotationId);
+				if (getQuotationId == null)
+				{
+					return false;
+				}
+				else
+				{
+					getQuotationId.Status = 2;
+					_unitOfWork.QuotationRepository.Update(getQuotationId);
+					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
+					if (IsSuccess)
+					{
+						_mapper.Map<QuotationDTO>(getQuotationId);
+						return true;
+					}
+					return false;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+		}
+
+		public async Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id)
         {
             try
             {
@@ -195,10 +225,11 @@ namespace Application.Services
 				else
 				{
 					getQuotationId.Status = 1;
-					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
+                    _unitOfWork.QuotationRepository.Update(getQuotationId);
+                    var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
 					if (IsSuccess)
 					{
-						var mapped =  _mapper.Map(getQuotationId, quotation);
+						_mapper.Map<QuotationDTO>(getQuotationId);
 						return true;
 					}
 					return false;

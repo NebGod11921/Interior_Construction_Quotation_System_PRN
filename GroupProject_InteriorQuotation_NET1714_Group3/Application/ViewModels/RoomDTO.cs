@@ -8,7 +8,9 @@ namespace Application.ViewModels
 {
     public class RoomDTO
     {
+        public int Id { get; set; }
         public float Area { get; set; }
         public string RoomDescription { get; set; }
+        public int RoomTypeId { get; set; }
     }
 }

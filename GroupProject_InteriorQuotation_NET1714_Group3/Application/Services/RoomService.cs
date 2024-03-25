@@ -20,19 +20,22 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateRoom(RoomDTO roomDTO)
+        public async Task<RoomDTO> CreateRoom(RoomDTO roomDTO)
         {
             try
             {
                 Room r_mapper = _mapper.Map<Room>(roomDTO);
+				r_mapper.CreationDate = DateTime.Now;
+				r_mapper.IsDeleted = false;
                 await _unitOfWork.RoomRepository.AddAsync(r_mapper);
                 if (await _unitOfWork.SaveChangeAsync() > 0)
                 {
-                    return true;
+					var roomnew = _mapper.Map<RoomDTO>(_unitOfWork.RoomRepo.GetNewRooms);
+                    return roomnew;
                 }
                 else
                 {
-                    return false;
+                    return null;
                 }
             }
             catch (Exception e)
@@ -94,21 +97,21 @@ namespace Application.Services
 
 
 		//Create Rooms
-		public async Task<RoomDTOS> CreateRoom(RoomDTOS roomDTOS)
+		public async Task<RoomDTOS> CreateRoom2nd(RoomDTOS roomDTOS)
 		{
 			try
 			{
 				var mapping = _mapper.Map<Room>(roomDTOS);
 
-				
-
                 mapping.Area = roomDTOS.Area;
-			
 				mapping.IsDeleted = roomDTOS.IsDeleted ;
 				mapping.CreationDate = roomDTOS.CreationDate;
 				mapping.RoomDescription = roomDTOS.RoomDescription;
+				mapping.RoomTypeId = roomDTOS.RoomTypeId;
                 await _unitOfWork.RoomRepo.CreateRoom(mapping);
-                var mappedDTOS = _mapper.Map<RoomDTOS>(mapping);
+				await _unitOfWork.SaveChangeAsync();
+				var mappedDTOS = _mapper.Map<RoomDTOS>(mapping);
+				
 				if (mappedDTOS != null)
 				{
                     return mappedDTOS;
@@ -127,18 +130,18 @@ namespace Application.Services
             }
 		}
 
-		public async Task<bool> DeleteRoom(RoomDTOS r, int roomId)
+		public async Task<bool> DeleteRoom2nd(int roomId)
 		{
 			try
 			{
 				var getRoomId = await _unitOfWork.RoomRepo.GetRoomById(roomId);
 				if (getRoomId != null)
 				{
-					getRoomId.IsDeleted = true;
+					await _unitOfWork.RoomRepo.DeleteRoom(getRoomId.Id);
 					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
 					if (IsSuccess)
 					{
-						var mapped = _mapper.Map(r, getRoomId);
+						
 						return true;
 					}
 					return false;
@@ -187,10 +190,6 @@ namespace Application.Services
 				{
 					return null;
 				}
-
-
-
-
 			} catch (Exception ex)
 			{
 				throw new Exception(ex.Message);
@@ -207,12 +206,21 @@ namespace Application.Services
 				{
 					getRoomId.Area = roomDTOS.Area;
 					getRoomId.RoomDescription = roomDTOS.RoomDescription;
-					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
-					if (IsSuccess)
+					getRoomId.CreationDate = roomDTOS.CreationDate;
+					var roomType = await _unitOfWork.RoomTypeRepository.GetRoomTypeById(roomDTOS.RoomTypeId);
+					if (roomType != null )
 					{
-						return true;
-					}
-					return false;
+						getRoomId.RoomType = roomType;
+                        _unitOfWork.RoomRepo.Update(getRoomId);
+                        var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
+                        if (IsSuccess)
+                        {
+                            return true;
+                        } else
+						{
+                            return false;
+                        }
+                    }
 				}
 				return false;
 
@@ -221,5 +229,27 @@ namespace Application.Services
 				throw new Exception(ex.Message);
 			}
 		}
-	}
+
+        public int getnewid()
+        {
+            try
+            {
+                var result =  _unitOfWork.RoomRepo.GetNewRooms().Result.Id;
+                if (result != null )
+                {
+                    return result;
+                }
+                else
+                {
+                    return result;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
 }

@@ -15,7 +15,7 @@ namespace Application.Interfaces
         Task<RoomDTO> GetRoomById(int id);
         List<RoomDTO> GetRoomByCsId(int csId);
         Task<bool> DeleteRoom(int id);
-        Task<bool> CreateRoom(RoomDTO roomDTO);
+        Task<RoomDTO> CreateRoom(RoomDTO roomDTO);
         Task<bool> UpdateRoom(RoomDTO roomDTO, int id);
         IEnumerable<Room> GetRoomsByRoomType(int roomTypeId);
         string GetRoomNameByRoomID(int roomId);
@@ -23,9 +23,10 @@ namespace Application.Interfaces
         //Luan
         public Task<IEnumerable<RoomDTOS>> GetAllRooms();
         public Task<RoomDTOS> GetRoomById2nd(int roomId);
-        public Task<RoomDTOS> CreateRoom(RoomDTOS roomDTOS);
-        public Task<bool> DeleteRoom(RoomDTOS roomDTOS,int roomId);
+        public Task<RoomDTOS> CreateRoom2nd(RoomDTOS roomDTOS);
+        public Task<bool> DeleteRoom2nd(int roomId);
         public Task<bool> UpdateRoom(RoomDTOS roomDTOS, int roomId);
+        public int getnewid();
 
     }
 }

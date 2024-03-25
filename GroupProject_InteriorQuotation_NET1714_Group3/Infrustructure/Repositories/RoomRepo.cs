@@ -41,6 +41,30 @@ namespace Infrastructure.Repositories
             }
         }
 
+        public async Task<Room> GetNewRooms()
+        {
+            try
+            {
+                var latestRoomId = await _appDbContext.Rooms.Include(b => b.RoomType).MaxAsync(x => x.Id);
+                if (latestRoomId == null)
+                {
+                    throw new InvalidOperationException("No rooms found in the database.");
+                } else
+                {
+					var latestRoom = await _appDbContext.Rooms.Include(x => x.RoomType).FirstOrDefaultAsync(x => x.Id == latestRoomId);
+
+					return latestRoom;
+				}
+
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving the latest room: " + ex.Message);
+            }
+        }
+
+
         public async Task<Room> GetRoomById(int roomId)
 		{
 			try
@@ -64,10 +88,10 @@ namespace Infrastructure.Repositories
         {
             try
             {
+
                  var r =    await _appDbContext.Rooms.AddAsync(room);
                 if (r != null)
                 {
-                    await _appDbContext.SaveChangesAsync();
                     return true;
                 }
                 return false;
@@ -91,6 +115,29 @@ namespace Infrastructure.Repositories
         public IEnumerable<Room> GetRoomsByRoomType(int roomTypeId)
         {
             return _appDbContext.Rooms.Where(r => r.RoomType.Id == roomTypeId).ToList();
+        }
+
+        public async Task<bool> DeleteRoom(int roomId)
+        {
+            try
+            {
+                var result = await _appDbContext.Rooms.Where(x => x.Id == roomId).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    _appDbContext.Remove(result);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

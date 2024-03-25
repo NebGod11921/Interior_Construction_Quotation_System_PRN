@@ -41,7 +41,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Domain.Entities.Color", b =>
@@ -63,7 +63,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors", (string)null);
+                    b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("Domain.Entities.Image", b =>
@@ -85,7 +85,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Domain.Entities.Material", b =>
@@ -107,7 +107,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Materials", (string)null);
+                    b.ToTable("Materials");
                 });
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>
@@ -140,7 +140,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("QuotationId");
 
-                    b.ToTable("Payments", (string)null);
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
@@ -189,7 +189,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("MaterialId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Domain.Entities.ProductImage", b =>
@@ -204,7 +204,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ImageId");
 
-                    b.ToTable("ProductImage", (string)null);
+                    b.ToTable("ProductImage");
                 });
 
             modelBuilder.Entity("Domain.Entities.ProductQuotation", b =>
@@ -225,7 +225,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("QuotationId");
 
-                    b.ToTable("ProductQuotation", (string)null);
+                    b.ToTable("ProductQuotation");
                 });
 
             modelBuilder.Entity("Domain.Entities.Quotation", b =>
@@ -274,7 +274,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Quotations", (string)null);
+                    b.ToTable("Quotations");
                 });
 
             modelBuilder.Entity("Domain.Entities.Room", b =>
@@ -297,14 +297,14 @@ namespace Infrastructure.Migrations
                     b.Property<string>("RoomDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RoomTypeId")
+                    b.Property<int>("RoomTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoomTypeId");
 
-                    b.ToTable("Rooms", (string)null);
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Domain.Entities.RoomProduct", b =>
@@ -318,6 +318,15 @@ namespace Infrastructure.Migrations
                     b.Property<float?>("ActualPrice")
                         .HasColumnType("real");
 
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
@@ -325,7 +334,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("RoomProduct", (string)null);
+                    b.ToTable("RoomProduct");
                 });
 
             modelBuilder.Entity("Domain.Entities.RoomType", b =>
@@ -350,7 +359,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoomTypes", (string)null);
+                    b.ToTable("RoomTypes");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -393,7 +402,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>
@@ -485,7 +494,9 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.RoomType", "RoomType")
                         .WithMany("Rooms")
-                        .HasForeignKey("RoomTypeId");
+                        .HasForeignKey("RoomTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("RoomType");
                 });

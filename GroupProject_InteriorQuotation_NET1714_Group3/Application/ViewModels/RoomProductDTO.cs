@@ -10,5 +10,7 @@ namespace Application.ViewModels
     {
         public int? ProductId { get; set; }
         public int? RoomId { get; set; }
+        public int? Quantity { get; set; }
+        public float? ActualPrice { get; set; }
     }
 }

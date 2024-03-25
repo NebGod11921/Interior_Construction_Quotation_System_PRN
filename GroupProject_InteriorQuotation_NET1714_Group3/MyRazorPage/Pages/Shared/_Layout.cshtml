@@ -64,6 +64,7 @@
                         <ul class="nav">
                             <li><a href="/Test" class="active">Home</a></li>
                             <li><a href="/AllProduct">All Product</a></li>
+                            <li><a href="/QuotationHistory">History</a></li>
                             @* <li><a href="listing.html">Listing</a></li> *@
                             <li><a asp-page="/Cart">Cart</a></li>
                             <li>
@@ -75,6 +76,7 @@
                                     var staffSessionValue = viewContext.Session.GetString("staffSession");
                                     if (csSessionValue != null)
                                     {
+                                        
                                         var myObject = JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
                                         <div class="main-white-button">
                                             <a asp-page="/Login" asp-page-handler="Logout" class="logout">
@@ -82,6 +84,7 @@
                                                 <span class="nav-item">Logout</span>
                                             </a>
                                         </div>
+                                        <div> Welcome @myObject.FullName</div>
                                     }
                                     else if (staffSessionValue != null)
                                     {

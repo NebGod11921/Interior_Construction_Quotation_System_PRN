@@ -39,8 +39,6 @@ namespace MyRazorPage.Pages
         
         public async Task OnPostAddNewRoom(float area, string roomdescription, DateTime creationDate, int RoomType, bool IsDeleted)
         {
-            
-            
             ViewData["Areadata"] = area;
             ViewData["RoomDescriptiondata"] = roomdescription;
             ViewData["CreationDatedata"] = creationDate;
@@ -50,7 +48,7 @@ namespace MyRazorPage.Pages
 
             try
             {
-                /*var getRoomTypeId = await _roomTypeService.GetRoomTypeById(RoomType);*/
+                var getRoomTypeId = await _roomTypeService.GetRoomTypeById(RoomType);
                 RoomDTOS roomDTOS = new RoomDTOS();
                 bool v = CheckValidate(area,roomdescription,creationDate, RoomType, IsDeleted);
                 if (v)
@@ -59,10 +57,10 @@ namespace MyRazorPage.Pages
                     roomDTOS.Area = area;
                     roomDTOS.RoomDescription = roomdescription;
                     roomDTOS.CreationDate = creationDate;
-                    /*roomDTOS.RoomType.Id = RoomType;*/
+                    roomDTOS.RoomTypeId = RoomType;
                     roomDTOS.IsDeleted = IsDeleted;
                     
-                    var result = await _roomService.CreateRoom(roomDTOS);
+                    var result = await _roomService.CreateRoom2nd(roomDTOS);
                     if (result != null)
                     {
                         RedirectToPage("/RoomManagement");
@@ -79,6 +77,75 @@ namespace MyRazorPage.Pages
             }
             await OnGet();
         }
+
+        public async Task OnPostUpdateRoom(int rID, float area, string roomdescription, DateTime creationDate, int RoomType, bool IsDeleted)
+        {
+            ViewData["rID"] = rID;
+            ViewData["Areadata"] = area;
+            ViewData["RoomDescriptiondata"] = roomdescription;
+            ViewData["CreationDatedata"] = creationDate;
+            ViewData["RoomTypedata"] = RoomType;
+            ViewData["Statusdata"] = IsDeleted;
+
+            try
+            {
+                /*var getRoomTypeId = await _roomTypeService.GetRoomTypeById(RoomType);*/
+                RoomDTOS roomDTOS = new RoomDTOS();
+                bool v = CheckValidate(area, roomdescription, creationDate, RoomType, IsDeleted);
+                if (v)
+                {
+
+                    roomDTOS.Area = area;
+                    roomDTOS.RoomDescription = roomdescription;
+                    roomDTOS.CreationDate = creationDate;
+                    roomDTOS.RoomTypeId = RoomType;
+                    roomDTOS.IsDeleted = IsDeleted;
+
+                    var result = await _roomService.UpdateRoom(roomDTOS, rID);
+                    if (result != null)
+                    {
+                        RedirectToPage("/RoomManagement");
+                        
+                    }
+                    else
+                    {
+                        Page();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            await OnGet();
+        }
+        public async Task OnPostDeleteRoom(int rID)
+        {
+            ViewData["rID"] = rID;
+            var getId = await _roomService.GetRoomById2nd(rID);
+            if (getId != null)
+            {
+                var deleteRoom = await _roomService.DeleteRoom2nd(rID);
+                if (deleteRoom == true)
+                {
+                    ViewData["msgdelete"] = "Room has be deleted successfully";
+                } else
+                {
+                    ViewData["msgdelete"] = "Failed to delete room";
+                }
+            } else
+            {
+                ViewData["msgdelete"] = "Room has deleted, Cannot delete again.";
+            }
+            await OnGet();
+        }
+
+
+
+
+
+
 
         private bool CheckValidate(float area, string roomdescription, DateTime creationDate, int roomTypeId, bool IsDeleted)
         {

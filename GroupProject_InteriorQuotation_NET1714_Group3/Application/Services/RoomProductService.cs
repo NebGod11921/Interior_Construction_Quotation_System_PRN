@@ -2,11 +2,7 @@
 using Application.ViewModels;
 using AutoMapper;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Application.Services
 {
@@ -19,13 +15,12 @@ namespace Application.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-
-        public async Task<bool> CreateRoom(RoomDTO roomDTO)
+        public async Task<bool> CreateRoomProduct(RoomProductDTO roomProductDTO)
         {
             try
             {
-                Room r_mapper = _mapper.Map<Room>(roomDTO);
-                await _unitOfWork.RoomRepository.AddAsync(r_mapper);
+                RoomProduct r_mapper = _mapper.Map<RoomProduct>(roomProductDTO);
+                await _unitOfWork.RoomProductRepositiory.AddAsync(r_mapper);
                 if (await _unitOfWork.SaveChangeAsync() > 0)
                 {
                     return true;
@@ -39,11 +34,6 @@ namespace Application.Services
             {
                 throw new Exception(e.Message, e);
             }
-        }
-
-        public Task<bool> CreateRoomProduct(RoomDTO roomDTO)
-        {
-            throw new NotImplementedException();
         }
     }
 }

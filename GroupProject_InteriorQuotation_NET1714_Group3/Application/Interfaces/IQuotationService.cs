@@ -12,12 +12,14 @@ namespace Application.Interfaces
     {
         Task<IEnumerable<QuotationDTO>> GetAllQuotation();
         Task<QuotationDTO> GetQuotationById(int id);
-        List<QuotationDTO> GetQuotationByCsId(int csId);
+        Task<IEnumerable<QuotationDTO>> GetQuotationByCsId(int csId);
         Task<bool> DeleteQuotation(int id);
         Task<bool> CreateQuotation(QuotationDTO quotationDTO);
         Task<bool> UpdateQuotation(QuotationDTO quotationDTO, int id);
         Task<IEnumerable<QuotationDTO>> SearchQuotationByName(string name);
         Task<bool> CancelQuotationStatus(int quotationId, QuotationDTO quotation);
         Task<bool> UpdatesQuotationStatus(int quotationId, QuotationDTO quotation);
+        Task<bool> SuccessfulQuotationStatus(int quotationId, QuotationDTO quotation);
+
     }
 }

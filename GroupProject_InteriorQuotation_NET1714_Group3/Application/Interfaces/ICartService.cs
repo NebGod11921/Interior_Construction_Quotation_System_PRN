@@ -19,5 +19,6 @@ namespace Application.Interfaces
         public void DeleteCartAll();
         public void DeleteItemInCart(int cartid, int itemid);
         public void UpdateCartItems(List<ItemDTO> updatedItems);
+        public void UpdateCartItem(ItemDTO updatedItem);
     }
 }
