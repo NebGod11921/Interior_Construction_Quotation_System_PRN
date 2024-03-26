@@ -1,8 +1,11 @@
 ﻿@page
+@using Application.ViewModels
+@using System.Text.Json
+
 @model MyRazorPage.Pages.TestModel
 @{
     //Layout = "/Pages/Shared/_Layout.cshtml"; // Set the layout to use
-       
+    
 }
 
 
@@ -13,37 +16,41 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
-@if (Model.ProductsHomePage == null || !Model.ProductsHomePage.Any())
-{
-    <h1>Suprise</h1>
+    @if (Model.ProductsHomePage == null || !Model.ProductsHomePage.Any())
+    {
+    <h1>Nothing to Show</h1>
 }
 else
 {
+    
+    
     @foreach (var room in Model.ProductsHomePage)
-    {
-        @if (room.RoomInType.Any())
         {
-            <h3>@room.RoomType</h3>
-            <div class="product-grid">
-                @foreach (var product in room.RoomInType.Take(4))
-                {
-                    
-                    <div class="product-item">
+            @if (room.RoomInType.Any())
+            {
+                <h3>@room.RoomType</h3>
+                <div class="product-grid">
+                    @foreach (var product in room.RoomInType.Take(4))
+                    {
 
-                        <a asp-page="./RoomDetail" asp-route-roomId="@product.RoomId" >
-                        <img src="@Url.Content(Model.GetRoomTypeImageUrl(room.RoomType,product.ImageProduct.FirstOrDefault()?.ImageUrl))" alt="Product Image">
-                        </a>
-                        <div class="product-info">
+                        <div class="product-item">
+
+                            <a asp-page="./RoomDetail" asp-route-roomId="@product.RoomId">
+                                <img src="@Url.Content(Model.GetRoomTypeImageUrl(room.RoomType,product.ImageProduct.FirstOrDefault()?.ImageUrl))" alt="Product Image">
+                            </a>
+                            <div class="product-info">
                                 <div class="product-name">@product.RoomName</div>
                                 <div class="product-area">Area: @product.AreaRoom m2</div>
+                            </div>
+                            <form asp-page="/Cart" asp-page-handler="AddToCartListProduct" method="post">
+                                <input type="hidden" value="@product.RoomId" name="rId" />
+                                <button type="submit">Make Quotation</button>
+                            </form>
                         </div>
-                        <form asp-page="/Cart" asp-page-handler="AddToCartListProduct" method="post">
-                            <input type="hidden" value="@product.RoomId" name="rId" />
-                            <button type="submit">Make Quotation</button>
-                        </form>
-                    </div>  
-                }
-            </div>
+                    }
+                </div>
+            }
         }
     }
-}
+
+

@@ -217,7 +217,7 @@
 	if (csSessionValue != null)
 	{
 		var myObject = JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
-		@if (Model.Quotations != null)
+		@if (Model.Quotations != null && myObject.RoleName.Equals("Customer"))
 		{
 			<h5 class="text-muted mb-0">Thanks for your Order, <span style="color: grey;">@myObject.FullName</span>!</h5>
 			<div class="container">

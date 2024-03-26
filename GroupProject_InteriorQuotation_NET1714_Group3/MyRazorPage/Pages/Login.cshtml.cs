@@ -35,7 +35,7 @@ namespace MyRazorPage.Pages
                     {
                         ReferenceHandler = ReferenceHandler.IgnoreCycles
                     });
-                    HttpContext.Session.SetString("csSession", csSession);
+                    HttpContext.Session.SetString("adSession", csSession);
                     return RedirectToPage("/Admin/HomeAdmin");
                 }
                 else
