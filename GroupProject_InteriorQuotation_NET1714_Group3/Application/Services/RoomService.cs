@@ -153,7 +153,8 @@ namespace Application.Services
 				var getRoomId = await _unitOfWork.RoomRepo.GetRoomById(roomId);
 				if (getRoomId != null)
 				{
-					await _unitOfWork.RoomRepo.DeleteRoom(getRoomId.Id);
+                    getRoomId.IsDeleted = true;
+					_unitOfWork.RoomRepo.SoftRemove(getRoomId);
 					var IsSuccess = await _unitOfWork.SaveChangeAsync() > 0;
 					if (IsSuccess)
 					{
