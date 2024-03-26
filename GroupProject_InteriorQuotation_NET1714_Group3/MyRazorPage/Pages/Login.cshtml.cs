@@ -58,11 +58,13 @@ namespace MyRazorPage.Pages
                         }
                         else if (login.RoleName == "Staff")
                         {
+
                             var session = JsonSerializer.Serialize(login, new JsonSerializerOptions()
                             {
                                 ReferenceHandler = ReferenceHandler.IgnoreCycles
                             });
                             HttpContext.Session.SetString("staffSession", session);
+
                             return RedirectToPage("/QuotationManagement");
                         }
                         else
