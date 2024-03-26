@@ -197,7 +197,7 @@ namespace MyRazorPage.Pages
         {
             var cart = _cart.getCartByID(cartID);
             cart.rAre = roomArea;
-            cart.rType = SelectedOption;
+/*            cart.rType = SelectedOption;*/
             cart.rDescrip = rDescription;
             var items = _cart.getItemByCartId(cartID);
             foreach (var item in items)
@@ -270,7 +270,7 @@ namespace MyRazorPage.Pages
             return true;
         }
 
-        public async Task OnPostAddQuotation()
+        public async Task<IActionResult> OnPostAddQuotation()
         {
             var carts = _cart.getAllCart();
             if (carts.Count <= 0)
@@ -313,12 +313,13 @@ namespace MyRazorPage.Pages
                             else
                             {
                                 ViewData["msgQuantity"] = $"Product{_p.GetProductByIdToCart(item.productId).ProductName} can have quantity for this , please update quantity";
-                                OnGet();
+                                await OnGet();
+                                return Page();
                             }
 						}
                         foreach (var rt in roomProductDTOs)
                         {
-                            _rp.CreateRoomProduct(rt);
+                            await _rp.CreateRoomProduct(rt);
                         }
                     }
                     var csSessionValue = HttpContext.Session.GetString("csSession");
@@ -350,7 +351,8 @@ namespace MyRazorPage.Pages
                     }
                 }
             }
-            OnGet();
-        }
+            await OnGet();
+			return Page();
+		}
     }
 }

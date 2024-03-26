@@ -217,339 +217,343 @@
 	if (csSessionValue != null)
 	{
 		var myObject = JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
-		@if (Model.Quotations != null)
+		@if (myObject.RoleName == "Customer")
 		{
-			<h5 class="text-muted mb-0">Thanks for your Order, <span style="color: grey;">@myObject.FullName</span>!</h5>
-			<div class="container">
-				<div class="row">
+			@if (Model.Quotations != null)
+			{
+				<h5 class="text-muted mb-0">Thanks for your Order, <span style="color: grey;">@myObject.FullName</span>!</h5>
+				<div class="container">
+					<div class="row">
 
-					<section class="content">
-						<h1>Quotation History</h1>
-						<div class="col-md-8 col-md-offset-2">
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<div class="pull-right">
-										<div class="btn-group">
-											<button type="button" class="btn btn-success btn-filter" data-target="pagado">Successfully</button>
-											<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
-											<button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancel</button>
-											<button type="button" class="btn btn-default btn-filter" data-target="all">ListAll</button>
+						<section class="content">
+							<h1>Quotation History</h1>
+							<div class="col-md-8 col-md-offset-2">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<div class="pull-right">
+											<div class="btn-group">
+												<button type="button" class="btn btn-success btn-filter" data-target="pagado">Successfully</button>
+												<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pending</button>
+												<button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancel</button>
+												<button type="button" class="btn btn-default btn-filter" data-target="all">ListAll</button>
 
+											</div>
 										</div>
-									</div>
-									<div class="table-container">
-										<table class="table table-filter">
-											<thead>
-												<tr>
-													<td>Quotation Name</td>
-													<td>Total Price</td>
-													<td>Status</td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-											</thead>
-											<tbody>
+										<div class="table-container">
+											<table class="table table-filter">
+												<thead>
+													<tr>
+														<td>Quotation Name</td>
+														<td>Total Price</td>
+														<td>Status</td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+												</thead>
+												<tbody>
 
-												@foreach (var q in Model.Quotations)
-												{
-
-													if (q.Status == 2)
+													@foreach (var q in Model.Quotations)
 													{
-														<tr data-status="pagado">
-															<td>
-																@q.QuotationName
-															</td>
-															<td>
-																@q.TotalPrice
-															</td>
 
-															<td>
-																<div class="media">
+														if (q.Status == 2)
+														{
+															<tr data-status="pagado">
+																<td>
+																	@q.QuotationName
+																</td>
+																<td>
+																	@q.TotalPrice
+																</td>
 
-																	<div class="media-body">
-																		<span class="media-meta pull-right">@q.CreateDate</span>
-																		<h4 class="title">
-																			Successfully
-																			<span class="pull-right pagado">(Successful)</span>
-																		</h4>
-																		<p class="summary"></p>
+																<td>
+																	<div class="media">
+
+																		<div class="media-body">
+																			<span class="media-meta pull-right">@q.CreateDate</span>
+																			<h4 class="title">
+																				Successfully
+																				<span class="pull-right pagado">(Successful)</span>
+																			</h4>
+																			<p class="summary"></p>
+																		</div>
 																	</div>
-																</div>
-															</td>
-															@* <form asp-page-handler="TransferUpdate" method="post">
+																</td>
+																@* <form asp-page-handler="TransferUpdate" method="post">
 										<input type="hidden" name="QuotationId" value="@q.Id" />
 										<input type="submit" class="btn btn-warning" value="Update" />
 										</form> *@
-															<td>
-																<button class="btn btn-secondary" onclick="openUpdateQPopup('@q.Id')">View Details</button>
-																<div id="popup_@q.Id" class="popup">
-																	<div class="popup-content">
-																		<span class="close" onclick="closeUpdateQPopup('@q.Id')">&times;</span>
-																		<h2>Quotation Information</h2>
-																		<input type="hidden" value="@q.Id" name="qID" />
-																		<label for="">Quotation Name:</label>
-																		<input type="text" id="quotationName" name="quotationName" value="@(ViewData["quotationnamedata"] != null? ViewData["quotationnamedata"] :q.QuotationName)" readonly="">
-																		@if (ViewData["msgquotation"] != null)
-																		{
-																			<p>@ViewData["msgquotation"]</p>
-																		}
-																		<br></br>
-																		<label for="unitPrice">unitPrice:</label>
-																		<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
-																		@if (ViewData["msgunitprice"] != null)
-																		{
-																			<p>@ViewData["msgunitprice"]</p>
-																		}
-																		<br></br>
-																		<label for="totalPrice">totalPrice:</label>
-																		<input type="text" id="totalPrice" name="totalPrice" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" readonly="">
-																		@if (ViewData["msgtotalprice"] != null)
-																		{
-																			<p>@ViewData["msgtotalprice"]</p>
-																		}
-																		<br></br>
-																		<label for="createDate">Create Date:</label>
-																		<input type="text" id="createDate" name="createDate" value="@(ViewData["createdatedata"] != null? ViewData["createdatedata"] :q.CreateDate)" readonly="">
-																		@if (ViewData["msgcreatedate"] != null)
-																		{
-																			<p>@ViewData["msgcreatedate"]</p>
-																		}
-																		<br></br>
-
-																		@foreach (var room in Model.RoomDTOs)
-																		{
-																			@if (room.Id == q.RoomId)
+																<td>
+																	<button class="btn btn-secondary" onclick="openUpdateQPopup('@q.Id')">View Details</button>
+																	<div id="popup_@q.Id" class="popup">
+																		<div class="popup-content">
+																			<span class="close" onclick="closeUpdateQPopup('@q.Id')">&times;</span>
+																			<h2>Quotation Information</h2>
+																			<input type="hidden" value="@q.Id" name="qID" />
+																			<label for="">Quotation Name:</label>
+																			<input type="text" id="quotationName" name="quotationName" value="@(ViewData["quotationnamedata"] != null? ViewData["quotationnamedata"] :q.QuotationName)" readonly="">
+																			@if (ViewData["msgquotation"] != null)
 																			{
-																				<label for="">Room Name:</label>
-																				<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
-																				@if (ViewData["msgroom"] != null)
+																				<p>@ViewData["msgquotation"]</p>
+																			}
+																			<br></br>
+																			<label for="unitPrice">unitPrice:</label>
+																			<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
+																			@if (ViewData["msgunitprice"] != null)
+																			{
+																				<p>@ViewData["msgunitprice"]</p>
+																			}
+																			<br></br>
+																			<label for="totalPrice">totalPrice:</label>
+																			<input type="text" id="totalPrice" name="totalPrice" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" readonly="">
+																			@if (ViewData["msgtotalprice"] != null)
+																			{
+																				<p>@ViewData["msgtotalprice"]</p>
+																			}
+																			<br></br>
+																			<label for="createDate">Create Date:</label>
+																			<input type="text" id="createDate" name="createDate" value="@(ViewData["createdatedata"] != null? ViewData["createdatedata"] :q.CreateDate)" readonly="">
+																			@if (ViewData["msgcreatedate"] != null)
+																			{
+																				<p>@ViewData["msgcreatedate"]</p>
+																			}
+																			<br></br>
+
+																			@foreach (var room in Model.RoomDTOs)
+																			{
+																				@if (room.Id == q.RoomId)
 																				{
-																					<p>@ViewData["msgroom"]</p>
-																				}
-																				<br></br>
-																				@if (ViewData["msgupdate"] != null)
-																				{
-																					<p>@ViewData["msgupdate"]</p>
+																					<label for="">Room Name:</label>
+																					<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
+																					@if (ViewData["msgroom"] != null)
+																					{
+																						<p>@ViewData["msgroom"]</p>
+																					}
+																					<br></br>
+																					@if (ViewData["msgupdate"] != null)
+																					{
+																						<p>@ViewData["msgupdate"]</p>
+																					}
 																				}
 																			}
-																		}
-																		@if (ViewData["msgupdate"] != null)
-																		{
-																			<p>@ViewData["msgupdate"]</p>
-																		}
-																	</div>
-
-																</div>
-															</td>
-
-														</tr>
-													}
-													<tr data-status="pendiente">
-														@if (q.Status == 1)
-														{
-															<td>
-																@q.QuotationName
-															</td>
-															<td>
-																@q.TotalPrice
-															</td>
-															<td>
-																<div class="media">
-																	<div class="media-body">
-																		<span class="media-meta pull-right">@q.CreateDate</span>
-																		<h4 class="title">
-																			Confirming Quotation
-																			<span class="pull-right pendiente">(Pending)</span>
-																		</h4>
-																		<p class="summary"></p>
-																	</div>
-																</div>
-															</td>
-															<td>
-																<form asp-page-handler="Cancel" method="post">
-																	<input type="hidden" name="QuotationId" value="@q.Id" />
-																	<input type="submit" class="btn btn-danger" value="Cancel" />
-																</form>
-															</td>
-															<td>
-																<button class="btn btn-secondary" onclick="openUpdateQPopup('@q.Id')">View Details</button>
-																<div id="popup_@q.Id" class="popup">
-																	<div class="popup-content">
-																		<span class="close" onclick="closeUpdateQPopup('@q.Id')">&times;</span>
-																		<h2>Quotation Information</h2>
-																		<input type="hidden" value="@q.Id" name="qID" />
-																		<label for="">Quotation Name:</label>
-																		<input type="text" id="quotationName" name="quotationName" value="@(ViewData["quotationnamedata"] != null? ViewData["quotationnamedata"] :q.QuotationName)" readonly="">
-																		@if (ViewData["msgquotation"] != null)
-																		{
-																			<p>@ViewData["msgquotation"]</p>
-																		}
-																		<br></br>
-																		<label for="unitPrice">unitPrice:</label>
-																		<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
-																		@if (ViewData["msgunitprice"] != null)
-																		{
-																			<p>@ViewData["msgunitprice"]</p>
-																		}
-																		<br></br>
-																		<label for="totalPrice">totalPrice:</label>
-																		<input type="text" id="totalPrice" name="totalPrice" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" readonly="">
-																		@if (ViewData["msgtotalprice"] != null)
-																		{
-																			<p>@ViewData["msgtotalprice"]</p>
-																		}
-																		<br></br>
-																		<label for="createDate">Create Date:</label>
-																		<input type="text" id="createDate" name="createDate" value="@(ViewData["createdatedata"] != null? ViewData["createdatedata"] :q.CreateDate)" readonly="">
-																		@if (ViewData["msgcreatedate"] != null)
-																		{
-																			<p>@ViewData["msgcreatedate"]</p>
-																		}
-																		<br></br>
-
-																		@foreach (var room in Model.RoomDTOs)
-																		{
-																			@if (room.Id == q.RoomId)
+																			@if (ViewData["msgupdate"] != null)
 																			{
-																				<label for="">Room Name:</label>
-																				<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
-																				@if (ViewData["msgroom"] != null)
-																				{
-																					<p>@ViewData["msgroom"]</p>
-																				}
-																				<br></br>
-																				@if (ViewData["msgupdate"] != null)
-																				{
-																					<p>@ViewData["msgupdate"]</p>
-																				}
+																				<p>@ViewData["msgupdate"]</p>
 																			}
-																		}
+																		</div>
 
-
-
-
-																		@if (ViewData["msgupdate"] != null)
-																		{
-																			<p>@ViewData["msgupdate"]</p>
-																		}
 																	</div>
+																</td>
 
-																</div>
-															</td>
+															</tr>
 														}
-													</tr>
-													@if (q.Status == 0)
-													{
-														<tr data-status="cancelado">
-															<td>
-																@q.QuotationName
-															</td>
+														<tr data-status="pendiente">
+															@if (q.Status == 1)
+															{
+																<td>
+																	@q.QuotationName
+																</td>
+																<td>
+																	@q.TotalPrice
+																</td>
+																<td>
+																	<div class="media">
+																		<div class="media-body">
+																			<span class="media-meta pull-right">@q.CreateDate</span>
+																			<h4 class="title">
+																				Confirming Quotation
+																				<span class="pull-right pendiente">(Pending)</span>
+																			</h4>
+																			<p class="summary"></p>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<form asp-page-handler="Cancel" method="post">
+																		<input type="hidden" name="QuotationId" value="@q.Id" />
+																		<input type="submit" class="btn btn-danger" value="Cancel" />
+																	</form>
+																</td>
+																<td>
+																	<button class="btn btn-secondary" onclick="openUpdateQPopup('@q.Id')">View Details</button>
+																	<div id="popup_@q.Id" class="popup">
+																		<div class="popup-content">
+																			<span class="close" onclick="closeUpdateQPopup('@q.Id')">&times;</span>
+																			<h2>Quotation Information</h2>
+																			<input type="hidden" value="@q.Id" name="qID" />
+																			<label for="">Quotation Name:</label>
+																			<input type="text" id="quotationName" name="quotationName" value="@(ViewData["quotationnamedata"] != null? ViewData["quotationnamedata"] :q.QuotationName)" readonly="">
+																			@if (ViewData["msgquotation"] != null)
+																			{
+																				<p>@ViewData["msgquotation"]</p>
+																			}
+																			<br></br>
+																			<label for="unitPrice">unitPrice:</label>
+																			<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
+																			@if (ViewData["msgunitprice"] != null)
+																			{
+																				<p>@ViewData["msgunitprice"]</p>
+																			}
+																			<br></br>
+																			<label for="totalPrice">totalPrice:</label>
+																			<input type="text" id="totalPrice" name="totalPrice" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" readonly="">
+																			@if (ViewData["msgtotalprice"] != null)
+																			{
+																				<p>@ViewData["msgtotalprice"]</p>
+																			}
+																			<br></br>
+																			<label for="createDate">Create Date:</label>
+																			<input type="text" id="createDate" name="createDate" value="@(ViewData["createdatedata"] != null? ViewData["createdatedata"] :q.CreateDate)" readonly="">
+																			@if (ViewData["msgcreatedate"] != null)
+																			{
+																				<p>@ViewData["msgcreatedate"]</p>
+																			}
+																			<br></br>
 
-															<td>
-																@q.TotalPrice
-															</td>
-															<td>
-																<div class="media">
-																	@* <a href="#" class="pull-left">
+																			@foreach (var room in Model.RoomDTOs)
+																			{
+																				@if (room.Id == q.RoomId)
+																				{
+																					<label for="">Room Name:</label>
+																					<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
+																					@if (ViewData["msgroom"] != null)
+																					{
+																						<p>@ViewData["msgroom"]</p>
+																					}
+																					<br></br>
+																					@if (ViewData["msgupdate"] != null)
+																					{
+																						<p>@ViewData["msgupdate"]</p>
+																					}
+																				}
+																			}
+
+
+
+
+																			@if (ViewData["msgupdate"] != null)
+																			{
+																				<p>@ViewData["msgupdate"]</p>
+																			}
+																		</div>
+
+																	</div>
+																</td>
+															}
+														</tr>
+														@if (q.Status == 0)
+														{
+															<tr data-status="cancelado">
+																<td>
+																	@q.QuotationName
+																</td>
+
+																<td>
+																	@q.TotalPrice
+																</td>
+																<td>
+																	<div class="media">
+																		@* <a href="#" class="pull-left">
 												<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
 												</a> *@
-																	<div class="media-body">
-																		<span class="media-meta pull-right">@q.CreateDate</span>
-																		<h4 class="title">
-																			Canceling quotation
-																			<span class="pull-right cancelado">(Canceled)</span>
-																		</h4>
-																		<p class="summary"></p>
+																		<div class="media-body">
+																			<span class="media-meta pull-right">@q.CreateDate</span>
+																			<h4 class="title">
+																				Canceling quotation
+																				<span class="pull-right cancelado">(Canceled)</span>
+																			</h4>
+																			<p class="summary"></p>
+																		</div>
 																	</div>
-																</div>
-															</td>
-															<td>
-																<form asp-page-handler="ReConfirm" method="post">
-																	<input type="hidden" name="QuotationId" value="@q.Id" />
-																	<input type="submit" class="btn btn-warning" value="Re-Confirm" />
-																</form>
+																</td>
+																<td>
+																	<form asp-page-handler="ReConfirm" method="post">
+																		<input type="hidden" name="QuotationId" value="@q.Id" />
+																		<input type="submit" class="btn btn-warning" value="Re-Confirm" />
+																	</form>
 
-															</td>
-															<td>
-																<button class="btn btn-secondary" onclick="openUpdateQPopup('@q.Id')">View Details</button>
-																<div id="popup_@q.Id" class="popup">
-																	<div class="popup-content">
-																		<span class="close" onclick="closeUpdateQPopup('@q.Id')">&times;</span>
-																		<h2>Quotation Information</h2>
-																		<input type="hidden" value="@q.Id" name="qID" />
-																		<label for="">Quotation Name:</label>
-																		<input type="text" id="quotationName" name="quotationName" value="@(ViewData["quotationnamedata"] != null? ViewData["quotationnamedata"] :q.QuotationName)" readonly="">
-																		@if (ViewData["msgquotation"] != null)
-																		{
-																			<p>@ViewData["msgquotation"]</p>
-																		}
-																		<br></br>
-																		<label for="unitPrice">unitPrice:</label>
-																		<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
-																		@if (ViewData["msgunitprice"] != null)
-																		{
-																			<p>@ViewData["msgunitprice"]</p>
-																		}
-																		<br></br>
-																		<label for="totalPrice">totalPrice:</label>
-																		<input type="text" id="totalPrice" name="totalPrice" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" readonly="">
-																		@if (ViewData["msgtotalprice"] != null)
-																		{
-																			<p>@ViewData["msgtotalprice"]</p>
-																		}
-																		<br></br>
-																		<label for="createDate">Create Date:</label>
-																		<input type="text" id="createDate" name="createDate" value="@(ViewData["createdatedata"] != null? ViewData["createdatedata"] :q.CreateDate)" readonly="">
-																		@if (ViewData["msgcreatedate"] != null)
-																		{
-																			<p>@ViewData["msgcreatedate"]</p>
-																		}
-																		<br></br>
-
-																		@foreach (var room in Model.RoomDTOs)
-																		{
-																			@if (room.Id == q.RoomId)
+																</td>
+																<td>
+																	<button class="btn btn-secondary" onclick="openUpdateQPopup('@q.Id')">View Details</button>
+																	<div id="popup_@q.Id" class="popup">
+																		<div class="popup-content">
+																			<span class="close" onclick="closeUpdateQPopup('@q.Id')">&times;</span>
+																			<h2>Quotation Information</h2>
+																			<input type="hidden" value="@q.Id" name="qID" />
+																			<label for="">Quotation Name:</label>
+																			<input type="text" id="quotationName" name="quotationName" value="@(ViewData["quotationnamedata"] != null? ViewData["quotationnamedata"] :q.QuotationName)" readonly="">
+																			@if (ViewData["msgquotation"] != null)
 																			{
-																				<label for="">Room Name:</label>
-																				<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
-																				@if (ViewData["msgroom"] != null)
+																				<p>@ViewData["msgquotation"]</p>
+																			}
+																			<br></br>
+																			<label for="unitPrice">unitPrice:</label>
+																			<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
+																			@if (ViewData["msgunitprice"] != null)
+																			{
+																				<p>@ViewData["msgunitprice"]</p>
+																			}
+																			<br></br>
+																			<label for="totalPrice">totalPrice:</label>
+																			<input type="text" id="totalPrice" name="totalPrice" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" readonly="">
+																			@if (ViewData["msgtotalprice"] != null)
+																			{
+																				<p>@ViewData["msgtotalprice"]</p>
+																			}
+																			<br></br>
+																			<label for="createDate">Create Date:</label>
+																			<input type="text" id="createDate" name="createDate" value="@(ViewData["createdatedata"] != null? ViewData["createdatedata"] :q.CreateDate)" readonly="">
+																			@if (ViewData["msgcreatedate"] != null)
+																			{
+																				<p>@ViewData["msgcreatedate"]</p>
+																			}
+																			<br></br>
+
+																			@foreach (var room in Model.RoomDTOs)
+																			{
+																				@if (room.Id == q.RoomId)
 																				{
-																					<p>@ViewData["msgroom"]</p>
-																				}
-																				<br></br>
-																				@if (ViewData["msgupdate"] != null)
-																				{
-																					<p>@ViewData["msgupdate"]</p>
+																					<label for="">Room Name:</label>
+																					<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
+																					@if (ViewData["msgroom"] != null)
+																					{
+																						<p>@ViewData["msgroom"]</p>
+																					}
+																					<br></br>
+																					@if (ViewData["msgupdate"] != null)
+																					{
+																						<p>@ViewData["msgupdate"]</p>
+																					}
 																				}
 																			}
-																		}
 
 
+
+																		</div>
 
 																	</div>
-
-																</div>
-															</td>
-														</tr>
+																</td>
+															</tr>
+														}
 													}
-												}
-											</tbody>
+												</tbody>
 
 
-										</table>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
-					</section>
+						</section>
 
+					</div>
 				</div>
-			</div>
-		} else
+		}
+		} 
+		else if (myObject.RoleName == "Admin" || myObject.RoleName == "Staff")
 		{
-			<div>There are no quotation</div>
+			<h1>Only Customer can access to this</h1>
 		}
 		
 	}

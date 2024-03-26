@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- Body of Form starts -->
-    <a href="/Login">Back To Login</a>
+    <a href="/Login" >Back To Login</a>
     <div class="container">
         <form method="post" autocomplete="on">
             <!--First name-->
@@ -105,8 +105,11 @@
             }
             <!---Gender----->
             <div class="box radio">
-                <label for="gender" class="fl fontLabel"> Gender: </label>
+@*                 <label for="gender" class="fl fontLabel"> Gender: </label> *@
+                <label>Male:</label>
                 <input type="radio" name="Gender" value="Male" @(ViewData["genderdata"] != null && ViewData["genderdata"].Equals("Male") ? "checked" : "")>
+                <br></br>
+                <label>Female:</label>
                 <input type="radio" name="Gender" value="Female" @(ViewData["genderdata"] != null && ViewData["genderdata"].Equals("Female") ? "checked" : "")>
             </div>
 

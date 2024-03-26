@@ -74,6 +74,8 @@
                                     var viewContext = ViewContext.HttpContext;
                                     var csSessionValue = viewContext.Session.GetString("csSession");
                                     var staffSessionValue = viewContext.Session.GetString("staffSession");
+                                    var adSessionValue = viewContext.Session.GetString("adSession");
+
                                     if (csSessionValue != null)
                                     {
 
@@ -102,6 +104,21 @@
                                         
 
                                     }
+                                    else if (adSessionValue != null)
+                                    {
+                                        var myObject3 = JsonSerializer.Deserialize<AccountDTO>(adSessionValue);
+
+                                        <div class="main-white-button">
+                                            <a asp-page="/Login" asp-page-handler="Logout" class="logout">
+                                                <i class="bi bi-door-closed-fill"></i>
+                                                <span class="nav-item">Logout</span>
+                                            </a>
+                                        </div>
+
+                                    }
+
+
+
                                     else
                                     {
                                         <div class="main-white-button">

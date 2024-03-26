@@ -5,10 +5,10 @@ using Infrustructure;
 
 namespace Infrastructure.Repositories
 {
-    public class RoomProductRepository : GenericRepository<RoomProduct>, IRoomProductRepositiory 
+    public class RoomProductRepository : IRoomProductRepositiory 
     {
         private readonly AppDbContext _appDbContext;
-        public RoomProductRepository(AppDbContext appDbContext) : base(appDbContext)
+        public RoomProductRepository(AppDbContext appDbContext) 
         {
             _appDbContext = appDbContext;
         }
