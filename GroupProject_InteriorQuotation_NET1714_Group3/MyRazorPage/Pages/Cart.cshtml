@@ -184,6 +184,10 @@
                             <div class="col-lg-6 px-5 py-4">
 
                                 <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Your products</h3>
+                                @if(ViewData["msgQuantity"] != null)
+                                {
+                                    <p style="color:red">@ViewData["msgQuantity"]</p>
+                                }
                                 @if (Model.carts != null)
                                 {
                                     var totalprice = 0f;
@@ -209,24 +213,28 @@
                                                                     <label for="selectedCart@cart.Id">Custom Quoation</label>
                                                                 }
                                                             </div>
-                                                            <select name="SelectedOption" id="roomSelection" class="form-control">
+                                                            @* <select name="SelectedOption" id="roomSelection" class="form-control">
                                                                 @foreach (var item in Model.roomtypes)
                                                                 {
-                                                                    @if (cart.rType == 0)
+                                                                    @if (cart.rType == cart.rType)
                                                                     {
                                                                         <option value="@item.Id">@item.RoomTypeName</option>
                                                                     }
-                                                                    else
-                                                                    {
-                                                                        <option value="@item.Id" selected="@(cart.rType == item.Id)">@item.RoomTypeName</option>
-                                                                    }
                                                                 }
-                                                            </select>
+                                                            </select> *@
+                                                            @foreach (var item in Model.roomtypes)
+                                                            {
+                                                                @if (cart.rType == item.Id)
+                                                                {
+                                                                    <p id="roomSelection" class="form-control">@item.RoomTypeName</p>
+                                                                }
+                                                            }
+                                                            
                                                         </div>
                                                         <div class="column half">
                                                             <div class="form-group">
                                                                 <label for="roomArea" class="form-label">Room Area</label>
-                                                                <input type="text" id="roomArea" name="roomArea" class="form-control" value="@(cart.rAre == 0? 0:cart.rAre)" />
+                                                                <input type="number" id="roomArea" name="roomArea" class="form-control" value="@(cart.rAre == 0? 0:cart.rAre)" min="10" max="200" />
                                                             </div>
                                                             <button type="submit" class="submit-btn">Calculator</button>
                                                         </div>

@@ -75,9 +75,25 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<RoomDTO> GetRoomById(int id)
+        public async Task<RoomDTO> GetRoomById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Room rs = await _unitOfWork.RoomRepository.GetByIdAsync(id);
+                RoomDTO r_mapper = _mapper.Map<RoomDTO>(rs);
+                if ( r_mapper != null)
+                {
+                    return r_mapper;
+                }
+                else
+                {
+                    return r_mapper;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message, e);
+            }
         }
 
         public Task<bool> UpdateRoom(RoomDTO roomDTO, int id)
