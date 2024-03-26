@@ -10,5 +10,6 @@ namespace Application.IRepositories
 {
     public interface IRoomProductRepositiory 
     {
+        public Task<RoomProduct> AddRoomProduct(RoomProduct roomProduct);
     }
 }

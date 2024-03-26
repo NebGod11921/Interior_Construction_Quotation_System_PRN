@@ -124,7 +124,7 @@ namespace Infrastructure.Repositories
                 var result = await _appDbContext.Rooms.Where(x => x.Id == roomId).FirstOrDefaultAsync();
                 if (result != null)
                 {
-                    _appDbContext.Remove(result);
+                    result.IsDeleted = true;
                     return true;
                 }
                 else

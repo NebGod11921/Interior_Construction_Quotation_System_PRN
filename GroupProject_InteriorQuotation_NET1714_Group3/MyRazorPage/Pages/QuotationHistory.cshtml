@@ -243,8 +243,8 @@
 											<table class="table table-filter">
 												<thead>
 													<tr>
-														<td>Quotation Name</td>
-														<td>Total Price</td>
+														<td></td>
+														<td></td>
 														<td>Status</td>
 														<td></td>
 														<td></td>
@@ -259,13 +259,8 @@
 														if (q.Status == 2)
 														{
 															<tr data-status="pagado">
-																<td>
-																	@q.QuotationName
-																</td>
-																<td>
-																	@q.TotalPrice
-																</td>
-
+																<td></td>
+																<td></td>
 																<td>
 																	<div class="media">
 
@@ -297,13 +292,13 @@
 																				<p>@ViewData["msgquotation"]</p>
 																			}
 																			<br></br>
-																			<label for="unitPrice">unitPrice:</label>
-																			<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
-																			@if (ViewData["msgunitprice"] != null)
-																			{
-																				<p>@ViewData["msgunitprice"]</p>
-																			}
-																			<br></br>
+																			@*label for="unitPrice">unitPrice:</label>
+													<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
+													@if (ViewData["msgunitprice"] != null)
+													{
+													<p>@ViewData["msgunitprice"]</p>
+													}
+													<br></br>*@
 																			<label for="totalPrice">totalPrice:</label>
 																			<input type="text" id="totalPrice" name="totalPrice" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" readonly="">
 																			@if (ViewData["msgtotalprice"] != null)
@@ -319,23 +314,7 @@
 																			}
 																			<br></br>
 
-																			@foreach (var room in Model.RoomDTOs)
-																			{
-																				@if (room.Id == q.RoomId)
-																				{
-																					<label for="">Room Name:</label>
-																					<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
-																					@if (ViewData["msgroom"] != null)
-																					{
-																						<p>@ViewData["msgroom"]</p>
-																					}
-																					<br></br>
-																					@if (ViewData["msgupdate"] != null)
-																					{
-																						<p>@ViewData["msgupdate"]</p>
-																					}
-																				}
-																			}
+																			
 																			@if (ViewData["msgupdate"] != null)
 																			{
 																				<p>@ViewData["msgupdate"]</p>
@@ -350,12 +329,8 @@
 														<tr data-status="pendiente">
 															@if (q.Status == 1)
 															{
-																<td>
-																	@q.QuotationName
-																</td>
-																<td>
-																	@q.TotalPrice
-																</td>
+																<td></td>
+																<td></td>
 																<td>
 																	<div class="media">
 																		<div class="media-body">
@@ -388,13 +363,13 @@
 																				<p>@ViewData["msgquotation"]</p>
 																			}
 																			<br></br>
-																			<label for="unitPrice">unitPrice:</label>
-																			<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
-																			@if (ViewData["msgunitprice"] != null)
-																			{
-																				<p>@ViewData["msgunitprice"]</p>
-																			}
-																			<br></br>
+																			@*label for="unitPrice">unitPrice:</label>
+													<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
+													@if (ViewData["msgunitprice"] != null)
+													{
+													<p>@ViewData["msgunitprice"]</p>
+													}
+													<br></br>*@
 																			<label for="totalPrice">totalPrice:</label>
 																			<input type="text" id="totalPrice" name="totalPrice" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" readonly="">
 																			@if (ViewData["msgtotalprice"] != null)
@@ -410,23 +385,7 @@
 																			}
 																			<br></br>
 
-																			@foreach (var room in Model.RoomDTOs)
-																			{
-																				@if (room.Id == q.RoomId)
-																				{
-																					<label for="">Room Name:</label>
-																					<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
-																					@if (ViewData["msgroom"] != null)
-																					{
-																						<p>@ViewData["msgroom"]</p>
-																					}
-																					<br></br>
-																					@if (ViewData["msgupdate"] != null)
-																					{
-																						<p>@ViewData["msgupdate"]</p>
-																					}
-																				}
-																			}
+																			
 
 
 
@@ -444,13 +403,8 @@
 														@if (q.Status == 0)
 														{
 															<tr data-status="cancelado">
-																<td>
-																	@q.QuotationName
-																</td>
-
-																<td>
-																	@q.TotalPrice
-																</td>
+																<td></td>
+																<td></td>
 																<td>
 																	<div class="media">
 																		@* <a href="#" class="pull-left">
@@ -487,13 +441,13 @@
 																				<p>@ViewData["msgquotation"]</p>
 																			}
 																			<br></br>
-																			<label for="unitPrice">unitPrice:</label>
+																			@*label for="unitPrice">unitPrice:</label>
 																			<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
 																			@if (ViewData["msgunitprice"] != null)
 																			{
 																				<p>@ViewData["msgunitprice"]</p>
 																			}
-																			<br></br>
+																			<br></br>*@
 																			<label for="totalPrice">totalPrice:</label>
 																			<input type="text" id="totalPrice" name="totalPrice" value="@(ViewData["totalpricedata"] != null? ViewData["totalpricedata"] :q.TotalPrice)" readonly="">
 																			@if (ViewData["msgtotalprice"] != null)
@@ -509,24 +463,24 @@
 																			}
 																			<br></br>
 
-																			@foreach (var room in Model.RoomDTOs)
-																			{
-																				@if (room.Id == q.RoomId)
-																				{
-																					<label for="">Room Name:</label>
-																					<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
-																					@if (ViewData["msgroom"] != null)
-																					{
-																						<p>@ViewData["msgroom"]</p>
-																					}
-																					<br></br>
-																					@if (ViewData["msgupdate"] != null)
-																					{
-																						<p>@ViewData["msgupdate"]</p>
-																					}
-																				}
-																			}
-
+																			@* @foreach (var room in Model.RoomDTOs) 
+																			// {
+																			//	@if (room.Id == q.RoomId)
+																			// 	{
+																			// 		<label for="">Room Name:</label>
+																			// 		<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
+																			// 		@if (ViewData["msgroom"] != null)
+																			// 		{
+																			// 			<p>@ViewData["msgroom"]</p>
+																			// 		}
+																			// 		<br></br>
+																			// 		@if (ViewData["msgupdate"] != null)
+																			// 		{
+																			// 			<p>@ViewData["msgupdate"]</p>
+																			// 		}
+																			// 	}
+																			// }
+													*@
 
 
 																		</div>
