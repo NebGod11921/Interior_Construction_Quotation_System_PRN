@@ -23,6 +23,7 @@ namespace Application.ViewModels
         public string Color { get; set; }
         public string Material { get; set; }
         public string Categorys {  get; set; }
+        //public DateTime? CreationDate { get; set; }
         public bool? IsDeleted { get; set; }
     }
 

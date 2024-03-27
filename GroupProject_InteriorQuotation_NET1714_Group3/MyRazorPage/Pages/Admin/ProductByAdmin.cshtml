@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <link rel="stylesheet" href="~/css/adminproduct.css" />
+    <link rel="stylesheet" href="~/css/ListProductUpdateDelete.css" />
+
     <script src="~/js/product-admin.js"></script>
 </head>
 
@@ -66,19 +68,32 @@
                                 <td>
                                     @if (product.IsDeleted == false)
                                     {
-                                        <span>active</span>
+                                        <span class="active-status">ACTIVE</span>
+                                    }
+                                    else if(product.IsDeleted == false)
+                                    {
+                                        <span class="inactive-status">INACTIVE</span>
+                                    }
+                                </td>
+                                @* <td>    
+                                    <a href="/Admin/UpdateProduct?id=@product.ProductId"> Update</a>
+                                    <a href="/Admin/DeleteProduct?id=@product.ProductId"> Delete</a>
+                                </td>   *@
+                                <td>
+                                    @if (product.IsDeleted == true)
+                                    {
+                                        <a href="/Admin/UpdateProduct?id=@product.ProductId" class="update-button"> Update</a>
+                                        <a href="/Admin/DeleteProduct?id=@product.ProductId" class="delete-button"> Delete</a>
                                     }
                                     else
                                     {
-                                        <span>inactive</span>
+                                        <a href="/Admin/UpdateProduct?id=@product.ProductId" class="update-button"> Update</a>
+
+                                        <span   >Delete</span>
                                     }
                                 </td>
 
 
-                                <td>    
-                                    <a href="/Admin/UpdateProduct?id=@product.ProductId"> Update</a>
-                                    <a href="/Admin/DeleteProduct?id=@product.ProductId"> Delete</a>
-                                </td>
                             </tr>
                         }
                     </tbody>

@@ -78,6 +78,7 @@ namespace Application.Services
                 ImageUrl = p.ProductImages.FirstOrDefault()?.Image?.ImageName,
                 Color = p.Color.ColourName,
                 Material = p.Material.MaterialName,
+                //CreationDate = p.CreationDate,
                 IsDeleted = p.IsDeleted
             }).ToList();
             return dtos;
@@ -207,21 +208,22 @@ namespace Application.Services
             }
             
         }
-        public async Task<bool> DeleteProduct(int productDto)
+        public async Task<bool> DeleteProduct(int productDtoId)
         {
             try
             {
-                var product = await _unitOfWork.ProductRepository.GetProductByIdWithAll(productDto);
-                if (product != null)
-                {
-                    product.IsDeleted = false;
-                    await _unitOfWork.SaveChangeAsync();
-                    return true;
-                }
-                else
-                {
-                    return false; 
-                }
+                //var product = await _unitOfWork.ProductRepository.GetProductByIdWithAll(productDto);
+                //if (product != null)
+                //{
+                //    product.IsDeleted = false;
+                //    await _unitOfWork.ProductRepository();
+                //    return true;
+                //}
+                //else
+                //{
+                //    return false; 
+                //}
+                return await _unitOfWork.ProductRepository.DeleteProduct(productDtoId);
             }
             catch (Exception ex)
             {

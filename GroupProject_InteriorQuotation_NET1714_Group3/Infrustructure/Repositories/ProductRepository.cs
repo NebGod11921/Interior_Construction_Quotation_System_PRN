@@ -18,17 +18,33 @@ namespace Infrastructure.Repositories
         {
             _appDbContext = appDbContext;
         }
-        public async Task<bool> DeleteProduct(Product product)
+        public async Task<bool> DeleteProduct(int productid)
         {
             try
             {
-                 _appDbContext.Products.Remove(product);
-                int rowsAffected = await _appDbContext.SaveChangesAsync();
-                return rowsAffected > 0;
+                var pro = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productid);
+                if (pro != null)
+                {
+                    pro.IsDeleted = false;
+                    //int rowsAffected = await _appDbContext.SaveChangesAsync();
+                    await UpdateProductAsyncNew(pro);
+                    //return rowsAffected > 0;
+                    return true; 
+                }
+                else
+                {
+                    return false;
+                }
+
+                //product.IsDeleted = false;
+                //_appDbContext.Products.Remove(product);
+                //_appDbContext.SaveChangesAsync();
+                //int rowsAffected = await _appDbContext.SaveChangesAsync();
+                //return rowsAffected > 0;
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to remove product to database.", ex);
+                throw new Exception("Failed to inactive product", ex);
             }
         }
         public async Task<bool> UpdateProduct(Product product)

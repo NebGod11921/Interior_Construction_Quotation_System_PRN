@@ -16,10 +16,10 @@ namespace Application.IRepositories
         public List<Product> ListProduct();
         Task<Product> GetProductByIdWithAll(int id);
         Task<int?> AddProduct(Product product);
-          Task<bool> DeleteProduct(Product product);
+          Task<bool> DeleteProduct(int productid);
         Task AddProductToRoomAsync(RoomProduct roomProduct);
         Task<bool> IsProductNameExistsAsync(string productName);
-      Product GetProductById(int id);
+        Product GetProductById(int id);
         Product GetProductByIdToCart(int id);
         Task<bool> UpdateProduct(Product product);
         Task UpdateProductAsyncNew(Product product);
