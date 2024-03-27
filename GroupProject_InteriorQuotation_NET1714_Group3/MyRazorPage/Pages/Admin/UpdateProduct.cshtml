@@ -59,36 +59,20 @@
             }
             }
         </select>
-
-        @* <label for="active">if u want active?</label>
-        <input type="radio" id="active" name="isDeleted" value="true" @(Model.Product != null && !Model.Product.IsDeleted.HasValue ? "checked" : "") onchange="updateIsDeleted(this)">
-        <input type="radio" id="inactive" name="isDeleted" value="false" style="display:none" @(Model.Product != null && Model.Product.IsDeleted.HasValue && !Model.Product.IsDeleted.Value ? "checked" : "")>   
-         *@
-        <label for="active">Active</label>
-        <input type="radio" id="active" name="isDeleted" value="true" @(Model.Product != null && !Model.Product.IsDeleted.Value ? "checked" : "") onchange="updateIsDeleted(this)">
-
-        <label for="inactive">Inactive</label>
-        <input type="radio" id="inactive" name="isDeleted" value="false" disabled>
-        <br />
-            <button type="submit">Update Product</button>
+        @if (Model.Product != null && Model.Product.IsDeleted.Value == false)
+        {
+            <label for="active">Activate this product?</label>
+            <input type="radio" id="active" name="isDeleted" value="false" checked onchange="updateIsDeleted()">
+        }
+     
+        <button type="submit">Update Product</button>
         
     </form>
 </body>
-<script>
-    function updateIsDeleted(element) {
-        var activeRadio = document.getElementById("active");
-        var inactiveRadio = document.getElementById("inactive");
 
-        // Nếu radio button "active" được chọn, đặt giá trị của isDeleted thành true
-        if (element.id === "active" && element.checked) {
-            activeRadio.checked = true;
-            inactiveRadio.checked = false;
-        }
-        // Nếu radio button "inactive" được chọn, đặt giá trị của isDeleted thành false
-        else if (element.id === "inactive" && element.checked) {
-            activeRadio.checked = false;
-            inactiveRadio.checked = true;
-        }
+<script>
+    function updateIsDeleted() {
+        document.getElementById("isDeleted").value = true; // Set isDeleted to true directly
     }
 </script>
 

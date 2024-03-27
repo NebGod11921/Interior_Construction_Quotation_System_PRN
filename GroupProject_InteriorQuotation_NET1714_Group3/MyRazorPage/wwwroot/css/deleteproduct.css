@@ -1,4 +1,4 @@
-﻿/* deleteproduct.css */
+﻿ deleteproduct.css 
 
 body {
     font-family: Arial, sans-serif;
@@ -78,9 +78,10 @@ button[type="submit"] {
     cursor: not-allowed;
 }
 
-/* Optional: Styles for responsiveness */
+ Optional: Styles for responsiveness 
 @media screen and (max-width: 600px) {
     form {
         padding: 10px;
     }
 }
+/* Trong tệp CSS của bạn (deleteproduct.css) 

@@ -1,0 +1,43 @@
+﻿body {
+}
+/* Style cho href "Update" */
+.update-button {
+    color: #ffffff; /* Màu chữ trắng */
+    background-color: #007bff; /* Màu nền xanh dương */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px; /* Tăng độ rộng và cao của nút để tạo cảm giác trực quan hơn */
+    border-radius: 5px; /* Làm bo tròn góc cho nút */
+}
+
+    .update-button:hover {
+        background-color: #0056b3; /* Màu nền xanh dương sẫm khi hover */
+    }
+
+/* Style cho href "Delete" */
+.delete-button {
+    color: #ffffff; /* Màu chữ trắng */
+    background-color: #dc3545; /* Màu nền đỏ */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px; /* Tăng độ rộng và cao của nút để tạo cảm giác trực quan hơn */
+    border-radius: 5px; /* Làm bo tròn góc cho nút */
+}
+.delete-button:hover {
+        background-color: #bd2130; /* Màu nền đỏ sẫm khi hover */
+}
+
+.active-status {
+    background-color: #28a745; /* Màu nền xanh lá khi ACTIVE */
+    color: #ffffff; /* Màu chữ trắng khi ACTIVE */
+    padding: 5px 10px; /* Tăng độ rộng và cao của nút để tạo cảm giác trực quan hơn */
+    border-radius: 5px; /* Làm bo tròn góc cho phần tử */
+}
+
+.inactive-status {
+    background-color: #495057; /* Màu nền tối khi INACTIVE */
+    color: #ffffff; /* Màu chữ trắng khi INACTIVE */
+    padding: 5px 10px; /* Tăng độ rộng và cao của nút để tạo cảm giác trực quan hơn */
+    border-radius: 5px; /* Làm bo tròn góc cho phần tử */
+}
+

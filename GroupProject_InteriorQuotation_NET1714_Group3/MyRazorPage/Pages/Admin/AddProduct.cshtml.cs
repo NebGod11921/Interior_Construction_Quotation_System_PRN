@@ -86,6 +86,7 @@ namespace MyRazorPage.Pages.Admin
                 Directory.CreateDirectory(directoryPath);
             }
 
+
             var filePath = Path.Combine(directoryPath, Path.GetFileName(relativePath));           
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
