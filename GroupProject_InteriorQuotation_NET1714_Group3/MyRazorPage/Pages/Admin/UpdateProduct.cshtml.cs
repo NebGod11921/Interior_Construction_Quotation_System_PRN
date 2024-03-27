@@ -12,24 +12,28 @@ namespace MyRazorPage.Pages.Admin
         private IProductService _productService;
         private IColorService _colorService; 
         private IMaterialService _materialService;
-       
-        public UpdateProductModel(IProductService productService, IColorService colorService, IMaterialService materialService)
+        private IRoomTypeService _roomTypeService;
+
+
+        public UpdateProductModel(IProductService productService, IColorService colorService, IMaterialService materialService, IRoomTypeService roomTypeService)
         {
             _productService = productService;
             _colorService = colorService;
             _materialService = materialService;
-                     
+            _roomTypeService = roomTypeService;
         }
       
         public ProductDto Product { get;  set; } 
         public List<ColorDTO> Color { get; set; }
         public List<MaterialDTO> Material { get; set; }
+        public List<RoomTypeDTOS> RoomType { get; set; }
        
         public async Task<IActionResult> OnGet(int id)
         {
 			Product = await   _productService.GetProductByIdWithAll(id);
             Color = await _colorService.GetAllColors();
             Material = await _materialService.GetAllMaterial();
+            
             if (Product == null || Color == null || Material == null)
             {
                 return NotFound();
@@ -39,8 +43,10 @@ namespace MyRazorPage.Pages.Admin
         }
         public async Task<IActionResult> OnPost(string productName, string description, int quantity, int size, float price, int colorId, int materialId)
         {
+            
             var id = Convert.ToInt32(Request.Form["id"]);
             var getpro = await _productService.GetProductByIdWithAll(id);
+            /*var getRoomTypeId = await _roomTypeService.GetRoomTypeById(rTID);*/
 			if (getpro == null)
 			{
 				return NotFound();
@@ -51,6 +57,7 @@ namespace MyRazorPage.Pages.Admin
             getpro.Quantity = quantity;
             getpro.Size = size;
             getpro.Price = price;
+            
             //bool isNewIsDeleted = Request.Form["isDeleted"] == "true";
             if (!getpro.IsDeleted.Value )
             {

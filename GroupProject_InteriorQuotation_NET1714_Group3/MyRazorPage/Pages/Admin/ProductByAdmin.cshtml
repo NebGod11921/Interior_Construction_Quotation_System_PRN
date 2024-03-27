@@ -44,8 +44,8 @@
                             <th>Image</th>
                             <th>Color</th>
                             <th>Material</th>
-                            <th>Actions</th>
                             <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,7 +64,7 @@
                                 <td>@product.Color</td>
                                 <td>@product.Material</td>
                                 <td>
-                                    @if (product.IsDeleted == true)
+                                    @if (product.IsDeleted == false)
                                     {
                                         <span>active</span>
                                     }

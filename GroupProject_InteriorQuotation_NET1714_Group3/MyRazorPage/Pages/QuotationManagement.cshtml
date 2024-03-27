@@ -332,6 +332,7 @@
 																	<h2>Update Quotation</h2>
 																	<form asp-page-handler="UpdateQuotation" method="post">
 																		<input type="hidden" value="@q.Id" name="qID" />
+																		<input type="hidden" value="@q.RoomId" name="rID"/>
 																		<label for="">Quotation Name:</label>
 																		<input type="text" id="quotationName" name="quotationName" value="@(ViewData["quotationnamedata"] != null? ViewData["quotationnamedata"] :q.QuotationName)" required>
 																		@if (ViewData["msgquotation"] != null)

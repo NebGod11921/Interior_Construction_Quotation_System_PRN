@@ -314,6 +314,22 @@
 																			}
 																			<br></br>
 
+																			@foreach (var room in Model.RoomDTOs)
+																			{
+																				@if (room.Id == q.RoomId)
+																				{
+																					<label for="">Room Area:</label>
+																					<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.Area) m2" readonly="">
+																					@if (ViewData["msgroom"] != null)
+																					{
+																						<p>@ViewData["msgroom"]</p>
+																					}
+																					<br></br>
+
+																				}
+																			}
+
+
 																			
 																			@if (ViewData["msgupdate"] != null)
 																			{
@@ -362,7 +378,7 @@
 																			{
 																				<p>@ViewData["msgquotation"]</p>
 																			}
-																			<br></br>
+																			<br/>
 																			@*label for="unitPrice">unitPrice:</label>
 													<input type="text" id="unitPrice" name="unitPrice" value="@(ViewData["unitpricedata"] != null? ViewData["unitpricedata"] :q.UnitPrice)" readonly="">
 													@if (ViewData["msgunitprice"] != null)
@@ -385,9 +401,21 @@
 																			}
 																			<br></br>
 
-																			
 
-
+																			@foreach (var room in Model.RoomDTOs)
+																			{
+																				@if (room.Id == q.RoomId)
+																				{
+																					<label for="">Room Area:</label>
+																					<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.Area) m2" readonly="">
+																					@if (ViewData["msgroom"] != null)
+																					{
+																						<p>@ViewData["msgroom"]</p>
+																					}
+																					<br></br>
+																					
+																				}
+																			}
 
 
 																			@if (ViewData["msgupdate"] != null)
@@ -463,24 +491,24 @@
 																			}
 																			<br></br>
 
-																			@* @foreach (var room in Model.RoomDTOs) 
-																			// {
-																			//	@if (room.Id == q.RoomId)
-																			// 	{
-																			// 		<label for="">Room Name:</label>
-																			// 		<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.RoomTypeName)" readonly="">
-																			// 		@if (ViewData["msgroom"] != null)
-																			// 		{
-																			// 			<p>@ViewData["msgroom"]</p>
-																			// 		}
-																			// 		<br></br>
-																			// 		@if (ViewData["msgupdate"] != null)
-																			// 		{
-																			// 			<p>@ViewData["msgupdate"]</p>
-																			// 		}
-																			// 	}
-																			// }
-													*@
+																			 @foreach (var room in Model.RoomDTOs) 
+																			{
+																				@if (room.Id == q.RoomId)
+																				{
+																					<label for="">Room Area:</label>
+																					<input type="text" id="room" name="room" value="@(ViewData["roomdata"] != null? ViewData["roomdata"] : room.Area) m2" readonly="">
+																					@if (ViewData["msgroom"] != null)
+																					{
+																						<p>@ViewData["msgroom"]</p>
+																					}
+																					<br></br>
+																					@if (ViewData["msgupdate"] != null)
+																					{
+																						<p>@ViewData["msgupdate"]</p>
+																					}
+																				}
+																			}
+													
 
 
 																		</div>

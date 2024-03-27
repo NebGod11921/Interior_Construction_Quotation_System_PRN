@@ -328,7 +328,7 @@ namespace MyRazorPage.Pages
                         
                         var myObject = System.Text.Json.JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
                         QuotationDTO quotationDTO = new QuotationDTO();
-                        quotationDTO.QuotationName = "Room quotation" + _r.GetRoomNameByRoomID(_r.getnewid());
+                        quotationDTO.QuotationName = "Room quotation: " + _r.GetRoomNameByRoomID(_r.getnewid());
                         quotationDTO.Quantity = 1;
                         quotationDTO.UnitPrice = totalprice;
                         quotationDTO.TotalPrice = totalprice;
