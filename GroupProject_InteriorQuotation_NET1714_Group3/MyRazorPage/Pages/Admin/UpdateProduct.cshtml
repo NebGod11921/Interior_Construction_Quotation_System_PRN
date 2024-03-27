@@ -59,12 +59,12 @@
             }
             }
         </select>
-        @if (Model.Product != null && Model.Product.IsDeleted.Value == false)
+        @if (Model.Product != null && Model.Product.IsDeleted == false)
         {
             <label for="active">Activate this product?</label>
-            <input type="radio" id="active" name="isDeleted" value="false" checked onchange="updateIsDeleted()">
-        }
-     
+            <input type="radio" id="active" name="isDeleted" value="true" onchange="updateIsDeleted()" >
+            //<input type="hidden" name="isDeleted" value="false">
+        }        
         <button type="submit">Update Product</button>
         
     </form>
@@ -72,8 +72,11 @@
 
 <script>
     function updateIsDeleted() {
-        document.getElementById("isDeleted").value = true; // Set isDeleted to true directly
+        document.getElementById("active").checked = true; 
+        //var hiddenField = document.getElementById("isDeleted");
+        //hiddenField.value = true;
     }
 </script>
 
 
+         

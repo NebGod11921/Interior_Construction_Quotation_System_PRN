@@ -145,7 +145,7 @@ namespace Application.Services
                     ImageUrl = product.ProductImages.FirstOrDefault()?.Image?.ImageName,
                     Color = product.Color.ColourName,
                     Material = product.Material.MaterialName,
-                    IsDeleted = product.IsDeleted.HasValue
+                    IsDeleted = product.IsDeleted
                     
                 };
 			return productDto;
@@ -164,7 +164,7 @@ namespace Application.Services
                     product.Quantity = productDto.Quantity;
                     product.Size = productDto.Size;
                     product.Price = productDto.Price;
-                    
+                    product.IsDeleted = productDto.IsDeleted;
                     var color = await _unitOfWork.ColorRepository.GetColorByName(productDto.Color);                
                     if(color != null)
                     {

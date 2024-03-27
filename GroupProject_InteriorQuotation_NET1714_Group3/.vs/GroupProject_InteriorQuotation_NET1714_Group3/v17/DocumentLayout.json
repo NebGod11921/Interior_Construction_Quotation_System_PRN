@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\myrazorpage\\pages\\admin\\updateproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|solutionrelative:myrazorpage\\pages\\admin\\updateproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\application\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|solutionrelative:application\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|d:\\cn7\\prn221\\projectprn\\interior_construction_quotation_system_prn\\groupproject_interiorquotation_net1714_group3\\myrazorpage\\wwwroot\\css\\updateproduct.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|solutionrelative:myrazorpage\\wwwroot\\css\\updateproduct.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\application\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|solutionrelative:application\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|d:\\cn7\\prn221\\projectprn\\interior_construction_quotation_system_prn\\groupproject_interiorquotation_net1714_group3\\myrazorpage\\pages\\admin\\updateproduct.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\myrazorpage\\pages\\admin\\updateproduct.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|solutionrelative:myrazorpage\\pages\\admin\\updateproduct.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\myrazorpage\\wwwroot\\css\\listproductupdatedelete.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|solutionrelative:myrazorpage\\wwwroot\\css\\listproductupdatedelete.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|d:\\cn7\\prn221\\projectprn\\interior_construction_quotation_system_prn\\groupproject_interiorquotation_net1714_group3\\myrazorpage\\pages\\admin\\updateproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|solutionrelative:myrazorpage\\pages\\admin\\updateproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\application\\viewmodels\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|solutionrelative:application\\viewmodels\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\myrazorpage\\wwwroot\\css\\updateproduct.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|solutionrelative:myrazorpage\\wwwroot\\css\\updateproduct.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\myrazorpage\\pages\\admin\\productbyadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|solutionrelative:myrazorpage\\pages\\admin\\productbyadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\myrazorpage\\wwwroot\\css\\listproductupdatedelete.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|solutionrelative:myrazorpage\\wwwroot\\css\\listproductupdatedelete.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\myrazorpage\\wwwroot\\css\\adminproduct.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -35,10 +47,6 @@
       "RelativeMoniker": "D:0:0:{6A749928-6966-421F-8F67-9B82531140D8}|MyRazorPage\\MyRazorPage.csproj|solutionrelative:myrazorpage\\pages\\admin\\deleteproduct.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\application\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|solutionrelative:application\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{697A013E-0074-4655-9815-E0BB727F979E}|Infrustructure\\Infrastructure.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\infrustructure\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{697A013E-0074-4655-9815-E0BB727F979E}|Infrustructure\\Infrastructure.csproj|solutionrelative:infrustructure\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -47,16 +55,8 @@
       "RelativeMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|solutionrelative:application\\irepositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\application\\viewmodels\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|solutionrelative:application\\viewmodels\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\application\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|solutionrelative:application\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\application\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FBD62217-6EDE-4A09-9502-88D9C6B35C67}|Application\\Application.csproj|solutionrelative:application\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F73FB97E-2882-4621-BEC1-227504F08752}|Domain\\Domain.csproj|D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -230,7 +230,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -242,80 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "updateproduct.css",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\updateproduct.css",
-              "RelativeDocumentMoniker": "MyRazorPage\\wwwroot\\css\\updateproduct.css",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\updateproduct.css",
-              "RelativeToolTip": "MyRazorPage\\wwwroot\\css\\updateproduct.css",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-03-27T17:47:10.622Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ListProductUpdateDelete.css",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\ListProductUpdateDelete.css",
-              "RelativeDocumentMoniker": "MyRazorPage\\wwwroot\\css\\ListProductUpdateDelete.css",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\ListProductUpdateDelete.css",
-              "RelativeToolTip": "MyRazorPage\\wwwroot\\css\\ListProductUpdateDelete.css",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABkAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-03-27T14:24:54.557Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "BaseEntity.cs",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Entities\\BaseEntity.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\BaseEntity.cs",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Entities\\BaseEntity.cs",
-              "RelativeToolTip": "Domain\\Entities\\BaseEntity.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-25T14:21:11.705Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "IProductRepository.cs",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\IRepositories\\IProductRepository.cs",
-              "RelativeDocumentMoniker": "Application\\IRepositories\\IProductRepository.cs",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\IRepositories\\IProductRepository.cs",
-              "RelativeToolTip": "Application\\IRepositories\\IProductRepository.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAA5wBgAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T18:12:10.175Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "IUnitOfWork.cs",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\IUnitOfWork.cs",
-              "RelativeDocumentMoniker": "Application\\IUnitOfWork.cs",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\IUnitOfWork.cs",
-              "RelativeToolTip": "Application\\IUnitOfWork.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T04:08:02.669Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Repositories\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "Infrustructure\\Repositories\\ProductRepository.cs",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Repositories\\ProductRepository.cs",
-              "RelativeToolTip": "Infrustructure\\Repositories\\ProductRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T18:12:28.234Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "DeleteProduct.cshtml.cs",
               "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\Pages\\Admin\\DeleteProduct.cshtml.cs",
               "RelativeDocumentMoniker": "MyRazorPage\\Pages\\Admin\\DeleteProduct.cshtml.cs",
@@ -327,20 +254,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "UpdateProduct.cshtml",
               "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\Pages\\Admin\\UpdateProduct.cshtml",
               "RelativeDocumentMoniker": "MyRazorPage\\Pages\\Admin\\UpdateProduct.cshtml",
               "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\Pages\\Admin\\UpdateProduct.cshtml",
               "RelativeToolTip": "MyRazorPage\\Pages\\Admin\\UpdateProduct.cshtml",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAawDQAAAAvAAAA",
+              "ViewState": "AQIAADYAAAAAAAAAAAAawEoAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-03-15T07:02:52.14Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "adminproduct.css",
               "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\adminproduct.css",
               "RelativeDocumentMoniker": "MyRazorPage\\wwwroot\\css\\adminproduct.css",
@@ -358,10 +285,135 @@
               "RelativeDocumentMoniker": "MyRazorPage\\Pages\\Admin\\UpdateProduct.cshtml.cs",
               "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\Pages\\Admin\\UpdateProduct.cshtml.cs",
               "RelativeToolTip": "MyRazorPage\\Pages\\Admin\\UpdateProduct.cshtml.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAA7wD4AAAA8AAAA",
+              "ViewState": "AQIAACwAAAAAAAAAAAAuwEYAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-16T10:11:57.409Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ProductByAdmin.cshtml",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\Pages\\Admin\\ProductByAdmin.cshtml",
+              "RelativeDocumentMoniker": "MyRazorPage\\Pages\\Admin\\ProductByAdmin.cshtml",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\Pages\\Admin\\ProductByAdmin.cshtml",
+              "RelativeToolTip": "MyRazorPage\\Pages\\Admin\\ProductByAdmin.cshtml",
+              "ViewState": "AQIAACoAAAAAAAAAAAAmwEMAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-15T03:32:03.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "updateproduct.css",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\updateproduct.css",
+              "RelativeDocumentMoniker": "MyRazorPage\\wwwroot\\css\\updateproduct.css",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\updateproduct.css",
+              "RelativeToolTip": "MyRazorPage\\wwwroot\\css\\updateproduct.css",
+              "ViewState": "AQIAAAEAAAAAAAAAAAArwBcAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-03-27T17:47:10.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductDTO.cs",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\ViewModels\\ProductDTO.cs",
+              "RelativeDocumentMoniker": "Application\\ViewModels\\ProductDTO.cs",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\ViewModels\\ProductDTO.cs",
+              "RelativeToolTip": "Application\\ViewModels\\ProductDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-25T15:04:32.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Interfaces\\IProductService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\IProductService.cs",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Interfaces\\IProductService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\IProductService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBIAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T18:04:16.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Services\\ProductService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\ProductService.cs",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Services\\ProductService.cs",
+              "RelativeToolTip": "Application\\Services\\ProductService.cs",
+              "ViewState": "AQIAAJkAAAAAAAAAAAAMwK0AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T18:07:48.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "Infrustructure\\Repositories\\ProductRepository.cs",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Infrustructure\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "Infrustructure\\Repositories\\ProductRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T18:12:28.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "Application\\IUnitOfWork.cs",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\IUnitOfWork.cs",
+              "RelativeToolTip": "Application\\IUnitOfWork.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T04:08:02.669Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\IRepositories\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "Application\\IRepositories\\IProductRepository.cs",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\IRepositories\\IProductRepository.cs",
+              "RelativeToolTip": "Application\\IRepositories\\IProductRepository.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA5wBgAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T18:12:10.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Entities\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\BaseEntity.cs",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Domain\\Entities\\BaseEntity.cs",
+              "RelativeToolTip": "Domain\\Entities\\BaseEntity.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-25T14:21:11.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ListProductUpdateDelete.css",
+              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\ListProductUpdateDelete.css",
+              "RelativeDocumentMoniker": "MyRazorPage\\wwwroot\\css\\ListProductUpdateDelete.css",
+              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\ListProductUpdateDelete.css",
+              "RelativeToolTip": "MyRazorPage\\wwwroot\\css\\ListProductUpdateDelete.css",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABkAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-03-27T14:24:54.557Z"
             },
             {
               "$type": "Document",
@@ -377,19 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductByAdmin.cshtml",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\Pages\\Admin\\ProductByAdmin.cshtml",
-              "RelativeDocumentMoniker": "MyRazorPage\\Pages\\Admin\\ProductByAdmin.cshtml",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\Pages\\Admin\\ProductByAdmin.cshtml",
-              "RelativeToolTip": "MyRazorPage\\Pages\\Admin\\ProductByAdmin.cshtml",
-              "ViewState": "AQIAADwAAAAAAAAAAAAmwEoAAABFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-15T03:32:03.948Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "deleteproduct.css",
               "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\css\\deleteproduct.css",
               "RelativeDocumentMoniker": "MyRazorPage\\wwwroot\\css\\deleteproduct.css",
@@ -401,42 +441,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "IProductService.cs",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Interfaces\\IProductService.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\IProductService.cs",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Interfaces\\IProductService.cs",
-              "RelativeToolTip": "Application\\Interfaces\\IProductService.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAMwBIAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T18:04:16.904Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Services\\ProductService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\ProductService.cs",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Services\\ProductService.cs",
-              "RelativeToolTip": "Application\\Services\\ProductService.cs",
-              "ViewState": "AQIAALYAAAAAAAAAAAAewMoAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T18:07:48.192Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ProductDTO.cs",
-              "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\ViewModels\\ProductDTO.cs",
-              "RelativeDocumentMoniker": "Application\\ViewModels\\ProductDTO.cs",
-              "ToolTip": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\ViewModels\\ProductDTO.cs",
-              "RelativeToolTip": "Application\\ViewModels\\ProductDTO.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAuwBMAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-25T15:04:32.932Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 18,
               "Title": "RoomService.cs",
               "DocumentMoniker": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\Application\\Services\\RoomService.cs",
@@ -445,7 +449,8 @@
               "RelativeToolTip": "Application\\Services\\RoomService.cs",
               "ViewState": "AQIAAH8AAAAAAAAAAADwv4sAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-27T10:00:43.335Z"
+              "WhenOpened": "2024-03-27T10:00:43.335Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -457,7 +462,8 @@
               "RelativeToolTip": "MyRazorPage\\Pages\\Admin\\RoomManagement.cshtml.cs",
               "ViewState": "AQIAAHUAAAAAAAAAAAAewIAAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T06:51:25.961Z"
+              "WhenOpened": "2024-03-16T06:51:25.961Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -493,8 +499,7 @@
               "RelativeToolTip": "Infrustructure\\Repositories\\RoomRepo.cs",
               "ViewState": "AQIAAHIAAAAAAAAAAIA2wHcAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-27T09:40:39.197Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-27T09:40:39.197Z"
             },
             {
               "$type": "Document",
@@ -722,7 +727,8 @@
               "RelativeToolTip": "MyRazorPage\\Pages\\Cart.cshtml",
               "ViewState": "AQIAALkAAAAAAAAAAAD4v9UAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-15T04:15:03.979Z"
+              "WhenOpened": "2024-03-15T04:15:03.979Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
