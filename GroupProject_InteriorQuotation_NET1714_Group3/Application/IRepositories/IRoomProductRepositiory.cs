@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.IRepositories
 {
-    public interface IRoomProductRepositiory : IGenericRepository<RoomProduct>
+    public interface IRoomProductRepositiory 
     {
+        public Task<RoomProduct> AddRoomProduct(RoomProduct roomProduct);
     }
 }

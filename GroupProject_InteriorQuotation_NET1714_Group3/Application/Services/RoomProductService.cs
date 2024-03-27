@@ -20,7 +20,7 @@ namespace Application.Services
             try
             {
                 RoomProduct r_mapper = _mapper.Map<RoomProduct>(roomProductDTO);
-                await _unitOfWork.RoomProductRepositiory.AddAsync(r_mapper);
+                await _unitOfWork.RoomProductRepositiory.AddRoomProduct(r_mapper);
                 if (await _unitOfWork.SaveChangeAsync() > 0)
                 {
                     return true;

@@ -191,6 +191,7 @@ namespace Application.Services
         {
             try
             {
+                var getRoomId = await _unitOfWork.RoomRepo.GetByIdAsync(quotationDTO.RoomId);
                 var getQuotationId = await _unitOfWork.QuotationRepository.GetByIdAsync(id);
                 if (getQuotationId != null)
                 {
@@ -198,6 +199,8 @@ namespace Application.Services
                     getQuotationId.CreateDate = quotationDTO.CreateDate;
                     getQuotationId.TotalPrice = quotationDTO.TotalPrice;
                     getQuotationId.UnitPrice = quotationDTO.UnitPrice;
+                    getQuotationId.Room = getRoomId;
+                    _unitOfWork.QuotationRepository.Update(getQuotationId);
                     var isSuccess = await _unitOfWork.SaveChangeAsync() > 0;
                     if (isSuccess)
                     {

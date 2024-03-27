@@ -10,6 +10,9 @@ namespace MyRazorPage.Pages.Shared
     public class QuotationManagementModel : PageModel
     {
         private readonly IQuotationService _quotationService;
+
+		
+
         public IEnumerable<QuotationDTO> Quotations { get; set; }
         
 
@@ -22,6 +25,7 @@ namespace MyRazorPage.Pages.Shared
         public async Task OnGet()
         {
             Quotations = await _quotationService.GetAllQuotation();
+			
         }
 		public async Task OnPostPlaceOrder(int quotationId)
 		{
@@ -154,11 +158,11 @@ namespace MyRazorPage.Pages.Shared
 
             await OnGet();
         }*/
-        public async Task OnPostUpdateQuotation(int qID, string quotationName, float unitPrice, float totalPrice, DateTime createDate)
+        public async Task OnPostUpdateQuotation(int qID, string quotationName, float unitPrice, float totalPrice, DateTime createDate, int rID)
         {
             TempData["PopupUpdateState"] = "open";
             TempData["qID"] = qID;
-
+			TempData["rID"] = rID;
             ViewData["quotationnamedata"] = quotationName;
             ViewData["unitpricedata"] = unitPrice;
             ViewData["totalpricedata"] = totalPrice;
@@ -170,6 +174,7 @@ namespace MyRazorPage.Pages.Shared
 				quotationDTO.QuotationName = quotationName;
 				quotationDTO.UnitPrice = unitPrice;
 				quotationDTO.TotalPrice = totalPrice;
+				quotationDTO.RoomId = rID;
 				var result = await _quotationService.UpdateQuotation(quotationDTO, qID);
 				if (result == true)
 				{

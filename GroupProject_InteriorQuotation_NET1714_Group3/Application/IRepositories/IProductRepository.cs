@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.IRepositories
 {
-    public interface IProductRepository
+    public interface IProductRepository : IGenericRepository<Product>
     {
       public List<Product> getProductByRoomId(int roomId);
         public List<Product> SearchListProduct(string input);
@@ -24,5 +24,7 @@ namespace Application.IRepositories
         Task<bool> UpdateProduct(Product product);
         Task UpdateProductAsyncNew(Product product);
 
+
+        /*Task<bool> Update2ndVersion(Product product);*/
     }
 }

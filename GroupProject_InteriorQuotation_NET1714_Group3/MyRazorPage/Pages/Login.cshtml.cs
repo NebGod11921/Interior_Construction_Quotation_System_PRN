@@ -31,11 +31,11 @@ namespace MyRazorPage.Pages
                 if (CheckAdmin(email, password))
                 {
 
-                    var csSession = JsonSerializer.Serialize("admin", new JsonSerializerOptions()
+                    var csSession = JsonSerializer.Serialize(new AccountDTO { EmailAddress = email, RoleName = "Admin"}, new JsonSerializerOptions()
                     {
                         ReferenceHandler = ReferenceHandler.IgnoreCycles
                     });
-                    HttpContext.Session.SetString("csSession", csSession);
+                    HttpContext.Session.SetString("adSession", csSession);
                     return RedirectToPage("/Admin/HomeAdmin");
                 }
                 else
@@ -58,11 +58,13 @@ namespace MyRazorPage.Pages
                         }
                         else if (login.RoleName == "Staff")
                         {
+
                             var session = JsonSerializer.Serialize(login, new JsonSerializerOptions()
                             {
                                 ReferenceHandler = ReferenceHandler.IgnoreCycles
                             });
                             HttpContext.Session.SetString("staffSession", session);
+
                             return RedirectToPage("/QuotationManagement");
                         }
                         else

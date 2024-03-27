@@ -263,7 +263,7 @@ namespace Infrastructure.Migrations
                     b.Property<float?>("UnitPrice")
                         .HasColumnType("real");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -317,15 +317,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<float?>("ActualPrice")
                         .HasColumnType("real");
-
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
@@ -483,7 +474,9 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Domain.Entities.User", "User")
                         .WithMany("Quotations")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Room");
 

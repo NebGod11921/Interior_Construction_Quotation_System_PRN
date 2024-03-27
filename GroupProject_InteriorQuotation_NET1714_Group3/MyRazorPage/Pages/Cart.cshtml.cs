@@ -108,11 +108,12 @@ namespace MyRazorPage.Pages
             if (cexits == null)
             {
                 var room = _p.GetAllProductByRoomId(rId);
+                var roomtypeid = _r.GetRoomById(rId);
                 CartDTO cartForAdd = new CartDTO();
                 cartForAdd.Id = _cart.GetCartIdNew();
                 cartForAdd.roomId = rId;
                 cartForAdd.rAre = 0f;
-                cartForAdd.rType = 0;
+                cartForAdd.rType = roomtypeid.Result.RoomTypeId;
                 cartForAdd.rDescrip = "";
                 if (cartForAdd.Items == null)
                 {
@@ -176,8 +177,16 @@ namespace MyRazorPage.Pages
                 {
                     if (item.Id == itemid)
                     {
-                        item.quanity = quantity;
-                        _cart.UpdateCartItems(cart);
+                        if (checkquatityvalid(item.productId, quantity) == true)
+                        {
+                            item.quanity = quantity;
+                            _cart.UpdateCartItems(cart);
+                        }
+                        else
+                        {
+                            ViewData["msgQuantity"] = $"Product{_p.GetProductByIdToCart(item.productId).ProductName} can have quantity for this , please update quantity";
+                            OnGet();
+                        }
                     }
                 }
             }
@@ -188,7 +197,7 @@ namespace MyRazorPage.Pages
         {
             var cart = _cart.getCartByID(cartID);
             cart.rAre = roomArea;
-            cart.rType = SelectedOption;
+/*            cart.rType = SelectedOption;*/
             cart.rDescrip = rDescription;
             var items = _cart.getItemByCartId(cartID);
             foreach (var item in items)
@@ -243,7 +252,25 @@ namespace MyRazorPage.Pages
             return (int)Math.Ceiling(numberOfProducts);
 
         }
-        public async Task OnPostAddQuotation()
+
+        public bool checkquatityvalid(int pid, int quanity)
+        {
+            var p = _p.GetProductByIdToCart(pid);
+            if (p == null)
+            {
+                return false;
+            }
+            else
+            {
+                if (p.Quantity < quanity) 
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public async Task<IActionResult> OnPostAddQuotation()
         {
             var carts = _cart.getAllCart();
             if (carts.Count <= 0)
@@ -269,30 +296,39 @@ namespace MyRazorPage.Pages
                     {
                         foreach (var item in _cart.getItemByCartId(cart.Id))
                         {
-                            var price = _p.GetProductById(item.productId).Price;
                             //totalprice += (price * item.quanity);
-                            roomProductDTOs.Add(new RoomProductDTO
+                            if(checkquatityvalid(item.productId, item.quanity) == true)
                             {
-                                ProductId = item.productId,
-                                RoomId = _r.getnewid(),
-                                Quantity = item.quanity,
-                                ActualPrice = price * item.quanity
-                            });
-							var pricec = item.quanity * getProductById(item.productId).Price;
-                            totalprice += pricec;
-
+                                var price = _p.GetProductById(item.productId).Price;
+                                roomProductDTOs.Add(new RoomProductDTO
+                                {
+                                    ProductId = item.productId,
+                                    RoomId = _r.getnewid(),
+                                    Quantity = item.quanity,
+                                    ActualPrice = price * item.quanity
+                                });
+                                var pricec = item.quanity * getProductById(item.productId).Price;
+                                totalprice += pricec;
+                            }
+                            else
+                            {
+                                ViewData["msgQuantity"] = $"Product{_p.GetProductByIdToCart(item.productId).ProductName} can have quantity for this , please update quantity";
+                                await OnGet();
+                                return Page();
+                            }
 						}
                         foreach (var rt in roomProductDTOs)
                         {
-                            _rp.CreateRoomProduct(rt);
+                            await _rp.CreateRoomProduct(rt);
                         }
                     }
                     var csSessionValue = HttpContext.Session.GetString("csSession");
                     if (csSessionValue != null)
                     {
+                        
                         var myObject = System.Text.Json.JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
                         QuotationDTO quotationDTO = new QuotationDTO();
-                        quotationDTO.QuotationName = "Room quote" + cart.rDescrip;
+                        quotationDTO.QuotationName = "Room quotation: " + _r.GetRoomNameByRoomID(_r.getnewid());
                         quotationDTO.Quantity = 1;
                         quotationDTO.UnitPrice = totalprice;
                         quotationDTO.TotalPrice = totalprice;
@@ -315,7 +351,8 @@ namespace MyRazorPage.Pages
                     }
                 }
             }
-            OnGet();
-        }
+            await OnGet();
+			return Page();
+		}
     }
 }

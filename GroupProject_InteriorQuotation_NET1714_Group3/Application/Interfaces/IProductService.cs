@@ -26,5 +26,9 @@ namespace Application.Interfaces
     
        ProductDto1 GetProductById(int id);
         ProductDto GetProductByIdToCart(int id);
+
+
+        //Update by luan
+        
 	}
 }
