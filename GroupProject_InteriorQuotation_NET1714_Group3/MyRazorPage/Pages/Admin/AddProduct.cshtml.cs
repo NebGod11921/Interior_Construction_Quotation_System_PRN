@@ -99,50 +99,47 @@ namespace MyRazorPage.Pages.Admin
         public async Task<IActionResult> OnPost(string ProductName, IFormFile imageFile, string Description, int Quantity, int Size, float Price)
         {
             try
-            {
+            {               
                 var roomtypeId = Convert.ToInt32(Request.Form["selectedRoomTypeId"]);
                 var roomId = Convert.ToInt32(Request.Form["selectedRoomId"]);
                 var clorid = Convert.ToInt32(Request.Form["selectedColorId"]);
                 var materid = Convert.ToInt32(Request.Form["selectedMaterialId"]);
                 var cateid = Convert.ToInt32(Request.Form["selectedCategoryId"]);
-                if (string.IsNullOrWhiteSpace(ProductName) && string.IsNullOrWhiteSpace(Description))
+                if (string.IsNullOrEmpty(ProductName))
                 {
-                    ModelState.AddModelError("", "Product name and description are required.");
+                    TempData["ProductNameError"] = "Product name cannot be empty.";
                     return Page();
-
                 }
-                else
-                {
-                    bool isProductNameExists = await _productService.CheckExistProductName(ProductName);
+                bool isProductNameExists = await _productService.CheckExistProductName(ProductName);
                     if (isProductNameExists)
                     {
-                        ModelState.AddModelError("", "Product name exist");
-                        return Page();
-                    }
+                    //ModelState.AddModelError("ProductName", "Product name exist");
+                    //return Page();
+                    TempData["ProductNameError"] = "Product name already exist";
+                    TempData["ProductName"] = ProductName;
+                    return Page();
+                }
                     if (Request.Form["selectedCategoryId"].Count == 0)
                     {
                         ModelState.AddModelError("", "selectedCategoryId  are required.");
                         return Page();
-                    }
-                    //var cateid = Convert.ToInt32(Request.Form["selectedCategoryId"]);
+                    }                   
                     if (Request.Form["selectedRoomTypeId"].Count == 0)
                     {
                         ModelState.AddModelError("", "selectedRoomTypeId  are required.");
                         return Page();
                     }
-                    //var roomtypeId = Convert.ToInt32(Request.Form["selectedRoomTypeId"]);
+                   
                     if (Request.Form["selectedRoomId"].Count == 0)
                     {
                         ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
-                    //var roomId = Convert.ToInt32(Request.Form["selectedRoomId"]);
                     if (!int.TryParse(Request.Form["Product.Quantity"], out int quantity) && quantity < 0)
                     {
                         ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
-
                     if (!int.TryParse(Request.Form["Product.Size"], out int size) && size < 0)
                     {
                         ModelState.AddModelError("", "selectedRoomId  are required.");
@@ -159,20 +156,16 @@ namespace MyRazorPage.Pages.Admin
                         return Page();
                     }
                     if (Request.Form["selectedColorId"].Count == 0)
-                    {
+                    {                
                         ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
-                    }
-                    //var clorid = Convert.ToInt32(Request.Form["selectedColorId"]);
+                    }                   
                     if (Request.Form["selectedMaterialId"].Count == 0)
                     {
                         ModelState.AddModelError("", "selectedRoomId  are required.");
                         return Page();
                     }
-
-
-                }
-                //var materid = Convert.ToInt32(Request.Form["selectedMaterialId"]);
+                             
                 if (!ModelState.IsValid)
                 {
                     TempData["ErrorMessage"] = "Error in ModelState.";
@@ -187,12 +180,10 @@ namespace MyRazorPage.Pages.Admin
                 var catename = await _categoryService.GetCateNameById(cateid);
                 if (catename == null)
                 {
-                    ModelState.AddModelError("", "cate  are faield.");
+                    ModelState.AddModelError("", "cate  are failed.");
                     return Page();
                 }
                 var catenameee = catename.CateName;
-
-
                 var roomTypeName = roomtypename.RoomTypeName;
                 var roomidname = _roomService.GetRoomNameByRoomID(roomId);
                 var (imagePath, imageid) = await SaveImageAsync(imageFile, roomTypeName);
@@ -215,7 +206,6 @@ namespace MyRazorPage.Pages.Admin
                     return Page();
                 }
                 var materiala = material.MaterialName;
-
                 var productDto = new ProductDto
                 {
                     ProductName = Request.Form["ProductName"],
@@ -233,7 +223,6 @@ namespace MyRazorPage.Pages.Admin
                     Categorys = catenameee,
                     IsDeleted = true
                 };
-
                 var newProductId = await _productService.AddProductAsync(productDto);
                 if (newProductId > 0)
                 {
@@ -251,7 +240,6 @@ namespace MyRazorPage.Pages.Admin
                             RoomId = roomId
                         };
                         bool added = await _productService.AddRoomProductAsync(newProductId, roomId);
-
                         if (added)
                         {
 
@@ -269,7 +257,6 @@ namespace MyRazorPage.Pages.Admin
                         return Page();
                     }
                 }
-
                 return Page();
             }
             catch (Exception ex)
@@ -277,7 +264,6 @@ namespace MyRazorPage.Pages.Admin
                 ModelState.AddModelError("", "An error occurred while processing your request. Please try again later.");
                 return Page();
             }
-
         }
 
 

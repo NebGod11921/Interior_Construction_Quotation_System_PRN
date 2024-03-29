@@ -10,14 +10,23 @@
     <link rel="stylesheet" href="~/css/adminproduct.css" />
     <link rel="stylesheet" href="~/css/updateproduct.css" /> 
 </head>
+<style>
+    .error-message {
+        color: red;
+        display: none;
+        margin-top: 2px;
+    }
+</style>
 <body>
     <h1>Update Product</h1>
-    <form method="post" >
+    <form method="post" onsubmit="return validateForm()">
              
         <input type="hidden" name="id" value="@(Model.Product != null ? Model.Product.ProductId : 0)">
 
         <label for="productname">product name:</label>
         <input type="text" id="productname" name="productName" value="@(Model.Product != null ? Model.Product.ProductName : "")">
+      
+
 
         <label for="roomtypename">room type name(read only):</label>
         <input type="text" id="roomtypename" name="roomtypename" value="@(Model.Product != null ? Model.Product.RoomTypeName : "")" readonly>
@@ -27,16 +36,20 @@
 
         <label for="description">Description:</label>
         <textarea id="description" name="description">@(Model.Product != null ? Model.Product.Description : "")</textarea>
+        @* <div id="description-error" class="error-message">Please input Description</div> *@
 
         <label for="quantity">Quantity:</label>
         <input type="number" id="quantity" name="quantity" value="@(Model.Product != null ? Model.Product.Quantity : "")">
+       @*  <div id="quantity-error" class="error-message">Please input quantity</div> *@
 
         <label for="size">Size:</label>
         <input type="number" id="size" name="size" value="@(Model.Product != null ? Model.Product.Size : "")">
+       @*  <div id="size-error" class="error-message">Please input size</div> *@
 
         <label for="price">Price:</label>
         <input type="number" id="price" name="price" value="@(Model.Product != null ? Model.Product.Price : "")">
-
+        @* <div id="price-error" class="error-message">Please input price</div>
+ *@
         <label for="imageUrl">Image:</label>
         <img src="@(Model.Product != null ? Model.Product.ImageUrl : "")" alt="Product Image">
  
@@ -49,7 +62,7 @@
             }
             }
         </select>
-
+        <div id="color-error" class="error-message">Please choose color</div>
         <label for="material">Material:</label>
         <select id="material" name="materialId">
             @if (Model.Material != null){
@@ -59,12 +72,13 @@
             }
             }
         </select>
-        @if (Model.Product != null && Model.Product.IsDeleted.Value == false)
+        <div id="material-error" class="error-message">Please choose material</div>
+        @if (Model.Product != null && Model.Product.IsDeleted == false)
         {
             <label for="active">Activate this product?</label>
-            <input type="radio" id="active" name="isDeleted" value="false" checked onchange="updateIsDeleted()">
-        }
-     
+            <input type="radio" id="active" name="isDeleted" value="true" onchange="updateIsDeleted()" >
+            //<input type="hidden" name="isDeleted" value="false">
+        }        
         <button type="submit">Update Product</button>
         
     </form>
@@ -72,8 +86,83 @@
 
 <script>
     function updateIsDeleted() {
-        document.getElementById("isDeleted").value = true; // Set isDeleted to true directly
+        document.getElementById("active").checked = true; 
+        //var hiddenField = document.getElementById("isDeleted");
+        //hiddenField.value = true;
+    }
+</script>
+@* <script>
+    function validateForm() {
+
+        var productName = document.getElementById('productname').value;       
+        var des = document.getElementById('description').value;
+        var quantity = document.getElementById('quantity').value;
+        var size = document.getElementById('size').value;
+        var price = document.getElementById('price').value;
+        var color = document.getElementById('color').value;
+        var mater = document.getElementById('material').value;
+        
+        var productNameError = document.getElementById('productname-error');       
+        var descriptionError = document.getElementById('description-error');
+        var quantityError = document.getElementById('quantity-error');
+        var sizeError = document.getElementById('size-error');
+        var priceError = document.getElementById('price-error');       
+        var colorError = document.getElementById('color-error');
+        var materialError = document.getElementById('material-error');
+
+        productNameError.style.display = 'none';     
+        descriptionError.style.display = 'none';
+        quantityError.style.display = 'none';
+        sizeError.style.display = 'none';
+        priceError.style.display = 'none';      
+        colorError.style.display = 'none';
+        materialError.style.display = 'none';
+
+        if (!productName) {
+            productNameError.style.display = 'block';
+        }
+        if (!des) {
+            descriptionError.style.display = 'block';
+        }
+        if (!quantity) {
+            quantityError.style.display = 'block';
+        }
+        if (!size) {
+            sizeError.style.display = 'block';
+        }
+        if (!price) {
+            priceError.style.display = 'block';
+        }       
+        if (!color) {
+            colorError.style.display = 'block';
+        }
+        if (!mater) {
+            materialError.style.display = 'block';
+        }
+
+        if (!productName) {
+            alert("Please fill in productname");
+            return false;
+        }
+        if (!des) {
+            alert("Please fill in des");
+            return false;
+        }
+        if (!quantity) {
+            alert("Please fill in qa");
+            return false;
+        }
+        if (!size) {
+            alert("Please fill in si");
+            return false;
+        }
+        if (!price) {
+            alert("Please fill in productname");
+            return false;
+        }
+        return true;
     }
 </script>
 
-
+ *@
+         

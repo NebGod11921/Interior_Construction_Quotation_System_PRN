@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\MyRazorPage.bundle.scp.css"
     },
     {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\BathRoom\\50b338e9-21c2-4060-93b2-d608f8a559da.png",
+      "PackagePath": "staticwebassets\\Images\\BathRoom\\50b338e9-21c2-4060-93b2-d608f8a559da.png"
+    },
+    {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\BathRoom\\5b9d9cf8-c6a9-40a2-9d07-e2e2fb16f861.png",
       "PackagePath": "staticwebassets\\Images\\BathRoom\\5b9d9cf8-c6a9-40a2-9d07-e2e2fb16f861.png"
     },
@@ -97,12 +101,20 @@
       "PackagePath": "staticwebassets\\Images\\BathRoom\\ToiletR14.jpg"
     },
     {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\BathRoom\\aac40137-9159-4a4c-aed5-fcf5d06407e3.png",
+      "PackagePath": "staticwebassets\\Images\\BathRoom\\aac40137-9159-4a4c-aed5-fcf5d06407e3.png"
+    },
+    {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\BathRoom\\c97e1c3a-ef55-4ef5-a314-5fbbc31ea00c.png",
       "PackagePath": "staticwebassets\\Images\\BathRoom\\c97e1c3a-ef55-4ef5-a314-5fbbc31ea00c.png"
     },
     {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\BathRoom\\d9b98856-ac82-4f86-abdc-b3c42241df32.png",
       "PackagePath": "staticwebassets\\Images\\BathRoom\\d9b98856-ac82-4f86-abdc-b3c42241df32.png"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\0be86c34-6be9-4cc8-9583-d542f34608bf.png",
+      "PackagePath": "staticwebassets\\Images\\Bed Room\\0be86c34-6be9-4cc8-9583-d542f34608bf.png"
     },
     {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\3aa7cae7-6dfa-48cb-b0ab-cdc0ba919264.png",
@@ -193,12 +205,20 @@
       "PackagePath": "staticwebassets\\Images\\Bed Room\\WardrobeR6.jpg"
     },
     {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\bc5171a6-5055-4f25-80da-56d17e27031e.png",
+      "PackagePath": "staticwebassets\\Images\\Bed Room\\bc5171a6-5055-4f25-80da-56d17e27031e.png"
+    },
+    {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\d0bdfc30-302d-477f-a382-382606bd6562.png",
       "PackagePath": "staticwebassets\\Images\\Bed Room\\d0bdfc30-302d-477f-a382-382606bd6562.png"
     },
     {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\e3dc26a5-3956-458f-9426-1e21bd1abead.png",
       "PackagePath": "staticwebassets\\Images\\Bed Room\\e3dc26a5-3956-458f-9426-1e21bd1abead.png"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\f8d0d605-515d-407e-9908-6010bd28a8a1.png",
+      "PackagePath": "staticwebassets\\Images\\Bed Room\\f8d0d605-515d-407e-9908-6010bd28a8a1.png"
     },
     {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Bed Room\\lightR9.jpg",
@@ -279,6 +299,18 @@
     {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\3de53c66-a981-4b3b-8deb-4d09803bbe94.png",
       "PackagePath": "staticwebassets\\Images\\Living Room\\3de53c66-a981-4b3b-8deb-4d09803bbe94.png"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\4245950d-fccc-4810-a8ac-0dc9c04187fe.png",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\4245950d-fccc-4810-a8ac-0dc9c04187fe.png"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\60ec3be0-bb6c-42d3-98da-67343ed270d4.png",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\60ec3be0-bb6c-42d3-98da-67343ed270d4.png"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\6ae77f6c-b2a7-41f6-80a5-e1804ee6a9f4.png",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\6ae77f6c-b2a7-41f6-80a5-e1804ee6a9f4.png"
     },
     {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\BookSeft.jpg",
@@ -367,6 +399,10 @@
     {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\TiviR5.jpg",
       "PackagePath": "staticwebassets\\Images\\Living Room\\TiviR5.jpg"
+    },
+    {
+      "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\c367dd16-bf74-434e-a5f0-b52820008fd2.png",
+      "PackagePath": "staticwebassets\\Images\\Living Room\\c367dd16-bf74-434e-a5f0-b52820008fd2.png"
     },
     {
       "Id": "D:\\CN7\\PRN221\\ProjectPRN\\Interior_Construction_Quotation_System_PRN\\GroupProject_InteriorQuotation_NET1714_Group3\\MyRazorPage\\wwwroot\\Images\\Living Room\\c6abf814-d936-445a-ac74-4a4b48d7c7aa.png",
