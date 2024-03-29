@@ -25,7 +25,7 @@ namespace Infrastructure.Repositories
                 var pro = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productid);
                 if (pro != null)
                 {
-                    pro.IsDeleted = false;
+                    pro.IsDeleted = true;
                     //int rowsAffected = await _appDbContext.SaveChangesAsync();
                     await UpdateProductAsyncNew(pro);
                     //return rowsAffected > 0;

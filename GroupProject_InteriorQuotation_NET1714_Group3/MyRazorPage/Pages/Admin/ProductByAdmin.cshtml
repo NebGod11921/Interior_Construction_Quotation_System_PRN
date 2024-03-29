@@ -66,11 +66,11 @@
                                 <td>@product.Color</td>
                                 <td>@product.Material</td>
                                 <td>
-                                    @if (product.IsDeleted == true)
+                                    @if (product.IsDeleted == false)
                                     {
                                         <span class="active-status">ACTIVE</span>
                                     }
-                                    else if(product.IsDeleted == false)
+                                    else if(product.IsDeleted == true)
                                     {
                                         <span class="inactive-status">INACTIVE</span>
                                     }
@@ -80,7 +80,7 @@
                                     <a href="/Admin/DeleteProduct?id=@product.ProductId"> Delete</a>
                                 </td>   *@
                                 <td>
-                                    @if (product.IsDeleted == true)
+                                    @if (product.IsDeleted == false)
                                     {
                                         <a href="/Admin/UpdateProduct?id=@product.ProductId" class="update-button"> Update</a>
                                         <a href="/Admin/DeleteProduct?id=@product.ProductId" class="delete-button"> Delete</a>

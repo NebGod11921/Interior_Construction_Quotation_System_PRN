@@ -221,7 +221,7 @@ namespace MyRazorPage.Pages.Admin
                     Color = colorname,
                     Material = materiala,
                     Categorys = catenameee,
-                    IsDeleted = true
+                    IsDeleted = false
                 };
                 var newProductId = await _productService.AddProductAsync(productDto);
                 if (newProductId > 0)

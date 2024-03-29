@@ -73,10 +73,10 @@
             }
         </select>
         <div id="material-error" class="error-message">Please choose material</div>
-        @if (Model.Product != null && Model.Product.IsDeleted == false)
+        @if (Model.Product != null && Model.Product.IsDeleted == true)
         {
             <label for="active">Activate this product?</label>
-            <input type="radio" id="active" name="isDeleted" value="true" onchange="updateIsDeleted()" >
+            <input type="radio" id="active" name="isDeleted" value="false"   onchange="updateIsDeleted()" >
             //<input type="hidden" name="isDeleted" value="false">
         }        
         <button type="submit">Update Product</button>
