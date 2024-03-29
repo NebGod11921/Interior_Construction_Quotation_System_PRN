@@ -12,12 +12,25 @@
     @* <link rel="stylesheet" href="~/css/adminproduct.css" /> *@
     <link rel="stylesheet" href="~/css/AddProduct.css" />
 </head>
+<style>
+    .error-message {
+        color: red;
+        display: none;
+        margin-top: 2px;
+    }
+</style>
 <body>
     <h1>Create Product</h1>
-    <form method="post" enctype="multipart/form-data">
+
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+
+
+        
         <label for="productname">Product Name:</label>
         <input type="text" id="productname" name="ProductName" >
-        
+        <div id="productname-error" class="error-message">Please input name</div>       
+        @* <div id="productNameTempError" class="error-message">@TempData["ProductNameError"]</div>
+ *@
         <label for="category">Category:</label>
         <select id="category" name="Product.CategoryId" onchange="updateSelectedCategoryId()" >
             <option value="">Select cate...</option> <!-- Placeholder option -->
@@ -29,6 +42,7 @@
                 }
             }
         </select>
+        <div id="category-error" class="error-message">Please choose category</div>
 
         <label for="roomtypename">Room Type Name:</label>
         <select id="roomtypename" name="Product.RoomTypeId" onchange="updateSelectedRoomTypeId()" >
@@ -40,6 +54,8 @@
                 }
             }
         </select>
+        <div id="roomtypename-error" class="error-message">Please choose RoomType</div>
+
         <label for="roomname">Room Name:</label>
         <select id="roomname" name="Product.RoomId" onchange="updateSelectedRoomId()" >
             <option value="">Select Room...</option>
@@ -51,25 +67,35 @@
                 }
             }
         </select>
-        
+        <div id="roomname-error" class="error-message">Please choose RoomName</div> 
+
+
         <label for="description">Description:</label>
         <textarea id="description" name="Description" ></textarea>
+        <div id="description-error" class="error-message">Please input Description</div> 
 
         <label for="quantity">Quantity:</label>
         <input type="number" id="quantity" name="Product.Quantity" >
+        <div id="quantity-error" class="error-message">Please input quantity</div>
+
 
         <label for="size">Size:</label>
         <input type="number" id="size" name="Product.Size" >
+        <div id="size-error" class="error-message">Please input size</div> 
 
         <label for="price">Price:</label>
         <input type="number" id="price" name="Product.Price" >
+        <div id="price-error" class="error-message">Please input price</div>
+
 
         <label for="imageUrl">Image URL:</label>
         <input type="file" id="imageFile" name="imageFile" accept="image/*" >
+        <div id="imageFile-error" class="error-message">Please choose image</div> 
+
 
         <label for="color">Color:</label>
         <select id="color" name="Product.ColorId" onchange="updateSelectedColorId()" >
-            <option value="">Select color...</option> <!-- Placeholder option -->
+            <option value="">Select color...</option>
             @if (Model.Color != null)
             {
                 @foreach (var color in Model.Color)
@@ -77,11 +103,13 @@
                     <option value="@color.ColorId">@color.ColourName</option>
                 }
             }
+            
         </select>
+		<div id="color-error" class="error-message">Please choose color</div>
 
         <label for="material">Material:</label>
         <select id="material" name="Product.MaterialId" onchange="updateSelectedMaterialId()" >
-            <option value="">Select material...</option> <!-- Placeholder option -->
+            <option value="">Select material...</option> 
             @if (Model.Material != null)
             {
                 @foreach (var material in Model.Material)
@@ -90,6 +118,7 @@
                 }
             }
         </select>
+        <div id="material-error" class="error-message">Please choose material</div> 
 
         <button type="submit">Create Product</button>
         <input type="hidden" id="selectedRoomId" name="selectedRoomId">
@@ -130,10 +159,7 @@
         }
     });
 </script>
-   
-
-
-
+  
 <script>
     // Auto dismiss success message after 2 seconds
     setTimeout(function () {
@@ -144,19 +170,12 @@
     }, 2000);
 </script>
 
-
-
-
-
-
 <script>
     function updateSelectedRoomTypeId() {
         var selectedRoomTypeId = document.getElementById('roomtypename').value;
         document.getElementById('selectedRoomTypeId').value = selectedRoomTypeId;
     }
 </script>
-
-
 
 <script>
     document.getElementById('roomname').addEventListener('change', function () {
@@ -174,8 +193,8 @@
 
 <script>
     function updateSelectedColorId() {
-        var selectedColorId = document.getElementById('color').value; // Lấy giá trị đã chọn từ combobox color
-        document.getElementById('selectedColorId').value = selectedColorId; // Cập nhật giá trị vào hidden input field
+        var selectedColorId = document.getElementById('color').value; 
+        document.getElementById('selectedColorId').value = selectedColorId;
     }
 </script>
 <script>
@@ -186,8 +205,8 @@
 
 <script>
     function updateSelectedMaterialId() {
-        var selectedMaterialId = document.getElementById('material').value; // Lấy giá trị đã chọn từ combobox material
-        document.getElementById('selectedMaterialId').value = selectedMaterialId; // Cập nhật giá trị vào hidden input field
+        var selectedMaterialId = document.getElementById('material').value; 
+        document.getElementById('selectedMaterialId').value = selectedMaterialId;
     }
 </script>
 <script>
@@ -198,8 +217,8 @@
 
 <script>
     function updateSelectedCategoryId() {
-        var selectedMaterialId = document.getElementById('category').value; // Lấy giá trị đã chọn từ combobox material
-        document.getElementById('selectedCategoryId').value = selectedMaterialId; // Cập nhật giá trị vào hidden input field
+        var selectedMaterialId = document.getElementById('category').value; 
+        document.getElementById('selectedCategoryId').value = selectedMaterialId;
     }
 </script>
 <script>
@@ -207,3 +226,91 @@
         updateSelectedCategoryId();
     });
 </script>
+
+<script>
+    function validateForm() {
+     
+        var productName = document.getElementById('productname').value;
+        var selectedCategoryId = document.getElementById('selectedCategoryId').value;
+        var selectedRoomTypeId = document.getElementById('selectedRoomTypeId').value;
+        var selectedRoomId = document.getElementById('selectedRoomId').value;
+        var des = document.getElementById('description').value;
+        var quantity = document.getElementById('quantity').value;
+        var size = document.getElementById('size').value;
+        var price = document.getElementById('price').value;
+        var color = document.getElementById('color').value;
+        var mater = document.getElementById('material').value;
+        var image = document.getElementById('imageFile').value;
+        var selectedFile = imageFile.files[0];
+        //var errorMessage = '';
+
+        
+        var productNameError = document.getElementById('productname-error');
+        //var productNameTempError = document.getElementById('productNameTempError');
+
+        var categoryError = document.getElementById('category-error');
+        var roomTypeError = document.getElementById('roomtypename-error');
+        var roomError = document.getElementById('roomname-error');
+        var descriptionError = document.getElementById('description-error');
+        var quantityError = document.getElementById('quantity-error');
+        var sizeError = document.getElementById('size-error');
+        var priceError = document.getElementById('price-error');
+        var imageError = document.getElementById('imageFile-error');
+        var colorError = document.getElementById('color-error');
+        var materialError = document.getElementById('material-error');
+
+        productNameError.style.display = 'none';
+        
+        categoryError.style.display = 'none';
+        roomTypeError.style.display = 'none';
+        roomError.style.display = 'none';
+        descriptionError.style.display = 'none';
+        quantityError.style.display = 'none';
+        sizeError.style.display = 'none';
+        priceError.style.display = 'none';
+        imageError.style.display = 'none';
+        colorError.style.display = 'none';
+        materialError.style.display = 'none';
+       
+        if (!productName) {
+            productNameError.style.display = 'block';
+        }
+       
+        if (!selectedCategoryId) {
+            categoryError.style.display = 'block';
+        }
+        if (!selectedRoomTypeId) {
+            roomTypeError.style.display = 'block';
+        }
+        if (!selectedRoomId) {
+            roomError.style.display = 'block';
+        }
+        if (!des) {
+            descriptionError.style.display = 'block';
+        }
+        if (!quantity) {
+            quantityError.style.display = 'block';
+        }
+        if (!size) {
+            sizeError.style.display = 'block';
+        }
+        if (!price) {
+            priceError.style.display = 'block';
+        }
+        if (!selectedFile) {
+            imageError.style.display = 'block';
+        }
+        if (!color) {
+            colorError.style.display = 'block';
+        }
+        if (!mater) {
+            materialError.style.display = 'block';
+        }
+
+        if (!productName || !selectedCategoryId || !selectedRoomTypeId || !selectedRoomId || !des || !quantity || !size || !price || !selectedFile || !color || !mater) {
+            return false;
+        }
+        return true;
+    }
+</script>
+
