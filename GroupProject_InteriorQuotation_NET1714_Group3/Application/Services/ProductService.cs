@@ -96,8 +96,10 @@ namespace Application.Services
                 Price = p.Price,
                 ImageUrl = p.ProductImages.FirstOrDefault()?.Image?.ImageName,
                 Color = p.Color.ColourName,
-                Material = p.Material.MaterialName
-            }).ToList();
+                Material = p.Material.MaterialName,
+				IsDeleted = p.IsDeleted == false
+
+			}).ToList();
 
 
 			return productDtos;

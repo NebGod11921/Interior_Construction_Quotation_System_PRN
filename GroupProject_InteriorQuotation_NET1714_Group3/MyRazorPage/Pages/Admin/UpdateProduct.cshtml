@@ -39,15 +39,15 @@
         @* <div id="description-error" class="error-message">Please input Description</div> *@
 
         <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" value="@(Model.Product != null ? Model.Product.Quantity : "")">
+        <input type="number" id="quantity" name="quantity" value="@(Model.Product != null ? Model.Product.Quantity : "")" min="1">
        @*  <div id="quantity-error" class="error-message">Please input quantity</div> *@
 
         <label for="size">Size:</label>
-        <input type="number" id="size" name="size" value="@(Model.Product != null ? Model.Product.Size : "")">
+        <input type="number" id="size" name="size" value="@(Model.Product != null ? Model.Product.Size : "")" min="1">
        @*  <div id="size-error" class="error-message">Please input size</div> *@
 
         <label for="price">Price:</label>
-        <input type="number" id="price" name="price" value="@(Model.Product != null ? Model.Product.Price : "")">
+        <input type="number" id="price" name="price" value="@(Model.Product != null ? Model.Product.Price : "")" min="1">
         @* <div id="price-error" class="error-message">Please input price</div>
  *@
         <label for="imageUrl">Image:</label>

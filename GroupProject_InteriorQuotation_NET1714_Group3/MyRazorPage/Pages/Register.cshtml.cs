@@ -62,6 +62,14 @@ namespace MyRazorPage.Pages
                 ViewData["fullname"] = "Please fill fullname";
                 flag = false;
             }
+            if (!string.IsNullOrEmpty(fullname))
+            {
+                if(fullname.Length < 5)
+                {
+                    ViewData["fullname"] = "Your name's length should be more 5 letters";
+                    flag = false;
+                } 
+            }
             if (string.IsNullOrEmpty(address))
             {
                 ViewData["address"] = "Please fill address";
@@ -72,6 +80,19 @@ namespace MyRazorPage.Pages
                 
                 ViewData["telephone"] = "Please fill telephone";
                 flag = false;
+            }
+            if (!string.IsNullOrEmpty(telephone))
+            {
+                if(!telephone.StartsWith("0"))
+                {
+                    ViewData["telephone"] = "Your phone number should be start with 0";
+                    flag = false;
+                }
+                if(!telephone.Length.Equals(10))
+                {
+                    ViewData["telephone"] = "Your phoneNumber should be equal to 10 numbers";
+                    flag = false;
+                }
             }
             if (string.IsNullOrEmpty(email))
             {
