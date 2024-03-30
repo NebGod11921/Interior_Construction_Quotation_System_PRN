@@ -3,8 +3,33 @@
 @using Application.ViewModels
 @model MyRazorPage.Pages.Shared.QuotationManagementModel
 @{
+	Layout = null;
 	var getSession = HttpContext.Session.GetString("staffSession");
 }
+
+@if (getSession != null)
+{
+	var myObject2 = JsonSerializer.Deserialize<AccountDTO>(getSession);
+
+	<div class="main-white-button">
+		<a asp-page="/Login" asp-page-handler="Logout" class="logout">
+			<i class="bi bi-door-closed-fill"></i>
+			<span class="nav-item">Logout</span>
+		</a>
+	</div>
+
+} else
+{
+	<div class="main-white-button">
+		<a asp-page="/Login" class="logout">
+			<i class="bi bi-door-closed-fill"></i>
+			<span class="nav-item">Login</span>
+		</a>
+	</div>
+}
+
+
+
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -215,6 +240,45 @@
 			text-decoration: none;
 			cursor: pointer;
 		}
+
+	.main-white-button {
+		background-color: #ffffff;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		padding: 5px 10px;
+		display: inline-block;
+	}
+
+		.main-white-button a {
+			text-decoration: none;
+			color: #333;
+			display: flex;
+			align-items: center;
+		}
+
+			.main-white-button a:hover {
+				background-color: #f0f0f0;
+			}
+
+	.bi {
+		margin-right: 5px;
+	}
+
+	.nav-item {
+		font-size: 14px;
+	}
+
+	.logout .bi {
+		color: #ff0000; /* Change color for logout button */
+	}
+
+	.login .bi {
+		color: #008000; /* Change color for login button */
+	}
+
+
+
+
 </style>
 @if(getSession != null)
 {
@@ -321,7 +385,7 @@
 														<td>
 															<form asp-page-handler="PlaceOrder" method="post">
 																<input type="hidden" name="QuotationId" value="@q.Id" />
-																<input type="submit" class="btn btn-success" value="Place Order" />
+																<input type="submit" class="btn btn-success" value="Confirm a quotation" />
 															</form>
 														</td>
 														<td>

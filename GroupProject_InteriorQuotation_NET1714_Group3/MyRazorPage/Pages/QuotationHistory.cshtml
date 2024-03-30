@@ -325,9 +325,24 @@
 																						<p>@ViewData["msgroom"]</p>
 																					}
 																					<br></br>
+																					<label for="">Room Description:</label>
+																					<input type="text" id="room" name="room" value="@(ViewData["roomdesdata"] != null? ViewData["roomdesdata"] : room.RoomDescription)" readonly="">
+																					<br />
 
-																				}
+																					@foreach(var roomType in Model.RoomTypeDTOs)
+																					{
+																						@if (roomType.Id == room.RoomTypeId)
+																						{
+																							<label for="">Room Type Name:</label>
+																							<input type="text" id="roomtype" name="roomtype" value="@(ViewData["roomtypedata"] != null? ViewData["roomtypedata"] : roomType.RoomTypeName)" readonly="">
+																						}
+																					}
+
+
+														}
 																			}
+
+																		
 
 
 																			
@@ -413,7 +428,17 @@
 																						<p>@ViewData["msgroom"]</p>
 																					}
 																					<br></br>
-																					
+																					<label for="">Room Description:</label>
+																					<input type="text" id="room" name="room" value="@(ViewData["roomdesdata"] != null? ViewData["roomdesdata"] : room.RoomDescription)" readonly="">
+																					<br />
+																					@foreach (var roomType in Model.RoomTypeDTOs)
+																					{
+																						@if (roomType.Id == room.RoomTypeId)
+																						{
+																							<label for="">Room Type Name:</label>
+																							<input type="text" id="roomtype" name="roomtype" value="@(ViewData["roomtypedata"] != null? ViewData["roomtypedata"] : roomType.RoomTypeName)" readonly="">
+																						}
+																					}
 																				}
 																			}
 
@@ -502,6 +527,21 @@
 																						<p>@ViewData["msgroom"]</p>
 																					}
 																					<br></br>
+																					<label for="">Room Description:</label>
+																					<input type="text" id="room" name="room" value="@(ViewData["roomdesdata"] != null? ViewData["roomdesdata"] : room.RoomDescription)" readonly="">
+																					<br />
+
+																					@foreach (var roomType in Model.RoomTypeDTOs)
+																					{
+																						@if (roomType.Id == room.RoomTypeId)
+																						{
+																							<label for="">Room Type Name:</label>
+																							<input type="text" id="roomtype" name="roomtype" value="@(ViewData["roomtypedata"] != null? ViewData["roomtypedata"] : roomType.RoomTypeName)" readonly="">
+																						}
+																					}
+
+
+
 																					@if (ViewData["msgupdate"] != null)
 																					{
 																						<p>@ViewData["msgupdate"]</p>

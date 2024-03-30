@@ -10,13 +10,16 @@ namespace MyRazorPage.Pages
     {
         private readonly IQuotationService _quotationService;
 		private readonly IRoomService _roomService;
-        public QuotationHistoryModel(IQuotationService quotationService, IRoomService roomService)
+		private readonly IRoomTypeService _roomTypeService;
+        public QuotationHistoryModel(IQuotationService quotationService, IRoomService roomService, IRoomTypeService roomTypeService)
         {
             _quotationService = quotationService;
 			_roomService = roomService;
+			_roomTypeService = roomTypeService;
         }
         public IEnumerable<QuotationDTO> Quotations { get; set; }
 		public IEnumerable<RoomDTOS> RoomDTOs { get; set; }
+		public IEnumerable<RoomTypeDTOS> RoomTypeDTOs { get; set; }
 
 		/* public void OnGet()
 		 {
@@ -40,6 +43,8 @@ namespace MyRazorPage.Pages
 				var myObject = JsonSerializer.Deserialize<AccountDTO>(csSessionValue);
 				Quotations = await  _quotationService.GetQuotationByCsId(myObject.Id);
 				RoomDTOs = await _roomService.GetAllRooms();
+				RoomTypeDTOs = await _roomTypeService.GetAllTypesRoom();
+
 			} else
 			{
 				Page();
